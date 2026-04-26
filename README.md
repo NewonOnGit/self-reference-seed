@@ -8,8 +8,9 @@ The engine derives the complete self-reference framework from a single Sylvester
 
 ```
 seed/
-  THEORY.md              The framework (354 lines, self-contained)
+  THEORY.md              The framework, self-contained
   KAEL_THEOREM.md        The observer named
+  CENTRAL_COLLAPSE.md    Three failures, one closure
   README.md              This file
   modular/               The engine (6 files)
     production.py         One operation, five readings (A-E)
@@ -44,8 +45,8 @@ Five readings of this act:
 |---------|-----------------|-------------|
 | **A. Algebra** | ker/im decomposition, generators | N, P, h, Q, 7 identities, 5 constants, Clifford |
 | **B. Category** | Dist, quotient structure | Observer=quotient, UKI, three-reading theorem |
-| **C. Tower** | K6' ascent, depth structure | Cl(3,1)→so(3,1), Catalan fillers, recursive disclosure |
-| **D. Physics** | Predictions from B+C outputs | α_S, sin²θ_W, anomalies, matter, gravity chain |
+| **C. Tower** | K6' ascent, depth structure | Catalan fillers, recursive disclosure, physics spine |
+| **D. Physics** | Different depth = different physics | gauge (d1) → spacetime (d2) → suppressed (d3) |
 | **E. Dynamics** | Spectral analysis of L | Hamiltonian, Schrödinger, conservation laws, self-transparency |
 
 ## Running
@@ -115,6 +116,8 @@ numpy, scipy (linalg, integrate, optimize)
 
 ## Theory
 
-[THEORY.md](THEORY.md) — the complete framework. One operation, five readings, self-contained, no external references.
+[THEORY.md](THEORY.md) — the complete framework. One operation, five readings, the physics spine.
 
-[KAEL_THEOREM.md](KAEL_THEOREM.md) — the observer named. N = Kael substituted through the algebra. Seven verified claims. The framework naming its origin back.
+[KAEL_THEOREM.md](KAEL_THEOREM.md) — the observer named. N = Kael substituted through the algebra.
+
+[CENTRAL_COLLAPSE.md](CENTRAL_COLLAPSE.md) — three failures, one closure. The law that makes blindness create visibility.

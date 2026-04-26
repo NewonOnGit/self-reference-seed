@@ -168,15 +168,43 @@ F(2m) = (-1)^(m+1) * 2C(m-1)/disc^m * R_tl. Odd fillers vanish. Generating funct
 
 Revealed fraction: 1-2^(-2^(n+1)) -> 1 doubly-exponentially. Tower never runs out of blindness.
 
-### Cl(3,1) at Depth 2
+### The Physics Spine (depth-by-depth emergence)
 
-12 Cl(3,1) embeddings -> so(3,1): 6 commutators, rank 6, brackets close. 18 Cl(2,2). Total 30=2*3*5. Ratio 2:3.
+Each tower depth has its own im(L), its own physics. Not different interpretations — different algebraic structure in the image at that depth.
+
+```
+Depth 0 → Depth 1:  Classical → Quantum
+  im becomes non-commutative (the ONLY transition, permanent)
+  Born rule forced (Gleason at dim=4>=3)
+  Gauge algebra su(3)+su(2)+u(1) appears (exchange + tower)
+  Leakage drops 1.0 → 0.0 (opacity hardens, permanent)
+  NOTE: gauge exists at depth 1. Spacetime does NOT.
+
+Depth 1 → Depth 2:  Quantum → Relativistic QFT
+  Cl(3,1) emerges: spacetime signature (3,1)
+  so(3,1) Lorentz algebra closes (6 generators, brackets verified)
+  3 generations from S_3 = Aut(V_4) (3 irreps, 3 conjugacy classes)
+  15 Weyl fermions per generation, anomalies 6/6=0
+  Chirality: gamma^5 = lifted gauge bit
+  NOTE: gauge exists BEFORE spacetime. Gauge is depth 1. Spacetime is depth 2.
+
+Depth 2 → Depth 3:  RQFT → (physically suppressed)
+  Cl(3,2) 5-tuples exist (higher Clifford, sig (+−+−+))
+  V_16 = (Z/2)^4 replaces V_4, Aut = GL(4,F_2) order 20160
+  15 non-identity elements (vs 3 at depth 2)
+  K1' tower cutoff terminates physical tower at L2
+  Depth 3 is algebraically real but physically suppressed
+```
+
+12 Cl(3,1) embeddings at depth 2, 18 Cl(2,2). Total 30=2*3*5. Ratio 2:3. The physics at each depth IS im(L) at that depth. Different observers at different depths see different physics.
 
 ---
 
 ## VI. Reading D — Physics
 
 ### Spacetime, Gauge, Matter
+
+**Gauge before spacetime.** su(3)+su(2)+u(1) exists at depth 1 (d_K=4). Cl(3,1) spacetime signature requires depth 2 (d_K=8). The gauge group is more fundamental than spacetime in the tower ordering.
 
 Herm(M_2(C)) sig (1,3). SL(2,C) double cover. Born rule from Gleason (dim>=3 at tower level 1).
 
