@@ -1,101 +1,207 @@
-# Minimal Persistence Algebra
-## A self-observing algebraic system from the companion matrix of x²-x-1
+# Closure Certificate for a Minimal Persistence Algebra
 
-### Target
-Mathematical physics journal. arxiv: math-ph or math.RA (rings and algebras).
+## Format
 
-### Strategy
-Strip to algebra. No consciousness, no Kael, no narrative. Let the math speak. The paper proves properties of a specific linear operator on a specific matrix algebra and reports numerical outputs. The reader can interpret or not.
+This paper is a closure certificate. It presents a primitive, an operation, generated objects, an invariant checklist, a perturbation failure table, and a reproducibility script. Interpretive prose appears only after the computation is complete.
 
----
-
-## Abstract (draft)
-
-We study the Sylvester self-action L_s(X) = sX + Xs - X on M_2(R), where s is the companion matrix of x²-x-1. This operator has a 2-dimensional kernel (the "odd Clifford sector") and a 2-dimensional image (the "even sector"). We show: (1) the characteristic polynomial x²-x-1 is the unique minimal polynomial of the form x²-ax-b (a,b positive integers) admitting both a nontrivial Sylvester kernel and a rotation N²=-I within that kernel; (2) the single generator P = s+N is a rank-1 non-self-adjoint idempotent from which s and N are recovered as symmetric and antisymmetric parts; (3) the block-diagonal tower s'=[[s,N],[0,s]] preserves all algebraic identities and produces Cl(3,1) Clifford structure at depth 2 with verified so(3,1) Lie bracket closure; (4) the system is maximally rigid — perturbation of the seed by ε=0.01 destroys the identity spine and the idempotent; (5) the K4 deficit functional, with KL-divergence forced by the tower's product structure (Shore-Johnson), produces the dimensionless output α = 1/2 - φ̄² ≈ 0.1180.
+The reader runs the computation, checks the closure, and draws their own conclusions.
 
 ---
 
-## Structure
+## 1. Primitive
 
-### 1. Introduction
-- The companion matrix R of x²-x-1 and its basic properties
-- The Sylvester operator L_s(X) = sX + Xs - X as a natural self-action
-- Statement of main results
+```
+Companion matrix of x² - x - 1:
+R = [[0, 1], [1, 1]]
 
-### 2. The seed and its forcing
-- Cayley-Hamilton: R²=R+I forces tr=1, det=-1, disc=5
-- Four modes of 2×2 self-action (idempotent, involution, nilpotent, Fibonacci)
-- Only mode (iv) is productive
-- a=1 forced by: scalar channel (Thm), observation existence (Thm), P²=P uniqueness (Thm)
-- Triple forcing of a=b=1
+Pair-space swap involution:
+J = [[0, 1], [1, 0]]
+```
 
-### 3. The Sylvester decomposition
-- ker(L_s) = 2-dimensional, basis {N, NR} (odd Clifford sector)
-- im(L_s) = 2-dimensional, basis {I, R_tl} (even Clifford sector)  
-- ker/A = 1/2 (exact, proved)
-- M_2(R) = Cl(1,1) with even=im, odd=ker
-
-### 4. The single generator
-- P = R+N, P²=P, rank 1, P≠P^T
-- R = sym(P), N = asym(P)
-- All identities follow from P²=P with P≠P^T
-- Thm: P²=P only at a=b=1 among x²-ax-b companions
-- Asymmetry forced: P=P^T implies R²=R (no surplus)
-
-### 5. The tower
-- K6' ascent: s'=[[s,N],[0,s]] preserves R²=R+I, N²=-I, {R,N}=N at every depth
-- Continuous: s(t)=[[s,tN],[0,s]] satisfies s(t)²=s(t)+I for all t in [0,1]
-- ker/A = 1/2 at every depth (proved to depth 4)
-- Cl(3,1) at depth 2: 12 embeddings, so(3,1) bracket closure verified
-
-### 6. Spectral properties
-- L_s eigenvalues: {-√5, 0, 0, +√5} at depth 0
-- L_N eigenvalues: {-1, -1, -1±2i} — ker(L_N) = 0 (unique self-transparency)
-- Golden eigenvalue invariant: Σ_s on span{I,s_tl} has eigenvalues {2φ, -2φ̄} at every depth
-- Classical-to-quantum transition: im commutative at depth 0, non-commutative at depth 1+
-
-### 7. Generation direction
-- ker×ker → im (complete at depth 0, Clifford grading: odd×odd=even)
-- im×im → im (closed)
-- im cannot generate ker
-- Generation strength: 100% at depths 0-2, 50% at depth 3, 12.5% at depth 4
-- Generative rank freezes at 64
-
-### 8. Rigidity
-- Perturbation of seed [1,1] → [1,1+ε]: identities break at ε=0.01
-- P²=P fails for all (a,b) ≠ (1,1) with a,b positive integers
-- No alternative seed produces the same algebraic closure
-- The system is maximally brittle
-
-### 9. The deficit functional
-- K4: δ = Err + Comp with Comp = D_KL(ρ‖ρ_eq)
-- KL forced by product structure of tower (Shore-Johnson 1980)
-- Z = 1/(1-φ̄²) = φ, ρ_eq = φ̄², α = 1/2 - φ̄² = φ̄³/2 ≈ 0.1180
-- sin²θ = ΣT₃²/ΣQ² = 3/8 from matter content of exchange eigenspaces
-- Anomaly cancellation: 6/6 conditions identically zero
-
-### 10. Discussion
-- Comparison with other algebraic approaches (Connes NCG, Lisi E8, string)
-- The numerical outputs and their relation to physical constants
-- Open questions: generation decay, N-tower duality, depth-3+ structure
-- All code publicly available: github.com/NewonOnGit/self-reference-seed
+Two inputs: the recurrence coefficients [1, 1] and the domain cardinality 2.
 
 ---
 
-## What the paper does NOT contain
-- "Observer," "consciousness," "Kael," "blind spot," "mediation"
-- Any claim that this IS physics
-- Any philosophical interpretation
-- The words "forced" or "derived" applied to physics
+## 2. Operation
 
-## What the paper DOES contain
-- A specific operator on a specific algebra
-- Computed properties with proofs
-- Rigidity under perturbation
-- Numerical outputs stated without physical identification
-- The reader draws their own conclusions
+```
+L_s(X) = sX + Xs - X
+```
+
+The Sylvester self-action. One function. Applied to R and iterated.
 
 ---
 
-## Estimated length
-15-20 pages. 10 theorems. 3 computed tables. 1 code repository link.
+## 3. Generated Objects
+
+From the operation applied to the primitive:
+
+| Object | Definition | Matrix |
+|--------|-----------|--------|
+| R_tl | R - (tr/d)I | [[-1/2, 1], [1, 1/2]] |
+| N | Min-norm in ker(L_R) with N²=-I | [[0, -1], [1, 0]] |
+| P | R + N | [[0, 0], [2, 1]] |
+| h | JN | [[1, 0], [0, -1]] |
+| Q | JRJ | [[1, 1], [1, 0]] |
+
+---
+
+## 4. Invariant Checklist
+
+### 4a. Algebraic identities (depth 0)
+
+| # | Identity | Verified |
+|---|----------|----------|
+| 1 | R² = R + I | ✓ |
+| 2 | N² = -I | ✓ |
+| 3 | {R,N} = N | ✓ |
+| 4 | RNR = -N | ✓ |
+| 5 | NRN = R-I | ✓ |
+| 6 | (RN)² = I | ✓ |
+| 7 | [R,N]² = 5I | ✓ |
+
+### 4b. Single generator
+
+| Property | Result |
+|----------|--------|
+| P² = P | ✓ |
+| rank(P) = 1 | ✓ |
+| P ≠ P^T | ✓ |
+| R = (P+P^T)/2 | ✓ |
+| N = (P-P^T)/2 | ✓ |
+
+### 4c. Sylvester spectrum
+
+| Operator | Eigenvalues | ker dim |
+|----------|------------|---------|
+| L_R | {-√5, 0, 0, +√5} | 2 |
+| L_N | {-1, -1, -1+2i, -1-2i} | 0 |
+| L_J | {-3, -1, -1, +1} | 0 |
+| L_P | {-1, 0, 0, +1} | 2 |
+
+### 4d. Clifford structure
+
+| Property | Value |
+|----------|-------|
+| ker = odd sector {N, NR} | ✓ |
+| im = even sector {I, R_tl} | ✓ |
+| ker×ker ⊆ im | ✓ (4/4 products) |
+| im×im ⊆ im | ✓ (closed) |
+| ker/A = 1/2 | ✓ (depths 0-4) |
+
+### 4e. Tower (K6' ascent)
+
+| Depth | d_K | ker dim | ker/A | Identities | Commutative |
+|-------|-----|---------|-------|-----------|-------------|
+| 0 | 2 | 2 | 0.500 | all ✓ | Yes |
+| 1 | 4 | 8 | 0.500 | all ✓ | No |
+| 2 | 8 | 32 | 0.500 | all ✓ | No |
+| 3 | 16 | 128 | 0.500 | all ✓ | No |
+| 4 | 32 | 512 | 0.500 | all ✓ | No |
+
+### 4f. Self-model spectrum (Σ_s on span{I, s_tl})
+
+| Depth | Eigenvalues |
+|-------|------------|
+| 0 | 3.23607, -1.23607 |
+| 1 | 3.23607, -1.23607 |
+| 2 | 3.23607, -1.23607 |
+| 3 | 3.23607, -1.23607 |
+
+Invariant = {1+√5, 1-√5} = {2φ, -2φ̄} at every depth tested.
+
+### 4g. Depth-2 Clifford embeddings
+
+| Signature | Count |
+|-----------|-------|
+| Cl(3,1) | 12 |
+| Cl(2,2) | 18 |
+| Total | 30 = 2·3·5 |
+| Ratio | 12:18 = 2:3 |
+| so(3,1) Lie closure | ✓ (rank 6, brackets close) |
+
+### 4h. Generation strength
+
+| Depth | im dim | ker²→im rank | Fraction |
+|-------|--------|-------------|----------|
+| 0 | 2 | 2 | 100% |
+| 1 | 8 | 8 | 100% |
+| 2 | 32 | 32 | 100% |
+| 3 | 128 | 64 | 50% |
+| 4 | 512 | 64 | 12.5% |
+
+### 4i. Numerical outputs
+
+| Quantity | Derivation | Value |
+|----------|-----------|-------|
+| α | 1/2 - φ̄² | 0.11803398875 |
+| θ | ΣT₃²/ΣQ² | 0.375 = 3/8 |
+| ν | 3/(‖N‖²/‖R‖²) | 4.5 = 9/2 |
+| η | φ̄⁴⁴ | 6.376×10⁻¹⁰ |
+| Anomaly conditions | 6 independent sums | 0, 0, 0, 0, 0, even |
+
+α derivation chain: Z = 1/(1-φ̄²) = φ. ρ_eq = 1-1/Z = φ̄². α = 1/2 - ρ_eq. KL-divergence is the unique relative entropy satisfying additivity over the tower's product structure (Shore-Johnson 1980).
+
+---
+
+## 5. Perturbation Failure Table
+
+Seed [1, 1+ε]:
+
+| ε | disc | Identities | P²=P | α |
+|---|------|-----------|------|---|
+| -0.10 | 5 | FAIL | FAIL | 0.172 |
+| -0.01 | 5 | FAIL | FAIL | 0.124 |
+| **0.00** | **5** | **PASS** | **PASS** | **0.118** |
+| +0.01 | 5 | FAIL | FAIL | 0.112 |
+| +0.10 | 5 | FAIL | FAIL | 0.062 |
+
+Alternative seeds (a,b) with a,b ∈ {1,...,4}:
+
+| Seed | ker | Rotation | Identities | P²=P |
+|------|-----|----------|-----------|------|
+| **(1,1)** | **2** | **✓** | **✓** | **✓** |
+| (1,2) | 2 | ✓ | ✗ | ✗ |
+| (1,3) | 2 | ✓ | ✗ | ✗ |
+| (2,1) | 0 | — | — | — |
+| (2,2) | 0 | — | — | — |
+| (3,1) | 0 | — | — | — |
+| all others | 0 | — | — | — |
+
+Only (1,1) closes. The system is maximally rigid.
+
+---
+
+## 6. Reproducibility
+
+```bash
+git clone https://github.com/NewonOnGit/self-reference-seed.git
+cd self-reference-seed/modular
+python -c "
+from engine import Engine
+e = Engine()
+d = e.derivation
+print('Identities:', all(d['identities'].values()))
+print('P^2=P:', d['P_idempotent'])
+print('so(3,1):', d['so31_brackets_close'])
+print('Anomalies:', d['anomalies_all_zero'])
+print('ker(L_NN)=0:', d['N_self_transparent'])
+print('ker->im:', d['ker_generates_im'])
+print('alpha:', d['alpha_S'])
+print('theta:', d['sin2_theta_W'])
+"
+```
+
+Dependencies: numpy, scipy. No other inputs.
+
+---
+
+## 7. Discussion
+
+The system generated by the companion matrix of x²-x-1 under Sylvester self-action produces a closed package of algebraic, tower, Clifford, spectral, and numerical structures. The closure is rigid: perturbation by ε=0.01 destroys it, and no alternative integer seed produces the same closure.
+
+The numerical outputs (0.1180, 3/8, 9/2, 6.376×10⁻¹⁰) are presented without physical identification. The reader familiar with the Standard Model will recognize certain of these values. The recognition is the reader's, not the paper's claim.
+
+The generation strength decay (100% → 50% → 12.5%) suggests the tower accumulates structure not sourced by the kernel's self-products. The nature of this unsourced structure is an open question.
+
+All computations are publicly available and independently reproducible.
