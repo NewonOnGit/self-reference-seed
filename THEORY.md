@@ -72,7 +72,7 @@ Everything in the framework is one act:
 L_{s,s}(X) = sX + Xs - X
 ```
 
-The Sylvester self-action. Applied once, it produces the algebra. Iterated, it builds the tower. Its spectrum gives the dynamics. Its kernel gives the observer. Its kernel's self-action gives self-transparency. One operation. Five readings.
+The Sylvester self-action. It lives in one place (algebra.py: sylvester, ker_im_decomposition, quotient). Production reads it. Observation reads it. Neither owns it. Applied once, it produces the algebra. Iterated, it builds the tower. Its spectrum gives the dynamics. Its kernel gives the observer. Its kernel's self-action gives self-transparency. One operation. Five readings.
 
 ---
 
