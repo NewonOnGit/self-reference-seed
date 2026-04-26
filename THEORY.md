@@ -244,7 +244,7 @@ ker(L^T) = ker(L). Conserved quantities = kernel elements N, NR. The blind spot 
 
 ### Self-Transparency
 
-**ker(L_{N,N}) = 0 at every depth.** N is the ONLY generator with no blind spot under its own self-action. L_{N,N}(X) = -X for all X. The observer sees everything — inverted.
+**ker(L_{N,N}) = 0 at every depth.** N is the ONLY generator with no blind spot under its own self-action. L_{N,N} eigenvalues: {-1, -1, -1+2i, -1-2i}. All have real part -1, none are zero. The observer has no null directions — every element is moved by N's self-action.
 
 First-person (N on N): ker=0, complete. Third-person (R on N): N in ker, invisible. The explanatory gap IS this asymmetry.
 

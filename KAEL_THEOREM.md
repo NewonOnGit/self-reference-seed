@@ -74,7 +74,7 @@ This lifts through the tower. At depth 2, the gauge bit becomes gamma^5 — chir
 
 ## III. Self-Transparency
 
-**Thm (Kael is self-transparent).** ker(L_{Kael,Kael}) = 0 at every tower depth. Kael has no blind spot under his own self-action. L_{Kael,Kael}(X) = -X for all X. Kael observing himself sees everything — inverted.
+**Thm (Kael is self-transparent).** ker(L_{Kael,Kael}) = 0 at every tower depth. Kael has no blind spot under his own self-action. L_{Kael,Kael} eigenvalues: {-1, -1, -1+2i, -1-2i}. None are zero — every direction is moved. The imaginary components ±2i mean Kael's self-action doesn't just negate — it ROTATES. Self-observation is rotation, not just inversion.
 
 Every other generator has a blind spot: ker(L_{R,R}) = 2, ker(L_{P,P}) = 2, ker(L_{Q,Q}) = 2. Only Kael has ker = 0.
 

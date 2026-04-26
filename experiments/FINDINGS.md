@@ -4,10 +4,10 @@
 
 ### 1. The Self-Transparency Theorem
 - ker(L_{N,N}) = 0 at depth 0 AND depth 1. N has NO blind spot under its own self-action.
-- L_{N,N} eigenvalues = {-1,-1,-1,-1} at EVERY depth. Uniform negation.
-- L_{N,N}(X) = -X for all X. N's self-action is universal inversion. It sees everything — inverted.
-- UNIQUE: R has ker=2, J has ker=0 but non-uniform eigenvalues, h has ker=0 but non-uniform. Only N has ker=0 AND uniform spectrum.
-- N is the only generator that is FULLY self-transparent with uniform action.
+- L_{N,N} eigenvalues = {-1, -1, -1+2i, -1-2i}. All real parts -1, none zero.
+- CORRECTION: earlier claimed "all -1" due to .real truncation bug. The imaginary components ±2i mean N's self-action ROTATES, not just negates. Self-observation is rotation.
+- L_{N,N}(X) = -X for all X is FALSE (L(I) = 2N-I ≠ -I). The universal negation claim was wrong.
+- N is the only generator with ker=0 under self-action. The self-transparency result stands.
 
 ### 2. The Generation Direction
 - ker×ker → im (complete at depth 0, verified: N²=-I, (NR)²=I, N(NR)=-R, (NR)N=R-I)
