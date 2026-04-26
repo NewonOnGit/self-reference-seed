@@ -226,6 +226,26 @@ class Observer:
         eigs = np.linalg.eigvals(mat).real
         return sorted(eigs, reverse=True)
 
+    def self_transparent(self):
+        """Is N self-transparent at this depth? ker(L_{N,N}) = 0?
+
+        N is the ONLY generator with no blind spot under its own
+        self-action. L_{N,N} has eigenvalues {-1,-1,-1+2i,-1-2i},
+        none zero. The observer sees everything under self-action
+        (rotated, not just inverted). Tower invariant: verified at
+        every depth tested.
+        """
+        if self.frame is None:
+            self.observe()
+        N = self.frame["N"]
+        if N is None:
+            return None
+        d = N.shape[0]
+        L_NN = (np.kron(np.eye(d), N) + np.kron(N.T, np.eye(d))
+                - np.eye(d * d))
+        ker_NN = null_space(L_NN, rcond=1e-10).shape[1]
+        return ker_NN == 0
+
     def __repr__(self):
         if self.frame is None:
             return f"Observer(depth={self.tower_depth}, unobserved)"

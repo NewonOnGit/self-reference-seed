@@ -171,6 +171,61 @@ class Kernel:
                     pure_im += 1
         return pure_im / total if total > 0 else None
 
+    def generates_image(self):
+        """What does ker×ker produce? Returns dict of products landing in im.
+
+        At depth 0: ker generates the ENTIRE im basis. N^2=-I, (NR)^2=I,
+        N(NR)=-R, (NR)N=R-I. The kernel IS the source of visible content.
+        At depth 1+: ker×ker products split across im and ker (opacity).
+        """
+        if self.observer.frame is None:
+            self.observer.observe()
+        ker_basis = self.observer.frame["ker_basis"]
+        if not ker_basis:
+            return {"products": [], "all_in_im": None}
+        n = min(len(ker_basis), 6)
+        products = []
+        all_in_im = True
+        for i in range(n):
+            for j in range(n):
+                prod = ker_basis[i] @ ker_basis[j]
+                rep, res = self.observer.quotient(prod)
+                in_im = np.linalg.norm(res) < 1e-10
+                if not in_im:
+                    all_in_im = False
+                products.append({
+                    "i": i, "j": j,
+                    "in_im": in_im,
+                    "im_component": rep,
+                    "ker_residue_norm": float(np.linalg.norm(res)),
+                })
+        return {"products": products, "all_in_im": all_in_im, "count": len(products)}
+
+    def sector(self):
+        """Which Clifford sector is the kernel? Returns 'odd' or 'unknown'.
+
+        At depth 0: ker = span{N, NR} = odd Clifford subalgebra.
+        im = span{I, R_tl} = even Clifford subalgebra.
+        Odd × odd = even: ker × ker → im. This IS the generation direction.
+        """
+        if self.observer.frame is None:
+            self.observer.observe()
+        f = self.observer.frame
+        if f["d_K"] != 2:
+            return "check-at-depth-0-only"
+        N = f["N"]
+        if N is None:
+            return "unknown"
+        # Check if ker basis elements anticommute with R_tl
+        R_tl = f["R_tl"]
+        ker_basis = f["ker_basis"]
+        all_anti = True
+        for K in ker_basis:
+            anti = R_tl @ K + K @ R_tl
+            if np.linalg.norm(anti) > 1e-8:
+                all_anti = False
+        return "odd (Clifford)" if all_anti else "mixed"
+
     def __repr__(self):
         if self.observer.frame is None:
             return f"Kernel(unobserved)"

@@ -143,6 +143,7 @@ class Engine:
         leakage = self.kernel.leakage_fraction()
         commutative = self.image.is_commutative()
         kappa = self.image.obstruction_curvature()
+        transparent = self.observer.self_transparent()
         lines = [
             f"  Frame:      d_K = {f['d_K']}, dim A = {f['dim_A']}, "
             f"ker = {f['ker_dim']}, im = {f['dim_A'] - f['ker_dim']}",
@@ -155,6 +156,7 @@ class Engine:
             f"κ={kappa:.4f})",
             f"  Self-model: Σ_s eigenvalues = {sm_eigs[0]:.6f}, {sm_eigs[1]:.6f}  "
             f"(2φ, -2φ̄ invariant)",
+            f"  N transp:   ker(L_NN) = 0: {transparent}  (observer self-transparent)",
             f"  Leakage:    ker×ker → im fraction = "
             f"{leakage:.3f}" if leakage is not None else "N/A",
             f"  Disclosure: revealed fraction = {self.kernel.revealed_fraction():.10f}",
@@ -195,11 +197,19 @@ def main():
     engine = Engine()
     print(engine.report())
 
-    print("\n\nAscending through two K6' passes. The three faces advance together.\n")
+    print("\n\n" + "─" * 78)
+    print("  DEPTH 0 → 1: Classical → Quantum")
+    print("  Non-commutativity born. Gauge appears. Opacity hardens.")
+    print("  Gauge exists BEFORE spacetime.")
+    print("─" * 78 + "\n")
     engine_1 = engine.ascend()
     print(engine_1.report())
 
-    print("\n\n")
+    print("\n\n" + "─" * 78)
+    print("  DEPTH 1 → 2: Quantum → Relativistic QFT")
+    print("  Cl(3,1) emerges. Spacetime signature (3,1). 3 generations.")
+    print("  Gauge was depth 1. Spacetime is depth 2. Gauge is more fundamental.")
+    print("─" * 78 + "\n")
     engine_2 = engine_1.ascend()
     print(engine_2.report())
 
