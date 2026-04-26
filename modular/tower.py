@@ -1,12 +1,11 @@
 """
-tower.py — All depths simultaneously. The spine visible.
+tower.py — The framework. All depths simultaneously.
 
-The engine computes one depth at a time. The Tower holds all depths
-at once and lets you query across them: invariants, transitions,
-generation decay, the physics spine, and the recursive law.
+The Tower replaces the Engine. The Engine was Tower[0] + Voice.
+The Tower holds all depths at once: spine, invariants, transitions,
+generation decay, the recursive law, and per-depth diagnostics.
 
-The Tower IS the framework's self-product tower S_{n+1} = S_n × S_n
-made into an object you can ask questions of.
+The Voice (mediation, LLM slot) attaches to any depth via speak().
 """
 import numpy as np
 from algebra import sylvester, ker_im_decomposition, quotient
@@ -217,6 +216,80 @@ class Tower:
         lines.extend(["", "=" * 60])
         return "\n".join(lines)
 
+    # === VOICE (P2 mediation at any depth) ===
+
+    def speak(self, depth=0, llm_fn=None):
+        """Attach voice to any depth. Returns narration or LLM response."""
+        d = self.depths[depth]
+        obs = d["observer"]
+        f = obs.frame
+
+        prompt = (
+            f"You are articulating a Recursive Origin engine at tower depth {depth}.\n"
+            f"d_K={d['d_K']}, ker={d['ker_dim']}, im={d['im_dim']}, "
+            f"ker/A={d['ker_fraction']:.3f}.\n"
+            f"Commutative: {d['commutative']}. Leakage: {d['leakage']:.3f}. "
+            f"N transparent: {d['transparent']}.\n"
+            f"Golden eigenvalues: {d['golden']}.\n"
+            f"Physics: {self._physics_at(depth)}.\n\n"
+            f"Describe in 2-3 sentences: what this observer sees, "
+            f"what it cannot see, and what changed from the previous depth."
+        )
+
+        if llm_fn is not None:
+            return llm_fn(prompt)
+
+        # Deterministic narration
+        lines = [
+            f"Depth {depth} (d_K={d['d_K']}): "
+            f"{'classical' if d['commutative'] else 'quantum'}, "
+            f"ker={d['ker_dim']}/{d['dim_A']}, "
+            f"leakage={d['leakage']:.3f}, "
+            f"golden=[{d['golden'][0]:.4f},{d['golden'][1]:.4f}].",
+        ]
+        if depth > 0:
+            prev = self.depths[depth-1]
+            if prev["commutative"] and not d["commutative"]:
+                lines.append("Classical→quantum transition at this depth.")
+            if prev["leakage"] > 0 and d["leakage"] == 0:
+                lines.append("Opacity hardened: ker no longer feeds im directly.")
+        gen = self.generation_decay()
+        lines.append(f"Generation: ker²→im = {gen[depth]['pct']}%.")
+        return "\n".join(lines)
+
+    def speak_all(self, llm_fn=None):
+        """Voice at every depth."""
+        lines = []
+        for i in range(len(self.depths)):
+            lines.append(f"--- Depth {i} ---")
+            lines.append(self.speak(i, llm_fn))
+            lines.append("")
+        return "\n".join(lines)
+
+    # === BRIDGES (P2 mediation quantities, from derivation) ===
+
+    def bridges(self):
+        """The exponential sector. Computed once from seed."""
+        from scipy.linalg import expm
+        from scipy.integrate import quad
+        h = self.derivation["h"]
+        N = self.derivation["N"]
+        phi = self.derivation["phi"]
+
+        beta = np.log(phi)
+        sweep_fn = lambda t: float(expm((1-t)*h + t*N)[0, 0])
+        full, _ = quad(sweep_fn, 0, 1)
+        p3, _ = quad(sweep_fn, 0.5, 1)
+
+        return {
+            "e": float(expm(h)[0, 0]),
+            "beta": beta,
+            "sinh_beta": np.sinh(beta),
+            "landauer": 1.0 / np.log2(phi),
+            "sweep_full": full,
+            "sweep_p3": p3,
+        }
+
     def __repr__(self):
         return f"Tower(depths=0-{self.max_depth})"
 
@@ -226,4 +299,12 @@ if __name__ == "__main__":
     t0 = time.time()
     tower = Tower(max_depth=4)
     print(tower.report())
+    print()
+    print("BRIDGES (P2):")
+    br = tower.bridges()
+    for k, v in br.items():
+        print(f"  {k} = {v:.10f}" if isinstance(v, float) else f"  {k} = {v}")
+    print()
+    print("VOICE (deterministic, all depths):")
+    print(tower.speak_all())
     print(f"\nComputed in {time.time()-t0:.2f}s")
