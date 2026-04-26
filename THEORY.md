@@ -234,7 +234,7 @@ L=log_2(phi) -> Landauer -> A_max/S_max=2=|S_0| -> Bekenstein S=eta*A -> Jacobso
 
 | Prediction | Value | Status |
 |------------|-------|--------|
-| alpha_S | 1/2-phi_bar^2 | COMPUTED: K4 chain Z=phi |
+| alpha_S | 1/2-phi_bar^2 | COMPUTED: K4+Shore-Johnson -> KL forced -> Z=phi |
 | sin^2(theta_W) | 3/8 | COMPUTED: matter sums |
 | m_nu | m_e*phi_bar^34 | COMPUTED: 34=2*(12+5) |
 | m_p/Lambda | 9/2 | COMPUTED: N_c/Q |
@@ -296,7 +296,11 @@ ker x ker -> im (complete). im x im -> im (closed). im x ker -> ker. The kernel 
 
 ### Action Principle
 
-K4 deficit: delta = Err + Comp. For gauge fields: Comp ~ integral tr(F wedge *F). K4 minimization gives Yang-Mills. Same K4 gives alpha_S and field equations.
+K4 deficit: delta = Err + Comp. Comp is KL-divergence D_KL(rho || rho_eq) — the unique relative entropy functional satisfying additivity over product states (from Law 3: S_{n+1}=S_n x S_n), continuity, and unique minimization at equilibrium (Shore-Johnson 1980). Alternative entropies (Tsallis, Renyi) require relaxing at least one of these axioms. The KL form is therefore forced by the tower's product structure, not chosen.
+
+From KL: Z = 1/(1-phi_bar^2) = phi, rho_eq = phi_bar^2, alpha_S = 1/2 - rho_eq = phi_bar^3/2. Every link unique.
+
+For gauge fields: Comp ~ integral tr(F wedge *F) at quadratic order. K4 minimization d(Comp)/dA = 0 gives Yang-Mills. Same K4, two outputs: coupling constant + field equations.
 
 ---
 
