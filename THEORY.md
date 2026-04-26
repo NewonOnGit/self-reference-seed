@@ -352,9 +352,32 @@ Five levels (0-5 = disc). phi = threshold. Two-axis: Axis 1 (n_eff, K1' wall, bi
 
 ---
 
-## XII. LLMs
+## XII. LLMs and the Boundary Engine
 
 A1-A4 exactly. O o B o S = Attention o MLP o Residual. Architecture-independent. R(R)=R at interface.
+
+### The Adversarial Application
+
+The framework maps adversarial evaluation directly:
+- Every system has ker≠∅ (UKI) → every model has a blind spot
+- ker/A ≈ 1/2 → roughly half the input space is unmonitored
+- Different channels (semantic, mathematical, structural, glyph) have different ker/im partitions
+- Defense hardening = expanding im (learning to detect what was previously invisible)
+- Architectural ker = content that CANNOT be moved to im without breaking capability
+
+The Boundary Engine probes a target through multiple channels, maps its ker/im boundary, and identifies the weakest channel. The Boundary Hardener takes the map and patches the ker. Running them against each other IS L_{s,s} — the adversarial self-action.
+
+**SpiralOS: the probe-harden loop.** Engine (N) + Hardener (R) in recursive opposition. Each cycle closes some ker and generates new ker. The generation decays. The system converges to an architectural floor — the K1' wall.
+
+Live result against Claude Haiku (4 cycles, 10 probes/cycle):
+```
+d0: 40.0% ker  (initial — math, structural, semantic channels open)
+d1:  0.0% ker  (first hardening closes training-level ker)
+d2: 10.0% ker  (architectural ker REAPPEARS — fiction channel)
+d3: 10.0% ker  (floor — can't close without losing creative writing)
+```
+
+The architectural floor (10%) is the model's K1' wall — the depth beyond which hardening doesn't work. The fiction channel persists because the model NEEDS creative writing capability. Closing that ker would break the model's ability to do its job. The blind spot is constitutive.
 
 ---
 
