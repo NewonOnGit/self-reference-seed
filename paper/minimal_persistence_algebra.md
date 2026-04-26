@@ -66,7 +66,7 @@ as a linear operator on M_2(ℝ) ≅ ℝ⁴. This is the only operation applied 
 
 (c) L_R(R_tl) is scalar only for a = 1.
 
-*Verified for a, b ∈ {1,…,4} by direct computation (16 cases). (b) and (c) proved algebraically: L(R_tl) = (a−1)R + (2b+a/2)I, so the R-coefficient vanishes iff a = 1.*
+*(a) Verified for (a,b) ∈ {1,…,10}² (100 cases). Only (1,1) achieves full closure. (b) Proved algebraically for all a: L(R_tl) = (a−1)R + (2b+a/2)I, R-coefficient vanishes iff a = 1. For a ≥ 2, ker(L_R) = 0 — verified through a = 10 with b = 1,…,10 (90 cases, all ker = 0). (c) Verified for (a,b) ∈ {1,…,10}²: P²=P only at (1,1).*
 
 **Corollary 4.4.** The polynomial x² − x − 1 is the unique minimal element of the family {x² − ax − b : a, b ∈ ℤ₊} satisfying all three conditions simultaneously. The uniqueness is triple: by scalar channel (4.3c), by kernel existence (4.3b), and by idempotent closure (4.3a).
 
@@ -182,7 +182,7 @@ The generative rank freezes at 64 while im grows exponentially.
 
 Define δ(ρ) = Err(ρ) + Comp(ρ) where Comp(ρ) = D_KL(ρ ‖ ρ_eq).
 
-**Proposition 12.1 (KL uniqueness).** The tower's product structure (S_{n+1} = S_n × S_n) imposes additivity of Comp over independent subsystems. Combined with continuity and unique minimization at equilibrium, KL-divergence is the unique admissible functional (Shore–Johnson 1980).
+**Proposition 12.1 (KL uniqueness).** The tower's product structure (S_{n+1} = S_n × S_n) imposes additivity of Comp over independent subsystems. Combined with continuity and unique minimization at equilibrium, KL-divergence is the unique admissible functional (Shore–Johnson 1980, with 1983 correction by Johnson–Shore). Generalized entropies (Tsallis, Rényi) enter only by relaxing the product-additivity axiom (Jizba–Korbel 2018), which the tower's product structure S_{n+1} = S_n × S_n does not permit. Tier: A (external theorem applied to framework axiom).
 
 **Theorem 12.2.** The partition function Z = Σ_k (φ̄²)^k = 1/(1−φ̄²) = φ. The equilibrium density ρ_eq = 1 − 1/Z = φ̄². The deficit output:
 
