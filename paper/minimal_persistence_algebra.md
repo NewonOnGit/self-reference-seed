@@ -232,7 +232,7 @@ Every claim in this paper carries one of three verification levels:
 |------|---------|--------|
 | **A** | Proved algebraically (from definitions, Cayley–Hamilton, or Clifford grading) | ∎ |
 | **E** | Exhaustively checked over a finite family (all (a,b) ∈ {1,…,4}², all entries in {−3,…,3}) | ☐ |
-| **N** | Numerically verified to machine tolerance (~10⁻¹⁰) | ≈ |
+| **N** | Computed and verified to machine tolerance (~10⁻¹⁰), output in repository | ≈ |
 
 Summary of claims by tier:
 
