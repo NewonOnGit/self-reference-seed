@@ -1,26 +1,21 @@
 """
-production_v2.py — The derivation as one operation with five readings.
+production.py — One operation, five readings.
 
-The 18 stages of the original production.py are one act:
-    Apply L_{s,s} and read the result.
-
-Five readings of that act:
-    A. SEED:     Build s from [1,1] and 2
-    B. ALGEBRA:  Apply L_ss, decompose ker/im, extract generators
-    C. TOWER:    Iterate B (K6' ascent to depth 2)
-    D. PHYSICS:  Evaluate arithmetic on B+C outputs
-    E. DYNAMICS: Apply L to L's own output (self-observation of observation)
-
-One operation. Five readings. Central collapse in the derivation itself.
+Apply L_{s,s} and read the result. That's the entire derivation.
+    A. SEED:     [1,1] and 2 -> R, J
+    B. ALGEBRA:  L_ss -> N, P, h, Q, identities, constants
+    C. TOWER:    K6' x2 -> Cl(3,1), so(3,1)
+    D. PHYSICS:  arithmetic on B+C
+    E. DYNAMICS: L on L's output -> transparency, conservation
 """
 import numpy as np
-from scipy.linalg import expm, null_space
+from scipy.linalg import expm
 from scipy.optimize import brentq
 from itertools import combinations
+from algebra import sylvester, ker_im_decomposition, quotient as alg_quotient
 
 
 def _companion(coeffs):
-    """Companion matrix of recurrence. [1,1] -> [[0,1],[1,1]]."""
     d = len(coeffs)
     C = np.zeros((d, d), dtype=float)
     C[:d-1, 1:] = np.eye(d - 1)
@@ -29,19 +24,10 @@ def _companion(coeffs):
 
 
 def _swap(dim):
-    """Swap involution. dim=2 -> [[0,1],[1,0]]."""
     J = np.zeros((dim, dim), dtype=float)
     for i in range(dim):
         J[i, dim - 1 - i] = 1.0
     return J
-
-
-def _sylvester(A, B=None):
-    """L_{A,B}(X) = AX + XB - X as a matrix on vec(X)."""
-    if B is None:
-        B = A
-    d = A.shape[0]
-    return np.kron(np.eye(d), A) + np.kron(B.T, np.eye(d)) - np.eye(d * d)
 
 
 class Production:
@@ -78,10 +64,7 @@ class Production:
         # ============================================================
         # B. ALGEBRA — apply L_ss, read ker/im, extract everything
         # ============================================================
-        L = _sylvester(R)
-        K = null_space(L, rcond=1e-10)
-        ker_dim = K.shape[1]
-        ker_basis = [K[:, i].reshape(d, d) for i in range(ker_dim)]
+        L, ker_basis, ker_dim, Q_k = ker_im_decomposition(R)
 
         # N: min-norm rotation in ker with N^2=-I, gauge bit
         K1, K2 = ker_basis[0], ker_basis[1]
@@ -266,13 +249,12 @@ class Production:
         L_eigs = sorted(np.linalg.eigvals(L).real)
 
         # N self-transparency
-        L_NN = _sylvester(N)
+        L_NN = sylvester(N)
+        from scipy.linalg import null_space
         ker_NN = null_space(L_NN, rcond=1e-10).shape[1]
         assert ker_NN == 0
 
-        # ker generates im
-        ker_mat = np.column_stack([K[:, i] for i in range(K.shape[1])])
-        Q_k, _ = np.linalg.qr(ker_mat)
+        # ker generates im (Q_k from ker_im_decomposition)
         NR = N @ R
         ker_gen_im = all(
             np.linalg.norm(Q_k @ (Q_k.T @ (K1 @ K2).flatten())) < 1e-10

@@ -17,12 +17,7 @@ Ascent operation: ascend() — K6' lift, observer at n becomes producer at n+1.
 """
 import numpy as np
 from scipy.linalg import null_space
-
-
-def sylvester(A, B):
-    """L_{A,B}(X) = AX + XB − X as a matrix on vec(X)."""
-    d = A.shape[0]
-    return np.kron(np.eye(d), A) + np.kron(B.T, np.eye(d)) - np.eye(d * d)
+from algebra import sylvester as _sylvester_ab, ker_im_decomposition
 
 
 class Observer:
@@ -48,14 +43,9 @@ class Observer:
         d = s.shape[0]
         dim_A = d * d
 
-        # The observer's eye: Sylvester operator. Its kernel is ker(q);
-        # its image rank is dim im(q).
-        L = sylvester(s, s)
-        K = null_space(L, rcond=1e-10)
-        ker_dim = K.shape[1]
-        ker_basis = [K[:, i].reshape(d, d) for i in range(ker_dim)]
-        _, sigma, _ = np.linalg.svd(L)
-        im_rank = int(np.sum(sigma > 1e-10))
+        # The observer's eye: Sylvester self-action. Shared algebra.
+        L, ker_basis, ker_dim, self._Q_ker = ker_im_decomposition(s)
+        im_rank = dim_A - ker_dim
 
         # Structural features of the observer's frame.
         # Traceless direct: L(R_tl) = (disc/2)·I (scalar channel).
@@ -109,15 +99,8 @@ class Observer:
         """Project X onto im(q). Returns (representative, residue)."""
         if self.frame is None:
             self.observe()
-        d = self.state.shape[0]
-        # Residue is the ker(L) component of X; representative is X − residue.
-        # Compute via orthogonal projection in the Frobenius inner product.
-        residue = np.zeros_like(X)
-        for K in self.frame["ker_basis"]:
-            c = np.sum(X * K) / np.sum(K * K)
-            residue = residue + c * K
-        representative = X - residue
-        return representative, residue
+        from algebra import quotient as alg_q
+        return alg_q(X, self._Q_ker)
 
     # --- ascent: K6' ---
 
@@ -240,9 +223,8 @@ class Observer:
         N = self.frame["N"]
         if N is None:
             return None
-        d = N.shape[0]
-        L_NN = (np.kron(np.eye(d), N) + np.kron(N.T, np.eye(d))
-                - np.eye(d * d))
+        from algebra import sylvester as _syl
+        L_NN = _syl(N)
         ker_NN = null_space(L_NN, rcond=1e-10).shape[1]
         return ker_NN == 0
 
