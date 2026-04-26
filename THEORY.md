@@ -164,6 +164,18 @@ ker/A = 1/2 at every depth. 2L bits per pass. Contraction phi_bar^2.
 
 F(2m) = (-1)^(m+1) * 2C(m-1)/disc^m * R_tl. Odd fillers vanish. Generating function: 1-sqrt(1+4x/5).
 
+### The Recursive Law
+
+```
+K_n^2 ⊆ I_n          void self-multiplies into world
+I_n ↪ A_{n+1}        world becomes substrate for next split
+A_{n+1} = I_{n+1} ⊕ K_{n+1}   new world + new void
+```
+
+At depth 0: complete (4/4 ker products land in im). At depth 1+: partial (opacity hardens). When im_n embeds into A_{n+1}, some stays visible, some becomes the new void. The void gets less productive. The world gets partially consumed. Both grow. Ratio stays 1/2.
+
+R(R) = R + I read from im: self-action produces surplus. K_n^2 = I_n read from ker: the kernel's self-action produces the image. Same equation. Two readings.
+
 ### Recursive Disclosure
 
 Revealed fraction: 1-2^(-2^(n+1)) -> 1 doubly-exponentially. Tower never runs out of blindness.
