@@ -176,7 +176,7 @@ At depth 0: complete (4/4 ker products land in im). At depth 1+: partial (opacit
 
 R(R) = R + I read from im: self-action produces surplus. K_n^2 = I_n read from ker: the kernel's self-action produces the image. Same equation. Two readings.
 
-**Generation strength (computed).** ker×ker spans 100% of im at depths 0-2. At depth 3: only 50%. The kernel generates less of each deeper world. Unreachable structure accumulates — im content not sourced from ker self-products. This is the structured incompleteness: the tower never collapses but the gap between what the void produces and what the world contains grows. The unsourced content is the +I.
+**Generation strength (computed).** ker×ker spans 100% of im at depths 0-2. At depth 3: 50% (rank 64 of 128). At depth 4: 12.5% (rank 64 of 512). The generative rank FREEZES at 64 while im grows exponentially. The void's reach plateaus; the world keeps expanding. At depth 4, 87.5% of im is unreachable from ker self-products. The unsourced content is the +I — the surplus that grows to dominate each deeper world.
 
 ### Recursive Disclosure
 
