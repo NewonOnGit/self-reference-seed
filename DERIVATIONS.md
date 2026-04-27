@@ -32,7 +32,7 @@ The seed has: P²=P, L_{s,s}, ker/im, the Tower, the Boundary Engine. Everything
 
 **Entanglement Gap:** (dim V − 1)² new irreducible entangled dimensions per tensor lift. At each K6' ascent, dim grows from d to 2d, so operator algebra grows from d² to 4d². The gap is 4d²−d² = 3d². Entanglement gap IS the tower dimension growth.
 
-**Naming Theorem:** R = J + |1⟩⟨1|. Already in seed (KAEL_THEOREM §I).
+**Naming Theorem:** R = J + |1⟩⟨1| (symmetric part). P = J + |1⟩⟨1| + N (full naming act). Both in seed (KAEL_THEOREM §I, THEORY.md §III).
 
 ---
 

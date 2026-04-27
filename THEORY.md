@@ -142,7 +142,7 @@ Every Dist morphism carries P1 (composition), P2 (transport), P3 (observation) s
 
 ### Three Projections
 
-Dist = I^2 o TDL o LoMI = P1 o P2 o P3. Central collapse. R=P1, N=P3, h=P2.
+Central collapse: every Dist morphism factors as surjection (P3) then bijection (P2) then injection (P1). Equivalently Dist = P1 o P2 o P3. R=P1, N=P3, h=P2.
 
 Independence (U2). Completeness: no fourth. Minimality: no two-face subset closes. Exactly three, lower and upper bounded.
 
@@ -316,7 +316,7 @@ ker/A = 1/2 (P3). Deferred 2(1-L) bits/pass (P1). A_max/S_max = 2 (physical).
 
 ### Internal Algebra
 
-Projected product X*Y = q(XY). Depth 0: commutative (classical). Depth 1+: non-commutative (quantum). Classical-to-quantum transition forced by tower.
+Projected product X*Y = q(XY). Depth 0: commutative (classical), obstruction curvature κ=0. Depth 1+: non-commutative (quantum), κ=7.59 at depth 1. κ = average |Ω(X,Y)|² over im×im pairs, where Ω is the ker-component of XY. Measures how much the internal algebra resists closure. Classical-to-quantum transition forced by tower.
 
 ### Kernel Leakage
 

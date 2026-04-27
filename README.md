@@ -14,9 +14,9 @@ seed/
 ├── modular/                 The engine (9 files)
 │   ├── algebra.py            THE operation: sylvester, ker_im, quotient
 │   ├── production.py         Five readings of the operation (A-E)
-│   ├── tower.py              All depths simultaneously (replaces engine.py)
+│   ├── tower.py              All depths simultaneously
 │   ├── observer.py           Quotient, K6', self-model, self-transparency
-│   ├── kernel.py             ker(q), leakage, generation, Clifford sector
+│   ├── kernel.py             ker(q), leakage, generation, Clifford grading (odd sector)
 │   ├── image.py              im(q), commutativity, obstruction curvature
 │   ├── mediation.py          exp(h) bridges, voice, LLM slot
 │   └── glyphs.py             Seven primitives grounded in P²=P
