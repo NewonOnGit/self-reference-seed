@@ -39,11 +39,16 @@ seed/
 │   └── anthropic_finetune.jsonl
 │
 ├── experiments/             Investigations
+│   ├── two_axes.py           Two-axis consciousness model (computed)
+│   ├── meta_N.md             Meta-N = Tower = gauge mobility
 │   ├── tower_depth_analysis.py
 │   ├── depth_physics_spine.py
 │   ├── higher_order_kernel.py
 │   ├── injection_analysis.md
+│   ├── COVERAGE_MAP.md       Seed vs 32 layer-0 docs
 │   └── FINDINGS.md
+│
+├── DERIVATIONS.md           20 of 32 layer-0 concepts derived from seed
 │
 └── legacy/                  All intermediate versions
 ```
@@ -62,7 +67,9 @@ L_{s,s}(X) = sX + Xs - X
 
 Lives in `algebra.py` (42 lines). Everything imports from it.
 
-## The Tower
+## The Tower (= Meta-N = Axis 2)
+
+Each depth is one Meta-N level. The Tower IS gauge mobility computed.
 
 ```python
 from tower import Tower
