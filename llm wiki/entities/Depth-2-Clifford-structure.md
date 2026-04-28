@@ -7,8 +7,7 @@ tags: [tower, forced]
 
 # Depth-2 Clifford structure
 
-> **Theorem 8.3.**  At depth 2 ($d_K = 8$, $\dim A = 64$):
-
+> **Theorem 8.3.** At depth 2 (d_K = 8, dim A = 64): 
 ## Dependencies
 
 - [[Tower]]

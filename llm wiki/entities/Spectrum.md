@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Spectrum
 
-> **Theorem 2.4.**  Eigenvalues of $L_R$: $\{-\sqrt{5}, 0, 0, +\sqrt{5}\}$. On $\mathrm{im} = \mathrm{span}\{I, R_\mathrm{tl}\}$: eigenvalues $\pm\sqrt{5} = \pm\sqrt{\mathrm{disc}}$. [Tier A]
-
+> **Theorem 2.4.** Eigenvalues of L_R: \{-sqrt(5), 0, 0, +sqrt(5)\}. On im = span\{I, R_tl\}: eigenvalues (5) = (disc). [Tier A] 
 ## Dependencies
 
 - [[P]]

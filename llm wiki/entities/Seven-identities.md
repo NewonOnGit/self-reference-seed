@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Seven identities
 
-> **Theorem 3.1.**  For $R, N, J, h = JN, Q = JRJ$:
-
+> **Theorem 3.1.** For R, N, J, h = JN, Q = JRJ: 
 ## Dependencies
 
 - [[P]]

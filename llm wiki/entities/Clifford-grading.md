@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Clifford grading
 
-> **Theorem 4.1.**  $M_2(\mathbb{R}) = \mathrm{Cl}(1,1)$. The Sylvester decomposition respects the grading:
-
+> **Theorem 4.1.** M_2(R) = Cl(1,1). The Sylvester decomposition respects the grading: 
 ## Dependencies
 
 - [[L]]

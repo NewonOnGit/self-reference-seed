@@ -7,8 +7,7 @@ tags: [physics, forced]
 
 # Gravitational wave spectrum
 
-> **Theorem 10.7.**  $\mathrm{im}(L)$ restricted to $\mathrm{span}\{I, R_\mathrm{tl}\}$ has eigenvalues $\pm\sqrt{5} = \pm\sqrt{\mathrm{disc}}$. Physical modes oscillate at the discriminant frequency. [Tier A]
-
+> **Theorem 10.7.** im(L) restricted to span\{I, R_tl\} has eigenvalues (5) = (disc). Physical modes oscillate at the discriminant frequency. [Tier A] 
 ## Dependencies
 
 - [[L]]

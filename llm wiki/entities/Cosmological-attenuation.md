@@ -7,8 +7,7 @@ tags: [physics, forced]
 
 # Cosmological attenuation
 
-> **Theorem 11.2.**  The sourced fraction of $\mathrm{im}$ decays as $2^{-n}$ for $n \geq 3$:
-
+> **Theorem 11.2.** The sourced fraction of im decays as 2^{-n} for n >= 3: 
 ## Dependencies
 
 - [[L]]

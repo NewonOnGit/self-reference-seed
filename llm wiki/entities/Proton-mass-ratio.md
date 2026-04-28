@@ -7,8 +7,7 @@ tags: [physics, forced]
 
 # Proton mass ratio
 
-> **Theorem 12.5.**  $m_p/\Lambda_\mathrm{QCD} = N_c / (\|N\|^2/\|R\|^2) = 3/(2/3) = 9/2$. [Tier A]
-
+> **Theorem 12.5.** m_p/Lambda_QCD = N_c / (\|N\|^2/\|R\|^2) = 3/(2/3) = 9/2. [Tier A] 
 ## Dependencies
 
 - [[Lambda-is-depth-invariant]]

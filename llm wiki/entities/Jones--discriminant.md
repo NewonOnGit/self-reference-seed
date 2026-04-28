@@ -7,8 +7,7 @@ tags: [topology, forced]
 
 # Jones = discriminant
 
-> **Theorem 13.2.**  The Jones polynomial of the figure-eight knot $4_1$:
-
+> **Theorem 13.2.** The Jones polynomial of the figure-eight knot 4_1: 
 ## Dependencies
 
 - [[Jones--discriminant]]

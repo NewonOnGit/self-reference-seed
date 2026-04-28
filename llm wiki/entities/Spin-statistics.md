@@ -15,8 +15,7 @@ tags: [topology, forced]
 
 ## Proof sketch
 
-*Proof.* At depth 2, $N_2 \in M_8(\mathbb{R})$ satisfies $N_2^2 = -I_8$ (Theorem 6.2). The rotation generator $N_2$ has eigenvalues $\pm i$ (each with multiplicity 4). A rotation by angle $\theta$ in the spinor representation is $\exp(\theta N_2 / 2)$. At $\theta = 2\pi$:
-
+*Proof.* At depth 2, N_2 M_8(R) satisfies N_2^2 = -I_8 (Theorem 6.2). The rotation generator N_2 has eigenvalues i (each with multiplicity 4). A rotation by angle theta in the spinor representation is (theta N_2 / 2). At theta = 2pi: 
 ## Source
 
 `paper/paper_v2.md` line 496

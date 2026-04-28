@@ -7,8 +7,7 @@ tags: [topology, forced]
 
 # Quantum deformation at the golden point
 
-> **Theorem 13.1.**  At $q = \varphi^2$:
-
+> **Theorem 13.1.** At q = phi^2: 
 ## Dependencies
 
 - [[R]]

@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Alternative seed failure
 
-> **Theorem 5.2.**  Among all $(a,b) \in \{1,\ldots,4\}^2$, only $(a,b) = (1,1)$ satisfies $\ker(L) \neq 0$ AND $N^2 = -I$ AND $\{R,N\} = N$ AND $P^2 = P$ simultaneously. [Tier E]
-
+> **Theorem 5.2.** Among all (a,b) \{1,...,4\}^2, only (a,b) = (1,1) satisfies ker(L) != 0 AND N^2 = -I AND \{R,N\} = N AND P^2 = P simultaneously. [Tier E] 
 ## Dependencies
 
 - [[P]]

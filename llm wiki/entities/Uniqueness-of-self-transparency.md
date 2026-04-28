@@ -7,8 +7,7 @@ tags: [observer, forced]
 
 # Uniqueness of self-transparency
 
-> **Theorem 16.3.**  Among all generators $\{R, N, J, h, P, Q\}$, only $N$ has $\ker(L_{X,X}) = 0$.
-
+> **Theorem 16.3.** Among all generators \{R, N, J, h, P, Q\}, only N has ker(L_{X,X}) = 0. 
 ## Dependencies
 
 - [[Ker-im-decomposition]]

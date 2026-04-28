@@ -7,8 +7,7 @@ tags: [tower, forced]
 
 # Generation strength
 
-> **Theorem 7.1.**  The rank of $\ker \times \ker$ products projected onto $\mathrm{im}$:
-
+> **Theorem 7.1.** The rank of ker x ker products projected onto im: 
 ## Dependencies
 
 - [[Ker-im-decomposition]]

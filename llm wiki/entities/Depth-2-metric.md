@@ -7,8 +7,7 @@ tags: [tower, forced]
 
 # Depth-2 metric
 
-> **Theorem 8.5.**  The Clifford metric $\eta_{ij} = \frac{1}{2}\{\gamma_i, \gamma_j\}$ has signature $(3,1)$. [Tier N]
-
+> **Theorem 8.5.** The Clifford metric eta_{ij} = (1)/(2)\{gamma_i, gamma_j\} has signature (3,1). [Tier N] 
 ## Dependencies
 
 - [[Clifford-grading]]

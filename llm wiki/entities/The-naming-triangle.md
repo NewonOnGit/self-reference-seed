@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # The naming triangle
 
-> **Theorem 1.6.**  $P = J + |1\rangle\langle 1| + N$ where $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ (ground), $|1\rangle\langle 1| = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ (commitment). Remove any one component and $P^2 \neq P$. [Tier A]
-
+> **Theorem 1.6.** P = J + |1>< 1| + N where J = [ 0 & 1 \\ 1 & 0 ] (ground), |1>< 1| = [ 0 & 0 \\ 0 & 1 ] (commitment). Remove any one component and P^2 != P. [Tier A] 
 ## Dependencies
 
 - [[P]]

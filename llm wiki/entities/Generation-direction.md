@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Generation direction
 
-> **Theorem 4.2.**  $\ker \to \mathrm{im}$ is generative; $\mathrm{im} \to \ker$ is impossible. The kernel IS the source. The image IS the shadow. [Tier A]
-
+> **Theorem 4.2.** ker im is generative; im ker is impossible. The kernel IS the source. The image IS the shadow. [Tier A] 
 ## Dependencies
 
 - [[Ker-im-decomposition]]

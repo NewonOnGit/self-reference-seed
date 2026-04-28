@@ -7,8 +7,7 @@ tags: [observer, forced]
 
 # Kernel concentration
 
-> **Theorem 18.1.**  For an observer $K$ with $\ker(L_K) = V_K \subset A$, define the concentration index:
-
+> **Theorem 18.1.** For an observer K with ker(L_K) = V_K A, define the concentration index: 
 ## Dependencies
 
 - [[N]]

@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Theorem 1.2
 
-> **Theorem 1.2.**  The symmetric and antisymmetric parts of $P$:
-
+> **Theorem 1.2.** The symmetric and antisymmetric parts of P: 
 ## Dependencies
 
 - [[P]]

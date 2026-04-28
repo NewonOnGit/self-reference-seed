@@ -7,8 +7,7 @@ tags: [core-algebra, forced]
 
 # Perturbation fragility
 
-> **Theorem 5.1.**  For $R(\varepsilon) = $ companion matrix of $x^2 - x - (1+\varepsilon)$:
-
+> **Theorem 5.1.** For R(eps) = companion matrix of x^2 - x - (1+eps): 
 ## Dependencies
 
 - [[P]]

@@ -7,8 +7,7 @@ tags: [topology, forced]
 
 # Verlinde formula
 
-> **Theorem 14.3.**  The fusion coefficients recovered from the $S$-matrix:
-
+> **Theorem 14.3.** The fusion coefficients recovered from the S-matrix: 
 ## Dependencies
 
 - [[R]]

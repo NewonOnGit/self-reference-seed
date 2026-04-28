@@ -7,8 +7,7 @@ tags: [physics, forced]
 
 # Strong coupling
 
-> **Theorem 12.2.**  Partition function $Z = \sum_k (\bar\varphi^2)^k = 1/(1-\bar\varphi^2) = \varphi$. Equilibrium density $\rho_\mathrm{eq} = 1 - 1/Z = \bar\varphi^2$. The deficit output:
-
+> **Theorem 12.2.** Partition function Z = sum_k (phi_bar^2)^k = 1/(1-phi_bar^2) = phi. Equilibrium density _eq = 1 - 1/Z = phi_bar^2. The deficit output: 
 ## Dependencies
 
 - [[L]]

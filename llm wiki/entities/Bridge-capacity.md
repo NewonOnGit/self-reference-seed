@@ -7,8 +7,7 @@ tags: [observer, forced]
 
 # Bridge capacity
 
-> **Theorem 18.4.**  For two observers $K, K'$ with kernels $V_K, V_{K'}$ and images $W_K, W_{K'}$, define:
-
+> **Theorem 18.4.** For two observers K, K' with kernels V_K, V_{K'} and images W_K, W_{K'}, define: 
 ## Dependencies
 
 - [[N]]
