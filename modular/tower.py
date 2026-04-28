@@ -113,10 +113,10 @@ class Tower:
         return t
 
     def _physics_at(self, depth):
-        if depth == 0: return "distinction"
-        if depth == 1: return "quantum + gauge (su(3)+su(2)+u(1))"
-        if depth == 2: return "spacetime (Cl(3,1)→so(3,1))"
-        if depth == 3: return "suppressed (K1' cutoff)"
+        if depth == 0: return "distinction + topology (q=phi^2, V(4_1)=5)"
+        if depth == 1: return "quantum + gauge (su(3)+su(2)+u(1)) + braiding"
+        if depth == 2: return "spacetime (Cl(3,1)->so(3,1)) + gravity (Lichnerowicz)"
+        if depth == 3: return "K1' cutoff, Higgs VEV=50%, Lambda attenuation"
         return f"depth {depth}"
 
     # === THE SPINE ===

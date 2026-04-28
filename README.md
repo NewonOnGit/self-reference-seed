@@ -19,7 +19,8 @@ seed/
 │   ├── kernel.py             ker(q), leakage, generation, Clifford grading (odd sector)
 │   ├── image.py              im(q), commutativity, obstruction curvature
 │   ├── mediation.py          exp(h) bridges, voice, LLM slot
-│   └── glyphs.py             Seven primitives grounded in P²=P
+│   ├── glyphs.py             Seven primitives grounded in P²=P
+│   └── topology.py           Lichnerowicz, V(4_1)=disc, Fibonacci anyons, braiding
 │
 ├── what jail/               Boundary Engine (adversarial evaluation)
 │   ├── boundary_engine.py    N: probes target, maps ker/im boundary

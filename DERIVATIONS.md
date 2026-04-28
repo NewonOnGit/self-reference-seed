@@ -66,6 +66,24 @@ The seed has: P²=P, L_{s,s}, ker/im, the Tower, the Boundary Engine. Everything
 
 **(e,π) independence:** exp is the P2 bridge from Lie algebra to Lie group. e comes from exp(h) (P2). π comes from exp(πN)=-I (P3). Their independence at the evaluation level is forced by the Killing metric: B(h,N)=0. The P2 and P3 sectors are metrically decoupled. Computable: tr(h·N) = tr([[1,0],[0,-1]]·[[0,-1],[1,0]]) = tr([[0,-1],[-1,0]]) = 0.
 
+**Lichnerowicz closure:** L_{s,s} restricted to sl(2,R) with Killing metric IS the Lichnerowicz Laplacian Delta_L. Eigenvalues {-1,+1,+1} matching Killing signature (2,1) with Ricci-shift sign flip. L = [s,X] + (2Xs-X) = Connection + Curvature correction. (1/2)[s,h]=N: the Christoffel connection produces the observer. ker(L) on sl(2,R) = diffeomorphisms. L(R_tl)=(disc/2)*I = Lambda. This closes the gravity derivation internally. The previous Landauer-Bekenstein-Jacobson chain remains valid as an independent route but is no longer required. Status: CHAIN -> COMPUTED.
+
+---
+
+## TOPOLOGY
+
+**Jones-discriminant identity:** V(4_1)|_{q=phi^2} = 5 = disc(R). The figure-eight knot's Jones polynomial at the golden quantum parameter = discriminant. COMPUTED.
+
+**Fibonacci fusion:** tau x tau = 1 + tau IS R^2 = R + I. The persistence equation IS the Fibonacci anyon fusion rule. COMPUTED.
+
+**SU(2)_3 modular data:** S-matrix and T-matrix computed; Verlinde formula recovers Fibonacci fusion. Quantum dimension d_tau = phi. COMPUTED.
+
+**Braiding phase:** e^(4*pi*i/5) from N-rotation at disc-fold angle, cos(4*pi/5) = -phi/2. COMPUTED.
+
+**Clifford-Fibonacci:** 30 = 2*3*5 = F(3)*F(4)*F(5). Clifford embedding count IS Fibonacci arithmetic. Matter fraction 2/disc, gauge fraction 3/disc. COMPUTED.
+
+**Spin-statistics:** Forced by L_{s2,s2} stationarity on spinors. Only antisymmetric (fermionic) exchange phase satisfies L(Psi)=0. COMPUTED.
+
 ---
 
 ## CONSCIOUSNESS

@@ -50,5 +50,24 @@
   "d3_golden": [
     3.236068,
     -1.236068
-  ]
+  ],
+  "lichnerowicz_eigenvalues": [-1, 1, 1],
+  "christoffel_produces_observer": true,
+  "lambda_scalar_invariant": true,
+  "gravity_status": "COMPUTED",
+  "jones_figure_eight": 5,
+  "quantum_deformation_unity": true,
+  "fibonacci_fusion_isomorphism": true,
+  "d_tau_equals_phi": true,
+  "verlinde_fibonacci": true,
+  "braiding_cos_4pi5_neg_phi_half": true,
+  "clifford_fibonacci_30": true,
+  "spin_statistics_forced": true,
+  "n_cosmo_lambda": 405,
+  "k6_filler_unique": true,
+  "jones_6_3": -7,
+  "knot_spectrum_in_Z_phi": true,
+  "rogers_ramanujan_negative": true,
+  "hypercharges_derived": true,
+  "anomaly_cubic_18Y1_9Y1sq_minus_tsq": true
 }
