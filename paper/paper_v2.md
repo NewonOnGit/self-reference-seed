@@ -96,7 +96,9 @@ The Clifford identification: $R_\mathrm{tl}^2 = (5/4)I$ (positive square), $N^2 
 
 (a) $L(R_\mathrm{tl})$ is scalar only for $a = 1$. For $a \geq 2$: $L(R_\mathrm{tl}) = (a-1)R + (2b + a/2)I$, non-scalar. [Tier A]
 
-(b) $\ker(L_R) \neq \{0\}$ only for $a = 1$. For $a \geq 2$: $\ker(L_R) = \{0\}$. [Tier A + E over $(a,b) \in \{1,\ldots,10\}^2$]
+(b) $\ker(L_R) \neq \{0\}$ if and only if $a = 1$.
+
+*Proof.* The eigenvalues of $L = I \otimes R + R^T \otimes I - I_4$ are $\alpha_i + \alpha_j - 1$, where $\alpha_i$ are eigenvalues of $R$ (since $I \otimes R$ and $R^T \otimes I$ commute). For $R$ = companion of $x^2 - ax - b$: $\alpha + \beta = a$, $\alpha\beta = -b$. The four eigenvalues of $L$: $2\alpha-1$, $\alpha+\beta-1 = a-1$ (double), $2\beta-1$. Setting each to zero: $a-1 = 0$ gives $a = 1$. $2\alpha-1 = 0$ gives $\sqrt{a^2+4b} = 1-a \leq 0$, impossible for $a, b \geq 1$. $2\beta-1 = 0$ gives $4b = 1-2a < 0$, impossible. Therefore $\ker(L) \neq \{0\}$ iff $a = 1$, with $\dim\ker = 2$ (the double eigenvalue). $\square$ [Tier A]
 
 (c) $P^2 = P$ holds only at $(a,b) = (1,1)$. [Tier E over $(a,b) \in \{1,\ldots,10\}^2$]
 
