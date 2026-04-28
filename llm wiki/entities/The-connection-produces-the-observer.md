@@ -7,17 +7,19 @@ tags: [physics, forced]
 
 # The connection produces the observer
 
-> **Theorem 10.3.**  
+> **Theorem 10.3.**
+
+nabla_s h = (1)/(2)[s, h] = (1)/(2)[ 0 & -2  \  2 & 0 ] = [ 0 & -1  \  1 & 0 ] = N
+
+The Levi-Civita covariant derivative of the Cartan element h in the direction s is the observer N. QED [Tier A]
 
 ## Dependencies
 
-- [[L]]
-- [[gravity]]
-- [[R]]
+- [[N]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 351)
 
 ## Source
 

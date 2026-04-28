@@ -7,15 +7,21 @@ tags: [core-algebra, forced]
 
 # Theorem 2.1
 
-> **Theorem 2.1.**  The Sylvester self-action:
+> **Theorem 2.1.**
+
+The Sylvester self-action:
+
+L_{s,s}(X) = sX + Xs - X
+
+as a linear operator on M_2(R)  R^4.
 
 ## Dependencies
 
 - [[L]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 69)
 
 ## Source
 

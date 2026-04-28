@@ -7,14 +7,17 @@ tags: [tower, forced]
 
 # Opacity hardening
 
-> **Theorem 8.2.** Leakage (fraction of ker x ker products landing purely in im): depth 0 = 1.000, depth >= 1 = 0.000. Permanent. [Tier N] 
+> **Theorem 8.2.**
+
+Leakage (fraction of ker x ker products landing purely in im): depth 0 = 1.000, depth >= 1 = 0.000. Permanent. [Tier N]
+
 ## Dependencies
 
 - [[Ker-im-decomposition]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 252)
 
 ## Source
 

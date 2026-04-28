@@ -7,16 +7,19 @@ tags: [core-algebra, forced]
 
 # Scalar channel
 
-> **Theorem 2.3.** L_R(R_tl) = (disc)/(2) I = (5)/(2)I. The traceless physical mode maps to a pure scalar. [Tier A] 
+> **Theorem 2.3.**
+
+L_R(R_tl) = (disc)/(2) I = (5)/(2)I. The traceless physical mode maps to a pure scalar. [Tier A]
+
 ## Dependencies
 
 - [[P]]
 - [[R]]
 - [[N]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 91)
 
 ## Source
 

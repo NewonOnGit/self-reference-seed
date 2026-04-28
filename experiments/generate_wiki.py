@@ -37,37 +37,45 @@ def extract_theorems():
             thm_positions.append((i, m.group(1), m.group(2) or '', m.group(3) or ''))
 
     for idx, (i, thm_id, thm_name, first_line) in enumerate(thm_positions):
-        # End of this theorem = start of next, or +40 lines, or section break
+        # End of this theorem = start of next theorem, or section break
         if idx + 1 < len(thm_positions):
             end = thm_positions[idx + 1][0]
         else:
-            end = min(i + 40, len(lines))
+            end = min(i + 50, len(lines))
 
-        # Grab the full block
+        # Grab EVERYTHING between this theorem and the next
         block_lines = lines[i:end]
         full_block = '\n'.join(block_lines)
 
-        # Statement = first paragraph (up to blank line or *Proof*)
+        # Statement = everything up to *Proof* or end of block
+        # (captures tables, equations, multi-line content)
         stmt_lines = [first_line] if first_line else []
         for j in range(i + 1, end):
-            if not lines[j].strip() or lines[j].strip().startswith('*Proof'):
+            line_s = lines[j].strip()
+            if line_s.startswith('*Proof'):
                 break
-            stmt_lines.append(lines[j].strip())
-        statement = ' '.join(stmt_lines).strip()
+            if line_s.startswith('**Theorem') or line_s.startswith('**Corollary') or line_s.startswith('**Proposition') or line_s.startswith('**Remark') or line_s.startswith('---'):
+                break
+            stmt_lines.append(lines[j])  # keep original formatting
+        statement = '\n'.join(stmt_lines).strip()
+        # Cap at reasonable length but keep tables intact
+        if len(statement) > 1200:
+            statement = statement[:1200] + '\n...(truncated)'
 
-        # Proof = from *Proof* to next blank or square
+        # Proof = from *Proof* to end of block
         proof_lines = []
         in_proof = False
         for j in range(i + 1, end):
             if '*Proof' in lines[j]:
                 in_proof = True
-                proof_lines.append(lines[j].strip())
-                continue
             if in_proof:
-                if not lines[j].strip() and proof_lines:
+                proof_lines.append(lines[j])
+                # Stop at QED marker or next theorem
+                if '$\\square$' in lines[j] or 'QED' in lines[j] or '∎' in lines[j]:
                     break
-                proof_lines.append(lines[j].strip())
-        proof = ' '.join(proof_lines).strip() if proof_lines else ''
+        proof = '\n'.join(proof_lines).strip() if proof_lines else ''
+        if len(proof) > 800:
+            proof = proof[:800] + '\n...(truncated)'
 
         # References to other theorems (dependencies)
         refs = THEOREM_REF.findall(full_block)
@@ -85,6 +93,45 @@ def extract_theorems():
         })
 
     return theorems
+
+
+def delatex(text):
+    """Strip LaTeX, make readable."""
+    import re as _re
+    text = _re.sub(r'\$\$([^$]+)\$\$', r'\1', text)
+    text = _re.sub(r'\$([^$]+)\$', r'\1', text)
+    subs = [
+        (r'\\mathfrak\{([^}]+)\}', r'\1'), (r'\\mathrm\{([^}]+)\}', r'\1'),
+        (r'\\mathbb\{([^}]+)\}', r'\1'), (r'\\bar\{?\\varphi\}?', 'phi_bar'),
+        (r'\\varphi', 'phi'), (r'\\sqrt\{([^}]+)\}', r'sqrt(\1)'),
+        (r'\\frac\{([^}]+)\}\{([^}]+)\}', r'(\1)/(\2)'),
+        (r'\\begin\{pmatrix\}', '['), (r'\\end\{pmatrix\}', ']'),
+        (r'\\neq', '!='), (r'\\leq', '<='), (r'\\geq', '>='),
+        (r'\\approx', '~'), (r'\\times', 'x'), (r'\\cdot', '*'),
+        (r'\\circ', 'o'), (r'\\otimes', 'x'), (r'\\oplus', '+'),
+        (r'\\langle', '<'), (r'\\rangle', '>'),
+        (r'\\left', ''), (r'\\right', ''), (r'\\text\{([^}]+)\}', r'\1'),
+        (r'\\quad', ' '), (r'\\[,;!]', ' '),
+        (r'\\pi', 'pi'), (r'\\alpha', 'alpha'), (r'\\beta', 'beta'),
+        (r'\\theta', 'theta'), (r'\\lambda', 'lambda'), (r'\\Lambda', 'Lambda'),
+        (r'\\mu', 'mu'), (r'\\nu', 'nu'), (r'\\eta', 'eta'), (r'\\rho', 'rho'),
+        (r'\\delta', 'delta'), (r'\\Delta', 'Delta'), (r'\\sigma', 'sigma'),
+        (r'\\Sigma', 'Sigma'), (r'\\gamma', 'gamma'), (r'\\varepsilon', 'eps'),
+        (r'\\dim', 'dim'), (r'\\ker', 'ker'), (r'\\det', 'det'),
+        (r'\\sum', 'sum'), (r'\\int', 'int'), (r'\\partial', 'd'),
+        (r'\\nabla', 'nabla'), (r'\\square', 'QED'), (r'\\ldots', '...'),
+        (r'\\infty', 'inf'), (r'\\pm', '+-'),
+        (r'\\cos', 'cos'), (r'\\sin', 'sin'), (r'\\tan', 'tan'),
+        (r'\\exp', 'exp'), (r'\\log', 'log'), (r'\\ln', 'ln'),
+        (r'\\max', 'max'), (r'\\min', 'min'),
+        (r'\\Phi', 'Phi'), (r'\\phi', 'phi'), (r'\\Psi', 'Psi'), (r'\\psi', 'psi'),
+    ]
+    for pat, rep in subs:
+        text = _re.sub(pat, rep, text)
+    text = _re.sub(r'\\[a-zA-Z]+\{([^}]+)\}', r'\1', text)
+    text = _re.sub(r'\\[a-zA-Z]+', '', text)
+    text = _re.sub(r'\\\\', ' \\\\ ', text)  # preserve line breaks in matrices
+    return text
 
 
 def thm_to_filename(name):
@@ -172,7 +219,16 @@ def generate_page(thm, id_to_name, id_to_filename):
     all_links = dep_links + concept_links[:5]
     if not all_links:
         all_links = section_defaults.get(role, ['[[P]]'])[:3]
+    # Remove self-links
+    my_fn = thm_to_filename(thm['name']) or f"Thm-{thm['id']}"
+    all_links = [l for l in all_links if my_fn not in l]
+    if not all_links:
+        all_links = section_defaults.get(role, ['[[P]]'])[:3]
     deps_text = '\n'.join(f"- {d}" for d in all_links)
+
+    # De-LaTeX the statement and proof
+    statement = delatex(thm['statement'])
+    proof = delatex(thm['proof']) if thm['proof'] else ''
 
     page = f"""---
 type: entity
@@ -183,15 +239,17 @@ tags: [{role.lower()}, forced]
 
 # {display}
 
-> **Theorem {thm['id']}.**  {thm['statement']}
+> **Theorem {thm['id']}.**
+
+{statement}
 
 ## Dependencies
 
 {deps_text}
 
-## Proof sketch
+## Proof
 
-{thm['proof'] if thm['proof'] else '(See paper_v2.md for full proof.)'}
+{proof if proof else '(See paper_v2.md line ' + str(thm['line']) + ')'}
 
 ## Source
 

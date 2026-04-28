@@ -7,15 +7,18 @@ tags: [core-algebra, forced]
 
 # Asymmetry is forced
 
-> **Theorem 1.1.** If P = P^T, then N = (P-P^T)/2 = 0, R = P, R^2 = P^2 = P = R, so R^2 - R = 0 != I. The surplus law R^2 = R+I requires P != P^T. Asymmetry IS the surplus. QED 
+> **Theorem 1.1.**
+
+If P = P^T, then N = (P-P^T)/2 = 0, R = P, R^2 = P^2 = P = R, so R^2 - R = 0 != I. The surplus law R^2 = R+I requires P != P^T. Asymmetry IS the surplus. QED
+
 ## Dependencies
 
 - [[P]]
 - [[R]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 15)
 
 ## Source
 

@@ -7,16 +7,19 @@ tags: [physics, forced]
 
 # Weinberg angle
 
-> **Theorem 12.3.** ^2theta_W = sum T_3^2 / sum Q^2 = 3/8 over the anomaly-derived matter representations (Theorem 9.1b). The hypercharges entering this computation are the unique output of the anomaly classification, not input. [Tier A] 
+> **Theorem 12.3.**
+
+sin^2theta_W = sum T_3^2 / sum Q^2 = 3/8 over the anomaly-derived matter representations (Theorem 9.1b). The hypercharges entering this computation are the unique output of the anomaly classification, not input. [Tier A]
+
 ## Dependencies
 
 - [[Hypercharge-uniqueness|Hypercharge uniqueness]]
 - [[N]]
 - [[Anomaly-cancellation]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 410)
 
 ## Source
 

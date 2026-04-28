@@ -7,15 +7,22 @@ tags: [topology, forced]
 
 # Verlinde formula
 
-> **Theorem 14.3.** The fusion coefficients recovered from the S-matrix: 
+> **Theorem 14.3.**
+
+The fusion coefficients recovered from the S-matrix:
+
+N_{}^1 = 1,   N_{}^ = 1
+
+confirming  x  = 1 + . [Tier N]
+
 ## Dependencies
 
 - [[R]]
 - [[N]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 480)
 
 ## Source
 

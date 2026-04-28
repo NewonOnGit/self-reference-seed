@@ -7,16 +7,19 @@ tags: [core-algebra, forced]
 
 # Theorem 1.2
 
-> **Theorem 1.2.** The symmetric and antisymmetric parts of P: 
+> **Theorem 1.2.**
+
+The symmetric and antisymmetric parts of P:
+
+R = (P + P^T)/(2) = [ 0 & 1  \  1 & 1 ],   N = (P - P^T)/(2) = [ 0 & -1  \  1 & 0 ]
+
 ## Dependencies
 
 - [[P]]
-- [[R]]
-- [[N]]
 
-## Proof sketch
+## Proof
 
-(See paper_v2.md for full proof.)
+(See paper_v2.md line 17)
 
 ## Source
 
