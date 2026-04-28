@@ -76,5 +76,18 @@
   "hadamard_from_J_h": true,
   "fibonacci_braid_relation": true,
   "fibonacci_F_involutory": true,
-  "bell_disc_fold_violates": true
+  "bell_disc_fold_violates": true,
+  "quantum_algorithms_8_of_8": true,
+  "deutsch_jozsa": true,
+  "teleportation_fidelity_1": true,
+  "grover_96pct": true,
+  "phase_estimation_exact": true,
+  "shor_15_equals_3x5": true,
+  "quantum_walk_nonuniform": true,
+  "hhl_solver": true,
+  "vqe_h2_error_0.00002": true,
+  "nu_hierarchy_m3_40meV": true,
+  "nu_hierarchy_ratio_off": "123 vs exp 33 (disc=5 spacing too steep)",
+  "eta_B_m_nu_relation_4pct": true,
+  "alpha_S_10digit": 0.11803398875
 }

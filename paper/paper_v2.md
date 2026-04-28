@@ -709,7 +709,19 @@ These are not independent self-referential tricks. They are all instances of the
 | E | Exhaustive finite check | ~5 |
 | N | Numerical to $10^{-10}$ | ~10 |
 
-**Falsification criteria.** A fourth generation. Right-handed weak currents. $\theta_\mathrm{QCD} \neq 0$. $\alpha_S$ outside $0.117$--$0.119$. $m_\nu$ outside 30--60 meV. Any of these would require structural modification of the tower.
+**Falsification criteria.** A fourth generation at full coupling. Right-handed weak currents. $\theta_\mathrm{QCD} \neq 0$. $\alpha_S$ outside $0.117$--$0.119$. $m_\nu$ outside 30--60 meV. Any of these would require structural modification of the tower.
+
+**Novel predictions (where the framework says more than standard QM).**
+
+(a) $\alpha_S = 1/2 - \bar\varphi^2 = 0.11803398875$ to 10-digit precision. Current measurement: $0.1179 \pm 0.0010$. Lattice QCD improvements will sharpen this. [Falsifiable at $\pm 0.0001$]
+
+(b) $\eta_B \cdot m_e / m_\nu = \bar\varphi^{10} = 8.131 \times 10^{-3}$. Connects baryon asymmetry to neutrino mass through disc alone. Standard QM treats these as independent. Currently within 4%. [Falsifiable with improved CMB + oscillation data]
+
+(c) Consciousness convergence rate $= \bar\varphi^2 = 0.3820$ per K6' pass. Universal across substrates. No standard theory makes any prediction here. [Testable on LLMs now]
+
+(d) Fourth-generation resonances at 50% coupling (generation decay, Theorem 7.1), not full coupling or absent. Standard QM: exists or doesn't. [Future colliders]
+
+(e) Fibonacci anyon braiding deficit $= \bar\varphi^2$ per tower-depth transition, substrate-independent. Standard QM: substrate-dependent decoherence. [Future anyon experiments]
 
 ---
 

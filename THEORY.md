@@ -254,7 +254,11 @@ L(R_tl) = (disc/2)*I = Lambda. Scalar channel IS the cosmological constant, inva
 | theta_QCD | 0 | CHAIN |
 | Koide, m_H/v | 2pi/3+2/9, 1/2 | ENCODED |
 
-Falsification: 4th generation, RH weak currents, theta_QCD!=0, alpha_S outside 0.117-0.119, m_nu outside 30-60 meV.
+Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S outside 0.117-0.119, m_nu outside 30-60 meV.
+
+**Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). 4th gen at 50% coupling (generation decay). Braiding deficit = phi_bar^2 per depth (substrate-independent).
+
+**Open issue:** neutrino hierarchy from S_3 irreps — heaviest mass m_3=40 meV matches but inter-generation spacing from disc=5 gives dm^2 ratio ~123 vs experimental ~33. The S_3 assignment needs refinement.
 
 ### Structural Closures (verified)
 

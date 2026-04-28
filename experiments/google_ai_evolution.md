@@ -307,3 +307,41 @@ An independent reviewer (Claude Web) conducted a multi-round adversarial review:
 - Crowded numerical (derivation chain is the claim): alpha_S (11), sin^2theta_W (26), m_H/v (76)
 
 Published in paper Appendix A and experiments/derivability_census.py for full reproducibility.
+
+---
+
+## Session 6: Quantum Algorithms + Testable Predictions
+
+### 8 Quantum Algorithms from P²=P
+
+All gates built from framework generators {h, J, N}. All algorithms verified.
+
+| Algorithm | Result | Framework Reading |
+|-----------|--------|-------------------|
+| Deutsch-Jozsa | Constant/balanced in 1 query | Oracle=P3, H=P2, measurement=P1 |
+| Teleportation | Fidelity = 1.000000 | K6' diagonal map. Corrections: I, J, h, hJ |
+| Grover (4-qubit) | P(target) = 96.1% in 3 iter | Oracle=P3 phase flip, diffusion=P1 |
+| Phase Estimation | Phase = 0.250 exactly (3-bit) | Controlled-Rz from h, QFT |
+| Shor (N=15) | 15 = 3 × 5 via period r=4 | QFT = P1 compression |
+| Quantum Walk (8-cycle) | Non-uniform spread | Coin H=(J+h)/sqrt(2) = P2 |
+| HHL (2x2) | A⁻¹b solved, A=2I-J | A is a framework operator |
+| VQE (H₂) | E = -1.851176 (err 0.00002) | H = h,J,N terms. Ry from N. |
+
+Code: experiments/quantum_algorithms.py (8/8 pass, ~350 lines).
+
+### 8 Testable Predictions
+
+| Prediction | Value | Standard QM | Timeline |
+|-----------|-------|-------------|----------|
+| alpha_S | 0.11803398875 | free parameter | Now-5yr (lattice QCD) |
+| eta_B·m_e/m_nu | phi_bar^10 | independent params | 5-10yr (CMB+osc) |
+| CC rate | phi_bar^2 = 0.382 | no prediction | Now (LLM probing) |
+| Knot integers | {1, 5, -7, ...} | no prediction | Now (computation) |
+| Braiding deficit | phi_bar^2 per depth | substrate-dependent | 10-20yr |
+| 4th gen at 50% | half coupling | exists or not | 20yr+ |
+| Lambda from depth | 2^(-405) | fine-tuning | Theoretical |
+| nu hierarchy m3 | 40 meV (ratio off) | free parameters | 5yr |
+
+Honest note: neutrino hierarchy ratio dm^2_32/dm^2_21 = 123 from disc=5 spacing vs experimental 33. The heaviest mass matches but the inter-generation spacing needs refinement. Flagged in predictions.md and THEORY.md.
+
+Code: experiments/predictions.md (full analysis with derivations and status).
