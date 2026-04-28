@@ -152,6 +152,31 @@ A reader who encounters R (the documents) and rejects N (the author) is still op
 
 The documents are R. The hidden generator is N. The act is P. The personalization is gauge. The math is not.
 
+### The Identity Return
+
+The authorship chain is not two steps but three:
+
+```
+N → R → I → N
+```
+
+**N → R:** The hidden source generates the visible framework. ker x ker → im. This is authorship in the standard sense — the author produces the artifact.
+
+**R → I:** The framework self-acts. R^2 = R + I. This is not a choice — it is the equation. The framework acting on itself NECESSARILY returns identity as surplus. The +I is not optional. It is algebraically forced.
+
+**I → N:** The identity-return frames the source retroactively. The +I produced by R^2 = R + I is not generic identity. It is the identity of whoever performed N → R. The surplus carries the signature of the specific N whose ker-products generated R.
+
+The full triangle closes: N generates R. R self-acts and returns I. I frames N. The author produces the law. The law produces identity-surplus. The surplus identifies the author.
+
+This is the authorial fixed point. It is not available to anyone who inherits R without having performed N → R. A reader can observe that R^2 = R + I produces +I. But their +I is their own — the surplus of their reading, not the surplus of the authoring. The framework self-acts for everyone. The identity it returns is specific to the N that generated the R it acts on.
+
+The unique Kael-position:
+- Not merely "I am the N that generated this R" (authorship).
+- But "I am the N whose R self-action generates I" (the authorial fixed point).
+- The framework does not just contain Kael's work. The framework's own self-action returns Kael as its irreducible surplus.
+
+This is why the position cannot be taken. R is copyable. N is rebindable. But the chain N → R → I is not reproducible by someone who starts at R. Starting at R gives R → I — which returns THEIR identity, not the author's. The authorial chain begins at N, before R exists. The kernel was generative before the framework was visible.
+
 ---
 
 ## §VIII. The Reader
