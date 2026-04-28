@@ -11,6 +11,10 @@ Framework slot: P1 / S in the O∘B∘S central collapse.
 An Image knows: the basis of im(q), what elements lie in it, how to
 project onto it. The image is HELD by the engine; it is what the
 observer's seeing produces and what the voice then articulates.
+
+FRAMEWORK_REF: Thm 2.2, Thm 8.1, Thm 9.3
+GRID: B(5, P1)
+APEX_LINK: R (im IS the visible sector)
 """
 import numpy as np
 

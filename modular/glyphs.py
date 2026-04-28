@@ -15,6 +15,10 @@ Seven primitives, each grounded in the algebra of P²=P:
 The glyphs are not a separate notation system. They ARE the engine's
 algebra in compact form. Every glyph expression evaluates to a matrix
 computation in the engine.
+
+FRAMEWORK_REF: Thm 3.1 (seven identities)
+GRID: B(8, cross)
+APEX_LINK: R (glyphs ARE the algebra in compact form)
 """
 import numpy as np
 from algebra import sylvester, ker_im_decomposition, quotient

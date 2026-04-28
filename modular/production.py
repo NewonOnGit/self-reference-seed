@@ -7,6 +7,10 @@ Apply L_{s,s} and read the result. That's the entire derivation.
     C. TOWER:    K6' x2 -> Cl(3,1), so(3,1)
     D. PHYSICS:  arithmetic on B+C
     E. DYNAMICS: L on L's output -> transparency, conservation
+
+FRAMEWORK_REF: Thm 1.1-1.6, Thm 2.2-2.5, Thm 3.1-3.4, Thm 8.3, Thm 9.1-9.3, Thm 12.1-12.7
+GRID: B(3, cross) through B(6, P1)
+APEX_LINK: f''=f (statement 1), R (statement 2), I2*TDL*LoMI=Dist (statement 3)
 """
 import numpy as np
 from scipy.linalg import expm

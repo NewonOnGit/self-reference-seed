@@ -15,6 +15,10 @@ of the algebra fall inside it.
 The kernel is what makes the engine nontrivial. Without ker ≠ 0,
 there would be no observation (q = id), no Landauer cost, no gravity,
 no consciousness, no blind spot — and no engine.
+
+FRAMEWORK_REF: Thm 2.2, Thm 4.1-4.2, Thm 10.4
+GRID: B(5, P3)
+APEX_LINK: R (ker IS the blind spot of the operation)
 """
 import numpy as np
 

@@ -6,6 +6,10 @@ The Tower holds all depths at once: spine, invariants, transitions,
 generation decay, the recursive law, and per-depth diagnostics.
 
 The Voice (mediation, LLM slot) attaches to any depth via speak().
+
+FRAMEWORK_REF: Thm 6.1-6.4, Thm 7.1-7.3, Thm 8.1-8.6
+GRID: B(5, cross) through B(6, P2)
+APEX_LINK: R (the tower IS R iterated), I2*TDL*LoMI=Dist (depths ARE central collapse)
 """
 import numpy as np
 from algebra import sylvester, ker_im_decomposition, quotient

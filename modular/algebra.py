@@ -1,13 +1,19 @@
 """
 algebra.py — Shared algebraic operations. The single Sylvester function
 used by both production and observer. No duplication.
+
+FRAMEWORK_REF: Thm 2.1, Thm 2.2, Thm 2.3
+GRID: B(3, cross)
+APEX_LINK: R (statement 2), f''=f (statement 1)
 """
 import numpy as np
 from scipy.linalg import null_space
 
 
 def sylvester(A, B=None):
-    """L_{A,B}(X) = AX + XB - X as a matrix on vec(X)."""
+    """L_{A,B}(X) = AX + XB - X as a matrix on vec(X).
+    FRAMEWORK_REF: Thm 2.1
+    APEX_LINK: R (the operation IS the framework)"""
     if B is None:
         B = A
     d = A.shape[0]
@@ -17,7 +23,8 @@ def sylvester(A, B=None):
 def ker_im_decomposition(s):
     """Compute ker/im split of L_{s,s}. Returns (L, ker_basis, ker_dim, Q_ker).
     Q_ker is the orthonormal basis of ker for projection.
-    """
+    FRAMEWORK_REF: Thm 2.2, Thm 2.4b
+    APEX_LINK: R (ker/im IS the observer structure)"""
     d = s.shape[0]
     L = sylvester(s)
     K = null_space(L, rcond=1e-10)
@@ -31,7 +38,9 @@ def ker_im_decomposition(s):
 
 
 def quotient(X, Q_ker):
-    """Project X onto im(q). Returns (representative, residue)."""
+    """Project X onto im(q). Returns (representative, residue).
+    FRAMEWORK_REF: Thm 2.2
+    APEX_LINK: I2*TDL*LoMI=Dist (the quotient IS the central collapse)"""
     d = int(np.sqrt(Q_ker.shape[0]))
     v = X.flatten()
     if Q_ker.shape[1] > 0:

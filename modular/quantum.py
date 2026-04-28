@@ -8,6 +8,10 @@ The complex structure (N^2=-I) forces Hilbert space. The entanglement
 
 Fibonacci anyon gate set: the braiding matrices from SU(2)_3 at
 q=phi^2 give a universal gate set for topological quantum computation.
+
+FRAMEWORK_REF: Thm 15.4-15.8, Thm 2.4c
+GRID: B(3, P3) for gates, B(6, P1) for Bell test
+APEX_LINK: R (gates from generators), f''=f (Hilbert from asymmetry)
 """
 import numpy as np
 
@@ -27,7 +31,8 @@ h = J @ N  # [[1,0],[0,-1]] Cartan
 # === SINGLE-QUBIT GATES ===
 
 def hadamard():
-    """H = (J + h)/sqrt(2). Superposition from ground + Cartan."""
+    """H = (J + h)/sqrt(2). Superposition from ground + Cartan.
+    FRAMEWORK_REF: Thm 15.5"""
     return (J + h) / np.sqrt(2)
 
 
@@ -48,7 +53,8 @@ def rotation(theta):
 def cnot():
     """CNOT = (I+h)/2 x I + (I-h)/2 x J.
     The Cartan decides whether the ground acts.
-    Control: h-eigenspace projection. Target: J (swap)."""
+    Control: h-eigenspace projection. Target: J (swap).
+    FRAMEWORK_REF: Thm 15.4"""
     proj0 = (I2 + h) / 2
     proj1 = (I2 - h) / 2
     return np.kron(proj0, I2) + np.kron(proj1, J)
@@ -86,7 +92,8 @@ def chsh(psi, a1, a2, b1, b2):
 
 
 def bell_test_optimal():
-    """Run CHSH at optimal angles. Returns S = 2*sqrt(2)."""
+    """Run CHSH at optimal angles. Returns S = 2*sqrt(2).
+    FRAMEWORK_REF: Thm 15.7"""
     psi = bell_phi_plus()
     return chsh(psi, 0, np.pi / 2, np.pi / 4, 3 * np.pi / 4)
 

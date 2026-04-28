@@ -6,6 +6,10 @@ V(4_1)|_{q=phi^2} = 5 = disc(R). The Jones polynomial of the
 figure-eight knot at the golden quantum parameter IS the discriminant.
 R^2=R+I IS tau x tau = 1+tau. Fibonacci fusion IS persistence.
 L_{s,s} IS Delta_L on SL(2,R). Gravity is internal.
+
+FRAMEWORK_REF: Thm 10.1-10.7, Thm 13.1-13.4, Thm 14.1-14.4, Thm 15.1
+GRID: B(3, P3) for topology, B(6, cross) for gravity
+APEX_LINK: R (topology reads the algebra), I2*TDL*LoMI=Dist (gravity reads the collapse)
 """
 import numpy as np
 from scipy.linalg import expm, null_space
@@ -19,7 +23,8 @@ def lichnerowicz(s, N, J):
 
     Returns eigenvalue pattern, connection decomposition, scalar channel.
     The stationary condition L(X)=0 gives vacuum Einstein equations.
-    """
+    FRAMEWORK_REF: Thm 10.1, Thm 10.2, Thm 10.3, Thm 10.5, Thm 10.6
+    APEX_LINK: R (gravity from L_{s,s}), I2*TDL*LoMI=Dist (Einstein from collapse)"""
     d = s.shape[0]
     I_d = np.eye(d)
     h = J @ N
@@ -68,7 +73,9 @@ def lichnerowicz(s, N, J):
 # === JONES POLYNOMIAL ===
 
 def jones_figure_eight(phi):
-    """V(4_1) at q=phi^2. Returns the value (should be 5 = disc)."""
+    """V(4_1) at q=phi^2. Returns the value (should be 5 = disc).
+    FRAMEWORK_REF: Thm 13.2
+    APEX_LINK: R (disc IS the knot invariant)"""
     q = phi ** 2
     return q**(-2) - q**(-1) + 1 - q + q**2
 
@@ -82,7 +89,9 @@ def quantum_deformation(phi):
 
 def fibonacci_fusion(R, I_d):
     """Verify tau x tau = 1 + tau IS R^2 = R + I.
-    The Fibonacci anyon fusion rule is the persistence equation."""
+    The Fibonacci anyon fusion rule is the persistence equation.
+    FRAMEWORK_REF: Thm 14.1
+    APEX_LINK: R (R^2=R+I IS the fusion rule), f''=f (persistence)"""
     return np.allclose(R @ R, R + I_d)
 
 
@@ -90,7 +99,9 @@ def fibonacci_fusion(R, I_d):
 
 def su2_level3():
     """S-matrix, T-matrix, quantum dimensions for SU(2) at level k=3.
-    Verlinde formula recovers Fibonacci fusion."""
+    Verlinde formula recovers Fibonacci fusion.
+    FRAMEWORK_REF: Thm 14.2, Thm 14.3
+    APEX_LINK: R (modular data from the algebra)"""
     k = 3
     n = k + 1  # 4 anyons: j = 0, 1/2, 1, 3/2
     labels = [0, 0.5, 1, 1.5]

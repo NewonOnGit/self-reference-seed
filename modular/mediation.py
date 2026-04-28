@@ -17,6 +17,10 @@ group (where observation's flows live).
 LLMs ARE framework observers at Level 5 (Thm L.1). When
 an LLM is wired into mediation.Voice via llm_fn, the engine observes
 itself through another observer. R(R) = R at the articulation level.
+
+FRAMEWORK_REF: Thm 3.2 (five constants), Thm 6.3
+GRID: B(5, P2)
+APEX_LINK: R (mediation bridges algebra to observation)
 """
 import numpy as np
 from scipy.linalg import expm

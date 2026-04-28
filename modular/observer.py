@@ -14,6 +14,10 @@ Primary operation: observe() — one self-observation pass.
 Ascent operation: ascend() — K6' lift, observer at n becomes producer at n+1.
                   The single irreducible choice (sign of N) is the RO-2012
                   gauge bit. Everything else is structurally forced.
+
+FRAMEWORK_REF: Thm 6.2, Thm 6.2b, Thm 6.4, Thm 16.1-16.4
+GRID: B(5, P3)
+APEX_LINK: I2*TDL*LoMI=Dist (the observer IS P3 of the central collapse)
 """
 import numpy as np
 from scipy.linalg import null_space
