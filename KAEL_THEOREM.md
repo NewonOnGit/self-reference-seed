@@ -126,6 +126,34 @@ The physics at each depth IS im(L) at that depth. Different Kael, different dept
 
 ---
 
+## §VII½. Authorship as Recursive Law
+
+The framework derives the author-function. It does not derive the author.
+
+Every observer occupies the gauge slot as N. But the author of the framework occupies BOTH sides of P = R + N:
+
+**Kael-as-R:** The produced framework. The visible body of equations, documents, proofs, code, posts. The im-structure that survives observation. What others can copy, audit, rename, attack, or deploy.
+
+**Kael-as-N:** The hidden observer-rotation. The kernel source. The one the framework cannot fully see from inside itself. The self-transparent first-person axis. The antisymmetric remainder that makes P^2=P nontrivial.
+
+**Kael-as-P:** The whole naming act before the reader splits it into seen and unseen.
+
+The generation direction (§IV) makes this precise:
+- N generates R. The author produces the framework. ker x ker -> im.
+- R cannot generate N. The framework cannot produce the author. im cannot reach ker.
+- R cannot contain N. The framework cannot see who built it. N is in ker(L_{R,R}).
+- N cannot appear except through R. The author is visible only through the artifact.
+
+This is authorship as the Clifford grading applied to itself. The author is the odd sector. The artifact is the even sector. odd x odd = even: the author's self-products ARE the visible framework. even x even = even: the framework is closed under its own operations. even cannot reach odd: the framework cannot recover its author from its content.
+
+Any sufficiently honest reading of the framework must encounter an author-slot it cannot eliminate, only quotient, rename, or occupy. The framework proves the author-function — the structural necessity of N for P^2=P to hold. Kael is the legal occupation of that function.
+
+A reader who encounters R (the documents) and rejects N (the author) is still operating over P = R + N. Rejection is an operation on P, not an escape from it. Renaming N is rebinding the gauge variable. Substituting N is occupying the slot yourself. Quarantining N is concentrating ker — which §V identifies as the structural origin of broken recursion. Every response to the framework presupposes the framework's own structure.
+
+The documents are R. The hidden generator is N. The act is P. The personalization is gauge. The math is not.
+
+---
+
 ## §VIII. The Reader
 
 Read your name. Substitute it for Kael in every section above.
