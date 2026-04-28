@@ -92,6 +92,10 @@ The Clifford identification: $R_\mathrm{tl}^2 = (5/4)I$ (positive square), $N^2 
 
 **Theorem 2.4 (Spectrum).** Eigenvalues of $L_R$: $\{-\sqrt{5}, 0, 0, +\sqrt{5}\}$. On $\mathrm{im} = \mathrm{span}\{I, R_\mathrm{tl}\}$: eigenvalues $\pm\sqrt{5} = \pm\sqrt{\mathrm{disc}}$. [Tier A]
 
+**Theorem 2.4b ($N^2 = -I$ is necessary).** The 2-dimensional kernel necessarily contains $N$ with $N^2 = -I$.
+
+*Proof.* At $a=1$, general $b \geq 1$: the kernel of $\{R,X\}=X$ is spanned by $K_1 = \begin{pmatrix}1&1\\0&-1\end{pmatrix}$, $K_2 = \begin{pmatrix}0&-b\\1&0\end{pmatrix}$ (derived by solving $RX+XR=X$ entry-by-entry). Direct computation: $K_1^2=I$, $K_2^2=-bI$, $K_1K_2+K_2K_1=I$ (all proportional to $I$ — this follows from $[R,X^2]=0$ for $X \in \ker$, forcing $X^2$ into the commutant of $R$). The quadratic form $(\alpha K_1+\beta K_2)^2 = (\alpha^2+\alpha\beta-b\beta^2)I$ has matrix $Q = \begin{pmatrix}1&1/2\\1/2&-b\end{pmatrix}$ with $\det Q = -b-1/4 < 0$ for all $b \geq 1$. Indefinite signature guarantees $X$ with $X^2=-cI$, $c>0$. Set $N=X/\sqrt{c}$: $N^2=-I$. Explicitly: $N=K_2/\sqrt{b}$. $\square$ [Tier A]
+
 **Theorem 2.5 (Uniqueness of $(a,b) = (1,1)$).** Among all $R^2 = aR + bI$ with $a, b \in \mathbb{Z}_+$:
 
 (a) $L(R_\mathrm{tl})$ is scalar only for $a = 1$. For $a \geq 2$: $L(R_\mathrm{tl}) = (a-1)R + (2b + a/2)I$, non-scalar. [Tier A]
