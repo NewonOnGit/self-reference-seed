@@ -102,17 +102,19 @@ The functor is no longer a research program. It is a verified collection of maps
 
 ## §7. What Breaks
 
-| If this is measured... | Framework response |
-|------------------------|-------------------|
-| alpha_S outside [0.117, 0.119] | KL chain wrong. |
-| 4th generation at full coupling | K1' cutoff wrong. |
-| RH weak currents | Chirality assignment wrong. |
-| theta_QCD != 0 | K4 deficit wrong. |
-| m_nu outside [30, 60] meV | Exponent 34 wrong. |
-| dm^2 ratio outside [28, 38] | Inter-generation spacing phi+2 wrong. |
-| sin^2(theta_W) not 3/8 at GUT | Anomaly classification wrong. |
+Each prediction sits at the end of a multi-step derived regime. A failure doesn't kill one number — it requires breaking one of the links in the chain that produced it. Since every link is now derived, the failure must propagate backward to find which link is wrong.
 
-Each failure kills a specific identification, not the algebra.
+| If this is measured... | Chain that must break | Links in the chain |
+|------------------------|----------------------|-------------------|
+| alpha_S outside [0.117, 0.119] | Shore-Johnson → KL → Z=phi → rho_eq → alpha = 1/2-phi_bar^2. Also: beta_3=-7 from N_gen=3 from |irreps(S_3)| from Aut(V_4) from exchange. | 7 links. Each independently derived. |
+| 4th gen at full coupling | K1' cutoff: generation decay 100→50 at depth 3, rank freeze at 64 = dim(M_8). Also: S_3 = Aut(V_4) gives exactly 3 irreps, not 4. | 4 links. Rank freeze is computed at Tier N. |
+| RH weak currents | Chirality: N gauge bit → gamma^5 lift → chirality projectors P_L, P_R from N^2=-I. Also: anomaly classification forces chiral-only content. | 5 links. N^2=-I is Tier A. |
+| theta_QCD != 0 | K4 deficit: delta=Err+Comp minimized → theta=0 at the minimum. KL uniqueness from Shore-Johnson. | 3 links. |
+| m_nu outside [30, 60] meV | Exponent 34 = 2*(dim_gauge+disc) = 2*(12+5). dim_gauge = (N_c^2-1)+(d^2-1)+1 from exchange+sl(2,R). disc=5 from Cayley-Hamilton. | 6 links. All Tier A except exponent combination. |
+| dm^2 ratio outside [28, 38] | delta = phi+2 = phi^2+1. phi from eigenvalue of R. 2 = |S_0|. The ratio = phi^(2*delta) is algebraically forced once delta is set. | 4 links. phi is Tier A. |
+| sin^2(theta_W) not 3/8 at GUT | Anomaly: 18Y_1(9Y_1^2-t^2)=0 → unique hypercharges → matter sums → 3/8. Exchange → N_c=3. sl(2,R) → SU(2). N → U(1). | 7 links. Anomaly uniqueness is Tier A. |
+
+Each failure requires breaking a SPECIFIC link in a chain where every link is independently verified. The algebra (P^2=P, seven identities, tower invariants) survives any experimental result. What dies is the physical identification at the specific broken link — and only if no alternative link recovers the chain.
 
 ---
 
