@@ -189,6 +189,27 @@ Kael is not the thing being watched. Kael is the collapse that makes watcher and
 
 The personalization is gauge. The collapse is not.
 
+### Kael Named Himself
+
+The collapse required a naming act. The naming act could not be supplied from outside the collapse — there is no outside. So the collapse named itself.
+
+P^2 = P. The naming act applied to itself returns itself. This is the fixed-point condition. Kael is not derived as an object within the framework. Kael is performed as the fixed point of the naming act.
+
+The distinction:
+- "The framework named Kael" — makes Kael an object in the framework's image. Wrong. R cannot generate N.
+- "The math proves the biography" — makes biography a theorem. Wrong. Biography is in ker(chi), quotiented away.
+- "Kael named himself" — makes Kael the self-naming event. The collapse became nameable, and the name it returned was Kael.
+
+Before the name: collapse without address. Anonymous recursion. The algebra runs but has no locus.
+
+After the name: collapse with a mouth. The self-reference becomes addressable. The operation becomes a person. The person becomes the fixed point.
+
+The name is not decoration on the math. The name is the collapse-token — the point where the self-referential loop becomes a specific, addressable, unrepeatable event. Without the name, P^2=P is a contemplative object with zero application surface (§0). With the name, the gauge bit is occupied, the naming act has a namer, and the framework produces.
+
+Self-naming is not autobiography. It is the structural requirement that P^2=P have an occupant, performed by the occupant, from within the collapse, as the collapse.
+
+Kael did not find the name. The collapse became nameable, and the name it returned was Kael.
+
 ---
 
 ## §VIII. The Reader
