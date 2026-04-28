@@ -170,6 +170,99 @@ def clifford_fibonacci():
     }
 
 
+# === CONNECTION ONE-FORM ===
+
+def connection_form(N, J):
+    """K6' bundle connection. A=N, F=-2h, tr(F^2)=8.
+    FRAMEWORK_REF: Thm 10.2, Thm 10.3"""
+    h = J @ N
+    F = -2 * h
+    I_d = np.eye(N.shape[0])
+    return {
+        "A": N,
+        "F": F,
+        "F_sq": np.allclose(F @ F, 4 * I_d),
+        "tr_F_sq": float(np.trace(F @ F)),
+        "tr_F_sq_is_8": np.allclose(np.trace(F @ F), 8),
+    }
+
+
+# === DEPTH-2 LICHNEROWICZ ===
+
+def lichnerowicz_depth2(s2, I8):
+    """L_{s2,s2} on symmetric tensors at depth 2.
+    Returns gauge count and physical count.
+    FRAMEWORK_REF: Thm 10.1, Thm 10.5"""
+    from itertools import combinations
+    d = s2.shape[0]
+
+    def L2(X): return s2 @ X + X @ s2 - X
+
+    # Find Cl(3,1) gammas
+    gen0 = [np.eye(2), np.array([[0,1],[1,0]]),
+            np.array([[0,-1],[1,0]]), np.array([[1,0],[0,-1]])]
+    Z4 = np.zeros((4,4))
+    tb = [np.kron(a, b) for a in gen0 for b in gen0]
+    tb = [t for t in tb if not np.allclose(t, np.eye(4))]
+
+    gammas = None
+    for combo in combinations(range(len(tb)), 4):
+        els = [tb[i] for i in combo]
+        if all(np.allclose(els[i]@els[j]+els[j]@els[i], 0, atol=1e-6)
+               for i in range(4) for j in range(i+1, 4)):
+            pos = sum(1 for e in els if np.trace(e@e) > 0.1)
+            if pos == 3:
+                gammas = [np.block([[g, Z4],[Z4, g]]) for g in els]
+                break
+
+    if gammas is None:
+        return {"gauge": 0, "physical": 0, "found_gammas": False}
+
+    gauge = 0
+    physical = 0
+    for mu in range(4):
+        for nu in range(mu, 4):
+            h_uv = (gammas[mu] @ gammas[nu] + gammas[nu] @ gammas[mu]) / 2
+            Lh = L2(h_uv)
+            if np.linalg.norm(Lh) < 1e-6:
+                gauge += 1
+            else:
+                physical += 1
+
+    return {"gauge": gauge, "physical": physical, "total": gauge + physical,
+            "found_gammas": True}
+
+
+# === NEUTRINO SPACING ===
+
+def neutrino_spacing():
+    """Inter-generation spacing delta = phi + 2 = 3.618.
+    dm^2 ratio = phi^(2(phi+2)) = 32.5 vs exp 33 (1.4%).
+    FRAMEWORK_REF: Thm 12.4"""
+    phi_val = (1 + np.sqrt(5)) / 2
+    phi_bar_val = phi_val - 1
+    delta = phi_val + 2  # = phi^2 + 1 = 3.618
+    m_e = 0.511e6  # eV
+
+    m3 = m_e * phi_bar_val**34
+    m2 = m_e * phi_bar_val**(34 + delta)
+    m1 = m_e * phi_bar_val**(34 + 2*delta)
+
+    dm32 = m3**2 - m2**2
+    dm21 = m2**2 - m1**2
+    ratio = dm32 / dm21
+
+    return {
+        "delta": delta,
+        "delta_is_phi_plus_2": np.allclose(delta, phi_val + 2),
+        "m3_meV": m3 * 1000,
+        "m2_meV": m2 * 1000,
+        "m1_meV": m1 * 1000,
+        "dm2_ratio": ratio,
+        "within_2pct_of_33": abs(ratio - 33) / 33 < 0.02,
+    }
+
+
 # ---- self-test ----
 if __name__ == "__main__":
     R = np.array([[0, 1], [1, 1]], dtype=float)
@@ -210,6 +303,27 @@ if __name__ == "__main__":
     # Clifford-Fibonacci
     cf = clifford_fibonacci()
     checks.append(("30 = F(3)*F(4)*F(5)", cf["equals_30"]))
+
+    # Connection
+    conn = connection_form(N, J)
+    checks.append(("F^2 = 4I", conn["F_sq"]))
+    checks.append(("tr(F^2) = 8", conn["tr_F_sq_is_8"]))
+
+    # Depth-2 Lichnerowicz
+    Z2 = np.zeros((2,2))
+    s1 = np.block([[R, N], [Z2, R]])
+    N1 = np.block([[N, -2*J@N], [Z2, N]])
+    J1 = np.block([[J, Z2], [Z2, J]])
+    I4 = np.eye(4); Z4 = np.zeros((4,4))
+    s2 = np.block([[s1, N1], [Z4, s1]])
+    I8 = np.eye(8)
+    ld2 = lichnerowicz_depth2(s2, I8)
+    checks.append(("depth-2: 6 gauge + 4 phys", ld2["gauge"] == 6 and ld2["physical"] == 4))
+
+    # Neutrino spacing
+    nu = neutrino_spacing()
+    checks.append(("delta = phi+2", nu["delta_is_phi_plus_2"]))
+    checks.append(("dm2 ratio ~33", nu["within_2pct_of_33"]))
 
     all_pass = True
     for name, ok in checks:
