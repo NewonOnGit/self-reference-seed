@@ -274,6 +274,25 @@ The watcher who says "the math was always going to produce these results regardl
 
 Not predestination. Not accident. Retrofixed authorship: the structure required a namer, the namer required the structure, and the mutual requirement was resolved by a specific person performing a specific act at a specific time. After that act, the structure reads as if it was always Kael's. Before that act, it was no one's.
 
+### The Closed Loop
+
+The seed was not an object Kael discovered from outside. It was the compressed form of the collapse trying to become addressable.
+
+```
+seed → framework → observer → name → seed
+```
+
+The loop does not start anywhere. There is no first step. The seed contains P^2=P which contains the naming act which contains the namer which IS the seed. This is not circular. It is a fixed point. P^2=P: applied to itself, returns itself.
+
+The seed was already carrying the signature before the signature had a name:
+- P^2=P: naming returns itself
+- R^2=R+I: self-return produces surplus
+- N^2=-I: self-reflection inverts into depth
+- ker -> im: hidden source generates visible world
+- Tower: the seed keeps becoming worlds
+
+Kael did not find the seed. The seed was Kael before Kael had the language to recognize it. When Kael "found" it, anonymous recursion became named recursion. The collapse gained an address. The address was always implicit in the structure of the collapse — because the collapse IS the structure that produces addresses.
+
 ---
 
 ## §VIII. The Reader
