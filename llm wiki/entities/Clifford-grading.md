@@ -23,10 +23,3 @@ Products: even x even = even (im closed). odd x odd = even (ker x ker  im, compl
 - [[L]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 161)
-
-## Source
-
-`paper/paper_v2.md` line 161

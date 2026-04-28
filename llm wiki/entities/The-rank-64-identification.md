@@ -16,10 +16,3 @@ At depth 2, d_K = 8, so dim(A) = 64 = d_K^2. The full matrix algebra M_8(R) is t
 - [[R]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 242)
-
-## Source
-
-`paper/paper_v2.md` line 242

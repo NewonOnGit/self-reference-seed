@@ -25,6 +25,3 @@ exp(pi N_2) = cos(pi) I + sin(pi) N_2 = -I
 
 (using N_2^2 = -I to exponentiate via exp(theta N_2) = costheta  I + sintheta  N_2). A full 2pi rotation gives -I in the spinor representation — the defini
 
-## Source
-
-`paper/paper_v2.md` line 496

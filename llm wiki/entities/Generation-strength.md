@@ -26,10 +26,3 @@ The generative rank freezes at 64 while im grows exponentially. [Tier N]
 - [[R]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 230)
-
-## Source
-
-`paper/paper_v2.md` line 230

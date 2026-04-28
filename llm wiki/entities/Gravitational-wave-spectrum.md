@@ -17,10 +17,3 @@ im(L) restricted to span\{I, R_tl\} has eigenvalues +-sqrt(5) = +-sqrt(disc). Ph
 - [[gravity]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 371)
-
-## Source
-
-`paper/paper_v2.md` line 371

@@ -23,10 +23,3 @@ This predicts: given any independently measured m_nu, the baryon asymmetry is et
 - [[gravity]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 420)
-
-## Source
-
-`paper/paper_v2.md` line 420

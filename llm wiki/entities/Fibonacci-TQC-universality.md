@@ -15,10 +15,3 @@ The braid generators sigma_1 = R_braid (diagonal phases e^{-4pi i/5}, e^{3pi i/5
 
 - [[Fusion--persistence]]
 
-## Proof
-
-(See paper_v2.md line 554)
-
-## Source
-
-`paper/paper_v2.md` line 554

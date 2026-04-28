@@ -15,10 +15,3 @@ The tower's product structure (S_{n+1} = S_n x S_n) imposes additivity of the co
 
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 402)
-
-## Source
-
-`paper/paper_v2.md` line 402

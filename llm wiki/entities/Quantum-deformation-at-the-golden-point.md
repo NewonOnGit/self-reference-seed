@@ -20,10 +20,3 @@ The quantum deformation collapses to unity. This is why the framework uses integ
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 436)
-
-## Source
-
-`paper/paper_v2.md` line 436

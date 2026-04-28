@@ -16,10 +16,3 @@ L(R_tl) = (disc/2)I = (5/2)I. The scalar channel IS Lambda. This value is invari
 - [[Lambda-is-depth-invariant]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 369)
-
-## Source
-
-`paper/paper_v2.md` line 369

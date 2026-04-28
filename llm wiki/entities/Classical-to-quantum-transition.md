@@ -16,10 +16,3 @@ The projected product X * Y := q(XY) on im(L_s) is commutative at depth 0 and no
 - [[Tower]]
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 250)
-
-## Source
-
-`paper/paper_v2.md` line 250

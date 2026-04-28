@@ -15,10 +15,3 @@ Leakage (fraction of ker x ker products landing purely in im): depth 0 = 1.000, 
 
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 252)
-
-## Source
-
-`paper/paper_v2.md` line 252

@@ -15,10 +15,3 @@ P = J + |1>< 1| + N where J = [ 0 & 1  \  1 & 0 ] (ground), |1>< 1| = [ 0 & 0  \
 
 - [[P]]
 
-## Proof
-
-(See paper_v2.md line 63)
-
-## Source
-
-`paper/paper_v2.md` line 63

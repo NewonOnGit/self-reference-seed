@@ -23,10 +23,3 @@ At depth 2 (d_K = 8, dim A = 64):
 - [[Tower]]
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 254)
-
-## Source
-
-`paper/paper_v2.md` line 254

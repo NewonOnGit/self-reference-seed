@@ -16,10 +16,3 @@ H = (J + h)/sqrt(2). H^2 = I (involution). Creates equal superposition from grou
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 534)
-
-## Source
-
-`paper/paper_v2.md` line 534

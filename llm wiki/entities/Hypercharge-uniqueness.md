@@ -21,6 +21,3 @@ Given the framework's constraints — gauge group su(3) + su(2) + u(1) (from exc
 
 At t = +3Y_1: \{Y_1, Y_2, Y_3, Y_4, Y_5\} = Y_1 * \{1, 4, -2, -3, -6\}. The normalization Y_1 = 1/3 (from the
 
-## Source
-
-`paper/paper_v2.md` line 281

@@ -21,10 +21,3 @@ However, the CHOICE to write the exponent as a linear combination of dim_gauge a
 - [[gravity]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 412)
-
-## Source
-
-`paper/paper_v2.md` line 412

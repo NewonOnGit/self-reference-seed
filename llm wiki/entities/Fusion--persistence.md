@@ -15,10 +15,3 @@ R^2 = R + I IS  x  = 1 + . The persistence equation is the Fibonacci anyon fusio
 
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 472)
-
-## Source
-
-`paper/paper_v2.md` line 472

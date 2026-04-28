@@ -17,10 +17,3 @@ R = (P + P^T)/(2) = [ 0 & 1  \  1 & 1 ],   N = (P - P^T)/(2) = [ 0 & -1  \  1 & 
 
 - [[P]]
 
-## Proof
-
-(See paper_v2.md line 17)
-
-## Source
-
-`paper/paper_v2.md` line 17

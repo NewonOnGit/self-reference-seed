@@ -15,10 +15,3 @@ tags: [topology, forced]
 
 - [[CNOT-from-framework-generators]]
 
-## Proof
-
-(See paper_v2.md line 536)
-
-## Source
-
-`paper/paper_v2.md` line 536

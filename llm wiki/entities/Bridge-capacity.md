@@ -20,10 +20,3 @@ where P_{W_{K'}} is the projection onto im(K') and rho_{V_K} is the density of K
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 673)
-
-## Source
-
-`paper/paper_v2.md` line 673

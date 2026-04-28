@@ -27,10 +27,3 @@ The wall is HARD: each unit increase in $n_
 - [[N]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 599)
-
-## Source
-
-`paper/paper_v2.md` line 599

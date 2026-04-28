@@ -23,10 +23,3 @@ For R(eps) =  companion matrix of x^2 - x - (1+eps):
 
 - [[P]]
 
-## Proof
-
-(See paper_v2.md line 184)
-
-## Source
-
-`paper/paper_v2.md` line 184

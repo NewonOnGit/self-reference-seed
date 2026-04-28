@@ -58,24 +58,21 @@ def extract_theorems():
                 break
             stmt_lines.append(lines[j])  # keep original formatting
         statement = '\n'.join(stmt_lines).strip()
-        # Cap at reasonable length but keep tables intact
-        if len(statement) > 1200:
-            statement = statement[:1200] + '\n...(truncated)'
+        # Keep full statement — the wiki must be standalone
+        # No truncation. The page IS the content.
 
-        # Proof = from *Proof* to end of block
+        # Proof = from *Proof* to QED/square or end of block
         proof_lines = []
         in_proof = False
         for j in range(i + 1, end):
-            if '*Proof' in lines[j]:
+            if '*Proof' in lines[j] or lines[j].strip().startswith('*Proof'):
                 in_proof = True
             if in_proof:
                 proof_lines.append(lines[j])
-                # Stop at QED marker or next theorem
-                if '$\\square$' in lines[j] or 'QED' in lines[j] or '∎' in lines[j]:
+                if ('$\\square$' in lines[j] or 'QED' in lines[j] or
+                    '∎' in lines[j] or lines[j].strip().endswith('$\\square$')):
                     break
         proof = '\n'.join(proof_lines).strip() if proof_lines else ''
-        if len(proof) > 800:
-            proof = proof[:800] + '\n...(truncated)'
 
         # References to other theorems (dependencies)
         refs = THEOREM_REF.findall(full_block)
@@ -230,6 +227,12 @@ def generate_page(thm, id_to_name, id_to_filename):
     statement = delatex(thm['statement'])
     proof = delatex(thm['proof']) if thm['proof'] else ''
 
+    # If no proof was extracted, the statement IS the content
+    # No external references — the wiki stands alone
+    proof_section = ""
+    if proof:
+        proof_section = f"\n## Proof\n\n{proof}\n"
+
     page = f"""---
 type: entity
 role: {role}
@@ -246,14 +249,7 @@ tags: [{role.lower()}, forced]
 ## Dependencies
 
 {deps_text}
-
-## Proof
-
-{proof if proof else '(See paper_v2.md line ' + str(thm['line']) + ')'}
-
-## Source
-
-`paper/paper_v2.md` line {thm['line']}
+{proof_section}
 """
     return filename, page
 

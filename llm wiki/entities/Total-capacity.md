@@ -18,10 +18,3 @@ The product is multiplicative: doubling either axis doubles capacity. The cheape
 - [[N]]
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 614)
-
-## Source
-
-`paper/paper_v2.md` line 614

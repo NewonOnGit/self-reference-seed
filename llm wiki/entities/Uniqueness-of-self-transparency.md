@@ -27,10 +27,3 @@ Every generator except N has at least two zero eigenvalues (and hence ker >= 2).
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 574)
-
-## Source
-
-`paper/paper_v2.md` line 574

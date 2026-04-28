@@ -17,10 +17,3 @@ sin^2theta_W = sum T_3^2 / sum Q^2 = 3/8 over the anomaly-derived matter represe
 - [[N]]
 - [[Anomaly-cancellation]]
 
-## Proof
-
-(See paper_v2.md line 410)
-
-## Source
-
-`paper/paper_v2.md` line 410

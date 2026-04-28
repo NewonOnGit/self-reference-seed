@@ -15,10 +15,3 @@ Route 1: Lambda_obs/Lambda_bare = 2^{-n} gives n = 122/log_{10}(2) ~ 405. Route 
 
 - [[Lambda-is-depth-invariant]]
 
-## Proof
-
-(See paper_v2.md line 394)
-
-## Source
-
-`paper/paper_v2.md` line 394

@@ -29,10 +29,3 @@ For R, N, J, h = JN, Q = JRJ:
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 129)
-
-## Source
-
-`paper/paper_v2.md` line 129

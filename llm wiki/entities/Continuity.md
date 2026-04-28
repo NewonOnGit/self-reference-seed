@@ -16,10 +16,3 @@ s(t) = [ s & tN  \  0 & s ] satisfies s(t)^2 = s(t) + I for all t  [0,1]. [Tier 
 - [[Tower]]
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 212)
-
-## Source
-
-`paper/paper_v2.md` line 212

@@ -26,10 +26,3 @@ At every depth tested:
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 214)
-
-## Source
-
-`paper/paper_v2.md` line 214

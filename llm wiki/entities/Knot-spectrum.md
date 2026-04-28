@@ -26,10 +26,3 @@ The integer -7 for 6_3 is not a current framework constant. Other evaluations: V
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 454)
-
-## Source
-
-`paper/paper_v2.md` line 454

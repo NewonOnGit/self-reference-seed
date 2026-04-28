@@ -21,10 +21,3 @@ The first term is ad(s)(X) = [s,X]. On a Lie group with bi-invariant metric, the
 
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 338)
-
-## Source
-
-`paper/paper_v2.md` line 338

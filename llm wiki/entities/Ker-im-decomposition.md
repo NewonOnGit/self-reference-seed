@@ -29,6 +29,3 @@ L(NR) = R(NR) + (NR)R - NR = RNR + NR^2 - NR = -N + N(R+I) - NR = -N + NR + N - 
 
 using Identity 4 (RNR = -N) and R^2 = R + I. So span\{N, NR\}  ker(L). Since N and NR are linearly independent (verified: det([N|NR]) != 0) and L as a 4 x 4 matrix has eigenvalues $\{-sqrt(5), 0, 0, +{5
 
-## Source
-
-`paper/paper_v2.md` line 75

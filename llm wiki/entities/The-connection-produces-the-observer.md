@@ -17,10 +17,3 @@ The Levi-Civita covariant derivative of the Cartan element h in the direction s 
 
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 351)
-
-## Source
-
-`paper/paper_v2.md` line 351

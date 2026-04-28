@@ -17,10 +17,3 @@ tr(R) = 1, det(R) = -1, disc(R) = 5. Characteristic polynomial x^2 - x - 1. Eige
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 59)
-
-## Source
-
-`paper/paper_v2.md` line 59

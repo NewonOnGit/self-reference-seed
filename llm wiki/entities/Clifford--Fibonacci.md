@@ -15,10 +15,3 @@ tags: [topology, forced]
 
 - [[Fusion--persistence]]
 
-## Proof
-
-(See paper_v2.md line 486)
-
-## Source
-
-`paper/paper_v2.md` line 486

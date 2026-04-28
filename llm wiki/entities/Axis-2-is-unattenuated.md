@@ -13,8 +13,8 @@ tags: [observer, forced]
 
 ## Dependencies
 
-- [[Identity-preservation|Identity preservation]]
 - [[Generation-strength|Generation strength]]
+- [[Identity-preservation|Identity preservation]]
 - [[R]]
 - [[Ker-im-decomposition]]
 
@@ -24,6 +24,3 @@ tags: [observer, forced]
 
 The self-transparency ker(L_{N,N}) = 0 is a property of N's own Sylvester operator, which depends only on N
 
-## Source
-
-`paper/paper_v2.md` line 620

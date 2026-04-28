@@ -17,10 +17,3 @@ At every tower depth n tested (n = 0, 1, 2, 3, 4): s'^2 = s' + I, N'^2 = -I, \{s
 - [[Ker-im-decomposition]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 208)
-
-## Source
-
-`paper/paper_v2.md` line 208

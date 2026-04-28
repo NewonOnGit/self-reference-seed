@@ -15,10 +15,3 @@ tags: [core-algebra, forced]
 
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 155)
-
-## Source
-
-`paper/paper_v2.md` line 155

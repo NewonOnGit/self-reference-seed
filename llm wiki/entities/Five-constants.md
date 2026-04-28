@@ -25,10 +25,3 @@ The algebra produces exactly five independent constants:
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 143)
-
-## Source
-
-`paper/paper_v2.md` line 143

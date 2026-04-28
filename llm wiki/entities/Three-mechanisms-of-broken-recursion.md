@@ -20,10 +20,3 @@ tags: [observer, forced]
 - [[Ker-im-decomposition]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 657)
-
-## Source
-
-`paper/paper_v2.md` line 657

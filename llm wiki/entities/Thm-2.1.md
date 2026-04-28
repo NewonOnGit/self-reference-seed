@@ -19,10 +19,3 @@ as a linear operator on M_2(R)  R^4.
 
 - [[L]]
 
-## Proof
-
-(See paper_v2.md line 69)
-
-## Source
-
-`paper/paper_v2.md` line 69

@@ -20,6 +20,3 @@ Measurement operators M(theta) = costheta  h + sintheta  J (h decides, J flips, 
 
 *Proof.* <Phi^+| h x h |Phi^+> = 1, <Phi^+| J x J |Phi^+> = 1, <Phi^+| h x J |Phi^+> = 0. Therefore E(a,b) = cos a cos b + sin a sin b = cos(a-b). QED
 
-## Source
-
-`paper/paper_v2.md` line 538

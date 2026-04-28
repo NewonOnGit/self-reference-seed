@@ -23,6 +23,3 @@ The 50% unsourced fraction at depth 3 is the algebraic analogue of a condensate:
 
 
 
-## Source
-
-`paper/paper_v2.md` line 512

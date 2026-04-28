@@ -15,18 +15,11 @@ The physical content: if the background metric deviates from Einstein (R_{munu} 
 
 ## Dependencies
 
+- [[Gauge-invariance|Gauge invariance]]
 - [[Spectrum|Spectrum]]
 - [[Lichnerowicz-identification|Lichnerowicz identification]]
-- [[Gauge-invariance|Gauge invariance]]
 - [[P]]
 - [[L]]
 - [[Ker-im-decomposition]]
 - [[Lambda-is-depth-invariant]]
 
-## Proof
-
-(See paper_v2.md line 359)
-
-## Source
-
-`paper/paper_v2.md` line 359

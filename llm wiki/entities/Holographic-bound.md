@@ -17,10 +17,3 @@ Define the sourced fraction sigma(n) = rank(ker^2  im) / dim(im). From the data:
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 244)
-
-## Source
-
-`paper/paper_v2.md` line 244

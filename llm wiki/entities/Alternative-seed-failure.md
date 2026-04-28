@@ -19,10 +19,3 @@ The system is maximally rigid: no continuous deformation preserves the closure, 
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 194)
-
-## Source
-
-`paper/paper_v2.md` line 194

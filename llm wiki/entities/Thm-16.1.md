@@ -25,6 +25,3 @@ L_{N,N} = I_2 x N + N^T x I_2 - I_4 = [ -1 & 0 & 0 & -1  \  0 & -1 & 1 & 0  \  0
 
 The characteristic polynomial is det(L_{N,N} - lambda I) = (lambda+1)^2((lambda+1)^2 + 4). The roots are lambda = -1 (multiplicity 2) and $lambda = 
 
-## Source
-
-`paper/paper_v2.md` line 562

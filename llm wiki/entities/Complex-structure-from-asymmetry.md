@@ -17,10 +17,3 @@ N^2 = -I gives complex structure: (a + bi)v := av + bNv makes R^2 into C^1. At t
 - [[Hilbert-space-from-asymmetry]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 61)
-
-## Source
-
-`paper/paper_v2.md` line 61

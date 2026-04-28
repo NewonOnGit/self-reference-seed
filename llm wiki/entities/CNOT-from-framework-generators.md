@@ -18,10 +18,3 @@ where h = JN (Cartan) and J (swap involution). The Cartan's eigenspaces (I +- h)
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 528)
-
-## Source
-
-`paper/paper_v2.md` line 528

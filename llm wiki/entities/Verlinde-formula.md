@@ -20,10 +20,3 @@ confirming  x  = 1 + . [Tier N]
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 480)
-
-## Source
-
-`paper/paper_v2.md` line 480

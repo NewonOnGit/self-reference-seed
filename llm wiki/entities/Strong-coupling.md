@@ -19,10 +19,3 @@ where 1/2 is the invariant kernel fraction. [Tier A]
 
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 404)
-
-## Source
-
-`paper/paper_v2.md` line 404

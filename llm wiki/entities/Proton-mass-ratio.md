@@ -15,10 +15,3 @@ m_p/Lambda_QCD = N_c / (\|N\|^2/\|R\|^2) = 3/(2/3) = 9/2. [Tier A]
 
 - [[Lambda-is-depth-invariant]]
 
-## Proof
-
-(See paper_v2.md line 418)
-
-## Source
-
-`paper/paper_v2.md` line 418

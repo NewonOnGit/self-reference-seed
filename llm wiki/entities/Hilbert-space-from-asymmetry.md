@@ -23,6 +23,3 @@ B_theta(X,Y) = -B(X,theta(Y)) = 4tr(XY^T)
 
 is the Frobenius inner product (sc
 
-## Source
-
-`paper/paper_v2.md` line 99

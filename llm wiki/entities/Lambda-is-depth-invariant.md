@@ -16,10 +16,3 @@ L(R_tl) = (disc/2)I holds at tower depths 0, 1, 2, 3, 4. The bare cosmological c
 - [[Cosmological-attenuation]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 381)
-
-## Source
-
-`paper/paper_v2.md` line 381

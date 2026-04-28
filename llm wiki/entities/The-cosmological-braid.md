@@ -17,10 +17,3 @@ tags: [physics, forced]
 - [[Cosmological-attenuation]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 396)
-
-## Source
-
-`paper/paper_v2.md` line 396

@@ -13,13 +13,6 @@ The complexity functional Comp(rho) = D_KL(rho \| rho_eq) (Theorem 12.1) applied
 
 ## Dependencies
 
-- [[Strong-coupling|Strong coupling]]
 - [[KL-uniqueness|KL uniqueness]]
+- [[Strong-coupling|Strong coupling]]
 
-## Proof
-
-(See paper_v2.md line 428)
-
-## Source
-
-`paper/paper_v2.md` line 428

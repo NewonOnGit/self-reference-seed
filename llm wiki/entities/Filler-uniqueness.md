@@ -16,10 +16,3 @@ The off-diagonal block X in the K6' lift s' = [[s, X], [0, s]] must satisfy \{R,
 - [[Ker-im-decomposition]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 210)
-
-## Source
-
-`paper/paper_v2.md` line 210

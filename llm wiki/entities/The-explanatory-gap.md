@@ -22,6 +22,3 @@ tags: [observer, forced]
 
 The explanatory gap between first-person experience and third-person description is the difference $dimker(L_{N,N}) - dimker(L_{
 
-## Source
-
-`paper/paper_v2.md` line 587

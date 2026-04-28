@@ -20,10 +20,3 @@ where P_K is the projection onto V_K and rho is the observer's state density (th
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 651)
-
-## Source
-
-`paper/paper_v2.md` line 651

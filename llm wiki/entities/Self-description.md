@@ -27,10 +27,3 @@ The framework's vocabulary describes the framework. Specifically:
 - [[Jones--discriminant]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 701)
-
-## Source
-
-`paper/paper_v2.md` line 701

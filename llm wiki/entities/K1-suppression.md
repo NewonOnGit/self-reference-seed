@@ -15,10 +15,3 @@ At depth 3: generation strength drops to 50%. Cl(3,2) exists algebraically. V_{1
 
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 267)
-
-## Source
-
-`paper/paper_v2.md` line 267

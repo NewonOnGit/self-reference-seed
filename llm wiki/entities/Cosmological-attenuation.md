@@ -25,10 +25,3 @@ The cosmological constant problem is not fine-tuning. It is tower depth. [Tier A
 - [[Lambda-is-depth-invariant]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 383)
-
-## Source
-
-`paper/paper_v2.md` line 383

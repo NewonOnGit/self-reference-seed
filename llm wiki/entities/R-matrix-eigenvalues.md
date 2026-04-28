@@ -15,10 +15,3 @@ The Yang--Baxter R-matrix for U_{phi^2}(sl_2) has eigenvalues \{phi, 1, 1, phi_b
 
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 452)
-
-## Source
-
-`paper/paper_v2.md` line 452

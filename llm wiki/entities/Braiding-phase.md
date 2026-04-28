@@ -15,10 +15,3 @@ The topological spin of the  anyon: theta_ = e^{4pi i/5}. From N-rotation: cos(4
 
 - [[Fusion--persistence]]
 
-## Proof
-
-(See paper_v2.md line 494)
-
-## Source
-
-`paper/paper_v2.md` line 494

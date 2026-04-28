@@ -19,16 +19,9 @@ The mass-to-VEV
 
 ## Dependencies
 
-- [[Tower-invariants|Tower invariants]]
 - [[Generation-strength|Generation strength]]
+- [[Tower-invariants|Tower invariants]]
 - [[R]]
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 302)
-
-## Source
-
-`paper/paper_v2.md` line 302

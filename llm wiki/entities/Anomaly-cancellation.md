@@ -28,10 +28,3 @@ All six conditions satisfied:
 - [[gravity]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 289)
-
-## Source
-
-`paper/paper_v2.md` line 289

@@ -16,10 +16,3 @@ If P = P^T, then N = (P-P^T)/2 = 0, R = P, R^2 = P^2 = P = R, so R^2 - R = 0 != 
 - [[P]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 15)
-
-## Source
-
-`paper/paper_v2.md` line 15

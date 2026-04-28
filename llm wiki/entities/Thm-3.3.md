@@ -17,10 +17,3 @@ tags: [core-algebra, forced]
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 153)
-
-## Source
-
-`paper/paper_v2.md` line 153

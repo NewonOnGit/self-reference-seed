@@ -19,10 +19,3 @@ When _K > 1/2 and the observer's own Landauer budget is insufficient for K6' asc
 - [[Ker-im-decomposition]]
 - [[Tower]]
 
-## Proof
-
-(See paper_v2.md line 679)
-
-## Source
-
-`paper/paper_v2.md` line 679

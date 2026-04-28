@@ -15,10 +15,3 @@ L(N) = sN + Ns - N = 0 and L(NR) = 0 (verified computationally). Therefore ker(L
 
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 357)
-
-## Source
-
-`paper/paper_v2.md` line 357

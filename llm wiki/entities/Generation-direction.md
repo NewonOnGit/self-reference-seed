@@ -25,10 +25,3 @@ All four ker x ker products land in im. [Tier A]
 - [[N]]
 - [[Ker-im-decomposition]]
 
-## Proof
-
-(See paper_v2.md line 170)
-
-## Source
-
-`paper/paper_v2.md` line 170

@@ -17,10 +17,3 @@ tags: [physics, forced]
 - [[gravity]]
 - [[R]]
 
-## Proof
-
-(See paper_v2.md line 279)
-
-## Source
-
-`paper/paper_v2.md` line 279

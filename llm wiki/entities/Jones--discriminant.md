@@ -24,10 +24,3 @@ The topological invariant of the simplest hyperbolic knot at the golden quantum 
 - [[R]]
 - [[N]]
 
-## Proof
-
-(See paper_v2.md line 442)
-
-## Source
-
-`paper/paper_v2.md` line 442

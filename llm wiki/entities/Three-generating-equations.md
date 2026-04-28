@@ -35,6 +35,3 @@ Symmetric part: R^2 + N^2 = R. Antisymmetric part: \{R,N\} = N.
 
 In M_2(R), every antisymmetric matrix has the form $N 
 
-## Source
-
-`paper/paper_v2.md` line 21

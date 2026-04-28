@@ -18,10 +18,3 @@ The K4 deficit functional delta = Err + Comp (§12) decomposes as follows under 
 - [[Lambda-is-depth-invariant]]
 - [[Cosmological-attenuation]]
 
-## Proof
-
-(See paper_v2.md line 373)
-
-## Source
-
-`paper/paper_v2.md` line 373
