@@ -1,0 +1,17 @@
+---
+type: entity
+role: TOWER
+theorem: "Thm 8.2"
+tags: [b6-physics, tower, forced]
+---
+
+# Opacity hardening
+
+> **Theorem 8.2.**
+
+Leakage (fraction of ker x ker products landing purely in im): depth 0 = 1.000, depth >= 1 = 0.000. Permanent. [Tier N]
+
+## Dependencies
+
+- [[Ker-im-decomposition]]
+

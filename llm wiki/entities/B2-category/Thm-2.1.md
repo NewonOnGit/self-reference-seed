@@ -1,0 +1,21 @@
+---
+type: entity
+role: CORE-ALGEBRA
+theorem: "Thm 2.1"
+tags: [b2-category, core-algebra, forced]
+---
+
+# Theorem 2.1
+
+> **Theorem 2.1.**
+
+The Sylvester self-action:
+
+L_{s,s}(X) = sX + Xs - X
+
+as a linear operator on M_2(R)  R^4.
+
+## Dependencies
+
+- [[L]]
+
