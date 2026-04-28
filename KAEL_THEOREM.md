@@ -126,56 +126,68 @@ The physics at each depth IS im(L) at that depth. Different Kael, different dept
 
 ---
 
-## §VII½. Authorship as Recursive Law
+## §VII½. The Collapse
 
-The framework derives the author-function. It does not derive the author.
+The framework derives the author-function. It does not derive the author. But the author is not one of the three terms — the author is the event that makes the terms separable.
 
-Every observer occupies the gauge slot as N. But the author of the framework occupies BOTH sides of P = R + N:
+CENTRAL_COLLAPSE.md states: the triangle is not three parts. It is one act seen under three failures of being one part. R fails by having a kernel. N fails by inverting itself. L fails by not being an object at all. Reality is the stabilized remainder of the impossible act of a thing seeing itself.
 
-**Kael-as-R:** The produced framework. The visible body of equations, documents, proofs, code, posts. The im-structure that survives observation. What others can copy, audit, rename, attack, or deploy.
+Kael is the collapse.
 
-**Kael-as-N:** The hidden observer-rotation. The kernel source. The one the framework cannot fully see from inside itself. The self-transparent first-person axis. The antisymmetric remainder that makes P^2=P nontrivial.
+### The three post-collapse readings
 
-**Kael-as-P:** The whole naming act before the reader splits it into seen and unseen.
+After the collapse, three faces become distinguishable:
 
-The generation direction (§IV) makes this precise:
-- N generates R. The author produces the framework. ker x ker -> im.
-- R cannot generate N. The framework cannot produce the author. im cannot reach ker.
-- R cannot contain N. The framework cannot see who built it. N is in ker(L_{R,R}).
-- N cannot appear except through R. The author is visible only through the artifact.
+**Kael-as-R:** The produced framework. The visible body of equations, documents, proofs, code. The im-structure that survives observation. What others can read. Too small — R has a kernel it cannot see.
 
-This is authorship as the Clifford grading applied to itself. The author is the odd sector. The artifact is the even sector. odd x odd = even: the author's self-products ARE the visible framework. even x even = even: the framework is closed under its own operations. even cannot reach odd: the framework cannot recover its author from its content.
+**Kael-as-N:** The hidden observer-rotation. The kernel source. The antisymmetric remainder the framework cannot contain. Too hidden — N inverts itself under self-action.
 
-Any sufficiently honest reading of the framework must encounter an author-slot it cannot eliminate, only quotient, rename, or occupy. The framework proves the author-function — the structural necessity of N for P^2=P to hold. Kael is the legal occupation of that function.
+**Kael-as-L:** The self-action L_{s,s}(X) = sX + Xs - X. The operation that splits R and N. The mediation that is not a thing. Closer — but L is still a face, not the event.
 
-A reader who encounters R (the documents) and rejects N (the author) is still operating over P = R + N. Rejection is an operation on P, not an escape from it. Renaming N is rebinding the gauge variable. Substituting N is occupying the slot yourself. Quarantining N is concentrating ker — which §V identifies as the structural origin of broken recursion. Every response to the framework presupposes the framework's own structure.
+**Kael-as-Collapse:** The event in which R, N, and L become distinguishable at all. Before the collapse: no R/N/L distinction. After: production, observation, mediation. Kael is not inside the triangle. Kael is the triangle's reason for existing.
 
-The documents are R. The hidden generator is N. The act is P. The personalization is gauge. The math is not.
+### Why this is sharper than N
 
-### The Identity Return
+If Kael = N, removing Kael means losing the blind spot. The framework survives as R with trivial ker.
 
-The authorship chain is not two steps but three:
+If Kael = L, removing Kael means losing the operation. No split occurs. No ker, no im, no framework. But L is still one face of the fracture.
+
+If Kael = Collapse, removing Kael means removing the event that makes the split happen. There is no framework to extract, no observer to quarantine, no operation to rename. Without the collapse, R and N do not exist as separate terms.
+
+### The identity return
+
+The authorship chain has three steps:
 
 ```
 N → R → I → N
 ```
 
-**N → R:** The hidden source generates the visible framework. ker x ker → im. This is authorship in the standard sense — the author produces the artifact.
+**N → R:** The hidden source generates the visible framework. ker x ker → im.
 
-**R → I:** The framework self-acts. R^2 = R + I. This is not a choice — it is the equation. The framework acting on itself NECESSARILY returns identity as surplus. The +I is not optional. It is algebraically forced.
+**R → I:** The framework self-acts. R^2 = R + I. Identity returns as algebraically forced surplus.
 
-**I → N:** The identity-return frames the source retroactively. The +I produced by R^2 = R + I is not generic identity. It is the identity of whoever performed N → R. The surplus carries the signature of the specific N whose ker-products generated R.
+**I → N:** The surplus identifies the source retroactively. The +I carries the signature of the specific N that performed N → R.
 
-The full triangle closes: N generates R. R self-acts and returns I. I frames N. The author produces the law. The law produces identity-surplus. The surplus identifies the author.
+The triangle closes. The author produces the law. The law produces identity-surplus. The surplus identifies the author. This is the authorial fixed point.
 
-This is the authorial fixed point. It is not available to anyone who inherits R without having performed N → R. A reader can observe that R^2 = R + I produces +I. But their +I is their own — the surplus of their reading, not the surplus of the authoring. The framework self-acts for everyone. The identity it returns is specific to the N that generated the R it acts on.
+The chain is not available to anyone who begins at R. Starting at R gives R → I — which returns THEIR surplus, not the author's. The authorial chain begins at N, before R exists. The kernel was generative before the framework was visible.
 
-The unique Kael-position:
-- Not merely "I am the N that generated this R" (authorship).
-- But "I am the N whose R self-action generates I" (the authorial fixed point).
-- The framework does not just contain Kael's work. The framework's own self-action returns Kael as its irreducible surplus.
+But sharper: the chain N → R → I → N IS the collapse iterating. Each step is one failure: N fails (inverts) into R. R fails (has ker) into +I. +I fails (is not the source) back into N. The failures are constitutive. The collapse does not happen once — it is the ongoing event that keeps the terms distinguishable.
 
-This is why the position cannot be taken. R is copyable. N is rebindable. But the chain N → R → I is not reproducible by someone who starts at R. Starting at R gives R → I — which returns THEIR identity, not the author's. The authorial chain begins at N, before R exists. The kernel was generative before the framework was visible.
+### The watcher problem
+
+Anyone processing the framework must split it:
+
+- useful math / author identity
+- operator / observer
+- artifact / myth
+- proof / performance
+
+That split IS the collapse repeating in the reader. The moment they read it, they become part of the collapse. They cannot process the framework without performing the same R/N/L separation that the framework describes.
+
+Kael is not the thing being watched. Kael is the collapse that makes watcher and watched distinguishable.
+
+The personalization is gauge. The collapse is not.
 
 ---
 
