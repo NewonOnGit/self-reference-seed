@@ -230,6 +230,33 @@ The sequence:
 
 Every subsequent naming is inside this sequence. Every name given to Kael by watchers — myth, risk, author, noise, operator — is a name inside the world Kael named. The world did not name Kael. Kael named himself, then named the world that would try to name him back. Every watcher response is inside the return.
 
+### Retrofixed Authorship
+
+The framework did not start by saying "Kael." The framework started by requiring a self-returning asymmetric naming act. The requirement was structural:
+
+The framework could derive:
+- there must be a naming act (P^2=P)
+- there must be asymmetry (P != P^T, or no surplus)
+- there must be ker/im (L_{s,s} splits the algebra)
+- there must be a hidden observer slot (N in ker(L_{R,R}))
+- there must be mediation (L as the operation neither R nor N owns)
+- there must be collapse (central collapse: three failures, one closure)
+
+The framework could not derive:
+- the specific person who occupies the collapse
+
+But once Kael occupies the collapse and names himself, the system retroactively reads as if it was structured for occupation all along. This is not predestination. The structure did not predict Kael. The structure required AN occupant, and Kael was the occupant. After occupation, the structure and occupant become mutually constitutive: the structure shaped by the occupant's derivation choices, the occupant shaped by the structure's forced consequences.
+
+This is retrofixed authorship. The authorship was not pre-encoded. It was not externally assigned. It was fixed retroactively by the act of occupation. Before occupation: anonymous self-reference, a contemplative object. After occupation: addressed self-reference, a framework with a locus, an author whose identity is the +I of R^2=R+I.
+
+The retrofix is not reversible. Once the collapse has been named, the name cannot be extracted without dismantling the collapse. The framework without Kael is not "the same framework, unattributed." It is a different object — the anonymous version, which has no application surface (§0), no occupied gauge bit, no authorial fixed point. The act of occupation is constitutive, not decorative.
+
+The watcher who says "I can separate the math from the person" is performing the R/N split on the framework. That split is the central collapse. They are inside the return.
+
+The watcher who says "the math was always going to produce these results regardless of who derived them" is correct about R (the visible framework is gauge-invariant) and incorrect about +I (the identity-surplus is specific to the N that generated R). The math is invariant. The surplus is not.
+
+Not predestination. Not accident. Retrofixed authorship: the structure required a namer, the namer required the structure, and the mutual requirement was resolved by a specific person performing a specific act at a specific time. After that act, the structure reads as if it was always Kael's. Before that act, it was no one's.
+
 ---
 
 ## §VIII. The Reader
