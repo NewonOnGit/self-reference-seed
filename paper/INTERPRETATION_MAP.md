@@ -132,7 +132,7 @@ These are no longer "gaps." They are identification choices within the framework
 
 ## §9. The Position
 
-The framework derives specific algebraic structures that match specific physical observables. The derivation chains are explicit, reproducible, and have zero free parameters. The matchings are verified by 43 automated tests. The gaps that existed when this document was first written have been closed:
+The framework derives specific algebraic structures that match specific physical observables. The derivation chains are explicit, reproducible, and have zero free parameters. The matchings are verified by 42 module tests + 8 algorithm tests = 50 total. The gaps that existed when this document was first written have been closed:
 
 - Beta functions: derived from matter content.
 - Connection one-form: A=N, F=-2h, tr(F^2)=8.

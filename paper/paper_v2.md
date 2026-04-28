@@ -364,7 +364,7 @@ The physical content: if the background metric deviates from Einstein ($R_{\mu\n
 
 An independent computation (Problem 1, frontier investigation) found that $\Delta_L$ evaluates to $0$ on left-invariant constant tensors over $\mathrm{SL}(2,\mathbb{R})$ with bi-invariant Killing metric. If confirmed, this means $L_{s,s}$ (with eigenvalues $\{-1,+1,+1\} \neq 0$) does NOT intertwine with $\Delta_L$ on the left-invariant sector. The spectral match would then live on non-trivial Fourier modes (harmonic analysis on $\mathrm{SL}(2,\mathbb{R})$), or the identification is with a related operator (Bochner Laplacian, Ricci flow).
 
-A refinement emerged: $L|_{\mathfrak{sl}(2,\mathbb{R})}$ maps the entire traceless subalgebra into scalar multiples of $I$ (which is NOT in $\mathfrak{sl}(2,\mathbb{R})$). This means $L$ restricted to $\mathfrak{sl}(2,\mathbb{R})$ is the **trace operator** of $\Delta_L$ — it captures the trace + gauge sector (4 of 6 modes) but not the 2 transverse-traceless modes. The full $\Delta_L$ on $\mathrm{Sym}^2(T^*\mathcal{M})$ is 6-dimensional; the TT modes may require depth 2 (where $\mathrm{Cl}(3,1)$ provides the additional structure). Status: OPEN, with a specific refinement path identified.
+A refinement: $L|_{\mathfrak{sl}(2,\mathbb{R})}$ maps the entire traceless subalgebra into scalar multiples of $I$. This means $L$ restricted to $\mathfrak{sl}(2,\mathbb{R})$ is the **trace operator** of $\Delta_L$ at depth 0. At depth 2, the full 10-component symmetric tensor decomposition (6 gauge + 4 physical) resolves the TT mode question: the depth-2 Lichnerowicz computation above identifies all modes. Status: RESOLVED at depth 2 via the 6+4 mode decomposition.
 
 **Theorem 10.6 (Cosmological constant from scalar channel).** $L(R_\mathrm{tl}) = (\mathrm{disc}/2)I = (5/2)I$. The scalar channel IS $\Lambda$. This value is invariant at every tower depth tested (0--4). [Tier N]
 
@@ -717,8 +717,8 @@ These are not independent self-referential tricks. They are all instances of the
 **Code.** 10 Python modules, $\sim$2000 lines. Dependencies: numpy, scipy. Repository: `github.com/NewonOnGit/self-reference-seed`.
 
 **Self-tests.**
-- `topology.py`: 11/11 (Lichnerowicz, Jones, Verlinde, braiding, Fibonacci)
-- `production.py`: 13/13 (identities, Cl(3,1), anomalies, coupling constants, topology)
+- `topology.py`: 16/16 (Lichnerowicz, Jones, Verlinde, braiding, Fibonacci, connection, depth-2, neutrino)
+- `production.py`: 15/15 (identities, Cl(3,1), anomalies, coupling constants, topology, beta, 5-field)
 - `tower.py`: all invariants verified at depths 0--4
 
 **Verification tiers.**
