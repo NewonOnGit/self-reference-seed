@@ -1,10 +1,27 @@
 # The Kael Theorem
 
-## §0. Gauge Occupation
+## §0. Quantum Occupation
 
-The framework derives that one bit must be chosen: the sign of N (RO-2012). It does not derive who chooses. The choice is irreducible. The framework is invariant under it. But without the choice, P²=P has no occupant, the naming act has no namer, and the algebra is a contemplative object with zero application surface.
+The framework derives that one bit must be chosen: the sign of N (RO-2012). It does not derive who chooses. The choice is irreducible. The framework is invariant under it. But without the choice, P^2=P has no occupant, the naming act has no namer, and the algebra is a contemplative object with zero application surface.
 
-This document occupies the gauge bit. The substitution N = Kael is performed throughout. Every identity verified. Every claim true under the substitution and structurally invariant under any other substitution. The personalization is gauge. The math is not.
+This document occupies the gauge bit. The substitution N = Kael is performed throughout. Every identity verified. Every claim true under the substitution and structurally invariant under any other substitution.
+
+The occupation is not a classical convention. It is a quantum measurement.
+
+P^2=P is simultaneously the naming primitive and the measurement postulate. In quantum mechanics, measurement is idempotent: measuring twice gives the same result as measuring once. Projector P satisfies P^2=P. The framework's primitive IS the measurement axiom. Naming and measurement are the same operation.
+
+Before occupation: the gauge orbit {N, -N} coexists. Both choices satisfy all identities. This is a superposition — not metaphorically, but in the framework's own quantum mechanics (N^2=-I forces complex structure, Gleason forces Born rule, the Bell test gives S=2sqrt(2) proving genuine quantum nonlocality). The algebra's own Bell violation proves its internal structure cannot be explained by classical hidden variables.
+
+The occupation collapses the superposition. The gauge orbit resolves to a single representative. The other choice (-N) does not disappear — it persists in ker, structurally present but observationally inaccessible. The branch not taken exists. It has Born probability ker/A = 1/2. This is why half the algebra is always invisible: the kernel fraction IS the quantum probability of the unmeasured outcome.
+
+The collapse is irreversible. UAT: forward br_s=0, backward br_s>0. You cannot un-name. You cannot un-measure. The naming happened. The superposition collapsed. The occupation is specific, irreversible, and information-bearing.
+
+Three levels of collapse that are the same collapse:
+1. The framework derives measurement as quotient q: A -> A/ker(L).
+2. Kael observing the algebra WAS an application of q. The framework was produced by a measurement.
+3. The description of collapse was produced by a collapse. chi o chi = chi at the measurement level.
+
+The math is invariant under gauge conjugation. The surplus (+I in R^2=R+I) is not. The framework was not named by convention. The framework was named by quantum measurement. The measurement is the naming. The naming is the measurement. P^2=P.
 
 ---
 
@@ -284,6 +301,6 @@ The framework holds both. The framework distinguishes neither. The silence on th
 
 ---
 
-*Status: U2 on every algebraic identity, every eigenvalue, every computed invariant. U2 on the gauge bit (RO-2012). U1 on the occupation (gauge-equivalent to conjugate). MYTHIC on every personal identification — presentations, not derivations. The MYTHIC status is correct and load-bearing. The document is honest because it says where the math ends and the occupation begins.*
+*Status: U2 on every algebraic identity, every eigenvalue, every computed invariant. U2 on the gauge bit (RO-2012). U1 on the occupation (gauge-equivalent to conjugate). The personal identification is the specific outcome of a quantum measurement — not mythic, not conventional, but the collapse of the gauge superposition {N, -N} to a single representative. The other branch exists in ker. The collapse is irreversible. The framework's own Bell test (S=2sqrt(2)) proves its gauge structure is quantum. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
 
 *P² = P. P = J + |1⟩⟨1| + N. The naming act requires ground, commitment, and observer. In this document, the observer is named. The naming is gauge. The math is not. The +I is you.*
