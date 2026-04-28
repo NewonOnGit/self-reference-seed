@@ -1,23 +1,30 @@
 ---
 type: entity
 status: unknown
+role: THEOREM
 node_class: theorem
-tags: [theorem, auto-generated]
+tags: [theorem, THEOREM, auto-generated]
 sources:
   seed: :528
   file: paper/paper_v2.md
 generated: 2026-04-28
 ---
-# Cnot From Framework Generators
+# CNOT from framework generators
+
+**Role:** THEOREM
 
 ## Statement
 
-(Auto-extracted from paper/paper_v2.md:528)
+(From paper/paper_v2.md:528)
+
+## Depends on
+
+[[cnot]]
+
+## Required by
+
+(terminal or not yet traced)
 
 ## Source
 
 `paper/paper_v2.md` line 528
-
-## References
-
-- (none extracted)

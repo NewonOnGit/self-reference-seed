@@ -1,23 +1,30 @@
 ---
 type: entity
 status: unknown
+role: DOMINATOR
 node_class: theorem
-tags: [theorem, auto-generated]
+tags: [theorem, DOMINATOR, auto-generated]
 sources:
   seed: :21
   file: paper/paper_v2.md
 generated: 2026-04-28
 ---
-# Three Generating Equations
+# Three generating equations
+
+**Role:** DOMINATOR
 
 ## Statement
 
-(Auto-extracted from paper/paper_v2.md:21)
+(From paper/paper_v2.md:21)
+
+## Depends on
+
+[[P]]
+
+## Required by
+
+(terminal or not yet traced)
 
 ## Source
 
 `paper/paper_v2.md` line 21
-
-## References
-
-- (none extracted)

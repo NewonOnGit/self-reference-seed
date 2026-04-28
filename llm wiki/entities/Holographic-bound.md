@@ -1,23 +1,30 @@
 ---
 type: entity
 status: unknown
+role: DOMINATOR
 node_class: theorem
-tags: [theorem, auto-generated]
+tags: [theorem, DOMINATOR, auto-generated]
 sources:
   seed: :244
   file: paper/paper_v2.md
 generated: 2026-04-28
 ---
-# Holographic Bound
+# Holographic bound
+
+**Role:** DOMINATOR
 
 ## Statement
 
-(Auto-extracted from paper/paper_v2.md:244)
+(From paper/paper_v2.md:244)
+
+## Depends on
+
+[[P]]
+
+## Required by
+
+(terminal or not yet traced)
 
 ## Source
 
 `paper/paper_v2.md` line 244
-
-## References
-
-- (none extracted)

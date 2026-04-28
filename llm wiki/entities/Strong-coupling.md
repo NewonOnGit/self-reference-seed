@@ -1,23 +1,30 @@
 ---
 type: entity
 status: unknown
+role: LEAF
 node_class: theorem
-tags: [theorem, auto-generated]
+tags: [theorem, LEAF, auto-generated]
 sources:
   seed: :404
   file: paper/paper_v2.md
 generated: 2026-04-28
 ---
-# Strong Coupling
+# Strong coupling
+
+**Role:** LEAF
 
 ## Statement
 
-(Auto-extracted from paper/paper_v2.md:404)
+(From paper/paper_v2.md:404)
+
+## Depends on
+
+[[P]]
+
+## Required by
+
+[[Yang--Mills-from-K4]]
 
 ## Source
 
 `paper/paper_v2.md` line 404
-
-## References
-
-- (none extracted)

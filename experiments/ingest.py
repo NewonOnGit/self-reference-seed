@@ -458,10 +458,11 @@ def run_lint(nodes, edges):
 # WIKI GENERATOR
 # ============================================================
 
-def generate_entity_page(node):
-    """Generate a wiki entity page from a unified node."""
+def generate_entity_page(node, all_edges=None, all_nodes=None):
+    """Generate a wiki entity page from a unified node.
+    Includes [[wikilinks]] for Obsidian graph connectivity."""
     name = node["canonical"]
-    display = name.replace("-", " ").replace("_", " ").title()
+    display = name.replace("-", " ").replace("_", " ")
 
     status = node.get("status", "unknown")
     node_class = node.get("node_class", "code")
@@ -470,12 +471,37 @@ def generate_entity_page(node):
     line = node.get("line", "")
     refs = node.get("framework_refs", [])
     module = node.get("module", "")
+    role = node.get("wiki_role", "")
+
+    # Find dependencies and dependents from edges
+    depends_on = []
+    required_by = []
+    if all_edges and all_nodes:
+        node_name = node.get("name", "")
+        name_to_canonical = {n["name"]: n["canonical"] for n in all_nodes}
+        for e in all_edges:
+            if e["dst"] == node_name and e["src"] in name_to_canonical:
+                dep = name_to_canonical[e["src"]]
+                if dep != name and dep not in depends_on:
+                    depends_on.append(dep)
+            if e["src"] == node_name and e["dst"] in name_to_canonical:
+                req = name_to_canonical[e["dst"]]
+                if req != name and req not in required_by:
+                    required_by.append(req)
+
+    def wikilink(n):
+        safe = n.replace(" ", "-").replace("/", "-").replace("$", "").replace("\\", "")[:50]
+        return f"[[{safe}]]"
+
+    dep_links = ", ".join(wikilink(d) for d in depends_on[:8]) if depends_on else "[[P]]"
+    req_links = ", ".join(wikilink(r) for r in required_by[:8]) if required_by else ""
 
     frontmatter = f"""---
 type: entity
 status: {status}
+role: {role}
 node_class: {node_class}
-tags: [{node_class}, auto-generated]
+tags: [{node_class}, {role}, auto-generated]
 sources:
   seed: {module}:{line}
   file: {file_ref}
@@ -485,17 +511,23 @@ generated: {datetime.now().isoformat()[:10]}
     body = f"""
 # {display}
 
+**Role:** {role}
+
 ## Statement
 
-{doc if doc else f"(Auto-extracted from {file_ref}:{line})"}
+{doc if doc else f"(From {file_ref}:{line})"}
+
+## Depends on
+
+{dep_links}
+
+## Required by
+
+{req_links if req_links else "(terminal or not yet traced)"}
 
 ## Source
 
 `{file_ref}` line {line}
-
-## References
-
-{chr(10).join(f'- {r}' for r in refs) if refs else '- (none extracted)'}
 """
     return frontmatter + body
 
@@ -585,7 +617,7 @@ def main():
     if missing and "--no-gen" not in sys.argv:
         ENTITIES.mkdir(parents=True, exist_ok=True)
         for n in missing:
-            page = generate_entity_page(n)
+            page = generate_entity_page(n, all_edges=all_edges, all_nodes=all_nodes)
             safe_name = n["canonical"].replace(" ", "-").replace("/", "-").replace("$", "").replace("\\", "")[:50]
             out_path = ENTITIES / f"{safe_name}.md"
             if not out_path.exists():
