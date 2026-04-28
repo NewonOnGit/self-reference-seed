@@ -545,7 +545,17 @@ def main():
     print(f"     Existing entity pages: {len(existing_entities)}")
     print(f"     Code nodes without pages: {len(missing)}")
 
-    if missing:
+    created = 0
+    if missing and "--no-gen" not in sys.argv:
+        ENTITIES.mkdir(parents=True, exist_ok=True)
+        for n in missing:
+            page = generate_entity_page(n)
+            out_path = ENTITIES / f"{n['canonical']}.md"
+            if not out_path.exists():
+                out_path.write_text(page, encoding="utf-8")
+                created += 1
+        print(f"     Created {created} new entity pages")
+    elif missing:
         print(f"     Candidates for generation: {[m['canonical'] for m in missing[:10]]}")
     print()
 

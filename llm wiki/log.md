@@ -18,3 +18,6 @@ links: []
 [CREATE] 2026-04-27 kill_ledger.md: 7 entries (Jacobson→Lichnerowicz, hypercharges→derived, etc.)
 [CREATE] 2026-04-27 lint.py: cross-layer consistency checker. Found 4 L0 sync issues.
 [UPDATE] 2026-04-27 SCHEMA.md: authority hierarchy (APEX>WIKI>SEED>L0), forward/backward propagation rules.
+[GEN] 2026-04-28 Auto-generated 7 entity pages: Production, Tower, Observer, Kernel, Image, Mediation, Glyphs.
+[INGEST] 2026-04-28 ingest.py: 196 nodes, 140 edges. 4/5 PASS. Idempotent.
+[TAG] 2026-04-28 All 10 modules tagged: FRAMEWORK_REF, GRID, APEX_LINK.
