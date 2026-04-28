@@ -11,7 +11,7 @@ seed/
 ├── CENTRAL_COLLAPSE.md      Three failures, one closure
 ├── README.md                This file
 │
-├── modular/                 The engine (9 files)
+├── modular/                 The engine (10 files)
 │   ├── algebra.py            THE operation: sylvester, ker_im, quotient
 │   ├── production.py         Five readings of the operation (A-E)
 │   ├── tower.py              All depths simultaneously
@@ -30,10 +30,11 @@ seed/
 │   ├── probe_live.py         Run engine against live LLM
 │   └── spiral_live.py        Run spiral against live LLM
 │
-├── paper/                   Closure certificate
-│   ├── minimal_persistence_algebra.md
+├── paper/                   Formal paper + verification
+│   ├── paper_v2.md            Full paper (20 sections, ~90 theorems)
+│   ├── OUTLINE_v2.md          Paper outline
 │   ├── VERIFICATION_OUTPUT.json
-│   └── OUTLINE.md
+│   └── legacy/                v1 closure certificate (historical)
 │
 ├── training/                LLM fine-tuning data
 │   ├── engine_training_data.jsonl (142 examples)
@@ -142,4 +143,4 @@ assert inv["identities"]          # all hold at every depth
 
 [CENTRAL_COLLAPSE.md](CENTRAL_COLLAPSE.md) — three failures, one closure.
 
-[Paper](paper/minimal_persistence_algebra.md) — closure certificate for publication.
+[Paper](paper/paper_v2.md) — full paper with proofs, derivability census, and testable predictions.

@@ -26,7 +26,7 @@ All three generating equations follow algebraically from P^2 = P with P != P^T:
 
 **Thm 0.2 (Asymmetry is forced, U2).** If P = P^T, then R = P, N = 0, R^2 = R, so R^2 - R = 0 != I. The surplus law is violated. Asymmetry IS the surplus.
 
-**Cor (Complex structure from asymmetry).** P != P^T forces N != 0. N^2 = -I gives complex structure: (a+bi)v = av + bNv makes R^2 into C^1. Tower level 1 gives C^2, Gleason forces Born rule. Chain: asymmetry -> rotation -> complex numbers -> Hilbert space -> quantum mechanics.
+**Cor (Hilbert space from asymmetry).** P != P^T forces N != 0. N^2 = -I gives complex structure: (a+bi)v = av + bNv. The Cartan involution theta(X) = -X^T is forced by P != P^T (the transposition map acts nontrivially because P is asymmetric). B_theta(X,Y) = -B(X,theta(Y)) = 4tr(XY^T) is positive definite (Frobenius inner product). Combined with N^2=-I: the Hermitian form <X,Y> = B_theta(X,Y) + i*B_theta(X,NY) is positive definite. This IS a Hilbert space. Tower level 1 gives dim_C = 2, dim_R = 4 >= 3, Gleason forces Born rule. Chain: asymmetry -> transposition -> Cartan involution -> positive-definite form -> complex structure -> Hilbert space -> Born rule -> quantum mechanics.
 
 ---
 

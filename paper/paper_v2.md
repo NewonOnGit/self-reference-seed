@@ -96,6 +96,20 @@ The Clifford identification: $R_\mathrm{tl}^2 = (5/4)I$ (positive square), $N^2 
 
 *Proof.* At $a=1$, general $b \geq 1$: the kernel of $\{R,X\}=X$ is spanned by $K_1 = \begin{pmatrix}1&1\\0&-1\end{pmatrix}$, $K_2 = \begin{pmatrix}0&-b\\1&0\end{pmatrix}$ (derived by solving $RX+XR=X$ entry-by-entry). Direct computation: $K_1^2=I$, $K_2^2=-bI$, $K_1K_2+K_2K_1=I$ (all proportional to $I$ — this follows from $[R,X^2]=0$ for $X \in \ker$, forcing $X^2$ into the commutant of $R$). The quadratic form $(\alpha K_1+\beta K_2)^2 = (\alpha^2+\alpha\beta-b\beta^2)I$ has matrix $Q = \begin{pmatrix}1&1/2\\1/2&-b\end{pmatrix}$ with $\det Q = -b-1/4 < 0$ for all $b \geq 1$. Indefinite signature guarantees $X$ with $X^2=-cI$, $c>0$. Set $N=X/\sqrt{c}$: $N^2=-I$. Explicitly: $N=K_2/\sqrt{b}$. $\square$ [Tier A]
 
+**Theorem 2.4c (Hilbert space from asymmetry).** The asymmetry $P \neq P^T$ canonically produces a positive-definite Hermitian inner product.
+
+*Proof.* $P \neq P^T$ means the transposition map $X \mapsto X^T$ acts nontrivially on the algebra. Define the Cartan involution $\theta(X) = -X^T$. This is a Lie algebra automorphism of $\mathfrak{sl}(2,\mathbb{R})$: $\theta([X,Y]) = [\theta(X),\theta(Y)]$ (verified on all bracket pairs). It acts as $\theta(R_\mathrm{tl}) = -R_\mathrm{tl}$, $\theta(N) = +N$, $\theta(h) = -h$. The modified Killing form:
+
+$$B_\theta(X,Y) = -B(X,\theta(Y)) = 4\mathrm{tr}(XY^T)$$
+
+is the Frobenius inner product (scaled by 4). For any $X \neq 0$: $B_\theta(X,X) = 4\sum_{ij}X_{ij}^2 > 0$. **Always positive definite.** The Gram matrix on $\{R_\mathrm{tl}, N, h\}$ has eigenvalues $\{4.88, 8.0, 13.12\}$ — all positive.
+
+Compatibility with the complex structure: $B_\theta(NX,NY) = 4\mathrm{tr}(NXY^TN^T) = 4\mathrm{tr}(XY^T) = B_\theta(X,Y)$ (using $N^T = -N$, cyclicity). The Hermitian form:
+
+$$\langle X, Y \rangle = B_\theta(X,Y) + i\,B_\theta(X,NY)$$
+
+has $\mathrm{Re}\langle X,X\rangle = B_\theta(X,X) > 0$ for all $X \neq 0$. This is a positive-definite Hermitian inner product on $M_2(\mathbb{R})$ viewed as a complex vector space via $N$. A finite-dimensional positive-definite Hermitian inner product space IS a Hilbert space. At tower depth 1, $\dim_\mathbb{C} = 2$, $\dim_\mathbb{R} = 4 \geq 3$: Gleason's theorem applies, forcing the Born rule. $\square$ [Tier A]
+
 **Theorem 2.5 (Uniqueness of $(a,b) = (1,1)$).** Among all $R^2 = aR + bI$ with $a, b \in \mathbb{Z}_+$:
 
 (a) $L(R_\mathrm{tl})$ is scalar only for $a = 1$. For $a \geq 2$: $L(R_\mathrm{tl}) = (a-1)R + (2b + a/2)I$, non-scalar. [Tier A]
