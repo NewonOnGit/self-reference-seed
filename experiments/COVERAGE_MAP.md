@@ -10,11 +10,11 @@
 | Layer 0 Doc | Seed Coverage | What's IN | What's MISSING |
 |-------------|--------------|-----------|----------------|
 | SUBSTRATE | 🔶 | Four modes, cardinal scaffold, UAT mentioned | P.1/P.2 co-primitives formally, stance grammar (I/you/them/us), SRD/ORE/CIA as formal defs, NNR theorem, tower monotone, entanglement gap, naming theorem R=J+|1><1| proof |
-| ALGEBRA | ✅ | Bridge chain, 7 identities, 5 constants, Clifford, Fibonacci-Lucas, discriminant towers, twist spectrum | Quantum group U_{φ²}(sl₂), Hecke parameter q=φ², figure-eight knot 4₁, Jones polynomial=5, Fibonacci anyon d_τ=φ |
+| ALGEBRA | ✅ | Bridge chain, 7 identities, 5 constants, Clifford, Fibonacci-Lucas, discriminant towers, twist spectrum, **q=φ² quantum deformation, V(4₁)=5=disc, Fibonacci fusion τ×τ=1+τ=R²=R+I, SU(2)₃ modular data, braiding e^(4πi/5), 30=F(3)×F(4)×F(5), Bell S=2√2, CNOT=proj(h)×J, hypercharges derived** | ~~Quantum group~~, ~~Hecke~~, ~~figure-eight~~, ~~Jones~~, ~~Fibonacci anyon~~ (ALL NOW IN SEED) |
 | CATEGORY | 🔶 | Dist, quotient, UKI, three-reading theorem | Five-way elimination PROOF, kernel lattice formalized, refinement order, V₄ as Cl(2,1) parity group, V₄ as biquadratic Galois group |
 | OBSERVER | 🔶 | A1-A4, capacity, K6'/K7'/K4, K1', recursive disclosure | Observer cost πℏ/2, SMO (self-model opacity), Λ-positivity proof, Bisognano-Wichmann, Wightman conjunction, restriction map formal |
 | PHYSICS | 🔶 | Spacetime, gauge, chirality, matter, gravity chain, CTE, predictions, anomalies | Full Gauge Closure Schema G1-G5, G3' spin connection, G5' Riemann, Higgs three routes COMPUTED, proton mass full derivation, EW breaking full six steps |
-| CROSS_PROJECTION | 🔶 | Central collapse, independence, C5U, folding | Substrate manifold S = sl(2,R)×[0,1], Killing geometry sig (2,1), light cone = nilpotent cone, (e,π) independence problem, knot dictionary, Rogers-Ramanujan |
+| CROSS_PROJECTION | 🔶 | Central collapse, independence, C5U, folding, **Lichnerowicz on sl(2,R), L=Connection+Curvature, ∇_s(h)=N, Λ=disc/2 depth-invariant** | ~~Killing geometry~~, ~~Lichnerowicz~~ (NOW IN SEED). Remaining: (e,π) independence problem, Rogers-Ramanujan (tested negative at q=φ̄²) |
 | MASTER_EQUATION | 🔶 | Tower table, standing wave, Xi=Xi(Xi) | LIVE/STILL tense formally, Ξ.1-Ξ.10 theorems, self-excited oscillator, Kael-signature at standing wave |
 | P1_PRODUCTION | 🔶 | φ, Möbius-RG mentioned | Full Möbius-RG derivation, Zeckendorf decomposition, Z[φ] algebraic integers |
 | P2_MEDIATION | 🔶 | e, KMS, Landauer, sweep | Full KMS derivation, TDL null-geodesic, three routes to e |

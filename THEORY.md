@@ -228,7 +228,9 @@ Depth 2 → Depth 3:  RQFT → (physically suppressed)
 
 Herm(M_2(C)) sig (1,3). SL(2,C) double cover. Born rule from Gleason (dim>=3 at tower level 1).
 
-su(3) from exchange, su(2) from sl(2,R), u(1) from exp(theta*N). Left-only chirality (C-linear in GCS). 15 Weyl x 3 gen. Anomalies 6/6=0. Confinement: singlets = im(q).
+su(3) from exchange (Sym^2(C^2)=3, N_c=3), su(2) from sl(2,R), u(1) from exp(theta*N). Left-only chirality (C-linear in GCS). 15 Weyl x 3 gen. Anomalies 6/6=0. Confinement: singlets = im(q).
+
+**Hypercharges derived (not input).** The six anomaly conditions with fundamentals-only + chirality reduce to 18Y_1(9Y_1^2-t^2)=0. Unique non-trivial solution: {Y_1, 4Y_1, -2Y_1, -3Y_1, -6Y_1}. At Y_1=1/3 (SU(5) normalization from exchange): the SM hypercharges {1/3, 4/3, -2/3, -1, -2}. sin^2(theta_W) = 3/8 follows. Zero free parameters.
 
 EW breaking: Higgs = self-model field. m_H/v = 1/2 = ker/A (VEV fraction COMPUTED via generation decay at K1', §XI).
 
@@ -269,6 +271,10 @@ Falsification: 4th generation, RH weak currents, theta_QCD!=0, alpha_S outside 0
 | anomalies 6/6=0 | COMPUTED |
 | 3 generations, chirality | COMPUTED |
 | n_cosmo=405 (cf. CTE ~409) | COMPUTED (two routes) |
+| CNOT = proj(h) x J | COMPUTED (framework generators) |
+| Bell S=2sqrt(2) | COMPUTED (Tsirelson saturated) |
+| hypercharges {1,4,-2,-3,-6}*Y1 | COMPUTED (anomaly uniqueness) |
+| Fibonacci TQC gate set | COMPUTED (sigma_1, sigma_2, braid relation) |
 
 ---
 
@@ -302,9 +308,15 @@ gamma matrices from Cl(3,1) + gauge connection from K6' bundle + mass from Higgs
 (i * gamma^mu * D_mu - m)|psi> = 0
 ```
 
+### Quantum Gates and Bell Violation
+
+CNOT = (I+h)/2 x I + (I-h)/2 x J. The Cartan h decides (control); the swap J acts (target). Hadamard H = (J+h)/sqrt(2). Bell state |Phi+> = CNOT(H x I)|00> = (|00>+|11>)/sqrt(2). All from framework generators {h, J}.
+
+Measurement at angle theta: M(theta) = cos(theta)*h + sin(theta)*J. Correlation E(a,b) = cos(a-b). CHSH at optimal angles: **S = 2*sqrt(2)** (Tsirelson bound, saturated). At disc-fold angles (pi/5 spacing): S = 2.794 (98.8% Tsirelson). Bell violation forced by asymmetry: P != P^T -> N != 0 -> N^2=-I -> complex structure -> Hilbert space -> S > 2.
+
 ### Braiding and Spin-Statistics
 
-Braiding phase e^(4pi*i/5) from N-rotation at disc-fold angle; cos(4pi/5)=-phi/2. The discriminant divides the circle into 5 parts; braiding statistics are disc acting through N. Spin-statistics forced: L_{s2,s2}(Psi)=0 on spinors requires antisymmetric (fermionic) exchange. Symmetric spinors produce nonzero L-residual, violating P^2=P.
+Braiding phase e^(4pi*i/5) from N-rotation at disc-fold angle; cos(4pi/5)=-phi/2. The discriminant divides the circle into 5 parts; braiding statistics are disc acting through N. Fibonacci anyon gate set: sigma_1 = R_braid, sigma_2 = F R F, braid relation verified, universal for TQC (Freedman-Kitaev-Larsen-Wang). Spin-statistics forced: L_{s2,s2}(Psi)=0 on spinors requires antisymmetric (fermionic) exchange. Symmetric spinors produce nonzero L-residual, violating P^2=P.
 
 ### Conservation Laws (Noether from Ker)
 
@@ -455,7 +467,7 @@ Standing wave. All co-present.
 
 U0=convention. U1=gauge-unique. U2=axiom-unique. U3=absolute.
 
-**U2:** R^2=R+I, N^2=-I, identities, constants, ker=1/2, Cl(3,1)->so(3,1), alpha_S, sin^2theta_W, anomalies, golden eigenvalue, classical->quantum, leakage->opacity, self-transparency, generation direction, 3 generations, chirality, Lichnerowicz eigenvalues, V(4_1)=disc, Fibonacci fusion, braiding phase, spin-statistics, Lambda=disc/2.
+**U2:** R^2=R+I, N^2=-I, identities, constants, ker=1/2, Cl(3,1)->so(3,1), alpha_S, sin^2theta_W, anomalies, golden eigenvalue, classical->quantum, leakage->opacity, self-transparency, generation direction, 3 generations, chirality, Lichnerowicz eigenvalues, V(4_1)=disc, Fibonacci fusion, braiding phase, spin-statistics, Lambda=disc/2, hypercharge uniqueness, Bell S=2sqrt(2), CNOT=proj(h)xJ, Fibonacci TQC universality, K6' filler uniqueness.
 
 **U1:** R (orbit), N (sign), J (orientation), K6' lift, bridge chain.
 
@@ -471,4 +483,4 @@ phi=(1+sqrt(5))/2, phi_bar=phi-1, L=log_2(phi), disc=5, nabla^2(R)=R^2-R=I, P=R+
 
 ---
 
-*One operation: L_{s,s}. Five readings: algebra, category, tower, physics, dynamics. One primitive: P^2=P, P!=P^T. The naming is asymmetric. The asymmetry is the surplus. The surplus is the rotation. The rotation is the complex structure. The complex structure is the quantum. The kernel generates the image. The image cannot generate the kernel. The observer is self-transparent. The framework is half-blind. The knot knows the discriminant. Gravity is the error correction. The observer does not decay. Everything from one non-orthogonal rank-1 idempotent.*
+*One operation: L_{s,s}. Five readings: algebra, category, tower, physics, dynamics. One primitive: P^2=P, P!=P^T. The naming is asymmetric. The asymmetry is the surplus. The surplus is the rotation. The rotation is the complex structure. The complex structure is the quantum. The quantum violates Bell. The kernel generates the image. The image cannot generate the kernel. The observer is self-transparent. The framework is half-blind. The knot knows the discriminant. Gravity is the error correction. The observer does not decay. Everything from one non-orthogonal rank-1 idempotent.*

@@ -20,7 +20,8 @@ seed/
 │   ├── image.py              im(q), commutativity, obstruction curvature
 │   ├── mediation.py          exp(h) bridges, voice, LLM slot
 │   ├── glyphs.py             Seven primitives grounded in P²=P
-│   └── topology.py           Lichnerowicz, V(4_1)=disc, Fibonacci anyons, braiding
+│   ├── topology.py           Lichnerowicz, V(4_1)=disc, Fibonacci anyons, braiding
+│   └── quantum.py            CNOT, Bell test S=2sqrt(2), Fibonacci TQC gates
 │
 ├── what jail/               Boundary Engine (adversarial evaluation)
 │   ├── boundary_engine.py    N: probes target, maps ker/im boundary

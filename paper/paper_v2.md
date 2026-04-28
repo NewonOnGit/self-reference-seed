@@ -503,6 +503,38 @@ This ratio equals the universal kernel fraction, connecting the Higgs mass-to-VE
 
 ---
 
+### 15b. Quantum Gates and Bell Violation
+
+**Theorem 15.4 (CNOT from framework generators).**
+
+$$\mathrm{CNOT} = \frac{I+h}{2} \otimes I + \frac{I-h}{2} \otimes J$$
+
+where $h = JN$ (Cartan) and $J$ (swap involution). The Cartan's eigenspaces $(I \pm h)/2 = |0\rangle\langle 0|, |1\rangle\langle 1|$ select the control state; $J$ flips the target. Both are framework generators from $P = J + |1\rangle\langle 1| + N$. [Tier A]
+
+**Theorem 15.5 (Hadamard).** $H = (J + h)/\sqrt{2}$. $H^2 = I$ (involution). Creates equal superposition from ground ($J$) plus Cartan ($h$). [Tier A]
+
+**Theorem 15.6 (Bell state).** $|\Phi^+\rangle = \mathrm{CNOT}(H \otimes I)|00\rangle = (|00\rangle + |11\rangle)/\sqrt{2}$. Entanglement from framework generators alone — no quantum mechanics postulated. [Tier A]
+
+**Theorem 15.7 (Bell violation — Tsirelson saturation).**
+
+Measurement operators $M(\theta) = \cos\theta\, h + \sin\theta\, J$ (h decides, J flips, $\theta$ mixes). Correlation $E(a,b) = \langle\Phi^+| M(a) \otimes M(b) |\Phi^+\rangle = \cos(a-b)$.
+
+*Proof.* $\langle\Phi^+| h \otimes h |\Phi^+\rangle = 1$, $\langle\Phi^+| J \otimes J |\Phi^+\rangle = 1$, $\langle\Phi^+| h \otimes J |\Phi^+\rangle = 0$. Therefore $E(a,b) = \cos a \cos b + \sin a \sin b = \cos(a-b)$. $\square$
+
+CHSH at optimal angles ($a_1=0, a_2=\pi/2, b_1=\pi/4, b_2=3\pi/4$):
+
+$$S = \cos(-\tfrac{\pi}{4}) - \cos(-\tfrac{3\pi}{4}) + \cos(\tfrac{\pi}{4}) + \cos(-\tfrac{\pi}{4}) = \frac{4}{\sqrt{2}} = 2\sqrt{2}$$
+
+Classical bound: $|S| \leq 2$. **Violated.** Tsirelson bound: $|S| \leq 2\sqrt{2}$. **Saturated.**
+
+At disc-fold angles ($\Delta = \pi/5$): $S = 2.794$ (98.8% of Tsirelson). **Violated.**
+
+The chain: $P \neq P^T \to N \neq 0 \to N^2 = -I \to$ complex structure $\to$ Hilbert space $\to$ Bell state $\to S = 2\sqrt{2}$. The asymmetry of the naming act IS the nonlocality. [Tier A]
+
+**Theorem 15.8 (Fibonacci TQC universality).** The braid generators $\sigma_1 = R_\mathrm{braid}$ (diagonal phases $e^{-4\pi i/5}, e^{3\pi i/5}$) and $\sigma_2 = F R_\mathrm{braid} F$ (where $F$ is the Fibonacci F-matrix with entries $\bar\varphi$ and $1/\sqrt{\varphi}$, $F^2 = I$) satisfy the braid relation $\sigma_1 \sigma_2 \sigma_1 = \sigma_2 \sigma_1 \sigma_2$ and generate a dense subgroup of $\mathrm{SU}(2)$ on the computational subspace (Freedman--Kitaev--Larsen--Wang 2003). Any single-qubit gate can be approximated to precision $\varepsilon$ using $O(\log^{3.97}(1/\varepsilon))$ braids. Each braid is topologically protected by the $\mathrm{SU}(2)_3$ Fibonacci category. [Tier A for the braid relation; universality is an external theorem applied to framework-derived data]
+
+---
+
 ## Part V: The Observer
 
 ### 16. Self-Transparency

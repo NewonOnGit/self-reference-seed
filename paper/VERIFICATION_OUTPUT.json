@@ -69,5 +69,12 @@
   "knot_spectrum_in_Z_phi": true,
   "rogers_ramanujan_negative": true,
   "hypercharges_derived": true,
-  "anomaly_cubic_18Y1_9Y1sq_minus_tsq": true
+  "anomaly_cubic_18Y1_9Y1sq_minus_tsq": true,
+  "cnot_from_generators": true,
+  "bell_S_2sqrt2": true,
+  "bell_tsirelson_saturated": true,
+  "hadamard_from_J_h": true,
+  "fibonacci_braid_relation": true,
+  "fibonacci_F_involutory": true,
+  "bell_disc_fold_violates": true
 }
