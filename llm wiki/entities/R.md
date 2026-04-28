@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(3, P1)
 status: computed
 tags: [tower, verified, topology, other]
 links: [P, L, N, tower, gravity, gauge, Fibonacci fusion]

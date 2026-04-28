@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(6, cross)
 status: computed
 tags: [verified, gravity, other]
 links: [L, N, h, Λ, n_cosmo, Einstein equations]

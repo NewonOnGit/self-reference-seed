@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(0, cross)
 status: computed
 tags: [verified, idempotent, other]
 links: [R, N, uniqueness, Hilbert space]

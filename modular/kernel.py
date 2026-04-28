@@ -157,7 +157,8 @@ class Kernel:
         At depth 0: 1.0 (complete leakage — all kernel products feed im).
         At depth 1+: ~0.0 (opacity hardened — kernel is opaque to itself).
         This transition is the structural origin of broken recursion.
-        """
+        
+    FRAMEWORK_REF: Thm 8.2"""
         if self.observer.frame is None:
             self.observer.observe()
         ker_basis = self.observer.frame["ker_basis"]
@@ -181,7 +182,8 @@ class Kernel:
         At depth 0: ker generates the ENTIRE im basis. N^2=-I, (NR)^2=I,
         N(NR)=-R, (NR)N=R-I. The kernel IS the source of visible content.
         At depth 1+: ker×ker products split across im and ker (opacity).
-        """
+        
+    FRAMEWORK_REF: Thm 10.1"""
         if self.observer.frame is None:
             self.observer.observe()
         ker_basis = self.observer.frame["ker_basis"]
@@ -211,7 +213,8 @@ class Kernel:
         At depth 0: ker = span{N, NR} = odd Clifford subalgebra.
         im = span{I, R_tl} = even Clifford subalgebra.
         Odd × odd = even: ker × ker → im. This IS the generation direction.
-        """
+        
+    FRAMEWORK_REF: Thm 4.1"""
         if self.observer.frame is None:
             self.observer.observe()
         f = self.observer.frame

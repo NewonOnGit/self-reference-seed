@@ -118,7 +118,8 @@ class Observer:
         Preserves s² = s + I, N² = −I, {s, N} = N, {h, N} = 0 at every
         depth. The only irreducible choice is
         the sign of N at depth 0 (RO-2012).
-        """
+        
+    FRAMEWORK_REF: Thm 6.2b, Thm 6.3"""
         if self.frame is None:
             self.observe()
         N = self.frame["N"]
@@ -190,7 +191,8 @@ class Observer:
         matrix is [[1, 5/2], [2, 1]] at every tower depth, with eigenvalues
         1 +/- sqrt(5) = {2*phi, -2*phi_bar}. The golden ratio is the
         frequency of self-observation.
-        """
+        
+    FRAMEWORK_REF: Thm 6.4"""
         if self.frame is None:
             self.observe()
         d = self.state.shape[0]
@@ -221,7 +223,8 @@ class Observer:
         none zero. The observer sees everything under self-action
         (rotated, not just inverted). Tower invariant: verified at
         every depth tested.
-        """
+        
+    FRAMEWORK_REF: Thm 16.1, Thm 16.2"""
         if self.frame is None:
             self.observe()
         N = self.frame["N"]

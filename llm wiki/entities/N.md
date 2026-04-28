@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(3, P3)
 status: computed
 tags: [quantum, verified, ker-im, other]
 links: [P, L, Hilbert space, Bell test, braiding, self-transparency, CNOT]

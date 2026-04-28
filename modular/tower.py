@@ -82,7 +82,8 @@ class Tower:
     # === INVARIANTS (what holds at every depth) ===
 
     def invariants(self):
-        """What is constant across all depths."""
+        """What is constant across all depths.
+    FRAMEWORK_REF: Thm 6.4"""
         phi = (1 + np.sqrt(5)) / 2
         phi_bar = phi - 1
         return {
@@ -126,7 +127,8 @@ class Tower:
     # === THE SPINE ===
 
     def spine(self):
-        """The physics spine: what's new at each depth."""
+        """The physics spine: what's new at each depth.
+    FRAMEWORK_REF: Thm 8.1-8.6"""
         lines = []
         for i, d in enumerate(self.depths):
             lines.append(
@@ -141,7 +143,8 @@ class Tower:
     # === GENERATION DECAY ===
 
     def generation_decay(self):
-        """ker²→im rank at each depth. The void's reach."""
+        """ker²→im rank at each depth. The void's reach.
+    FRAMEWORK_REF: Thm 7.1, Thm 7.2"""
         results = []
         for d in self.depths:
             obs = d["observer"]

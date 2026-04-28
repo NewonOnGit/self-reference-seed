@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(3, cross)
 status: computed
 tags: [ker-im, gravity, tower, verified, other]
 links: [R, ker, im, gravity, tower, self-transparency]

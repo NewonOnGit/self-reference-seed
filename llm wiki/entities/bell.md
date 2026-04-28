@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(6, P3)
 status: computed
 tags: [quantum, verified, other]
 links: [h, J, CNOT, Hilbert space]

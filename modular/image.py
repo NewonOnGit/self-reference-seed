@@ -123,7 +123,8 @@ class Image:
         At depth 0: True (the observer's world is classical).
         At depth 1+: False (the observer's world is non-commutative/quantum).
         The classical-to-quantum transition is forced by the tower.
-        """
+        
+    FRAMEWORK_REF: Thm 8.1"""
         b = self.basis()
         if len(b) < 2:
             return True
@@ -145,7 +146,8 @@ class Image:
         At depth 0: kappa = 0 (commutative, no obstruction).
         At depth 1+: kappa > 0 (non-commutative, observation has curvature).
         Quantifies how much the observer's internal algebra resists closure.
-        """
+        
+    FRAMEWORK_REF: Thm 8.1"""
         b = self.basis()
         if len(b) < 2:
             return 0.0

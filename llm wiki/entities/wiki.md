@@ -1,5 +1,6 @@
 ---
 type: other
+grid: B(8, cross)
 status: computed
 tags: [verified, ker-im, idempotent, other]
 links: [L, P]
