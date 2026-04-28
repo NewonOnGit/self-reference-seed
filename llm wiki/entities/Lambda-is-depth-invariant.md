@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: LEAF
-node_class: theorem
-tags: [theorem, LEAF, auto-generated]
-sources:
-  seed: :381
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 11.1"
+tags: [physics, forced]
 ---
-# $\Lambda$ is depth invariant
 
-**Role:** LEAF
+# $\Lambda$ is depth-invariant
 
-## Statement
+> **Theorem 11.1.**  $L(R_\mathrm{tl}) = (\mathrm{disc}/2)I$ holds at tower depths 0, 1, 2, 3, 4. The bare cosmological constant does not change with the tower. [Tier N]
 
-(From paper/paper_v2.md:381)
+## Dependencies
 
-## Depends on
+- [[Cosmological-attenuation]]
+- [[Tower]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

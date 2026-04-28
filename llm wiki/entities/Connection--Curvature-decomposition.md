@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :338
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 10.2"
+tags: [physics, forced]
 ---
-# Connection  Curvature decomposition
 
-**Role:** DOMINATOR
+# Connection--Curvature decomposition
 
-## Statement
+> **Theorem 10.2.**  
 
-(From paper/paper_v2.md:338)
+## Dependencies
 
-## Depends on
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-[[lichnerowicz]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

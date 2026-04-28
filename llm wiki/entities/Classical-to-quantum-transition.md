@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :250
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 8.1"
+tags: [tower, forced]
 ---
-# Classical to quantum transition
 
-**Role:** DOMINATOR
+# Classical-to-quantum transition
 
-## Statement
+> **Theorem 8.1.**  The projected product $X * Y := q(XY)$ on $\mathrm{im}(L_s)$ is commutative at depth 0 and non-commutative at depth $\geq 1$. The transition is permanent. [Tier N]
 
-(From paper/paper_v2.md:250)
+## Dependencies
 
-## Depends on
+- [[Tower]]
+- [[L]]
 
-[[is_commutative]], [[obstruction_curvature]], [[spine]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

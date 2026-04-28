@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :673
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 18.4"
+tags: [observer, forced]
 ---
+
 # Bridge capacity
 
-**Role:** THEOREM
+> **Theorem 18.4.**  For two observers $K, K'$ with kernels $V_K, V_{K'}$ and images $W_K, W_{K'}$, define:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:673)
+- [[N]]
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

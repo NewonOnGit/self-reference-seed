@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :279
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 9.1"
+tags: [physics, forced]
 ---
+
 # Matter content
 
-**Role:** DOMINATOR
+> **Theorem 9.1.**  15 Weyl fermions per generation. 3 generations from $S_3 = \mathrm{Aut}(V_4)$ (3 irreps, 3 conjugacy classes). [Tier A for counting]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:279)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

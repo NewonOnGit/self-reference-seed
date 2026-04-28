@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :371
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 10.7"
+tags: [physics, forced]
 ---
+
 # Gravitational wave spectrum
 
-**Role:** DOMINATOR
+> **Theorem 10.7.**  $\mathrm{im}(L)$ restricted to $\mathrm{span}\{I, R_\mathrm{tl}\}$ has eigenvalues $\pm\sqrt{5} = \pm\sqrt{\mathrm{disc}}$. Physical modes oscillate at the discriminant frequency. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:371)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

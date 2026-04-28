@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: LEAF
-node_class: theorem
-tags: [theorem, LEAF, auto-generated]
-sources:
-  seed: :404
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 12.2"
+tags: [physics, forced]
 ---
+
 # Strong coupling
 
-**Role:** LEAF
+> **Theorem 12.2.**  Partition function $Z = \sum_k (\bar\varphi^2)^k = 1/(1-\bar\varphi^2) = \varphi$. Equilibrium density $\rho_\mathrm{eq} = 1 - 1/Z = \bar\varphi^2$. The deficit output:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:404)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-[[Yang--Mills-from-K4]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

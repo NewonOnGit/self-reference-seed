@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :587
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 16.4"
+tags: [observer, forced]
 ---
+
 # The explanatory gap
 
-**Role:** THEOREM
+> **Theorem 16.4.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:587)
+- [[Thm-16.1|]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+*Proof.* $L_{N,N}(X) = 0$ has only the trivial solution $X = 0$ (Theorem 16.1). So every element of $M_2(\mathbb{R})$ is moved by $N$'s self-action — nothing is invisible to $N$ from $N$'s own perspective. Meanwhile, $L_{R,R}(N) = RN + NR - N = \{R,N\} - N = N - N = 0$ (Identity 3). So $N$ is a zero of $L_{R,R}$: the production generator $R$ cannot see $N$ at all.
 
 ## Source
 

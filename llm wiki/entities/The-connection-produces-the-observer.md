@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :351
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 10.3"
+tags: [physics, forced]
 ---
+
 # The connection produces the observer
 
-**Role:** DOMINATOR
+> **Theorem 10.3.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:351)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[lichnerowicz]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

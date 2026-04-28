@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :496
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.2"
+tags: [topology, forced]
 ---
-# Spin statistics
 
-**Role:** THEOREM
+# Spin-statistics
 
-## Statement
+> **Theorem 15.2.**  
 
-(From paper/paper_v2.md:496)
+## Dependencies
 
-## Depends on
+- [[Identity-preservation|Identity preservation]]
 
-[[Identity-preservation]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+*Proof.* At depth 2, $N_2 \in M_8(\mathbb{R})$ satisfies $N_2^2 = -I_8$ (Theorem 6.2). The rotation generator $N_2$ has eigenvalues $\pm i$ (each with multiplicity 4). A rotation by angle $\theta$ in the spinor representation is $\exp(\theta N_2 / 2)$. At $\theta = 2\pi$:
 
 ## Source
 

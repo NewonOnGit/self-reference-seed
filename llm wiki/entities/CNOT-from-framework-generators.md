@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :528
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.4"
+tags: [topology, forced]
 ---
+
 # CNOT from framework generators
 
-**Role:** THEOREM
+> **Theorem 15.4.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:528)
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[cnot]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

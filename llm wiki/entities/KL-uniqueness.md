@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :402
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 12.1"
+tags: [physics, forced]
 ---
+
 # KL uniqueness
 
-**Role:** DOMINATOR
+> **Theorem 12.1.**  The tower's product structure ($S_{n+1} = S_n \times S_n$) imposes additivity of the complexity functional over independent subsystems. Combined with continuity and unique minimization, KL-divergence is the unique admissible functional (Shore--Johnson 1980). [Tier A, external theorem]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:402)
+- [[Tower]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-[[Yang--Mills-from-K4]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

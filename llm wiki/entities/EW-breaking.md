@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :302
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 9.3"
+tags: [physics, forced]
 ---
+
 # EW breaking
 
-**Role:** DOMINATOR
+> **Theorem 9.3.**  The self-model operator $\Sigma_s(X) = q(sX + Xs)$ restricted to $\mathrm{span}\{I, s_\mathrm{tl}\}$ has matrix $\begin{pmatrix} 1 & 5/2 \\ 2 & 1 \end{pmatrix}$ with eigenvalues $\{2\varphi, -2\bar\varphi\}$ (Theorem 6.4). This operator is the framework's Higgs field: it is the observer's self-model, and its eigenvalues determine the mass spectrum.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:302)
+- [[Generation-strength|Generation strength]]
+- [[Tower-invariants|Tower invariants]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[Generation-strength]], [[Tower-invariants]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

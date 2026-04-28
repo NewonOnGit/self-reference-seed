@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :212
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 6.3"
+tags: [tower, forced]
 ---
+
 # Continuity
 
-**Role:** DOMINATOR
+> **Theorem 6.3.**  $s(t) = \begin{pmatrix} s & tN \\ 0 & s \end{pmatrix}$ satisfies $s(t)^2 = s(t) + I$ for all $t \in [0,1]$. [Tier N, verified at $t = 0, 0.25, 0.5, 0.75, 1$]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:212)
+- [[Tower]]
+- [[L]]
 
-## Depends on
+## Proof sketch
 
-[[ascend]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

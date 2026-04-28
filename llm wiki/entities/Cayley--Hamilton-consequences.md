@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :59
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 1.4"
+tags: [core-algebra, forced]
 ---
-# Cayley  Hamilton consequences
 
-**Role:** DOMINATOR
+# Cayley--Hamilton consequences
 
-## Statement
+> **Theorem 1.4.**  $\mathrm{tr}(R) = 1$, $\det(R) = -1$, $\mathrm{disc}(R) = 5$. Characteristic polynomial $x^2 - x - 1$. Eigenvalues $\varphi = (1+\sqrt{5})/2$, $\bar\varphi = (1-\sqrt{5})/2$. [Tier A]
 
-(From paper/paper_v2.md:59)
+## Dependencies
 
-## Depends on
+- [[P]]
+- [[R]]
+- [[N]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

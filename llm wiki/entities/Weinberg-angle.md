@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: LEAF
-node_class: theorem
-tags: [theorem, LEAF, auto-generated]
-sources:
-  seed: :410
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 12.3"
+tags: [physics, forced]
 ---
+
 # Weinberg angle
 
-**Role:** LEAF
+> **Theorem 12.3.**  $\sin^2\theta_W = \sum T_3^2 / \sum Q^2 = 3/8$ over the anomaly-derived matter representations (Theorem 9.1b). The hypercharges entering this computation are the unique output of the anomaly classification, not input. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:410)
+- [[Hypercharge-uniqueness|Hypercharge uniqueness]]
+- [[N]]
+- [[Anomaly-cancellation]]
 
-## Depends on
+## Proof sketch
 
-[[Hypercharge-uniqueness]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

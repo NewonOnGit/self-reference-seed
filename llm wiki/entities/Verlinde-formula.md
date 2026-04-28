@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :480
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 14.3"
+tags: [topology, forced]
 ---
+
 # Verlinde formula
 
-**Role:** THEOREM
+> **Theorem 14.3.**  The fusion coefficients recovered from the $S$-matrix:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:480)
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[su2_level3]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

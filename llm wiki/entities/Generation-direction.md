@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :170
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 4.2"
+tags: [core-algebra, forced]
 ---
+
 # Generation direction
 
-**Role:** DOMINATOR
+> **Theorem 4.2.**  $\ker \to \mathrm{im}$ is generative; $\mathrm{im} \to \ker$ is impossible. The kernel IS the source. The image IS the shadow. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:170)
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

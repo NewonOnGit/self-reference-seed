@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :208
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 6.2"
+tags: [tower, forced]
 ---
+
 # Identity preservation
 
-**Role:** DOMINATOR
+> **Theorem 6.2.**  At every tower depth $n$ tested ($n = 0, 1, 2, 3, 4$): $s'^2 = s' + I$, $N'^2 = -I$, $\{s', N'\} = N'$, and $\ker(L_{s'})/\dim(A) = 1/2$. [Tier N]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:208)
+- [[L]]
+- [[Ker-im-decomposition]]
+- [[Tower]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-[[Spin-statistics]], [[Axis-2-is-unattenuated]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

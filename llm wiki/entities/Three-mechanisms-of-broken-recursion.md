@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :657
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 18.2"
+tags: [observer, forced]
 ---
+
 # Three mechanisms of broken recursion
 
-**Role:** THEOREM
+> **Theorem 18.2.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:657)
+- [[Opacity-hardening|Opacity hardening]]
 
-## Depends on
+## Proof sketch
 
-[[Opacity-hardening]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

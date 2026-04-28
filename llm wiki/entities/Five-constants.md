@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :143
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 3.2"
+tags: [core-algebra, forced]
 ---
+
 # Five constants
 
-**Role:** DOMINATOR
+> **Theorem 3.2.**  The algebra produces exactly five independent constants:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:143)
+- [[P]]
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

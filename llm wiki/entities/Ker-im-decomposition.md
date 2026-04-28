@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :75
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 2.2"
+tags: [core-algebra, forced]
 ---
+
 # Ker/im decomposition
 
-**Role:** DOMINATOR
+> **Theorem 2.2.**  $\dim\ker(L_R) = 2$, $\dim\mathrm{im}(L_R) = 2$. The kernel fraction $\ker/A = 1/2$.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:75)
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[ker_im_decomposition]], [[quotient]]
-
-## Required by
-
-(terminal or not yet traced)
+*Proof.* We verify directly that $L(N) = 0$ and $L(NR) = 0$:
 
 ## Source
 

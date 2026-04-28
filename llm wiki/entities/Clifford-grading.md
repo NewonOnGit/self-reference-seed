@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :161
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 4.1"
+tags: [core-algebra, forced]
 ---
+
 # Clifford grading
 
-**Role:** DOMINATOR
+> **Theorem 4.1.**  $M_2(\mathbb{R}) = \mathrm{Cl}(1,1)$. The Sylvester decomposition respects the grading:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:161)
+- [[L]]
 
-## Depends on
+## Proof sketch
 
-[[sector]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

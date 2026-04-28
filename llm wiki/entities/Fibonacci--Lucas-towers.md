@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :155
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 3.4"
+tags: [core-algebra, forced]
 ---
-# Fibonacci  Lucas towers
 
-**Role:** DOMINATOR
+# Fibonacci--Lucas towers
 
-## Statement
+> **Theorem 3.4.**  $[R^n, N] = F(n)[R,N]$, $\{R^n, N\} = L(n)N$. Discriminant towers: $\mathrm{disc}([R^n, N]) = 20F(n)^2$. Twist: $(R^n N)^2$ alternates $I / -I$. Golden convergence: $5F(n)^2 / L(n)^2 \to 1$. [Tier A]
 
-(From paper/paper_v2.md:155)
+## Dependencies
 
-## Depends on
+- [[Tower]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

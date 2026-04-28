@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :93
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 2.4"
+tags: [core-algebra, forced]
 ---
+
 # Spectrum
 
-**Role:** DOMINATOR
+> **Theorem 2.4.**  Eigenvalues of $L_R$: $\{-\sqrt{5}, 0, 0, +\sqrt{5}\}$. On $\mathrm{im} = \mathrm{span}\{I, R_\mathrm{tl}\}$: eigenvalues $\pm\sqrt{5} = \pm\sqrt{\mathrm{disc}}$. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:93)
+- [[P]]
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-[[Vacuum-Einstein]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

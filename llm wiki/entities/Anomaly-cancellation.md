@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :289
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 9.2"
+tags: [physics, forced]
 ---
+
 # Anomaly cancellation
 
-**Role:** DOMINATOR
+> **Theorem 9.2.**  All six conditions satisfied:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:289)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

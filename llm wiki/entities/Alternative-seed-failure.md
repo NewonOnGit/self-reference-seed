@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :194
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 5.2"
+tags: [core-algebra, forced]
 ---
+
 # Alternative seed failure
 
-**Role:** DOMINATOR
+> **Theorem 5.2.**  Among all $(a,b) \in \{1,\ldots,4\}^2$, only $(a,b) = (1,1)$ satisfies $\ker(L) \neq 0$ AND $N^2 = -I$ AND $\{R,N\} = N$ AND $P^2 = P$ simultaneously. [Tier E]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:194)
+- [[P]]
+- [[N]]
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

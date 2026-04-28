@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :369
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 10.6"
+tags: [physics, forced]
 ---
+
 # Cosmological constant from scalar channel
 
-**Role:** DOMINATOR
+> **Theorem 10.6.**  $L(R_\mathrm{tl}) = (\mathrm{disc}/2)I = (5/2)I$. The scalar channel IS $\Lambda$. This value is invariant at every tower depth tested (0--4). [Tier N]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:369)
+- [[Lambda-is-depth-invariant]]
+- [[Tower]]
 
-## Depends on
+## Proof sketch
 
-[[lichnerowicz]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

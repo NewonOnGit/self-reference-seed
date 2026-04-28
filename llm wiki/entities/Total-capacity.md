@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :614
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 17.0b"
+tags: [observer, forced]
 ---
+
 # Total capacity
 
-**Role:** THEOREM
+> **Theorem 17.0b.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:614)
+- [[N]]
+- [[L]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :214
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 6.4"
+tags: [tower, forced]
 ---
+
 # Tower invariants
 
-**Role:** DOMINATOR
+> **Theorem 6.4.**  At every depth tested:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:214)
+- [[Tower]]
+- [[L]]
 
-## Depends on
+## Proof sketch
 
-[[self_model_eigenvalues]], [[invariants]]
-
-## Required by
-
-[[EW-breaking]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

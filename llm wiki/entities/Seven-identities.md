@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :129
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 3.1"
+tags: [core-algebra, forced]
 ---
+
 # Seven identities
 
-**Role:** DOMINATOR
+> **Theorem 3.1.**  For $R, N, J, h = JN, Q = JRJ$:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:129)
+- [[P]]
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

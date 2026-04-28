@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :651
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 18.1"
+tags: [observer, forced]
 ---
+
 # Kernel concentration
 
-**Role:** THEOREM
+> **Theorem 18.1.**  For an observer $K$ with $\ker(L_K) = V_K \subset A$, define the concentration index:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:651)
+- [[N]]
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

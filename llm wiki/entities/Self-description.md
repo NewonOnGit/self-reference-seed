@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :701
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CLOSURE
+theorem: "Thm 19.1"
+tags: [closure, forced]
 ---
-# Self description
 
-**Role:** THEOREM
+# Self-description
 
-## Statement
+> **Theorem 19.1.**  The framework's vocabulary describes the framework. Specifically:
 
-(From paper/paper_v2.md:701)
+## Dependencies
 
-## Depends on
+- [[P]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

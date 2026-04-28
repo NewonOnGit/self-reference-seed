@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :620
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 17.1"
+tags: [observer, forced]
 ---
+
 # Axis 2 is unattenuated
 
-**Role:** THEOREM
+> **Theorem 17.1.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:620)
+- [[Identity-preservation|Identity preservation]]
+- [[Generation-strength|Generation strength]]
 
-## Depends on
+## Proof sketch
 
-[[Generation-strength]], [[Identity-preservation]]
-
-## Required by
-
-[[Cosmological-persistence]]
+*Proof.* The generation decay measures how much of $\mathrm{im}$ is sourced by $\ker$ self-products under $L_{R,R}$. This quantity depends on the rank of the $\ker \times \ker$ product space projected into $\mathrm{im}$, which freezes at 64 (Theorem 7.1). The decay $\sigma(n) \to 0$ reflects the growing gap between this frozen rank and the exponentially growing $\dim(\mathrm{im})$.
 
 ## Source
 

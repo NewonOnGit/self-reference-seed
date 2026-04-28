@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :99
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 2.4c"
+tags: [core-algebra, forced]
 ---
+
 # Hilbert space from asymmetry
 
-**Role:** DOMINATOR
+> **Theorem 2.4c.**  The asymmetry $P \neq P^T$ canonically produces a positive-definite Hermitian inner product.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:99)
+- [[P]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+*Proof.* $P \neq P^T$ means the transposition map $X \mapsto X^T$ acts nontrivially on the algebra. Define the Cartan involution $\theta(X) = -X^T$. This is a Lie algebra automorphism of $\mathfrak{sl}(2,\mathbb{R})$: $\theta([X,Y]) = [\theta(X),\theta(Y)]$ (verified on all bracket pairs). It acts as $\theta(R_\mathrm{tl}) = -R_\mathrm{tl}$, $\theta(N) = +N$, $\theta(h) = -h$. The modified Killing form:
 
 ## Source
 

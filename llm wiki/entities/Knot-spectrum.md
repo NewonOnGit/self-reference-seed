@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :454
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 13.4"
+tags: [topology, forced]
 ---
+
 # Knot spectrum
 
-**Role:** THEOREM
+> **Theorem 13.4.**  Since $q = \varphi^2 = \varphi + 1$ satisfies $q^2 = 3\varphi + 2 \in \mathbb{Z}[\varphi]$, every Laurent polynomial in $q$ with integer coefficients evaluates to an element of $\mathbb{Z}[\varphi]$. Therefore $V(K)|_{q=\varphi^2} \in \mathbb{Z}[\varphi]$ for ALL knots $K$. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:454)
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

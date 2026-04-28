@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :536
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.6"
+tags: [topology, forced]
 ---
+
 # Bell state
 
-**Role:** THEOREM
+> **Theorem 15.6.**  $|\Phi^+\rangle = \mathrm{CNOT}(H \otimes I)|00\rangle = (|00\rangle + |11\rangle)/\sqrt{2}$. Entanglement from framework generators alone — no quantum mechanics postulated. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:536)
+- [[CNOT-from-framework-generators]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

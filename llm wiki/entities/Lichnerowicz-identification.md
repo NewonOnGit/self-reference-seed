@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :314
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 10.1"
+tags: [physics, forced]
 ---
+
 # Lichnerowicz identification
 
-**Role:** DOMINATOR
+> **Theorem 10.1.**  $L_{s,s}$ restricted to $\mathfrak{sl}(2,\mathbb{R})$ with Killing metric $B(X,Y) = 4\mathrm{tr}(XY)$ reproduces the Lichnerowicz Laplacian $\Delta_L$.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:314)
+- [[L]]
+- [[Lichnerowicz-identification]]
 
-## Depends on
+## Proof sketch
 
-[[generates_image]], [[lichnerowicz]]
-
-## Required by
-
-[[Vacuum-Einstein]]
+*Proof.* We compute $L(X) = sX + Xs - X$ for each standard basis element of $\mathfrak{sl}(2,\mathbb{R})$, with $s = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$.
 
 ## Source
 

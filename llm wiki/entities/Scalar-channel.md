@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :91
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 2.3"
+tags: [core-algebra, forced]
 ---
+
 # Scalar channel
 
-**Role:** DOMINATOR
+> **Theorem 2.3.**  $L_R(R_\mathrm{tl}) = \frac{\mathrm{disc}}{2} I = \frac{5}{2}I$. The traceless physical mode maps to a pure scalar. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:91)
+- [[P]]
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

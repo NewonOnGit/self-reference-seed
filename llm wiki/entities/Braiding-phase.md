@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :494
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.1"
+tags: [topology, forced]
 ---
+
 # Braiding phase
 
-**Role:** THEOREM
+> **Theorem 15.1.**  The topological spin of the $\tau$ anyon: $\theta_\tau = e^{4\pi i/5}$. From $N$-rotation: $\cos(4\pi/5) = -\varphi/2$, $\cos(2\pi/5) = \bar\varphi/2$. The discriminant divides the circle into 5 parts. Braiding statistics are disc acting through $N$. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:494)
+- [[Fusion--persistence]]
+- [[Braiding-phase]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

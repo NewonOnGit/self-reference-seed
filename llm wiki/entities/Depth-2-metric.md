@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :265
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 8.5"
+tags: [tower, forced]
 ---
-# Depth 2 metric
 
-**Role:** DOMINATOR
+# Depth-2 metric
 
-## Statement
+> **Theorem 8.5.**  The Clifford metric $\eta_{ij} = \frac{1}{2}\{\gamma_i, \gamma_j\}$ has signature $(3,1)$. [Tier N]
 
-(From paper/paper_v2.md:265)
+## Dependencies
 
-## Depends on
+- [[Clifford-grading]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

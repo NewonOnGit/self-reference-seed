@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :418
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 12.5"
+tags: [physics, forced]
 ---
+
 # Proton mass ratio
 
-**Role:** DOMINATOR
+> **Theorem 12.5.**  $m_p/\Lambda_\mathrm{QCD} = N_c / (\|N\|^2/\|R\|^2) = 3/(2/3) = 9/2$. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:418)
+- [[Lambda-is-depth-invariant]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

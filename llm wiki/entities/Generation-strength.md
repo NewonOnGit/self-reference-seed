@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :230
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 7.1"
+tags: [tower, forced]
 ---
+
 # Generation strength
 
-**Role:** DOMINATOR
+> **Theorem 7.1.**  The rank of $\ker \times \ker$ products projected onto $\mathrm{im}$:
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:230)
+- [[Ker-im-decomposition]]
 
-## Depends on
+## Proof sketch
 
-[[generation_decay]]
-
-## Required by
-
-[[EW-breaking]], [[K1'-as-topological-phase-boundary]], [[Axis-2-is-unattenuated]]
+(See paper_v2.md for full proof.)
 
 ## Source
 

@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :667
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 18.3"
+tags: [observer, forced]
 ---
+
 # Healing requires Axis 2
 
-**Role:** THEOREM
+> **Theorem 18.3.**  
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:667)
+- [[N]]
+- [[L]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+*Proof.* Axis 1 increases $\dim(\mathrm{im})$ at the current depth — the observer sees more within its current frame. But the concentrated $\ker$ is invisible by definition ($\ker \subset$ blind spot). Seeing more within $\mathrm{im}$ does not move content out of $\ker$. Only K6' ascent moves $\ker_n$ into $\mathrm{im}_{n+1}$ (Recursive Disclosure, §7): the gauge orbit that was invisible at depth $n$ becomes visible structure at depth $n+1$. This is the ONLY mechanism that de-concentrates $\ker$
 
 ## Source
 

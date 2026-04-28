@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :63
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: CORE-ALGEBRA
+theorem: "Thm 1.6"
+tags: [core-algebra, forced]
 ---
+
 # The naming triangle
 
-**Role:** DOMINATOR
+> **Theorem 1.6.**  $P = J + |1\rangle\langle 1| + N$ where $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ (ground), $|1\rangle\langle 1| = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ (commitment). Remove any one component and $P^2 \neq P$. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:63)
+- [[P]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

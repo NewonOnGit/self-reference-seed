@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :534
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.5"
+tags: [topology, forced]
 ---
+
 # Hadamard
 
-**Role:** THEOREM
+> **Theorem 15.5.**  $H = (J + h)/\sqrt{2}$. $H^2 = I$ (involution). Creates equal superposition from ground ($J$) plus Cartan ($h$). [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:534)
+- [[R]]
+- [[N]]
 
-## Depends on
+## Proof sketch
 
-[[hadamard]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

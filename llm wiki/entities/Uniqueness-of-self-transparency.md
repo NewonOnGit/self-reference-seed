@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :574
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 16.3"
+tags: [observer, forced]
 ---
-# Uniqueness of self transparency
 
-**Role:** THEOREM
+# Uniqueness of self-transparency
 
-## Statement
+> **Theorem 16.3.**  Among all generators $\{R, N, J, h, P, Q\}$, only $N$ has $\ker(L_{X,X}) = 0$.
 
-(From paper/paper_v2.md:574)
+## Dependencies
 
-## Depends on
+- [[Ker-im-decomposition]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

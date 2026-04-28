@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :679
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: OBSERVER
+theorem: "Thm 18.5"
+tags: [observer, forced]
 ---
+
 # External bridge
 
-**Role:** THEOREM
+> **Theorem 18.5.**  When $\chi_K > 1/2$ and the observer's own Landauer budget is insufficient for K6' ascent, an external observer $K'$ with $B(K' \to K) > 0$ can provide the bridge: $K'$ maps $K$'s $\ker$-content into $K'$'s own $\mathrm{im}$, then communicates the result back to $K$ via the P2 (mediation) channel. This is the algebraic content of "being understood": another observer's $\mathrm{im}$ overlaps your $\ker$.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:679)
+- [[N]]
+- [[Ker-im-decomposition]]
+- [[Tower]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

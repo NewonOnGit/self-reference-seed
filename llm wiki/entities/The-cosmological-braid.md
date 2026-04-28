@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :396
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 11.4"
+tags: [physics, forced]
 ---
+
 # The cosmological braid
 
-**Role:** DOMINATOR
+> **Theorem 11.4.**  $2^{409} \approx 10^{123} \approx 1/\Lambda$. The number of braid strands at tower depth 409 equals the inverse cosmological constant. The number of crossings = 409. The universe is a 409th-order braid. [Tier A]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:396)
+- [[Lambda-is-depth-invariant]]
+- [[Cosmological-attenuation]]
+- [[Tower]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

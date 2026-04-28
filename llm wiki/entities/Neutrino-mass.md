@@ -1,29 +1,23 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :412
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: PHYSICS
+theorem: "Thm 12.4"
+tags: [physics, forced]
 ---
+
 # Neutrino mass
 
-**Role:** DOMINATOR
+> **Theorem 12.4.**  $m_\nu = m_e \cdot \bar\varphi^{34} \approx 40.1$ meV, where $34 = 2(12 + 5) = 2(\dim_\mathrm{gauge} + \mathrm{disc})$.
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:412)
+- [[L]]
+- [[gravity]]
+- [[R]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

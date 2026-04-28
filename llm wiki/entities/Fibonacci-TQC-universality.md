@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :554
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 15.8"
+tags: [topology, forced]
 ---
+
 # Fibonacci TQC universality
 
-**Role:** THEOREM
+> **Theorem 15.8.**  The braid generators $\sigma_1 = R_\mathrm{braid}$ (diagonal phases $e^{-4\pi i/5}, e^{3\pi i/5}$) and $\sigma_2 = F R_\mathrm{braid} F$ (where $F$ is the Fibonacci F-matrix with entries $\bar\varphi$ and $1/\sqrt{\varphi}$, $F^2 = I$) satisfy the braid relation $\sigma_1 \sigma_2 \sigma_1 = \sigma_2 \sigma_1 \sigma_2$ and generate a dense subgroup of $\mathrm{SU}(2)$ on the computational subspace (Freedman--Kitaev--Larsen--Wang 2003). Any single-qubit gate can be approximated to precision $\varepsilon$ using $O(\log^{3.97}(1/\varepsilon))$ braids. Each braid is topologically protected by the $\mathrm{SU}(2)_3$ Fibonacci category. [Tier A for the braid relation; universality is an external theorem applied to framework-derived data]
 
-## Statement
+## Dependencies
 
-(From paper/paper_v2.md:554)
+- [[Fusion--persistence]]
 
-## Depends on
+## Proof sketch
 
-[[P]]
-
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

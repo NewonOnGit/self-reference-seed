@@ -1,29 +1,21 @@
 ---
 type: entity
-status: unknown
-role: THEOREM
-node_class: theorem
-tags: [theorem, THEOREM, auto-generated]
-sources:
-  seed: :452
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOPOLOGY
+theorem: "Thm 13.3"
+tags: [topology, forced]
 ---
-# R matrix eigenvalues
 
-**Role:** THEOREM
+# R-matrix eigenvalues
 
-## Statement
+> **Theorem 13.3.**  The Yang--Baxter $R$-matrix for $U_{\varphi^2}(\mathfrak{sl}_2)$ has eigenvalues $\{\varphi, 1, 1, \bar\varphi\}$. The symmetric sector eigenvalue is $\varphi$ (production); the antisymmetric is $\bar\varphi$ (contraction). [Tier A]
 
-(From paper/paper_v2.md:452)
+## Dependencies
 
-## Depends on
+- [[R]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 

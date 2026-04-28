@@ -1,29 +1,22 @@
 ---
 type: entity
-status: unknown
-role: DOMINATOR
-node_class: theorem
-tags: [theorem, DOMINATOR, auto-generated]
-sources:
-  seed: :254
-  file: paper/paper_v2.md
-generated: 2026-04-28
+role: TOWER
+theorem: "Thm 8.3"
+tags: [tower, forced]
 ---
-# Depth 2 Clifford structure
 
-**Role:** DOMINATOR
+# Depth-2 Clifford structure
 
-## Statement
+> **Theorem 8.3.**  At depth 2 ($d_K = 8$, $\dim A = 64$):
 
-(From paper/paper_v2.md:254)
+## Dependencies
 
-## Depends on
+- [[Tower]]
+- [[L]]
 
-[[P]]
+## Proof sketch
 
-## Required by
-
-(terminal or not yet traced)
+(See paper_v2.md for full proof.)
 
 ## Source
 
