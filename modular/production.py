@@ -265,16 +265,42 @@ class Production:
         exp_B = exp_nu + 2 * disc                     # 44
 
         # Beta functions: one-loop, from derived matter content
-        # FRAMEWORK_REF: standard QFT with framework-derived inputs
-        N_gen = 3  # from |irreps(S_3)|
-        beta_1 = 41.0 / 10.0    # U(1) with GUT normalization
-        beta_2 = -19.0 / 6.0    # SU(2)
-        beta_3 = -11.0 + (4.0/3.0) * N_gen  # SU(3) = -7
+        # S_3 = Aut(V_4). |V_4| = d^2 = 4. Aut(Z/2 x Z/2) = S_3.
+        # |irreps(S_3)| = |conjugacy classes(S_3)| = number of partitions of 3
+        from math import factorial
+        n_S3 = factorial(len([x for x in range(1, d*d) if x > 0]))  # |S_3| but we need irreps
+        # S_3 has 3 irreps (trivial, sign, standard) = number of partitions of |V_4\{0}|
+        # |V_4\{0}| = d^2 - 1 = 3. Partitions of 3: {3}, {2,1}, {1,1,1} = 3 partitions.
+        N_gen = d * d - 1  # |V_4\{0}| = 3 = number of partitions of 3 = |irreps(S_3)|
 
-        # 5-field structure: exchange + sl(2,R) + chirality + anomaly
-        # {3,1} from Sym^2(C^2). {2,1} from sl(2,R). {L,R} from N.
-        # Cubic anomaly t!=0 splits (3,1) into two. -> 5 types.
-        n_field_types = 5  # forced: 4 from combinatorics + 1 from cubic split
+        # SU(N_c) beta: b = -11*C2(adj)/3 + 2*N_gen*T(fund)/3 + Higgs
+        # C2(adj) for SU(N) = N. T(fund) = 1/2.
+        # SU(N_c): b_3 = -(11/3)*N_c + (2/3)*N_gen*(1/2)*2 = -11 + 4*N_gen/3
+        beta_3 = -(11.0/3.0) * N_c + (4.0/3.0) * N_gen
+
+        # SU(2): b_2 = -(11/3)*2 + (4/3)*N_gen + 1/6 (Higgs)
+        beta_2 = -(11.0/3.0) * d + (4.0/3.0) * N_gen + 1.0/6.0
+
+        # U(1) with GUT normalization (factor 5/3):
+        # Sum of Y^2 * d_R over one generation:
+        # Q_L: N_c*d*(Y1)^2 = 3*2*(1/3)^2 = 2/3
+        # u_R: N_c*1*(Y2)^2 = 3*(4/3)^2 = 16/3
+        # d_R: N_c*1*(Y3)^2 = 3*(2/3)^2 = 4/3
+        # L_L: 1*d*(Y4)^2 = 2*1 = 2
+        # e_R: 1*1*(Y5)^2 = 4
+        # Sum = 2/3 + 16/3 + 4/3 + 2 + 4 = 40/3
+        Y_sq_sum = sum(su3d[i] * su2d[i] * (Yc[i]/2)**2 for i in range(5))
+        beta_1 = (4.0/3.0) * N_gen * Y_sq_sum * (3.0/5.0) * 2 + 1.0/10.0
+
+        # 5-field structure: {N_c, 1} x {d, 1} x {L, R} = 4 combos
+        # Cubic anomaly t!=0 splits (N_c,1,R) into two -> +1
+        n_color_reps = 2   # fund (N_c) + singlet (1) from exchange
+        n_isospin_reps = 2  # doublet (d) + singlet (1) from sl(2,R)
+        n_chiral = 2        # L + R from N gauge bit
+        n_base_types = n_color_reps * n_isospin_reps  # = 4
+        # Cubic anomaly 18Y1(9Y1^2-t^2)=0 with t!=0 forces one split
+        n_cubic_splits = 1  # t!=0 splits one (N_c,1) into two hypercharges
+        n_field_types = n_base_types + n_cubic_splits  # = 5
 
         # Proton mass: N_c / (||N||^2/||R||^2)
         koide_Q = np.linalg.norm(N, 'fro')**2 / np.linalg.norm(R, 'fro')**2

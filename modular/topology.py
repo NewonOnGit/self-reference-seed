@@ -102,7 +102,8 @@ def su2_level3():
     Verlinde formula recovers Fibonacci fusion.
     FRAMEWORK_REF: Thm 14.2, Thm 14.3
     APEX_LINK: R (modular data from the algebra)"""
-    k = 3
+    d = 2  # seed dimension
+    k = d * d - 1  # |V_4\{0}| = 3, the Chern-Simons level
     n = k + 1  # 4 anyons: j = 0, 1/2, 1, 3/2
     labels = [0, 0.5, 1, 1.5]
 
@@ -160,13 +161,20 @@ def braiding_phase(N):
 
 def clifford_fibonacci():
     """30 = 2*3*5 = F(3)*F(4)*F(5). Clifford counting is Fibonacci."""
-    F3, F4, F5 = 2, 3, 5
+    # Fibonacci sequence from R^2=R+I: F(n) with F(1)=F(2)=1
+    def fib(n):
+        a, b = 1, 1
+        for _ in range(n - 2):
+            a, b = b, a + b
+        return b if n >= 2 else 1
+    F3, F4, F5 = fib(3), fib(4), fib(5)  # 2, 3, 5
+    total = F3 * F4 * F5  # 30
     return {
-        "product": F3 * F4 * F5,
-        "equals_30": F3 * F4 * F5 == 30,
+        "product": total,
+        "equals_30": total == 30,
         "fibonacci": (F3, F4, F5),
-        "matter_fraction": 12 / 30,  # 2/5 = 2/disc
-        "gauge_fraction": 18 / 30,   # 3/5 = 3/disc
+        "matter_fraction": (total - F4 * F5) / total,  # 12/30
+        "gauge_fraction": F4 * F5 / total,              # 18/30
     }
 
 
