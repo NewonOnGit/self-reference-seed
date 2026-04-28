@@ -562,31 +562,38 @@ def main():
         print(f"LINT {'PASS' if all_pass else 'ISSUES FOUND'}")
         return
 
-    # Generate (only for code nodes that don't have wiki pages yet)
-    print("[gen] Checking wiki coverage...")
-    existing_entities = set(f.stem for f in ENTITIES.glob("*.md")) if ENTITIES.exists() else set()
-    missing = []
-    for n in code_nodes:
-        if n["node_class"] == "code" and n["canonical"] not in existing_entities:
-            # Only generate for top-level classes/important functions
-            if n["name"].split(".")[1][0].isupper():  # Classes
-                missing.append(n)
+    # Generate wiki pages using forcing-path classifier
+    print("[cls] Running forcing-path classifier...")
+    from classifier import classify
+    selected = classify(code_nodes, paper_nodes, wiki_nodes, paper_edges)
 
-    print(f"     Existing entity pages: {len(existing_entities)}")
-    print(f"     Code nodes without pages: {len(missing)}")
+    existing_entities = set(f.stem for f in ENTITIES.glob("*.md")) if ENTITIES.exists() else set()
+    # Also check chains
+    existing_all = existing_entities.copy()
+    if CHAINS.exists():
+        existing_all |= set(f.stem for f in CHAINS.glob("*.md"))
+
+    missing = [n for n in selected if n["canonical"] not in existing_all
+               and n.get("name", "").replace(" ", "-") not in existing_all]
+
+    core_count = sum(1 for n in selected if n.get("wiki_role") in ("APEX","AXIOM","MASTER","DOMINATOR","LEAF"))
+    print(f"     Classifier selected: {len(selected)} nodes ({core_count} CORE)")
+    print(f"     Existing pages: {len(existing_all)}")
+    print(f"     Missing pages: {len(missing)}")
 
     created = 0
     if missing and "--no-gen" not in sys.argv:
         ENTITIES.mkdir(parents=True, exist_ok=True)
         for n in missing:
             page = generate_entity_page(n)
-            out_path = ENTITIES / f"{n['canonical']}.md"
+            safe_name = n["canonical"].replace(" ", "-").replace("/", "-").replace("$", "").replace("\\", "")[:50]
+            out_path = ENTITIES / f"{safe_name}.md"
             if not out_path.exists():
                 out_path.write_text(page, encoding="utf-8")
                 created += 1
         print(f"     Created {created} new entity pages")
     elif missing:
-        print(f"     Candidates for generation: {[m['canonical'] for m in missing[:10]]}")
+        print(f"     Top candidates: {[m['canonical'][:30] for m in missing[:10]]}")
     print()
 
     # Summary
