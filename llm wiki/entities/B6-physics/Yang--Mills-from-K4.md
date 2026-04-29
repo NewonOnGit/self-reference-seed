@@ -1,7 +1,7 @@
 ---
 type: entity
 role: PHYSICS
-theorem: "Thm 12.7"
+theorem: "Thm 12.8"
 tags: [b6-physics, physics, forced]
 ---
 

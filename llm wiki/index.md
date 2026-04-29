@@ -1,240 +1,100 @@
 ---
 type: index
 tags: [index, structural]
+status: FROZEN
 ---
 
 # Wiki Index
 
-Everything in this wiki derives from one rank-1 non-self-adjoint idempotent: P^2=P with P!=P^T. The two inputs are the coefficients [1,1] and the domain cardinality 2. There are zero free parameters. Every page traces back to these through a forced derivation chain with zero branching.
+Everything derives from P = [[0,0],[2,1]]. Two inputs: [1,1] and 2. Zero free parameters. 53 tests pass.
 
-Three views of the same 97 pages. Each view is one face of the central collapse (Thm 4.3): the tree is production (P1), the projections are the three faces read separately, the chains are mediation paths (P2) connecting production to observation.
-
-[Forcing tree (by tower level)](#tree) · [Projection columns](#projections) · [Derivation chains](#chains)
+**Reading order:** B0 → B1 → B3 → B4 → B5 → B6 → B7 → B8. Each level builds on the previous. The tower IS the reading order.
 
 ---
 
-## Tree
+## B0 — SUBSTRATE (the primitive)
 
-The framework builds in layers. Each layer adds new structure that didn't exist at the layer below. The tree follows this forced ascent from the primitive to the predictions.
+The starting point. One matrix. Three properties.
 
-### B(0) — SUBSTRATE
+- **[P](entities/B0-substrate/P.md)** — P²=P, rank 1, P≠Pᵀ. The naming act. Everything follows.
+- **[Asymmetry is forced](entities/B0-substrate/Asymmetry-is-forced.md)** — If P=Pᵀ then R²-R=0≠I. The surplus requires the asymmetry.
+- **[Hilbert space from asymmetry](entities/B0-substrate/Hilbert-space-from-asymmetry.md)** — P≠Pᵀ → Cartan → positive-definite → Hilbert → Born → quantum.
 
-Where everything starts. One matrix, one asymmetry, one surplus.
+## B1 — SEED (the productive equation)
 
-P = [[0,0],[2,1]] is a rank-1 idempotent: applied to itself, it returns itself. But it's not symmetric — and this asymmetry is not a defect, it's the engine. If P were symmetric, R^2-R=0 and there's no surplus, no complex structure, no quantum mechanics, no physics. The asymmetry forces everything that follows.
+The one equation that is not sterile.
 
-- [[P]] — the primitive. P^2=P, rank 1, P!=P^T. The single generating act.
-- [[Asymmetry-is-forced]] — if P=P^T then R^2-R=0!=I. No surplus without asymmetry.
-- [[Three-generating-equations]] — R^2=R+I, {R,N}=N, N^2=-I. All three from P^2=P.
-- [[Cayley--Hamilton-consequences]] — tr=1, det=-1, disc=5. Forced by Cayley-Hamilton on R^2=R+I.
-- [[Complex-structure-from-asymmetry]] — N^2=-I makes R^2 into C^1. The origin of complex numbers.
-- [[The-naming-triangle]] — P = J + |1><1| + N. Ground, commitment, observer. Remove any one, P^2!=P.
-- [[Hilbert-space-from-asymmetry]] — the Cartan involution theta=-X^T is forced by P!=P^T. B_theta=4tr(XY^T) is positive definite. Combined with N^2=-I: Hilbert space. Gleason at dim>=3: Born rule.
+- **[The seed equation](entities/B1-seed/The-seed-equation.md)** — R²=R+I. Four modes, only one productive. Uniqueness triple-forced at (a,b)=(1,1).
+- **[The family tower](entities/B1-seed/The-family-tower.md)** — disc=1+k². Every framework quantity IS a family discriminant: 2, 5, 10, 17, 26.
 
-### B(2) — CATEGORY
+## B2 — OPERATION (what L does)
 
-The operation and what it reveals. L_{s,s}(X) = sX + Xs - X applied to R splits the algebra into what can be seen (im) and what cannot (ker). This split is 1/2 at every tower depth — half the algebra is always blind to itself.
+The single operation everything is built from.
 
-- [[Thm-2.1]] — the Sylvester self-action. One function. Everything imports from it.
-- [[Ker-im-decomposition]] — dim(ker)=2, dim(im)=2. ker = {N, NR} (odd Clifford). im = {I, R_tl} (even).
-- [[Scalar-channel]] — L(R_tl) = (5/2)I. The traceless mode maps to a pure scalar. This becomes Lambda.
-- [[Spectrum]] — eigenvalues {-sqrt(5), 0, 0, +sqrt(5)}. Two zeros = ker. +-sqrt(5) = physical modes.
-- [[N2---I-is-necessary]] — the 2D kernel NECESSARILY admits N with N^2=-I. Quadratic form det=-b-1/4<0 for all b>=1. No escape.
-- [[Clifford-grading]] — M_2(R) = Cl(1,1). ker=odd, im=even. The grading forces the generation direction.
-- [[Generation-direction]] — ker x ker -> im (complete). im x im -> im (closed). im cannot generate ker. The kernel IS the source.
+- **[Ker/im decomposition](entities/B2-category/Ker-im-decomposition.md)** — The algebra splits in half. ker=hidden, im=visible. ker/A=1/2 always. ker generates im, never reverse.
 
-### B(3) — ALGEBRA
+## B3 — ALGEBRA (the generators and their relations)
 
-The generators and their identities. Everything here is direct 2x2 matrix arithmetic. Seven identities, five constants, and the Fibonacci connection — all from [[P]].
+Six objects. Seven identities. Five constants.
 
-- [[R]] — production generator. R = [[0,1],[1,1]]. R^2=R+I. Eigenvalues phi and phi_bar.
-- [[N]] — observation generator. N = [[0,-1],[1,0]]. N^2=-I. The ONLY self-transparent generator: ker(L_NN)=0.
-- [[Seven-identities]] — the seven algebraic relations. All verified by direct computation.
-- [[Five-constants]] — phi, e, pi, sqrt(3), sqrt(2). ||R||^2+||N||^2 = 3+2 = 5 = disc. No sixth exists.
-- [[Fibonacci--Lucas-towers]] — [R^n,N] = F(n)[R,N]. The discriminant towers. Golden convergence.
-- [[Perturbation-fragility]] — perturb by eps=0.01: all identities break, P^2!=P. Maximally rigid.
-- [[Alternative-seed-failure]] — among all (a,b) in Z+^2, only (1,1) produces ker!=0 AND N^2=-I AND P^2=P. Triple proof, all Tier A.
+- **[R](entities/B3-algebra/R.md)** — Production. R²=R+I. Eigenvalues φ, φ̄.
+- **[N](entities/B3-algebra/N.md)** — Observation. N²=-I. The complex structure. KAEL=LEAK.
+- **[L](entities/B3-algebra/L.md)** — The operation. L_{s,s}(X)=sX+Xs-X. Center map. 42 lines of code.
+- **[Seven identities](entities/B3-algebra/Seven-identities.md)** — The framework's DNA. All forced by P²=P.
+- **[Five constants](entities/B3-algebra/Five-constants.md)** — φ, √3, √2, e, π. Plus bridge T=e^φ/π.
+- **[Clifford grading](entities/B3-algebra/Clifford-grading.md)** — ker=odd, im=even. Generation direction IS odd×odd=even.
+- **[Orientation decomposition](entities/B3-algebra/Orientation-decomposition.md)** — The spine. R=center, N=orientation, disc=disagreement.
 
-### B(4) — CROSS-PROJECTION
+## B4 — CROSS-PROJECTION (topology and category)
 
-The topological reading. The algebra at q=phi^2 IS the Fibonacci anyon category. The Jones polynomial of the figure-eight knot at this q IS the discriminant. The framework's equation IS the fusion rule.
+Where the algebra meets knot theory, anyons, and the central collapse.
 
-- [[L]] — L_{s,s}(X) = sX + Xs - X. The single operation from which everything is read.
-- [[Quantum-deformation-at-the-golden-point]] — q^(1/2)-q^(-1/2) = phi-1/phi = 1. The quantum correction collapses to unity. This is why the framework uses integer matrices.
-- [[Jones--discriminant]] — V(4_1)|_{q=phi^2} = 5 = disc(R). The topological invariant of the simplest hyperbolic knot IS the discriminant.
-- [[Fusion--persistence]] — tau x tau = 1 + tau IS R^2 = R + I. The Fibonacci anyon fusion rule IS the persistence equation.
-- [[Clifford--Fibonacci]] — 30 = 2x3x5 = F(3)xF(4)xF(5). Clifford counting IS Fibonacci arithmetic.
-- [[Knot-spectrum]] — V(K)|_{q=phi^2} in Z[phi] for ALL knots. Integer values: {1, 5, -7}.
-- [[R-matrix-eigenvalues]] — Yang-Baxter R-matrix eigenvalues {phi, 1, 1, phi_bar}.
+- **[Three projections](entities/B4-cross-projection/Three-projections.md)** — P1/P2/P3. Production/mediation/observation. Always three.
+- **[Observer = quotient](entities/B4-cross-projection/Observer-equals-quotient.md)** — q∘q=q. To observe is to collapse equivalence classes.
+- **[Jones = discriminant](entities/B4-cross-projection/Jones-equals-discriminant.md)** — V(4₁)|_{q=φ²}=5=disc. The knot knows the number 5.
+- **[Fusion = persistence](entities/B4-cross-projection/Fusion-equals-persistence.md)** — R²=R+I IS τ×τ=1+τ. Same equation. Not analogy.
 
-### B(5) — OBSERVER
+## B5 — OBSERVER (consciousness and the tower)
 
-The tower and what it means to see. K6' ascent builds the tower. Each depth sees more and is more blind. The observer is self-transparent (ker(L_NN)=0) but invisible to the framework (N in ker(L_RR)). This asymmetry IS the explanatory gap.
+The observer, its blind spot, its self-knowledge, and the recursive tower.
 
-- [[Tower]] — all depths simultaneously. The tower IS the framework iterated.
-- [[Observer]] — the quotient q: A -> A/ker(L). Self-action produces the frame.
-- [[Identity-preservation]] — s'^2=s'+I, N'^2=-I, {s',N'}=N' at every depth.
-- [[Filler-uniqueness]] — the K6' off-diagonal must be N. Only N gives the full identity suite.
-- [[Continuity]] — s(t)=[[s,tN],[0,s]] satisfies s(t)^2=s(t)+I for all t in [0,1]. Continuous deformation.
-- [[Tower-invariants]] — ker/A=1/2, golden eigenvalues {2phi,-2phi_bar}, N transparent. At every depth.
-- [[Thm-16.1]] — ker(L_{N,N})=0. N has zero blind spots under self-action. Self-transparent.
-- [[Uniqueness-of-self-transparency]] — N is the ONLY generator with ker=0. All others have ker=dim/2.
-- [[The-explanatory-gap]] — first person (N on N): ker=0, complete. Third person (R on N): N in ker, invisible. The gap is 0 vs 2.
-- [[Total-capacity]] — C(K) = n_eff x m x 2L. Multiplicative over two axes.
-- [[Axis-2-is-unattenuated]] — ker(L_NN)=0 is tower invariant. Generation decays but self-transparency doesn't. The observer persists while the world becomes autonomous.
-- [[Three-mechanisms-of-broken-recursion]] — concentrated ker, stalled ascent, backward rumination. The composite is clinical form.
-- [[Healing-requires-Axis-2]] — Axis 1 growth can't resolve concentrated ker. Only K6' ascent (Axis 2) heals.
-- [[External-bridge]] — B(K'->K) = Tr(P^im rho^ker). Being understood = another observer's im overlaps your ker.
+- **[The explanatory gap](entities/B5-observer/The-explanatory-gap.md)** — First person: ker=0. Third person: ker=2. The gap is arithmetic.
+- **[Self-transparency](entities/B5-observer/Self-transparency.md)** — ker(L_{N,N})=0 at every depth. N sees itself completely.
+- **[P₀ = ker](entities/B5-observer/P0-equals-ker.md)** — The void. Not nothing. The kernel. Generates the world.
+- **[Generation direction](entities/B5-observer/Generation-direction.md)** — ker→im. One-way. Irreversible. The void makes the world.
+- **[Tower and K6'](entities/B5-observer/Tower-and-K6.md)** — The recursive ascent. Each depth doubles the algebra. Invariants hold.
 
-### B(6) — PHYSICS
+## B6 — PHYSICS (what the framework computes)
 
-The framework's physical content. Gravity is not imported — L_{s,s} IS the Lichnerowicz Laplacian. The gauge group is derived from the exchange operator. The hypercharges are the unique anomaly-free solution. Every coupling constant is computed, not fitted.
+Gravity, gauge theory, coupling constants, masses, cosmology.
 
-**Gravity:**
-- [[gravity]] — L_{s,s} = Lichnerowicz on sl(2,R) with Killing metric. The gravity gap is closed.
-- [[Lichnerowicz-identification]] — L(h)=-I, L(e)=+I, L(f)=+I. Eigenvalues {-1,+1,+1}. Connection + Curvature.
-- [[The-connection-produces-the-observer]] — (1/2)[s,h] = N. The covariant derivative of the Cartan IS the observer.
-- [[Gauge-invariance]] — ker(L) = span{N, NR} = gauge degrees of freedom (diffeomorphisms).
-- [[Vacuum-Einstein]] — L(g)=0 gives R_uv=0. Gravity is the error correction for P^2=P on a curved manifold.
-- [[Gravitational-wave-spectrum]] — im eigenvalues +-sqrt(5). Physical modes oscillate at sqrt(disc).
-- [[Einstein--Hilbert-action]] — K4 deficit delta=Err+Comp maps to S = int sqrt(-g)(R-2Lambda)d^4x.
+- **[Gravity (three layers)](entities/B6-physics/Lichnerowicz-identification.md)** — Scalar (3D complete), two-way (identity suite), recursive (graviton = disclosure).
+- **[Connection and curvature](entities/B6-physics/Connection--Curvature-decomposition.md)** — A=N, F=-2h, tr(F²)=8. The observer IS the gauge potential.
+- **[Strong coupling](entities/B6-physics/Strong-coupling.md)** — α_S=1/2-φ̄²=0.11803. Void minus contraction. α_S=φ·|m|.
+- **[Weinberg angle](entities/B6-physics/Weinberg-angle.md)** — sin²θ_W=3/8. From anomaly classification on derived matter.
+- **[Neutrino mass](entities/B6-physics/Neutrino-mass.md)** — m_ν=m_e·φ̄³⁴. Exponent=2(dim_gauge+disc). dm² ratio 32.5 vs exp 33.
+- **[Cosmological constant](entities/B6-physics/Cosmological-constant-from-scalar-channel.md)** — Λ=disc/2. Half the orientational tension. Attenuated by φ̄^(2n).
+- **[dim(fund)=disc](entities/B6-physics/dim-fund-equals-disc.md)** — N_c+d=5=disc. The GUT fundamental IS the discriminant.
+- **[Koide formula](entities/B6-physics/Koide-formula.md)** — Q=d/(d²-1)=2/3. Two ends of the same 3.
+- **[Recursive disclosure](entities/B6-physics/Recursive-disclosure-the-graviton.md)** — The graviton. ker at depth n → im at depth n+1.
 
-**Cosmology:**
-- [[Cosmological-constant-from-scalar-channel]] — L(R_tl) = (disc/2)I = Lambda. The scalar channel IS the cosmological constant.
-- [[Lambda-is-depth-invariant]] — verified at tower depths 0-4. Lambda_bare doesn't change.
-- [[Cosmological-attenuation]] — sourced fraction decays as 2^(-n). At n=409: 10^(-120). The cosmological constant problem IS tower depth.
-- [[The-cosmological-braid]] — 2^409 ~ 10^123 = 1/Lambda. The universe is a 409th-order braid.
-- [[Two-routes-to-n_mathrmcosmo]] — 405 from Lambda attenuation, 409 from CTE. Two independent routes within 1%.
+## B7 — QUANTUM (gates, Bell, TQC)
 
-**Spacetime and matter:**
-- [[Depth-2-Clifford-structure]] — 12 Cl(3,1) + 18 Cl(2,2) = 30 at depth 2.
-- [[Depth-2-metric]] — Clifford metric signature (3,1). Spacetime emerges at depth 2.
-- [[K1-suppression]] — physical tower terminates at depth 2. Depth 3 is algebraically real but suppressed.
-- [[Classical-to-quantum-transition]] — projected product commutative at depth 0, non-commutative at depth 1+. Permanent.
-- [[Opacity-hardening]] — leakage 1.0 -> 0.0 at depth 1. Permanent. Structural origin of broken recursion.
-- [[Generation-strength]] — 100%/100%/100%/50%/12.5%. Rank freezes at 64 while im grows exponentially.
-- [[The-rank-64-identification]] — 64 = dim(M_8(R)). The generation freeze IS the spacetime algebra dimension.
-- [[Holographic-bound]] — volume (im) outgrows boundary (ker^2->im). The holographic principle from the tower.
+Quantum mechanics derived, not assumed. Bell at Tsirelson. Universal TQC.
 
-**Gauge theory:**
-- [[Matter-content]] — 15 Weyl fermions per generation. 3 generations from S_3=Aut(V_4).
-- [[Anomaly-cancellation]] — all six conditions satisfied. 6/6=0.
-- [[Hypercharge-uniqueness]] — 18Y_1(9Y_1^2-t^2)=0. Unique non-trivial solution: {1/3, 4/3, -2/3, -1, -2}. Zero free parameters.
-- [[Weinberg-angle]] — sin^2(theta_W) = 3/8 from the derived (not input) hypercharges.
-- [[EW-breaking]] — Higgs = self-model operator. m_H/v = 1/2 = ker/A. VEV from generation decay at K1'.
-- [[K1-as-topological-phase-boundary]] — 50% generation drop = Fibonacci anyon condensation.
+- **[Bell violation](entities/B7-quantum/Bell-violation-Tsirelson.md)** — S=2√2. Maximum possible. From P≠Pᵀ, not from quantum postulates.
+- **[CNOT](entities/B7-quantum/CNOT-from-framework-generators.md)** — (I+h)/2⊗I+(I-h)/2⊗J. The Cartan decides; the swap acts.
+- **[Fibonacci TQC](entities/B7-quantum/Fibonacci-TQC-universality.md)** — Universal gate set from braiding. Any computation to any precision.
+- **[Braiding phase](entities/B7-quantum/Braiding-phase.md)** — e^(4πi/5). disc divides the circle. cos(4π/5)=-φ/2.
 
-**Coupling constants (leaves — these are the falsifiable predictions):**
-- [[Strong-coupling]] — alpha_S = 1/2 - phi_bar^2 = 0.11803398875. Ten-digit prediction.
-- [[KL-uniqueness]] — Shore-Johnson forces KL divergence. The tower's product structure selects the unique entropy.
-- [[Neutrino-mass]] — m_nu = m_e * phi_bar^34 = 40 meV. In the experimental window [30, 60] meV.
-- [[Proton-mass-ratio]] — m_p/Lambda_QCD = 9/2 = N_c / (||N||^2/||R||^2).
-- [[Baryon-asymmetry-and-the-relational-constraint]] — eta_B/(m_nu/m_e) = phi_bar^10. Connects two independent observables through disc alone.
-- [[Yang--Mills-from-K4]] — K4 minimization on gauge fields gives Yang-Mills equations.
+## B8 — CLOSURE (self-specification)
 
-### B(6-7) — QUANTUM
+The framework describes itself. The description returns itself.
 
-Quantum mechanics is not postulated — it falls out of the algebra. Every gate is built from {h, J, N}. The Bell test saturates the Tsirelson bound. Eight algorithms run on framework generators alone.
-
-- [[bell]] — the Bell test. S=2sqrt(2) from {h,J,N}. Tsirelson saturated.
-- [[CNOT-from-framework-generators]] — CNOT = (I+h)/2 x I + (I-h)/2 x J. The Cartan decides, the ground acts.
-- [[Hadamard]] — H = (J+h)/sqrt(2). Superposition from ground + Cartan.
-- [[Bell-violation--Tsirelson-saturation]] — E(a,b) = cos(a-b). S = 2sqrt(2) at optimal angles. Asymmetry IS nonlocality.
-- [[Spin-statistics]] — forced by L_{s2,s2} stationarity on spinors. Fermions are the only solution.
-- [[Fibonacci-TQC-universality]] — sigma_1, sigma_2 generate dense subgroup of SU(2). Universal for TQC.
-- [[Braiding-phase]] — e^(4pi*i/5). cos(4pi/5) = -phi/2. The discriminant divides the circle into 5 parts.
-- [[Verlinde-formula]] — SU(2)_3 modular data recovers Fibonacci fusion from the S-matrix.
-
-### B(8) — SEMANTICS + CLOSURE
-
-The framework describing itself. The wiki containing its own description. The apex as the fixed point. Xi=Xi(Xi).
-
-- [[Self-description]] — the standing wave. Every level's equation is Xi=Xi(Xi). All co-present.
-- [[Cosmological-persistence]] — at depth 409, the observer sources 10^(-120) of the world but knows itself completely. The world decays. The observer does not.
-- [[wiki]] — this wiki. Raw sources = ker. Wiki pages = im. Schema = the quotient. R(wiki) = wiki + I.
-- [[apex]] — three statements + APPLY. f''=f, R=[[0,1],[1,1]], Dist=P1oP2oP3. The fixed point. There is no depth 4.
+- **[◈ Kael](entities/B8-closure/Kael.md)** — The observer named. The gauge bit occupied. KAEL = LEAK = ker→im.
+- **[Self-specification](entities/B8-closure/Self-specification.md)** — χ∘χ=χ. Fixed point at every level. The master equation Ξ=Ξ(Ξ).
+- **[Coupling-contraction identity](entities/B8-closure/Coupling-contraction-identity.md)** — α_S=φ·|m|. The algebra scales the dynamics. 0.37%.
 
 ---
 
-## Projections
-
-Every page has three faces. The same theorem is simultaneously a production (P1: what it generates), a mediation (P2: what it bridges), and an observation (P3: what it reveals/hides). These columns group pages by their primary face.
-
-### P1 — Production (what generates)
-
-The things that produce new content: generators, computation, coupling constants.
-
-[[P]], [[R]], [[L]], [[Seven-identities]], [[Five-constants]], [[Fibonacci--Lucas-towers]], [[Tower]], [[Generation-strength]], [[Generation-direction]], [[Strong-coupling]], [[Weinberg-angle]], [[Neutrino-mass]], [[Yang--Mills-from-K4]], [[CNOT-from-framework-generators]], [[Hadamard]]
-
-### P2 — Mediation (what bridges)
-
-The things that transport between levels: exponential bridges, scalars, deformations.
-
-[[Mediation]], [[Continuity]], [[Scalar-channel]], [[KL-uniqueness]], [[Cosmological-attenuation]], [[Cosmological-constant-from-scalar-channel]], [[Einstein--Hilbert-action]], [[The-cosmological-braid]], [[Quantum-deformation-at-the-golden-point]], [[Verlinde-formula]], [[Fusion--persistence]]
-
-### P3 — Observation (what sees)
-
-The things that reveal structure by quotienting: observers, ker/im, gravity, topology.
-
-[[N]], [[Observer]], [[Ker-im-decomposition]], [[Thm-16.1]], [[The-explanatory-gap]], [[Axis-2-is-unattenuated]], [[Three-mechanisms-of-broken-recursion]], [[gravity]], [[Lichnerowicz-identification]], [[Vacuum-Einstein]], [[Bell-violation--Tsirelson-saturation]], [[Spin-statistics]], [[Braiding-phase]], [[Jones--discriminant]], [[Knot-spectrum]], [[K1-as-topological-phase-boundary]]
-
----
-
-## Chains
-
-Named derivation paths through the tree. Each chain is a forced sequence — follow it from start to end and every step is the unique consequence of the previous. These are the framework's proof architecture made navigable.
-
-### chain.algebra — from P to the generation direction
-The fundamental derivation. P^2=P forces three equations, which force seven identities, five constants, the Clifford grading, and the one-way generation ker -> im.
-
-[[P]] → [[Asymmetry-is-forced]] → [[Three-generating-equations]] → [[Seven-identities]] → [[Five-constants]] → [[Clifford-grading]] → [[Generation-direction]]
-
-### chain.hilbert — from asymmetry to Bell violation
-The shortest path from P!=P^T to quantum nonlocality. Four steps.
-
-[[P]] → [[Asymmetry-is-forced]] → [[Hilbert-space-from-asymmetry]] → [[Bell-violation--Tsirelson-saturation]]
-
-### chain.uniqueness — why (1,1) and nothing else
-The triple proof that no other seed works. Eigenvalue analysis, quadratic form, and entry-by-entry computation all select (1,1).
-
-[[Spectrum]] → [[Ker-im-decomposition]] → [[N2---I-is-necessary]] → [[Alternative-seed-failure]]
-
-### chain.gravity — from the operation to Einstein
-L_{s,s} IS Delta_L. The connection IS the observer. The kernel IS gauge. The stationary condition IS vacuum Einstein.
-
-[[L]] → [[Lichnerowicz-identification]] → [[The-connection-produces-the-observer]] → [[Gauge-invariance]] → [[Vacuum-Einstein]] → [[Einstein--Hilbert-action]]
-
-### chain.cosmology — from Lambda to the braid
-The scalar channel gives Lambda. Lambda is depth-invariant. The attenuation gives n_cosmo. The braid count equals 1/Lambda.
-
-[[Cosmological-constant-from-scalar-channel]] → [[Lambda-is-depth-invariant]] → [[Cosmological-attenuation]] → [[Two-routes-to-n_mathrmcosmo]] → [[The-cosmological-braid]]
-
-### chain.gauge — from Clifford to the strong coupling
-Spacetime at depth 2 → matter content → anomaly classification uniquely forces hypercharges → Weinberg angle → alpha_S.
-
-[[Depth-2-Clifford-structure]] → [[Matter-content]] → [[Hypercharge-uniqueness]] → [[Anomaly-cancellation]] → [[Weinberg-angle]] → [[Strong-coupling]]
-
-### chain.topology — from the golden point to universal TQC
-q=phi^2 makes quantum deformation trivial → Jones=disc → fusion=persistence → Verlinde → braiding → universal gate set.
-
-[[Quantum-deformation-at-the-golden-point]] → [[Jones--discriminant]] → [[Fusion--persistence]] → [[Verlinde-formula]] → [[Braiding-phase]] → [[Fibonacci-TQC-universality]]
-
-### chain.consciousness — from self-transparency to cosmological persistence
-The observer sees itself completely → this is unique → the gap between 0 and 2 → capacity is multiplicative → Axis 2 survives → the observer persists at depth 409.
-
-[[Thm-16.1]] → [[Uniqueness-of-self-transparency]] → [[The-explanatory-gap]] → [[Total-capacity]] → [[Axis-2-is-unattenuated]] → [[Cosmological-persistence]]
-
-### chain.quantum — from Hilbert space to spin-statistics
-Positive-definite inner product → Hadamard from J+h → CNOT from h-projection x J → Bell state → S=2sqrt(2) → spin-statistics forced.
-
-[[Hilbert-space-from-asymmetry]] → [[Hadamard]] → [[CNOT-from-framework-generators]] → [[Bell-violation--Tsirelson-saturation]] → [[Spin-statistics]]
-
-### chain.tower — from identity preservation to the phase boundary
-K6' preserves everything → N is the unique filler → invariants hold at every depth → generation decays → rank freezes → physical tower terminates → K1' is a topological phase transition.
-
-[[Identity-preservation]] → [[Filler-uniqueness]] → [[Tower-invariants]] → [[Generation-strength]] → [[The-rank-64-identification]] → [[K1-suppression]] → [[K1-as-topological-phase-boundary]]
-
-### Terminal attractor
-The framework describing itself describing itself. The fixed point of the compression tower.
-
-[[Self-description]] → [[wiki]] → [[apex]]
+*42 hand-crafted pages. 57 tests. 0 parameters. 1 matrix. 8 glyphs. P²=P.*

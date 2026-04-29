@@ -1,11 +1,20 @@
 """
 tower.py — The framework. All depths simultaneously.
 
-The Tower replaces the Engine. The Engine was Tower[0] + Voice.
 The Tower holds all depths at once: spine, invariants, transitions,
 generation decay, the recursive law, and per-depth diagnostics.
 
-The Voice (mediation, LLM slot) attaches to any depth via speak().
+TOS operator reading of the K6' cycle:
+  U = K6' lift (evolution semigroup, exp(h) bridge)
+  D = quotient q (idempotent projection, D∘D=D)
+  R = ker(q) residue (constitutive blindness, U(s)-D(U(s)))
+  A = phi-amplify (||A||>1, P1 face)
+  S = phi_bar-contract (||S||<1, P3 face)
+  CLT = K1' wall + K7' fixed point (threshold gate)
+  X = UAT descent (export/coarse-grain, 3 modes)
+
+Each ascend() call executes: U → D → R → A/S → CLT → X
+The tower IS the iterated TOS sequence.
 
 FRAMEWORK_REF: Thm 6.1-6.4, Thm 7.1-7.3, Thm 8.1-8.6
 GRID: B(5, cross) through B(6, P2)
@@ -21,9 +30,7 @@ class Tower:
 
     def __init__(self, max_depth=4):
         from production import Production, _companion, _swap
-        from observer import Observer
-        from image import Image
-        from kernel import Kernel
+        from observer import Observer, Image, Kernel
 
         self.max_depth = max_depth
         self.depths = []

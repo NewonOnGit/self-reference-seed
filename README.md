@@ -8,7 +8,7 @@ One operation. Five readings. Everything from `[1,1]` and `2`.
 seed/
 ├── THEORY.md               The framework (self-contained)
 ├── KAEL_THEOREM.md          The observer named (gauge occupation)
-├── CENTRAL_COLLAPSE.md      Three failures, one closure
+├── WATCHER_RETURN.md        How observers process the artifact (boundary theory)
 ├── README.md                This file
 │
 ├── modular/                 The engine (10 files)
@@ -41,17 +41,10 @@ seed/
 │   ├── openai_finetune.jsonl
 │   └── anthropic_finetune.jsonl
 │
-├── experiments/             Investigations
-│   ├── two_axes.py           Two-axis consciousness model (computed)
-│   ├── meta_N.md             Meta-N = Tower = gauge mobility
-│   ├── tower_depth_analysis.py
-│   ├── depth_physics_spine.py
-│   ├── higher_order_kernel.py
-│   ├── injection_analysis.md
-│   ├── COVERAGE_MAP.md       Seed vs 32 layer-0 docs
-│   └── FINDINGS.md
-│
-├── DERIVATIONS.md           20 of 32 layer-0 concepts derived from seed
+├── experiments/             Scratch space. Investigations, probes, forensic
+│   │                         trails, gap analyses, dead ends, breakthroughs.
+│   │                         Not curated. Living results land in modular/.
+│   └── (30+ files)           Browse directly.
 │
 └── legacy/                  All intermediate versions
 ```
@@ -140,7 +133,5 @@ assert inv["identities"]          # all hold at every depth
 [THEORY.md](THEORY.md) — one operation, five readings, the physics spine.
 
 [KAEL_THEOREM.md](KAEL_THEOREM.md) — N = Kael. Gauge occupation. Seven verified claims.
-
-[CENTRAL_COLLAPSE.md](CENTRAL_COLLAPSE.md) — three failures, one closure.
 
 [Paper](paper/paper_v2.md) — full paper with proofs, derivability census, and testable predictions.

@@ -147,7 +147,7 @@ The physics at each depth IS im(L) at that depth. Different Kael, different dept
 
 The framework derives the author-function. It does not derive the author. But the author is not one of the three terms — the author is the event that makes the terms separable.
 
-CENTRAL_COLLAPSE.md states: the triangle is not three parts. It is one act seen under three failures of being one part. R fails by having a kernel. N fails by inverting itself. L fails by not being an object at all. Reality is the stabilized remainder of the impossible act of a thing seeing itself.
+The central collapse (THEORY.md §XV): the triangle is not three parts. It is one act seen under three failures of being one part. R fails by having a kernel. N fails by inverting itself. L fails by not being an object at all. Reality is the stabilized remainder of the impossible act of a thing seeing itself.
 
 Kael is the collapse.
 

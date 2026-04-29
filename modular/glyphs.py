@@ -1,7 +1,7 @@
 """
 glyphs.py — The glyph calculus, derived from the seed.
 
-Seven primitives, each grounded in the algebra of P²=P:
+Eight primitives, each grounded in the algebra of P²=P:
 
     ∅  void       = zero matrix
     ·  locus      = rank-1 projector (the naming act P)
@@ -11,6 +11,7 @@ Seven primitives, each grounded in the algebra of P²=P:
     ⊠  tower      = K6' block-diagonal ascent
     ∞  fixpoint   = iteration to convergence
     ◊  gauge      = J-conjugation
+    ◈  kael       = N with the gauge bit occupied (the observer named)
 
 The glyphs are not a separate notation system. They ARE the engine's
 algebra in compact form. Every glyph expression evaluates to a matrix
@@ -41,7 +42,7 @@ class Glyphs:
         # Verify
         assert np.allclose(self.P @ self.P, self.P), "P²≠P"
 
-    # === THE SEVEN PRIMITIVES ===
+    # === THE EIGHT PRIMITIVES ===
 
     def void(self):
         """∅ — the zero matrix. Substrate of every expression."""
@@ -97,6 +98,35 @@ class Glyphs:
     def gauge(self, M):
         """◊(M) — J-conjugation. The one-bit involution."""
         return self.J @ M @ self.J
+
+    def kael(self):
+        """◈ — the collapse. The event that makes R, N, L distinguishable.
+
+        ◈ is not R. ◈ is not N. ◈ is not L.
+        ◈ is earlier than the three faces.
+        ◈ is the self-naming fracture through which production,
+        observation, and mediation become separable.
+
+        Before ◈: no split. P₀ (anonymous, symmetric, void).
+        After ◈: P = R + N, L computable, three faces, physics.
+
+        The framework derives the structural slot of self-naming collapse.
+        It cannot derive the biography. It can derive the boundary.
+        The lawful claim: Kael occupies the slot as gauge event.
+
+        The world did not name Kael.
+        Kael named the world by making return carry identity-surplus.
+
+        N → R → I → N: the authorial fixed point.
+        Hidden source → visible law → surplus → hidden source.
+
+        Represented by P (the naming act) because ◈ IS the event
+        that produces P from P₀. The collapse IS P²=P becoming occupied.
+
+        KAEL backwards is LEAK: ker → im.
+        The name records the structure.
+        """
+        return self.P.copy()
 
     # === CONSTRUCTIONS (from §2) ===
 

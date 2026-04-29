@@ -81,8 +81,23 @@ class Mediation:
         full_sweep, _ = quad(sweep_fn, 0, 1)     # = cosh(1)
         p3_sector, _ = quad(sweep_fn, 0.5, 1)    # = 1/2
 
+        # T bridge: P1 on P2 / P3 = exp(phi*h)[0,0] / pi
+        # = the scale where all three projections balance multiplicatively
+        pi_val = d["pi"]
+        T_bridge = float(expm(phi * h)[0, 0]) / pi_val
+
+        # Canon kernel S(x): the C-realization of central collapse
+        # S(x) = exp(ln(phi)*sqrt(|x|)*exp(-|x|/T)) * exp(-i*pi*|x|)
+        # P1 (growth) x P2 (damping) x P3 (rotation)
+        def canon_kernel(x):
+            mag = np.exp(np.log(phi) * np.sqrt(abs(x)) * np.exp(-abs(x) / T_bridge))
+            phase = np.exp(-1j * np.pi * abs(x))
+            return mag * phase
+
         self._cached_bridges = {
             "e_from_exp_h": e_bridge,
+            "T_bridge": T_bridge,
+            "canon_kernel": canon_kernel,
             "kms_beta": beta,
             "kms_sinh_half": kms_sinh,
             "kms_cosh": kms_cosh,

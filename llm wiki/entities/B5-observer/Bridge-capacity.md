@@ -2,7 +2,7 @@
 type: entity
 role: OBSERVER
 theorem: "Thm 18.4"
-tags: [observer, forced]
+tags: [b5-observer, observer, forced]
 ---
 
 # Bridge capacity

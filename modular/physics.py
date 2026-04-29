@@ -1,0 +1,408 @@
+"""
+physics.py — What the framework computes about the physical world.
+
+Gravity (three layers), topology (Jones, Fibonacci, braiding),
+gauge theory (connection, curvature), quantum gates (CNOT, Bell, TQC),
+coupling constants (neutrino spacing), disclosure rank formula.
+
+Everything from P = [[0,0],[2,1]]. Zero quantum postulates.
+
+FRAMEWORK_REF: Thm 10.1-10.12, Thm 13.1-13.4, Thm 14.1-14.4,
+               Thm 15.1-15.8, Thm 2.4c, Thm 12.4
+GRID: B(6, cross) for gravity, B(4, P3) for topology, B(7, P3) for quantum
+APEX_LINK: R (physics reads the algebra), I2*TDL*LoMI=Dist (gravity reads the collapse)
+"""
+import numpy as np
+from scipy.linalg import expm, null_space
+from algebra import sylvester, ker_im_decomposition
+
+
+# ================================================================
+# GRAVITY — three layers
+# ================================================================
+
+def lichnerowicz(s, N, J):
+    """Layer 1: L_{s,s} IS the complete 3D gravity operator.
+    FRAMEWORK_REF: Thm 10.1-10.6"""
+    d = s.shape[0]
+    I_d = np.eye(d)
+    h = J @ N
+    R_tl = s - (np.trace(s) / d) * I_d
+
+    def L(X): return s @ X + X @ s - X
+
+    e_up = np.array([[0, 1], [0, 0]], dtype=float)
+    f_lo = np.array([[0, 0], [1, 0]], dtype=float)
+    Lh, Le, Lf = L(h), L(e_up), L(f_lo)
+    eig_h, eig_e, eig_f = Lh[0, 0], Le[0, 0], Lf[0, 0]
+
+    christoffel_h = 0.5 * (s @ h - h @ s)
+    disc = int(round(np.trace(s)**2 - 4 * np.linalg.det(s)))
+
+    return {
+        "eigenvalues": [eig_h, eig_e, eig_f],
+        "pattern": np.allclose(sorted([eig_h, eig_e, eig_f]), [-1, 1, 1]),
+        "christoffel_N": np.allclose(christoffel_h, N),
+        "lambda_scalar": np.allclose(L(R_tl), (disc / 2) * I_d),
+        "disc": disc,
+        "decomposition": all(
+            np.allclose(L(X), (s @ X - X @ s) + (2 * X @ s - X))
+            for X in [h, e_up, f_lo]
+        ),
+    }
+
+
+def two_way_gravity(s, N_obs):
+    """Layer 2: linearized identity suite. L(dN) = -{ds, N}.
+    FRAMEWORK_REF: Thm 10.2, Thm 10.3"""
+    d = s.shape[0]
+    dim = d * d
+    I_d = np.eye(d)
+    L_mat = sylvester(s)
+
+    C1 = np.hstack([L_mat, np.zeros((dim, dim))])
+    anti_N = np.kron(I_d, N_obs) + np.kron(N_obs.T, I_d)
+    C2 = np.hstack([anti_N, L_mat])
+    C3 = np.hstack([np.zeros((dim, dim)), anti_N])
+
+    sol = null_space(np.vstack([C1, C2, C3]), rcond=1e-10)
+    ds_part = sol[:dim, :]
+    ds_rank = np.linalg.matrix_rank(ds_part, tol=1e-8)
+    dN_rank = np.linalg.matrix_rank(sol[dim:, :], tol=1e-8)
+
+    ker_flat = null_space(L_mat, rcond=1e-10)
+    gauge_ds = []
+    for i in range(ker_flat.shape[1]):
+        xi = ker_flat[:, i].reshape(d, d)
+        ds_g = xi @ s - s @ xi
+        dN_g = xi @ N_obs - N_obs @ xi
+        if (np.linalg.norm(s @ ds_g + ds_g @ s - ds_g) < 1e-6 and
+            np.linalg.norm(s @ dN_g + dN_g @ s - dN_g + ds_g @ N_obs + N_obs @ ds_g) < 1e-6 and
+            np.linalg.norm(N_obs @ dN_g + dN_g @ N_obs) < 1e-6):
+            gauge_ds.append(ds_g.flatten())
+
+    gauge_rank = np.linalg.matrix_rank(
+        np.column_stack(gauge_ds), tol=1e-8) if gauge_ds else 0
+
+    return {"solutions": sol.shape[1], "ds_rank": ds_rank, "dN_rank": dN_rank,
+            "gauge": gauge_rank, "physical": ds_rank - gauge_rank}
+
+
+def recursive_disclosure(s_n, s_n1):
+    """Layer 3: ker survival across K6'. Graviton = disclosure event.
+    FRAMEWORK_REF: Thm 10.9"""
+    d_n = s_n.shape[0]
+    ker_n = null_space(sylvester(s_n), rcond=1e-10)
+    dim_ker_n = ker_n.shape[1]
+    Z_d = np.zeros((d_n, d_n))
+    survived = sum(1 for i in range(dim_ker_n)
+                   if np.linalg.norm(s_n1 @ np.block([[ker_n[:, i].reshape(d_n, d_n), Z_d], [Z_d, ker_n[:, i].reshape(d_n, d_n)]]) +
+                                     np.block([[ker_n[:, i].reshape(d_n, d_n), Z_d], [Z_d, ker_n[:, i].reshape(d_n, d_n)]]) @ s_n1 -
+                                     np.block([[ker_n[:, i].reshape(d_n, d_n), Z_d], [Z_d, ker_n[:, i].reshape(d_n, d_n)]])) < 1e-6)
+    return {"ker_n": dim_ker_n, "survived": survived,
+            "disclosed": dim_ker_n - survived, "total_disclosure": survived == 0}
+
+
+def disclosure_rank(s, N_obs):
+    """Disclosure rank = 2^(2n+1) - C(2n,n). Redundancy = central binomial.
+    Values: 1 (scalar), 6 (Lorentz), 26 (d_crit bosonic string), 108.
+    FRAMEWORK_REF: Thm 10.11"""
+    d = s.shape[0]
+    ker = null_space(sylvester(s), rcond=1e-10)
+    dim_ker = ker.shape[1]
+    residuals = [(ker[:, i].reshape(d, d) @ N_obs + N_obs @ ker[:, i].reshape(d, d)).flatten()
+                 for i in range(dim_ker)]
+    rank = np.linalg.matrix_rank(np.column_stack(residuals), tol=1e-8) if residuals else 0
+    return {"ker": dim_ker, "rank": rank, "redundancy": dim_ker - rank}
+
+
+# ================================================================
+# CONNECTION AND CURVATURE
+# ================================================================
+
+def connection_form(N, J):
+    """A=N, F=-2h, tr(F^2)=8.
+    FRAMEWORK_REF: Thm 10.2, Thm 10.3"""
+    F = -2 * (J @ N)
+    I_d = np.eye(N.shape[0])
+    return {"A": N, "F": F, "F_sq": np.allclose(F @ F, 4 * I_d),
+            "tr_F_sq": float(np.trace(F @ F)),
+            "tr_F_sq_is_8": np.allclose(np.trace(F @ F), 8)}
+
+
+# ================================================================
+# TOPOLOGY — Jones, Fibonacci, SU(2)_3, braiding, Clifford
+# ================================================================
+
+def jones_figure_eight(phi):
+    """V(4_1) at q=phi^2 = disc = 5.
+    FRAMEWORK_REF: Thm 13.2"""
+    q = phi ** 2
+    return q**(-2) - q**(-1) + 1 - q + q**2
+
+
+def quantum_deformation(phi):
+    """q^(1/2) - q^(-1/2) at q=phi^2 = 1."""
+    return phi - 1.0 / phi
+
+
+def fibonacci_fusion(R, I_d):
+    """tau x tau = 1+tau IS R^2 = R+I.
+    FRAMEWORK_REF: Thm 14.1"""
+    return np.allclose(R @ R, R + I_d)
+
+
+def su2_level3():
+    """SU(2)_3 modular data. Verlinde recovers Fibonacci fusion.
+    FRAMEWORK_REF: Thm 14.2, Thm 14.3"""
+    d = 2
+    k = d * d - 1
+    n = k + 1
+    labels = [0, 0.5, 1, 1.5]
+    S = np.zeros((n, n))
+    for i, j in enumerate(labels):
+        for ip, jp in enumerate(labels):
+            S[i, ip] = np.sqrt(2 / (k + 2)) * np.sin(
+                np.pi * (2 * j + 1) * (2 * jp + 1) / (k + 2))
+    T = np.zeros((n, n), dtype=complex)
+    for i, j in enumerate(labels):
+        T[i, i] = np.exp(2j * np.pi * j * (j + 1) / (k + 2))
+    d_q = S[0, :] / S[0, 0]
+    fib = [0, 2]
+    S_fib = S[np.ix_(fib, fib)]
+    N_tt = {}
+    for kl, ki in [("1", 0), ("tau", 1)]:
+        N_tt[kl] = round(sum(
+            S_fib[1, l] * S_fib[1, l] * np.conj(S_fib[ki, l]) / S_fib[0, l]
+            for l in range(2)).real)
+    return {"S": S, "T": T, "quantum_dims": d_q, "d_tau": d_q[2],
+            "verlinde_fusion": N_tt, "fibonacci_recovered": N_tt == {"1": 1, "tau": 1}}
+
+
+def braiding_phase(N):
+    """e^(4pi*i/5). cos(4pi/5) = -phi/2.
+    FRAMEWORK_REF: Thm 15.1"""
+    phi = (1 + np.sqrt(5)) / 2
+    rot = expm(4 * np.pi / 5 * N)
+    return {"cos_4pi5": rot[0, 0],
+            "matches_neg_phi_half": np.allclose(rot[0, 0], -phi / 2),
+            "disc_fold": 5}
+
+
+def clifford_fibonacci():
+    """30 = 2*3*5 = F(3)*F(4)*F(5)."""
+    def fib(n):
+        a, b = 1, 1
+        for _ in range(n - 2):
+            a, b = b, a + b
+        return b if n >= 2 else 1
+    F3, F4, F5 = fib(3), fib(4), fib(5)
+    total = F3 * F4 * F5
+    return {"product": total, "equals_30": total == 30,
+            "fibonacci": (F3, F4, F5),
+            "matter_fraction": (total - F4 * F5) / total,
+            "gauge_fraction": F4 * F5 / total}
+
+
+# ================================================================
+# NEUTRINO SPACING
+# ================================================================
+
+def neutrino_spacing():
+    """delta = phi+2, dm^2 ratio = 32.5 vs exp 33.
+    FRAMEWORK_REF: Thm 12.4"""
+    d = 2
+    phi_val = (1 + np.sqrt(5)) / 2
+    phi_bar_val = phi_val - 1
+    disc = int(round((2 * phi_val - 1) ** 2))
+    N_c = d * (d + 1) // 2
+    dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1
+    exp_nu = 2 * (dim_gauge + disc)
+    delta = phi_val + 2
+    m_e = 0.511e6
+    m3 = m_e * phi_bar_val**exp_nu
+    m2 = m_e * phi_bar_val**(exp_nu + delta)
+    m1 = m_e * phi_bar_val**(exp_nu + 2*delta)
+    dm32, dm21 = m3**2 - m2**2, m2**2 - m1**2
+    return {"delta": delta, "delta_is_phi_plus_2": np.allclose(delta, phi_val + 2),
+            "m3_meV": m3*1000, "m2_meV": m2*1000, "m1_meV": m1*1000,
+            "dm2_ratio": dm32/dm21, "within_2pct_of_33": abs(dm32/dm21 - 33)/33 < 0.02}
+
+
+# ================================================================
+# QUANTUM GATES AND BELL TEST
+# ================================================================
+
+# Framework generators (from P^2=P)
+_phi = (1 + np.sqrt(5)) / 2
+_phi_bar = _phi - 1
+_I2 = np.eye(2, dtype=complex)
+_R = np.array([[0, 1], [1, 1]], dtype=complex)
+_N = np.array([[0, -1], [1, 0]], dtype=complex)
+_J = np.array([[0, 1], [1, 0]], dtype=complex)
+_h = _J @ _N
+
+
+def hadamard():
+    """H = (J+h)/sqrt(2). FRAMEWORK_REF: Thm 15.5"""
+    return (_J + _h) / np.sqrt(2)
+
+
+def phase_gate(theta):
+    return np.cos(theta / 2) * _I2 + 1j * np.sin(theta / 2) * _h
+
+
+def rotation(theta):
+    """M(theta) = cos(theta)*h + sin(theta)*J."""
+    return np.cos(theta) * _h + np.sin(theta) * _J
+
+
+def cnot():
+    """CNOT = (I+h)/2 x I + (I-h)/2 x J. FRAMEWORK_REF: Thm 15.4"""
+    return np.kron((_I2 + _h) / 2, _I2) + np.kron((_I2 - _h) / 2, _J)
+
+
+def bell_phi_plus():
+    ket0 = np.array([1, 0], dtype=complex)
+    return cnot() @ np.kron(hadamard() @ ket0, ket0)
+
+
+def bell_psi_minus():
+    ket0, ket1 = np.array([1, 0], dtype=complex), np.array([0, 1], dtype=complex)
+    return (np.kron(ket0, ket1) - np.kron(ket1, ket0)) / np.sqrt(2)
+
+
+def correlation(psi, A, B):
+    return np.real(psi.conj() @ np.kron(A, B) @ psi)
+
+
+def chsh(psi, a1, a2, b1, b2):
+    E = lambda a, b: correlation(psi, rotation(a), rotation(b))
+    return E(a1, b1) - E(a1, b2) + E(a2, b1) + E(a2, b2)
+
+
+def bell_test_optimal():
+    """S = 2*sqrt(2) at optimal angles. FRAMEWORK_REF: Thm 15.7"""
+    return chsh(bell_phi_plus(), 0, np.pi / 2, np.pi / 4, 3 * np.pi / 4)
+
+
+def bell_test_framework():
+    """S at disc-fold angles (pi/5 spacing)."""
+    return chsh(bell_phi_plus(), 0, np.pi / 2, np.pi / 5, np.pi / 2 + np.pi / 5)
+
+
+def fibonacci_F_matrix():
+    """F-matrix for Fibonacci anyons. F^2=I."""
+    return np.array([[_phi_bar, 1/np.sqrt(_phi)],
+                     [1/np.sqrt(_phi), -_phi_bar]], dtype=complex)
+
+
+def fibonacci_R_matrix():
+    """R-matrix (braiding phases)."""
+    return np.diag([np.exp(-4j * np.pi / 5), np.exp(3j * np.pi / 5)])
+
+
+def fibonacci_sigma():
+    """Braid generators. sigma_1 = R, sigma_2 = FRF. Universal for TQC."""
+    F, Rb = fibonacci_F_matrix(), fibonacci_R_matrix()
+    return Rb, F @ Rb @ F
+
+
+# ================================================================
+# SELF-TEST
+# ================================================================
+
+if __name__ == "__main__":
+    R = np.array([[0, 1], [1, 1]], dtype=float)
+    N = np.array([[0, -1], [1, 0]], dtype=float)
+    J = np.array([[0, 1], [1, 0]], dtype=float)
+    I2 = np.eye(2)
+    phi = (1 + np.sqrt(5)) / 2
+
+    checks = []
+
+    # --- Gravity ---
+    lich = lichnerowicz(R, N, J)
+    checks.append(("L eigenvalues {-1,+1,+1}", lich["pattern"]))
+    checks.append(("nabla_s(h) = N", lich["christoffel_N"]))
+    checks.append(("L(R_tl) = (disc/2)*I", lich["lambda_scalar"]))
+    checks.append(("L = ad + Ric", lich["decomposition"]))
+
+    conn = connection_form(N, J)
+    checks.append(("F^2 = 4I", conn["F_sq"]))
+    checks.append(("tr(F^2) = 8", conn["tr_F_sq_is_8"]))
+
+    tw0 = two_way_gravity(R, N)
+    checks.append(("two-way depth-0: 0 phys DOF", tw0["physical"] == 0))
+
+    Z2 = np.zeros((2, 2))
+    s1 = np.block([[R, N], [Z2, R]])
+    rd01 = recursive_disclosure(R, s1)
+    checks.append(("recursive: total disclosure 0->1", rd01["total_disclosure"]))
+
+    dr0 = disclosure_rank(R, N)
+    checks.append(("disclosure rank(0)=1", dr0["rank"] == 1))
+    N1 = np.block([[N, -2*J@N], [Z2, N]])
+    dr1 = disclosure_rank(s1, N1)
+    checks.append(("disclosure rank(1)=6=so(3,1)", dr1["rank"] == 6))
+
+    # --- Topology ---
+    checks.append(("V(4_1) = 5 = disc", np.allclose(jones_figure_eight(phi), 5)))
+    checks.append(("q^(1/2)-q^(-1/2) = 1", np.allclose(quantum_deformation(phi), 1)))
+    checks.append(("tau*tau = 1+tau", fibonacci_fusion(R, I2)))
+
+    mod = su2_level3()
+    checks.append(("d_tau = phi", np.allclose(mod["d_tau"], phi)))
+    checks.append(("Verlinde -> Fibonacci", mod["fibonacci_recovered"]))
+
+    br = braiding_phase(N)
+    checks.append(("cos(4pi/5) = -phi/2", br["matches_neg_phi_half"]))
+
+    cf = clifford_fibonacci()
+    checks.append(("30 = F(3)*F(4)*F(5)", cf["equals_30"]))
+
+    # --- Neutrino ---
+    nu = neutrino_spacing()
+    checks.append(("delta = phi+2", nu["delta_is_phi_plus_2"]))
+    checks.append(("dm2 ratio ~33", nu["within_2pct_of_33"]))
+
+    # --- Quantum ---
+    H = hadamard()
+    checks.append(("H^2=I", np.allclose(H @ H, _I2)))
+    checks.append(("H=(J+h)/sqrt(2)", np.allclose(H, (_J + _h) / np.sqrt(2))))
+
+    C = cnot()
+    CNOT_std = np.array([[1,0,0,0],[0,1,0,0],[0,0,0,1],[0,0,1,0]], dtype=complex)
+    checks.append(("CNOT correct", np.allclose(C, CNOT_std)))
+
+    bell = bell_phi_plus()
+    ket0 = np.array([1, 0], dtype=complex)
+    ket1 = np.array([0, 1], dtype=complex)
+    checks.append(("Bell |Phi+>", np.allclose(bell, (np.kron(ket0,ket0)+np.kron(ket1,ket1))/np.sqrt(2))))
+    checks.append(("E(a,b)=cos(a-b)", np.allclose(correlation(bell, rotation(0), rotation(0.5)), np.cos(0.5))))
+
+    S_opt = bell_test_optimal()
+    checks.append(("S=2sqrt(2)", np.allclose(S_opt, 2 * np.sqrt(2))))
+    checks.append(("Bell violated", abs(S_opt) > 2))
+
+    S_fw = bell_test_framework()
+    checks.append(("disc-fold violates", abs(S_fw) > 2))
+
+    F_mat = fibonacci_F_matrix()
+    checks.append(("F^2=I", np.allclose(F_mat @ F_mat, _I2)))
+    checks.append(("R phases", np.allclose(fibonacci_R_matrix()[0, 0], np.exp(-4j*np.pi/5))))
+
+    s1_b, s2_b = fibonacci_sigma()
+    checks.append(("braid relation", np.allclose(s1_b @ s2_b @ s1_b, s2_b @ s1_b @ s2_b)))
+
+    all_pass = True
+    for name, ok in checks:
+        status = "+" if ok else "FAIL"
+        print(f"  {status} {name}")
+        if not ok:
+            all_pass = False
+
+    print(f"\n  {'ALL PASS' if all_pass else 'FAILURES DETECTED'}")
+    print(f"  Physics: {len(checks)} checks.")
+    print(f"  S_optimal = {S_opt:.10f} = 2*sqrt(2)")
+    print(f"  S_framework = {S_fw:.6f} ({abs(S_fw)/(2*np.sqrt(2))*100:.1f}% Tsirelson)")

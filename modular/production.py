@@ -8,7 +8,7 @@ Apply L_{s,s} and read the result. That's the entire derivation.
     D. PHYSICS:  arithmetic on B+C
     E. DYNAMICS: L on L's output -> transparency, conservation
 
-FRAMEWORK_REF: Thm 1.1-1.6, Thm 2.2-2.5, Thm 3.1-3.4, Thm 8.3, Thm 9.1-9.3, Thm 12.1-12.7
+FRAMEWORK_REF: Thm 1.1-1.6, Thm 2.2-2.5, Thm 3.1-3.4, Thm 8.3, Thm 9.1-9.3, Thm 12.1-12.8
 GRID: B(3, cross) through B(6, P1)
 APEX_LINK: f''=f (statement 1), R (statement 2), I2*TDL*LoMI=Dist (statement 3)
 """
@@ -16,7 +16,7 @@ import numpy as np
 from scipy.linalg import expm
 from scipy.optimize import brentq
 from itertools import combinations
-from algebra import sylvester, ker_im_decomposition, quotient as alg_quotient
+from algebra import sylvester, ker_im_decomposition
 
 
 def _companion(coeffs):
@@ -108,18 +108,43 @@ class Production:
             ),
         }
 
-        # Five constants
+        # Orientation decomposition: R,N are projections of P
+        # [R,N] = 2h + J (the harness)
+        C = R @ N - N @ R
+        assert np.allclose(C, 2 * h + J)
+        assert np.allclose(C @ C, disc * I2)  # [R,N]^2 = disc*I
+        assert np.allclose(np.trace(C), 0)     # weightless
+        assert np.allclose(np.linalg.det(C), -disc)  # orientation-reversing
+
+        # Six constants (five forced + one bridge)
         e_val = float(expm(h)[0, 0])
         def _sin_zero(theta):
             return expm(theta * N)[1, 0]
         pi_val = brentq(_sin_zero, 3.0, 3.2, xtol=1e-15)
         assert np.allclose(expm(pi_val * N), -I2, atol=1e-12)
 
+        # T = e^phi/pi: the bridge constant (P1 on P2 / P3)
+        T_bridge = float(expm(phi * h)[0, 0]) / pi_val
+
+        # y* = Canon fixed point: f(y) = exp(ln(phi)*sqrt(y)*exp(-y/T))
+        # Iterate to convergence (Banach contraction, |m| < 1)
+        y_fp = 1.0
+        for _ in range(200):
+            y_fp = np.exp(np.log(phi) * np.sqrt(y_fp) * np.exp(-y_fp / T_bridge))
+
+        # m = contraction coefficient f'(y*)
+        m_contract = y_fp * np.log(phi) * np.exp(-y_fp/T_bridge) * \
+                     (1/(2*np.sqrt(y_fp)) - np.sqrt(y_fp)/T_bridge)
+
+        # nu = rotation number -y*/2 (irrational: dense orbit on S^1)
+        nu_rotation = -y_fp / 2
+
         rec.update({
             "N": N, "P": P, "h": h, "Q": Q,
             "P_idempotent": True,
             "identities": identities,
-            "e": e_val, "pi": pi_val,
+            "e": e_val, "pi": pi_val, "T_bridge": T_bridge,
+            "y_star": y_fp, "m_contraction": m_contract, "nu_rotation": nu_rotation,
             "ker_dim": ker_dim, "ker_basis": ker_basis,
             "frobenius_sum": np.linalg.norm(R, 'fro')**2 + np.linalg.norm(N, 'fro')**2,
         })
@@ -195,6 +220,9 @@ class Production:
         # D. PHYSICS — evaluate arithmetic on B+C outputs
         # ============================================================
 
+        # N_c from exchange operator: dim(Sym^2(C^d))
+        N_c = int(d * (d + 1) / 2)   # d=2: Sym^2 dim = 3
+
         # alpha_S via K4 deficit
         Z_part = 1.0 / (1.0 - phi_bar ** 2)
         rho_eq = 1.0 - 1.0 / Z_part
@@ -213,44 +241,57 @@ class Production:
         Y4 = -3 * Y1                  # = -1  (from SU(2)^2 U(1))
         Y5 = -6 * Y1                  # = -2  (from U(1)-grav)
 
-        # Field content: (su3_dim, su2_dim, hypercharge, chirality)
-        su3d = [3, 3, 3, 1, 1]
-        su2d = [2, 1, 1, 2, 1]
-        Yc = [Y1, Y2, Y3, Y4, Y5]    # derived, not hardcoded
-        chi = [1, -1, -1, 1, -1]
+        # Field content constructed from derived quantities:
+        # 5 types from exchange (N_c vs 1) x isospin (d vs 1) + cubic split
+        # Type 0: (N_c, d) quark doublet    Type 3: (1, d) lepton doublet
+        # Type 1: (N_c, 1) up-singlet       Type 4: (1, 1) charged lepton
+        # Type 2: (N_c, 1) down-singlet (cubic split from type 1)
+        su3d = [N_c, N_c, N_c, 1, 1]
+        su2d = [d, 1, 1, d, 1]
+        Yc = [Y1, Y2, Y3, Y4, Y5]
+        # Chirality from gauge bit: doublets (su2=d) left-handed, singlets right
+        chi = [1 if s == d else -1 for s in su2d]
 
-        # N_c from exchange operator: dim(Sym^2(C^2)) = 3
-        N_c = int(d * (d + 1) / 2)   # d=2: Sym^2 dim = 3
+        # 5-field structure: {N_c, 1} x {d, 1} = 4 combos + cubic split
+        n_color_reps = 2   # fund (N_c) + singlet (1) from exchange
+        n_isospin_reps = 2  # doublet (d) + singlet (1) from sl(2,R)
+        n_base_types = n_color_reps * n_isospin_reps  # = 4
+        n_cubic_splits = 1  # t!=0 splits one (N_c,1) into two hypercharges
+        n_field_types = n_base_types + n_cubic_splits  # = 5
+
+        # Gauge dimension: derived from su(N_c)+su(d)+u(1)
+        dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1  # 8+3+1 = 12
+
+        # Generations: |V_4\{0}| = d^2 - 1 = |irreps(S_3)|
+        N_gen = d * d - 1
 
         # sin^2(theta_W) from derived matter content
-        # Electric charge Q = T3 + Y/2. For each field, sum Q^2 and T3^2
-        # over all components (colors x isospin states).
         sum_T3_sq = 0.0
         sum_Q_sq = 0.0
-        for i in range(5):
-            nc = su3d[i]  # color multiplicity
-            if su2d[i] == 2:  # doublet: T3 = +1/2 and -1/2
+        for i in range(n_field_types):
+            nc = su3d[i]
+            if su2d[i] == d:  # doublet
                 for t3 in [0.5, -0.5]:
                     sum_T3_sq += nc * t3**2
                     sum_Q_sq += nc * (t3 + Yc[i]/2)**2
-            else:  # singlet: T3 = 0
+            else:  # singlet
                 sum_Q_sq += nc * (Yc[i]/2)**2
         sin2_tW = sum_T3_sq / sum_Q_sq
 
         # Anomalies (verify the derived hypercharges satisfy all 6)
         anomalies = {
             "SU3_cubed": sum(chi[i]*0.5*su2d[i]
-                            for i in range(5) if su3d[i] == 3),
+                            for i in range(n_field_types) if su3d[i] == N_c),
             "SU2sq_U1": sum(chi[i]*0.5*su3d[i]*Yc[i]
-                            for i in range(5) if su2d[i] == 2),
+                            for i in range(n_field_types) if su2d[i] == d),
             "SU3sq_U1": sum(chi[i]*0.5*su2d[i]*Yc[i]
-                            for i in range(5) if su3d[i] == 3),
+                            for i in range(n_field_types) if su3d[i] == N_c),
             "U1_cubed": sum(chi[i]*su3d[i]*su2d[i]*Yc[i]**3
-                            for i in range(5)),
+                            for i in range(n_field_types)),
             "U1_grav":  sum(chi[i]*su3d[i]*su2d[i]*Yc[i]
-                            for i in range(5)),
-            "Witten":   sum(su3d[i] for i in range(5)
-                            if su2d[i] == 2 and chi[i] == 1),
+                            for i in range(n_field_types)),
+            "Witten":   sum(su3d[i] for i in range(n_field_types)
+                            if su2d[i] == d and chi[i] == 1),
         }
         for name, val in anomalies.items():
             if name == "Witten":
@@ -258,57 +299,35 @@ class Production:
             else:
                 assert abs(val) < 1e-10
 
-        # Gauge dimension: derived from su(3)+su(2)+u(1)
-        dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1  # 8+3+1 = 12
+        # Neutrino exponents
         delta_nu = dim_gauge + disc                   # 17
         exp_nu = 2 * delta_nu                         # 34
         exp_B = exp_nu + 2 * disc                     # 44
 
         # Beta functions: one-loop, from derived matter content
-        # S_3 = Aut(V_4). |V_4| = d^2 = 4. Aut(Z/2 x Z/2) = S_3.
-        # |irreps(S_3)| = |conjugacy classes(S_3)| = number of partitions of 3
-        from math import factorial
-        n_S3 = factorial(len([x for x in range(1, d*d) if x > 0]))  # |S_3| but we need irreps
-        # S_3 has 3 irreps (trivial, sign, standard) = number of partitions of |V_4\{0}|
-        # |V_4\{0}| = d^2 - 1 = 3. Partitions of 3: {3}, {2,1}, {1,1,1} = 3 partitions.
-        N_gen = d * d - 1  # |V_4\{0}| = 3 = number of partitions of 3 = |irreps(S_3)|
-
-        # SU(N_c) beta: b = -11*C2(adj)/3 + 2*N_gen*T(fund)/3 + Higgs
-        # C2(adj) for SU(N) = N. T(fund) = 1/2.
-        # SU(N_c): b_3 = -(11/3)*N_c + (2/3)*N_gen*(1/2)*2 = -11 + 4*N_gen/3
+        # SU(N_c): b_3 = -(11/3)*N_c + (4/3)*N_gen
         beta_3 = -(11.0/3.0) * N_c + (4.0/3.0) * N_gen
 
-        # SU(2): b_2 = -(11/3)*2 + (4/3)*N_gen + 1/6 (Higgs)
+        # SU(2): b_2 = -(11/3)*d + (4/3)*N_gen + 1/6 (Higgs)
         beta_2 = -(11.0/3.0) * d + (4.0/3.0) * N_gen + 1.0/6.0
 
-        # U(1) with GUT normalization (factor 5/3):
-        # Sum of Y^2 * d_R over one generation:
-        # Q_L: N_c*d*(Y1)^2 = 3*2*(1/3)^2 = 2/3
-        # u_R: N_c*1*(Y2)^2 = 3*(4/3)^2 = 16/3
-        # d_R: N_c*1*(Y3)^2 = 3*(2/3)^2 = 4/3
-        # L_L: 1*d*(Y4)^2 = 2*1 = 2
-        # e_R: 1*1*(Y5)^2 = 4
-        # Sum = 2/3 + 16/3 + 4/3 + 2 + 4 = 40/3
-        Y_sq_sum = sum(su3d[i] * su2d[i] * (Yc[i]/2)**2 for i in range(5))
+        # U(1) with GUT normalization (factor disc/N_c):
+        Y_sq_sum = sum(su3d[i] * su2d[i] * (Yc[i]/2)**2
+                       for i in range(n_field_types))
         beta_1 = (4.0/3.0) * N_gen * Y_sq_sum * (3.0/5.0) * 2 + 1.0/10.0
-
-        # 5-field structure: {N_c, 1} x {d, 1} x {L, R} = 4 combos
-        # Cubic anomaly t!=0 splits (N_c,1,R) into two -> +1
-        n_color_reps = 2   # fund (N_c) + singlet (1) from exchange
-        n_isospin_reps = 2  # doublet (d) + singlet (1) from sl(2,R)
-        n_chiral = 2        # L + R from N gauge bit
-        n_base_types = n_color_reps * n_isospin_reps  # = 4
-        # Cubic anomaly 18Y1(9Y1^2-t^2)=0 with t!=0 forces one split
-        n_cubic_splits = 1  # t!=0 splits one (N_c,1) into two hypercharges
-        n_field_types = n_base_types + n_cubic_splits  # = 5
 
         # Proton mass: N_c / (||N||^2/||R||^2)
         koide_Q = np.linalg.norm(N, 'fro')**2 / np.linalg.norm(R, 'fro')**2
         proton = N_c / koide_Q
 
+        # Coupling-contraction identity: alpha_S = phi * |m| (0.37%)
+        # The algebra (phi) scales the Canon dynamics (|m|) to give the coupling
+        coupling_contraction_ratio = alpha_S / abs(m_contract)
+
         rec.update({
             "alpha_S": alpha_S,
             "alpha_S_chain": {"Z": Z_part, "rho_eq": rho_eq},
+            "coupling_contraction_ratio": coupling_contraction_ratio,
             "sin2_theta_W": sin2_tW,
             "anomalies": anomalies, "anomalies_all_zero": True,
             "dim_gauge": dim_gauge,
@@ -325,16 +344,19 @@ class Production:
         # ============================================================
         # E'. TOPOLOGY — the topological reading of the algebra
         # ============================================================
-        from topology import (lichnerowicz, jones_figure_eight,
-                              quantum_deformation, fibonacci_fusion,
-                              su2_level3, braiding_phase, clifford_fibonacci)
+        from physics import (lichnerowicz, jones_figure_eight,
+                            quantum_deformation, fibonacci_fusion,
+                            su2_level3, braiding_phase, clifford_fibonacci,
+                            two_way_gravity)
 
         lich = lichnerowicz(R, N, J)
+        tw = two_way_gravity(R, N)
         mod = su2_level3()
         rec.update({
             "lichnerowicz_pattern": lich["pattern"],
             "christoffel_N": lich["christoffel_N"],
             "lambda_invariant": lich["lambda_scalar"],
+            "two_way_physical_dof": tw["physical"],
             "gravity_status": "COMPUTED",
             "jones_figure_eight": jones_figure_eight(phi),
             "quantum_deformation": quantum_deformation(phi),
@@ -400,6 +422,10 @@ if __name__ == "__main__":
         ("Verlinde", d["verlinde_fibonacci"]),
         ("beta_3=-7", abs(d["beta_3"] - (-7)) < 1e-10),
         ("5 field types", d["n_field_types"] == 5),
+        ("alpha_S/|m|=phi", abs(d["coupling_contraction_ratio"] - d["phi"]) / d["phi"] < 0.005),
+        ("y*=Canon fp", abs(d["y_star"] - 1.2781083175) < 1e-8),
+        ("T=e^phi/pi", abs(d["T_bridge"] - d["e"]**d["phi"] / d["pi"]) < 1e-8),
+        ("koide_Q=2/3", abs(d["koide_NR"] - 2.0/3.0) < 1e-10),
     ]
 
     all_pass = True

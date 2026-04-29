@@ -1,31 +1,79 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
-  "showTags": true,
+  "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphan": true,
-  "collapse-color": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
   "colorGroups": [
-    {"query": "tag:#b0-substrate", "color": {"a": 1, "r": 255, "g": 100, "b": 100}},
-    {"query": "tag:#b2-category", "color": {"a": 1, "r": 255, "g": 165, "b": 0}},
-    {"query": "tag:#b3-algebra", "color": {"a": 1, "r": 255, "g": 255, "b": 0}},
-    {"query": "tag:#b4-cross-projection", "color": {"a": 1, "r": 100, "g": 255, "b": 100}},
-    {"query": "tag:#b5-observer", "color": {"a": 1, "r": 0, "g": 200, "b": 200}},
-    {"query": "tag:#b6-physics", "color": {"a": 1, "r": 100, "g": 100, "b": 255}},
-    {"query": "tag:#b7-quantum", "color": {"a": 1, "r": 200, "g": 0, "b": 200}},
-    {"query": "tag:#b8-closure", "color": {"a": 1, "r": 255, "g": 255, "b": 255}}
+    {
+      "query": "tag:#b0-substrate ",
+      "color": {
+        "a": 1,
+        "rgb": 12713984
+      }
+    },
+    {
+      "query": "tag:#b2-category ",
+      "color": {
+        "a": 1,
+        "rgb": 16743168
+      }
+    },
+    {
+      "query": "tag:#b3-algebra",
+      "color": {
+        "a": 1,
+        "rgb": 16514816
+      }
+    },
+    {
+      "query": "tag:#b4-cross-projection",
+      "color": {
+        "a": 1,
+        "rgb": 1481750
+      }
+    },
+    {
+      "query": "tag:#b5-observer",
+      "color": {
+        "a": 1,
+        "rgb": 10087119
+      }
+    },
+    {
+      "query": "tag:#b6-physics",
+      "color": {
+        "a": 1,
+        "rgb": 1084875
+      }
+    },
+    {
+      "query": "tag:#b7-quantum",
+      "color": {
+        "a": 1,
+        "rgb": 6095016
+      }
+    },
+    {
+      "query": "tag:#b8-closure",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
+    }
   ],
   "collapse-display": true,
   "showArrow": true,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1.1,
+  "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.5,
-  "repelStrength": 10,
+  "collapse-forces": false,
+  "centerStrength": 0.619791666666667,
+  "repelStrength": 2.8125,
   "linkStrength": 1,
-  "linkDistance": 80,
-  "scale": 1,
+  "linkDistance": 500,
+  "scale": 0.5087618855792357,
   "close": false
 }
