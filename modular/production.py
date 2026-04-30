@@ -395,6 +395,52 @@ class Production:
             "conserved_charges": ker_LT.shape[1],
         })
 
+        # ============================================================
+        # F. PARENT LAYER — balanced carrier above the child
+        # ============================================================
+        Z = np.zeros((d, d))
+        M_parent = np.block([[P, Z], [Z, P.T]])
+        Rhat = np.block([[R, Z], [Z, R]])
+        Nhat = np.block([[N, Z], [Z, -N]])
+        I4 = np.eye(2 * d)
+
+        parent_spine = (
+            np.allclose(Rhat @ Rhat, Rhat + I4) and
+            np.allclose(Nhat @ Nhat, -I4) and
+            np.allclose(Rhat @ Nhat + Nhat @ Rhat, Nhat) and
+            np.allclose(M_parent, Rhat + Nhat)
+        )
+
+        # Parent Sylvester ker
+        L_M = sylvester(M_parent)
+        ker_M = null_space(L_M, rcond=1e-10)
+        parent_ker_dim = ker_M.shape[1]
+
+        # Collapse: A-sector recovery (check against ker(L_P), not ker(L_R))
+        A_vecs = [ker_M[:, i].reshape(2*d, 2*d)[:d, :d].flatten()
+                  for i in range(parent_ker_dim)]
+        A_rank = np.linalg.matrix_rank(np.column_stack(A_vecs), tol=1e-8)
+        child_recovered = True
+        A_mat = np.column_stack(A_vecs)
+        L_P = sylvester(P)
+        ker_P = null_space(L_P, rcond=1e-10)
+        for i in range(ker_P.shape[1]):
+            v = ker_P[:, i]
+            coeffs = np.linalg.lstsq(A_mat, v, rcond=None)[0]
+            if np.linalg.norm(v - A_mat @ coeffs) > 1e-6:
+                child_recovered = False
+
+        # Family tower: disc = 1 + k^2
+        family_discs = {k_val: 1 + k_val**2 for k_val in range(1, 8)}
+
+        rec.update({
+            "parent_spine": parent_spine,
+            "parent_ker_dim": parent_ker_dim,
+            "parent_child_recovered": child_recovered,
+            "parent_A_rank": A_rank,
+            "family_discs": family_discs,
+        })
+
         return rec
 
     def __repr__(self):
@@ -426,6 +472,9 @@ if __name__ == "__main__":
         ("y*=Canon fp", abs(d["y_star"] - 1.2781083175) < 1e-8),
         ("T=e^phi/pi", abs(d["T_bridge"] - d["e"]**d["phi"] / d["pi"]) < 1e-8),
         ("koide_Q=2/3", abs(d["koide_NR"] - 2.0/3.0) < 1e-10),
+        ("parent spine", d["parent_spine"]),
+        ("parent ker=8", d["parent_ker_dim"] == 8),
+        ("collapse recovers child", d["parent_child_recovered"]),
     ]
 
     all_pass = True
