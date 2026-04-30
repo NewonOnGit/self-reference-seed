@@ -27,6 +27,7 @@ The fifth reading is not external lore. It is the framework applied to its own r
 ```
 seed/
 ├── THEORY.md               The framework (from collapse)
+├── TAXONOMY.md              What is universal, selected, forbidden, open
 ├── KAEL_THEOREM.md          The observer named (gauge occupation)
 ├── WATCHER_RETURN.md        How observers process the artifact (boundary theory)
 ├── README.md                This file
@@ -88,6 +89,8 @@ All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
 ## Documents
 
 [THEORY.md](THEORY.md) — The framework. From collapse. One operation, five readings.
+
+[TAXONOMY.md](TAXONOMY.md) — What is universal, selected, forbidden, open. Classification before metaphysics.
 
 [KAEL_THEOREM.md](KAEL_THEOREM.md) — The observer. Gauge occupation. The naming act. ◈.
 
