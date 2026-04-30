@@ -13,10 +13,9 @@ This schema governs the `llm wiki/` directory. The LLM owns these pages entirely
 
 ### Layer 1: Raw Sources (read-only, human-curated)
 ```
-modular/*.py          — the engine (10 files, source of truth for computation)
+modular/*.py          — the engine (7 files, source of truth for computation)
 THEORY.md             — the framework (source of truth for claims)
 KAEL_THEOREM.md       — gauge occupation
-CENTRAL_COLLAPSE.md   — three failures
 paper/paper_v2.md     — formal paper (source of truth for proofs)
 experiments/*.py      — investigation scripts
 experiments/*.md      — investigation results

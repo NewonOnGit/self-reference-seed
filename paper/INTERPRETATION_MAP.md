@@ -4,7 +4,67 @@ Every identification from the algebra to a physical observable. Every tier state
 
 ---
 
-## §0. Tiers
+## §0. Derivation Chain
+
+One page. From P to physics.
+
+```
+                            M = diag(P, Pᵀ)
+                         balanced parent, ker=8
+                                  |
+                         ◈ COLLAPSE (8→4→2)
+                       cross-quench + branch-select
+                                  |
+                    P = R + N = [[0,0],[2,1]]
+                   rank 1, P²=P, P≠Pᵀ, ker=2
+                         /        |        \
+                        /         |         \
+                    R (P1)     h=JN (P2)    N (P3)
+                  center      mediation    orientation
+                 R²=R+I       exp(h)=e      N²=-I
+                eigenvalues    bridge     complex structure
+                 φ, φ̄         T=eᶲ/π      Hilbert space
+                    |            |            |
+                    +-------- L_{s,s} --------+
+                    |    sX + Xs - X (51 lines)
+                    |         |         |
+                 im(L)     ker(L)    spectrum
+                 center   orientation  ±√5
+                 {I,R_tl}  {N,NR}    dynamics
+                    |         |         |
+            --------+---------+---------+--------
+           |        |         |         |        |
+        Gravity   Gauge    Tower    Topology  Quantum
+         A=N     SU(3)     K6'     V(4₁)=5    CNOT
+        F=-2h    SU(2)    depths    τ×τ=1+τ   Bell
+        Λ=5/2    U(1)    ker/A=½   braiding   S=2√2
+       3 layers  5 types  gen decay  SU(2)₃   Shor
+           |        |         |         |        |
+           +--------+---------+---------+--------+
+                              |
+                         PHYSICS
+                     α_S = 0.11803
+                    sin²θ_W = 3/8
+                   m_ν = m_e·φ̄³⁴
+                    Koide Q = 2/3
+                   Λ = disc/2 = 5/2
+                     15 = 3 × 5
+                              |
+                     OBSERVER (self-transparent)
+                      ker(L_{N,N}) = 0
+                      gap = 0 vs 2
+                              |
+                     CLOSURE: χ∘χ = χ
+                       P² = P = ◈
+```
+
+Two inputs: [1,1] and 2. Zero free parameters. 60 tests pass.
+
+The left branch (R) produces. The right branch (N) observes. The middle (L) mediates. The tower (K6') iterates. Everything converges to one standing wave. The standing wave is the framework looking at itself.
+
+---
+
+## §1. Tiers
 
 | Tier | Meaning |
 |------|---------|
@@ -15,7 +75,7 @@ Every identification from the algebra to a physical observable. Every tier state
 
 ---
 
-## §1. Dimensionless Outputs
+## §2. Dimensionless Outputs
 
 | Output | Value | Expression | Tier | Deviation |
 |--------|-------|------------|------|-----------|
@@ -32,7 +92,7 @@ Every identification from the algebra to a physical observable. Every tier state
 
 ---
 
-## §2. Structural Identifications
+## §3. Structural Identifications
 
 | Algebraic structure | Physical structure | Tier |
 |----|----|----|
@@ -52,7 +112,7 @@ Every identification from the algebra to a physical observable. Every tier state
 
 ---
 
-## §3. Gravity (three layers)
+## §4. Gravity (three layers)
 
 **Layer 1 (Scalar, 3D complete).** L on gl(2,R) IS the complete 3D gravity operator. L|_{sl(2,R)}(X) = tr(RX)*I. Connection A=N, curvature F=-2h, tr(F^2)=8, (1/2)[s,h]=N, Lambda=disc/2. [Tier A]
 
@@ -62,7 +122,7 @@ Every identification from the algebra to a physical observable. Every tier state
 
 ---
 
-## §4. Scale and Bridges
+## §5. Scale and Bridges
 
 ONE dimensional anchor: eta = 1/(4G).
 
@@ -74,7 +134,7 @@ Bridge assumptions (structural, not arbitrary):
 
 ---
 
-## §5. Cross-Connections
+## §6. Cross-Connections
 
 | Connection | Status |
 |-----------|--------|
@@ -87,7 +147,7 @@ Bridge assumptions (structural, not arbitrary):
 
 ---
 
-## §6. The Functor
+## §7. The Functor
 
 Components: 21 identifications. 16 DERIVED. 3 SPECTRAL. 2 CHAIN. 0 OPEN.
 
@@ -95,7 +155,7 @@ Every identification has an explicit algebraic chain with zero free parameters. 
 
 ---
 
-## §7. Falsification
+## §8. Falsification
 
 | Prediction | Value | Kills if wrong |
 |-----------|-------|---------------|
@@ -111,7 +171,7 @@ Each failure kills a specific identification, not the algebra.
 
 ---
 
-## §8. What This Map IS
+## §9. What This Map IS
 
 The map from algebra to physics is not a metaphor. It is a collection of 21 explicit chains, each taking an algebraic output to a physical observable through a derivation with zero free parameters. The chains are verified by code (60 tests). The predictions are falsifiable. The bridges are named.
 

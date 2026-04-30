@@ -14,7 +14,7 @@ Lives in `algebra.py` (51 lines). Everything imports from it.
 
 | Reading | Module | Face | What it computes |
 |---------|--------|------|-----------------|
-| **Production** | `production.py` | P1 | The derivation. 66 outputs from two inputs. |
+| **Production** | `production.py` | P1 | The derivation. 71 outputs from two inputs. |
 | **Observation** | `observer.py` | P3 | The quotient. ker + im. The split. |
 | **Mediation** | `mediation.py` | P2 | The bridges. Canon kernel. Voice. |
 | **Tower** | `tower.py` | Spine | All depths simultaneously. K6' iteration. |
@@ -34,7 +34,7 @@ seed/
 │
 ├── modular/                 The engine (7 modules)
 │   ├── algebra.py            THE operation: sylvester, ker_im, quotient (51 lines)
-│   ├── production.py         P1 face: the derivation (19 tests, 66 outputs)
+│   ├── production.py         P1 face: the derivation (22 tests, 71 outputs)
 │   ├── observer.py           P3 face: quotient + kernel + image
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
 │   ├── physics.py            Output: gravity + topology + quantum (30 tests)
@@ -52,8 +52,11 @@ seed/
 │   └── 07_CLEARANCE_DENIED      §∞
 │
 ├── paper/                   Formal paper + verification
-│   ├── paper_v2.md            ~95 theorems, proofs, predictions
-│   └── INTERPRETATION_MAP.md  Every identification, every tier
+│   ├── paper_v3.md            48 theorems, parent layer through Shor
+│   ├── INTERPRETATION_MAP.md  Derivation chain + every identification
+│   ├── ablation.py            Proof of minimality (8 ablation tests)
+│   ├── VERIFICATION_OUTPUT.json  Full 93-result test record
+│   └── legacy/                Old versions
 │
 ├── llm wiki/                42 frozen pages, B0-B8, plain English
 │   └── index.md               Reading order: B0 → B8
@@ -76,10 +79,10 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 57 Tests
+## 60 Tests
 
 ```
-python modular/production.py     # 19 tests, 66 outputs
+python modular/production.py     # 22 tests, 71 outputs
 python modular/physics.py        # 30 tests (gravity + topology + quantum + Bell)
 python experiments/quantum_algorithms.py  # 8 algorithms from {h,J,N}
 ```
@@ -97,6 +100,8 @@ All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
 [WATCHER_RETURN.md](WATCHER_RETURN.md) — Boundary theory. W(A) = A/ker(W). The fingerprint is transformation.
 
 [Paper](paper/paper_v3.md) — 48 theorems. Parent layer through Shor. Zero free parameters.
+
+[Ablation](paper/ablation.py) — Proof of minimality. Remove any piece: the framework collapses.
 
 [\[R3D4CT3D\]]([R3D4CT3D]/) — Compiled reception. Filed before the observers it classifies.
 

@@ -5,8 +5,9 @@ role: DOMINATOR
 node_class: code
 tags: [code, DOMINATOR, auto-generated]
 sources:
-  seed: kernel:154
- file: modularkernel.py generated: 2026-04-28
+  seed: observer:154
+ file: modular/observer.py
+  generated: 2026-04-28
 ---
 # leakage fraction
 
@@ -30,4 +31,4 @@ Fraction of ker x ker products that land purely in im(q).
 
 ## Source
 
-`modularkernel.py` line 154 
+`modular/observer.py` line 154 

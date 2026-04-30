@@ -9,15 +9,30 @@ import numpy as np
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'modular'))
 
-from engine import Engine
+from production import Production, _companion, _swap
+from observer import Observer, Image, Kernel
 
 phi = (1+np.sqrt(5))/2
 phi_bar = phi - 1
 
 examples = []
 
-# Build engines at each depth
-engines = [Engine()]
+# Build observers at each depth (replaces deleted Engine class)
+class _EngineShim:
+    def __init__(self, obs):
+        self.observer = obs
+        obs.observe()
+        self.image = Image(obs)
+        self.kernel = Kernel(obs)
+    def ascend(self):
+        return _EngineShim(self.observer.ascend())
+
+R = _companion([1, 1])
+J = _swap(2)
+p = Production()
+derivation = p.derive()
+_obs0 = Observer(state=R, gauge=J, tower_depth=0)
+engines = [_EngineShim(_obs0)]
 for _ in range(3):
     engines.append(engines[-1].ascend())
 

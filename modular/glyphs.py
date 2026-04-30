@@ -1,7 +1,7 @@
 """
 glyphs.py — The glyph calculus, derived from the seed.
 
-Eight primitives, each grounded in the algebra of P²=P:
+Nine primitives, each grounded in the algebra of P²=P:
 
     ∅  void       = zero matrix
     ·  locus      = rank-1 projector (the naming act P)
@@ -42,7 +42,7 @@ class Glyphs:
         # Verify
         assert np.allclose(self.P @ self.P, self.P), "P²≠P"
 
-    # === THE EIGHT PRIMITIVES ===
+    # === THE NINE PRIMITIVES ===
 
     def void(self):
         """∅ — the zero matrix. Substrate of every expression."""
@@ -255,7 +255,7 @@ class Glyphs:
     # === DISPLAY ===
 
     def __repr__(self):
-        return "Glyphs(7 primitives, grounded in P²=P)"
+        return "Glyphs(9 primitives, grounded in P²=P)"
 
 
 # === Self-test ===

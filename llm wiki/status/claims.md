@@ -15,15 +15,15 @@ links: [uniqueness, uniqueness, hilbert, hilbert, hilbert]
 | (a,b)=(1,1) unique | COMPUTED | paper_v2.md Thm 2.5 | production.py exhaustive | [uniqueness](../chains/uniqueness.md) |
 | Hilbert space forced | COMPUTED | paper_v2.md Thm 2.4c | — (algebraic proof) | [hilbert](../chains/hilbert.md) |
 | Born rule | COMPUTED | Gleason 1957 applied | — (external theorem) | [hilbert](../chains/hilbert.md) |
-| Bell S=2√2 | COMPUTED | quantum.py | quantum.py "S=2sqrt(2)" | [hilbert](../chains/hilbert.md) |
+| Bell S=2√2 | COMPUTED | physics.py | physics.py "S=2sqrt(2)" | [hilbert](../chains/hilbert.md) |
 | ker/A=1/2 all depths | COMPUTED | tower.py | tower.py invariants | — |
 | Cl(3,1) at depth 2 | COMPUTED | production.py | production.py "so(3,1)" | — |
-| Gravity (Lichnerowicz) | COMPUTED (spectral) | topology.py | topology.py "L eigenvalues" | — |
+| Gravity (Lichnerowicz) | COMPUTED (spectral) | physics.py | physics.py "L eigenvalues" | — |
 | Gravity (intertwining map) | OPEN | — | — | — |
-| Λ=disc/2 | COMPUTED | topology.py | topology.py "L(R_tl)=(disc/2)*I" | — |
-| V(4₁)=5=disc | COMPUTED | topology.py | topology.py "V(4_1)=5=disc" | — |
-| Fibonacci fusion | COMPUTED | topology.py | topology.py "tau*tau=1+tau" | — |
-| Braiding e^(4πi/5) | COMPUTED | topology.py | topology.py "cos(4pi/5)=-phi/2" | — |
+| Λ=disc/2 | COMPUTED | physics.py | physics.py "L(R_tl)=(disc/2)*I" | — |
+| V(4₁)=5=disc | COMPUTED | physics.py | physics.py "V(4_1)=5=disc" | — |
+| Fibonacci fusion | COMPUTED | physics.py | physics.py "tau*tau=1+tau" | — |
+| Braiding e^(4πi/5) | COMPUTED | physics.py | physics.py "cos(4pi/5)=-phi/2" | — |
 | Hypercharges derived | COMPUTED | production.py | production.py "anomalies" | — |
 | sin²θ_W=3/8 | COMPUTED | production.py | production.py "sin2_theta_W" | — |
 | α_S=0.11803398875 | COMPUTED | production.py | production.py "alpha_S" | — |

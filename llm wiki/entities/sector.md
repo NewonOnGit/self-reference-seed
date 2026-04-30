@@ -5,8 +5,9 @@ role: DOMINATOR
 node_class: code
 tags: [code, DOMINATOR, auto-generated]
 sources:
-  seed: kernel:210
- file: modularkernel.py generated: 2026-04-28
+  seed: observer:210
+ file: modular/observer.py
+  generated: 2026-04-28
 ---
 # sector
 
@@ -30,4 +31,4 @@ Which Clifford sector is the kernel? Returns 'odd' or 'unknown'.
 
 ## Source
 
-`modularkernel.py` line 210 
+`modular/observer.py` line 210 

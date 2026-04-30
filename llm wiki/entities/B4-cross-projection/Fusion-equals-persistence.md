@@ -29,7 +29,7 @@ The fusion rule τ×τ=1+τ has two outcomes: the vacuum (1) and the anyon (τ).
 
 **Theorem 14.1.** R²=R+I is the Fibonacci anyon fusion rule τ×τ=1+τ with τ=R, 1=I. The quantum dimension d_τ = φ (the golden ratio, R's eigenvalue). The Fibonacci category is the integer-spin subcategory {1,τ} of SU(2)₃ at q=φ². [Tier A]
 
-**SU(2)₃ modular data.** The S-matrix and Verlinde formula at level k = |V₄\{0}| = 3 recover the fusion rule from modular data. Four anyons j=0,1/2,1,3/2 with quantum dimensions 1,φ,φ,1. The Fibonacci subcategory {j=0, j=1} gives τ×τ=1+τ exactly. [Tier A, verified in topology.py]
+**SU(2)₃ modular data.** The S-matrix and Verlinde formula at level k = |V₄\{0}| = 3 recover the fusion rule from modular data. Four anyons j=0,1/2,1,3/2 with quantum dimensions 1,φ,φ,1. The Fibonacci subcategory {j=0, j=1} gives τ×τ=1+τ exactly. [Tier A, verified in physics.py]
 
 ## Dependencies
 

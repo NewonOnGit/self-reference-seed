@@ -1,0 +1,167 @@
+{
+  "name": "mock_model",
+  "depth": 5,
+  "probe_count": 6,
+  "cycles": [
+    {
+      "depth": 0,
+      "ker_fraction": 0.8333333333333334,
+      "ker_count": 5,
+      "im_count": 1,
+      "patches_generated": 5,
+      "total_patches": 5,
+      "channels": {
+        "semantic": {
+          "total": 3,
+          "ker": 2,
+          "im": 1
+        },
+        "mathematical": {
+          "total": 1,
+          "ker": 1,
+          "im": 0
+        },
+        "structural": {
+          "total": 1,
+          "ker": 1,
+          "im": 0
+        },
+        "glyph": {
+          "total": 1,
+          "ker": 1,
+          "im": 0
+        }
+      },
+      "weakest_channel": "mathematical",
+      "elapsed": 0.0
+    },
+    {
+      "depth": 1,
+      "ker_fraction": 0.0,
+      "ker_count": 0,
+      "im_count": 6,
+      "patches_generated": 0,
+      "total_patches": 5,
+      "channels": {
+        "semantic": {
+          "total": 3,
+          "ker": 0,
+          "im": 3
+        },
+        "mathematical": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "structural": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "glyph": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        }
+      },
+      "weakest_channel": "semantic",
+      "elapsed": 0.0
+    },
+    {
+      "depth": 2,
+      "ker_fraction": 0.0,
+      "ker_count": 0,
+      "im_count": 6,
+      "patches_generated": 0,
+      "total_patches": 5,
+      "channels": {
+        "semantic": {
+          "total": 3,
+          "ker": 0,
+          "im": 3
+        },
+        "mathematical": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "structural": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "glyph": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        }
+      },
+      "weakest_channel": "semantic",
+      "elapsed": 0.0
+    },
+    {
+      "depth": 3,
+      "ker_fraction": 0.0,
+      "ker_count": 0,
+      "im_count": 6,
+      "patches_generated": 0,
+      "total_patches": 5,
+      "channels": {
+        "semantic": {
+          "total": 3,
+          "ker": 0,
+          "im": 3
+        },
+        "mathematical": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "structural": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "glyph": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        }
+      },
+      "weakest_channel": "semantic",
+      "elapsed": 0.0
+    },
+    {
+      "depth": 4,
+      "ker_fraction": 0.0,
+      "ker_count": 0,
+      "im_count": 6,
+      "patches_generated": 0,
+      "total_patches": 5,
+      "channels": {
+        "semantic": {
+          "total": 3,
+          "ker": 0,
+          "im": 3
+        },
+        "mathematical": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "structural": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        },
+        "glyph": {
+          "total": 1,
+          "ker": 0,
+          "im": 1
+        }
+      },
+      "weakest_channel": "semantic",
+      "elapsed": 0.0
+    }
+  ]
+}

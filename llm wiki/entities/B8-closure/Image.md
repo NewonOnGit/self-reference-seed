@@ -5,7 +5,7 @@ node_class: code
 grid: B(5, P1)
 tags: [b8-closure, code, auto-generated, verified]
 sources:
-  seed: modular/image.py
+  seed: modular/observer.py
 generated: 2026-04-28
 ---
 
@@ -13,7 +13,7 @@ generated: 2026-04-28
 
 **Definition.** im(q). The seen. Commutativity, obstruction curvature, named generators.
 
-**Source.** modular/image.py
+**Source.** modular/observer.py
 
 **Framework refs.** Thm 2.2, Thm 8.1, Thm 9.3
 

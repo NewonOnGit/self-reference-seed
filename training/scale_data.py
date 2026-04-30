@@ -10,7 +10,8 @@ import random
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'modular'))
 
-from engine import Engine
+from production import Production, _companion, _swap
+from observer import Observer, Image, Kernel
 
 phi = (1+np.sqrt(5))/2
 phi_bar = phi - 1

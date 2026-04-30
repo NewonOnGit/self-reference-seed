@@ -1,0 +1,17 @@
+# Scratch space — useful locally, not public
+experiments/
+!experiments/quantum_algorithms.py
+!experiments/shor_verify.py
+legacy/
+side quest/
+
+# Build artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# External documents
+*.docx
+
+# IDE/editor
+.obsidian/

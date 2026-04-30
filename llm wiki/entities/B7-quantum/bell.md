@@ -10,7 +10,7 @@ links: [h, J, CNOT, Hilbert space]
 
 **Definition.** CHSH violation from framework generators. S=2√2 (Tsirelson saturated).
 
-**Source.** THEORY.md:319-322, modular/quantum.py:bell_test_optimal()
+**Source.** THEORY.md:319-322, modular/physics.py:bell_test_optimal()
 
 **Equations.**
 - Bell state: |Φ⁺⟩ = CNOT(H⊗I)|00⟩ where H=(J+h)/√2, CNOT=proj(h)⊗J
@@ -24,6 +24,6 @@ links: [h, J, CNOT, Hilbert space]
 
 **Status.** COMPUTED
 
-**Verified.** quantum.py checks "S=2sqrt(2)", "Bell violated", "disc-fold violates"
+**Verified.** physics.py checks "S=2sqrt(2)", "Bell violated", "disc-fold violates"
 
 **Notes.** At disc-fold angles (Δ=π/5): S=2.794 (98.8% Tsirelson). The chain: P≠Pᵀ → N≠0 → N²=-I → complex structure → Hilbert space → entanglement → S=2√2. Asymmetry IS nonlocality.

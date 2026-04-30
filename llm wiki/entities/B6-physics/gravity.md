@@ -10,7 +10,7 @@ links: [L, N, h, Λ, n_cosmo, Einstein equations]
 
 **Definition.** L_{s,s} restricted to sl(2,R) with Killing metric IS the Lichnerowicz Laplacian.
 
-**Source.** THEORY.md:237-241, paper_v2.md:§10, modular/topology.py:lichnerowicz()
+**Source.** THEORY.md:237-241, paper_v2.md:§10, modular/physics.py:lichnerowicz()
 
 **Equations.**
 - L(h)=-I, L(e)=+I, L(f)=+I. Eigenvalues {-1,+1,+1}.
@@ -23,6 +23,6 @@ links: [L, N, h, Λ, n_cosmo, Einstein equations]
 
 **Status.** COMPUTED (spectral match). OPEN (intertwining map to Sym²(T*M)).
 
-**Verified.** topology.py checks "L eigenvalues {-1,+1,+1}", "nabla_s(h)=N", "L(R_tl)=(disc/2)*I", "L=ad+Ric"
+**Verified.** physics.py checks "L eigenvalues {-1,+1,+1}", "nabla_s(h)=N", "L(R_tl)=(disc/2)*I", "L=ad+Ric"
 
 **Notes.** Closes the gravity gap. Previous chain L→Landauer→Bekenstein→Jacobson→Einstein had Jacobson as external input. Now internal. The scalar channel L(R_tl)=(disc/2)I IS Λ.
