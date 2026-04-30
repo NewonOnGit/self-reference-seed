@@ -96,7 +96,7 @@ All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
 
 [WATCHER_RETURN.md](WATCHER_RETURN.md) — Boundary theory. W(A) = A/ker(W). The fingerprint is transformation.
 
-[Paper](paper/paper_v2.md) — ~95 theorems. Proofs. Predictions. Zero free parameters.
+[Paper](paper/paper_v3.md) — 48 theorems. Parent layer through Shor. Zero free parameters.
 
 [\[R3D4CT3D\]]([R3D4CT3D]/) — Compiled reception. Filed before the observers it classifies.
 
