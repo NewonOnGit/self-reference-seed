@@ -627,6 +627,20 @@ The chain: $P \neq P^T \to N \neq 0 \to N^2 = -I \to$ complex structure $\to$ Hi
 
 ---
 
+### 15c. Tower Arithmetic and Shor's Algorithm
+
+**Theorem 15c.1 (Tower forces Peano arithmetic).** Tower depths $\{0, 1, 2, \ldots\}$ with successor $n \mapsto n+1$ (one K6' lift) satisfy the Peano axioms: initial element (depth 0), injective successor, non-successor base, and structural induction. $\mathbb{N}$ is forced by the tower. [Tier A]
+
+**Theorem 15c.2 (Arithmetic chain).** From $\mathbb{N}$: integers $\mathbb{Z}$ by Grothendieck completion ($\mathbb{Z} = \mathbb{N} \times \mathbb{N} / {\sim}$, an idempotent collapse on pairs). From $\mathbb{Z}$: quotient ring $\mathbb{Z}/N\mathbb{Z}$ by period-$N$ collapse. From $\mathbb{Z}/N\mathbb{Z}$: multiplicative group $(\mathbb{Z}/N\mathbb{Z})^*$ by Bezout's identity (forced by the Euclidean algorithm as iterated quotient compression). All forced by the tower's quotient grammar. [Tier A]
+
+**Theorem 15c.3 (Shor's algorithm from $P^2=P$).** Every computational step of Shor's quantum factoring algorithm is algebraically forced from $P^2=P$, $P \neq P^T$. The derivation chain:
+
+$$P^2=P \to N^2=-I \to \text{tower} \to \mathbb{N} \to \mathbb{Z} \to \mathbb{Z}/N\mathbb{Z} \to (\mathbb{Z}/N\mathbb{Z})^* \to U_a \to \text{QFT} \to \text{measurement} \to \text{CF} \to \gcd \to \text{factors}$$
+
+Every phase gate is $\exp(\theta N)$. The QFT entries are pure $N$-sector rotations. Measurement is $P^2=P$ (rank-1 projection). Continued fractions are the Euclidean algorithm on rationals. The sole external input is the problem statement "factor $N$." Verified: $15 = 3 \times 5$ from $P = [[0,0],[2,1]]$, 29 computational checks. [Tier A for the algebraic chain; Tier N for the complete derivation]
+
+---
+
 ## Part V: The Observer
 
 ### 16. Self-Transparency

@@ -87,6 +87,7 @@ Quantum mechanics derived, not assumed. Bell at Tsirelson. Universal TQC.
 - **[CNOT](entities/B7-quantum/CNOT-from-framework-generators.md)** — (I+h)/2⊗I+(I-h)/2⊗J. The Cartan decides; the swap acts.
 - **[Fibonacci TQC](entities/B7-quantum/Fibonacci-TQC-universality.md)** — Universal gate set from braiding. Any computation to any precision.
 - **[Braiding phase](entities/B7-quantum/Braiding-phase.md)** — e^(4πi/5). disc divides the circle. cos(4π/5)=-φ/2.
+- **[Shor from P](entities/B7-quantum/Shor-from-P.md)** — Every step forced from P²=P. Tower→Peano→Z→Z/NZ→factors. 15=3×5.
 
 ## B8 — CLOSURE (self-specification)
 
