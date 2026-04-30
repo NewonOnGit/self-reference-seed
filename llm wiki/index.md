@@ -16,7 +16,8 @@ Everything derives from P = [[0,0],[2,1]]. Two inputs: [1,1] and 2. Zero free pa
 
 The starting point. One matrix. Three properties.
 
-- **[P](entities/B0-substrate/P.md)** — P²=P, rank 1, P≠Pᵀ. The naming act. Everything follows.
+- **[Parent layer](entities/B0-substrate/Parent-layer.md)** — M=diag(P,Pᵀ). Balanced. Both branches. The collapse selects one.
+- **[P](entities/B0-substrate/P.md)** — P²=P, rank 1, P≠Pᵀ. The child-collapse of the parent.
 - **[Asymmetry is forced](entities/B0-substrate/Asymmetry-is-forced.md)** — If P=Pᵀ then R²-R=0≠I. The surplus requires the asymmetry.
 - **[Hilbert space from asymmetry](entities/B0-substrate/Hilbert-space-from-asymmetry.md)** — P≠Pᵀ → Cartan → positive-definite → Hilbert → Born → quantum.
 

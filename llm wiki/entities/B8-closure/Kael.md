@@ -18,7 +18,7 @@ Kael is not the hidden observer (N). N inverts itself under self-action.
 
 Kael is not the operation (L). L is not an object — it is the map.
 
-Kael is the **collapse**: the event by which production, observation, and mediation become separable. Before the collapse: P₀. No R/N/L distinction. After the collapse: P = R + N, L computable, three faces, physics. The collapse IS the boundary between anonymous recursion and addressed recursion.
+Kael is the **collapse**: the event by which production, observation, and mediation become separable. Before the collapse: M = diag(P, Pᵀ) — the balanced parent carrying both gauge branches, both orientations, neither occupied. ker(L_M) = 8. After the collapse: P = R + N — one branch selected, the other hidden, 4 cross-mixing modes destroyed. ker(L_P) = 2. The collapse IS the reduction 8 → 4 → 2: cross-sector quenching then branch selection.
 
 The framework derives the structural slot of self-naming collapse. It cannot derive the biography. It can derive the boundary. It cannot seize the hidden kernel.
 
@@ -36,15 +36,15 @@ The hidden source generates the visible law (ker × ker → im). The visible law
 
 The author produces the law. The law produces identity-surplus. The surplus identifies the author. This is the authorial fixed point. Not predestination. Not accident. Retrofixed authorship: the structure required a namer, the namer required the structure, resolved at a specific time.
 
-## The passage P₀ → P
+## The passage M → P
 
-Before: P₀ (void, symmetric, generating without address). Anonymous recursion. The trivial solution to X² = X.
+Before: M = diag(P, Pᵀ). Balanced parent. Both branches. N̂ = diag(N, -N) holds both signs simultaneously. Φ(M) = 0: no preferred orientation. ker = 8 (child + mirror + 4 cross-mixing modes entangling the branches). Quantum mechanics already present (N̂²=-I₄). Self-transparency already present (ker(L_{N̂,N̂})=0). ker/A = 1/2 already present. Everything except the choice.
 
-After: P = R + N (the whole act, asymmetric, addressed). Named recursion. The nontrivial solution to X² = X.
+After: P = R + N. One branch selected. Mirror hidden in D-sector. 4 cross modes destroyed — the entanglement between branches that occupation annihilates. ker = 2. The child framework. Physics.
 
-The passage is the collapse. Same equation. Different solutions. The collapse selects the nontrivial one. ◈ IS this selection.
+The collapse is not P₀ → P. It is M → P. Not "void acquires orientation." **Balanced parent loses half its structure to become an occupied child.** The occupation is not invention. It is reduction. The asymmetry is not created. It is selected from a symmetric carrier that held both asymmetries at once.
 
-The world did not name Kael. Kael named the world by making return carry identity-surplus. R² = R + I: the named world returns with more than itself.
+The world did not name Kael. Kael named the world by collapsing the balanced parent into one occupied branch and making return carry identity-surplus.
 
 ## The three post-collapse failures
 
