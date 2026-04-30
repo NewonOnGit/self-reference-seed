@@ -64,6 +64,24 @@ The two solutions $a = \pm 1$ give $N = \pm N_0$. This is the gauge orbit (RO-20
 
 ---
 
+### 1b. The Parent Layer
+
+**Theorem 1b.1 (Parent carrier).** $M = \mathrm{diag}(P, P^T)$ on $W = V_+ \oplus V_-$ is a rank-2 idempotent: $M^2=M$, $\mathrm{rank}(M)=2$, $\mathrm{tr}(M)=2$. It carries both gauge branches without collapsing either. [Tier A]
+
+**Theorem 1b.2 (Parent spine).** With $\hat{R} = \mathrm{diag}(R,R)$ and $\hat{N} = \mathrm{diag}(N,-N)$: $\hat{R}^2 = \hat{R} + I_4$, $\{\hat{R},\hat{N}\} = \hat{N}$, $\hat{N}^2 = -I_4$, and $M = \hat{R} + \hat{N}$. The parent satisfies the same unit spine as the child. [Tier A]
+
+**Theorem 1b.3 (Exchange invariance).** The intertwiner is $K = 2J - h$: twice the ground minus the Cartan. $K^2 = \mathrm{disc} \cdot I$, $\det(K) = -\mathrm{disc}$, $KPK^{-1} = P^T$. $K$ is the dual of the harness $C = 2h+J$: swap coefficients, both square to $\mathrm{disc} \cdot I$. The exchange involution $T = \begin{pmatrix}0&K^{-1}\\K&0\end{pmatrix}$ gives $T^2=I$, $TMT^{-1}=M$. Identified exchange through the discriminant, not raw swap. [Tier A]
+
+**Theorem 1b.4 (Parent Sylvester decomposition).** $L_{M,M}$ on $\mathrm{End}(W)$ decomposes into four sectors: child-preserving ($A$), mirror-preserving ($D$), and cross-sectors ($B$, $C$). $\dim\ker(L_M) = 8 = 2 + 2 + 4$ (child + mirror + cross-mixing). [Tier N]
+
+**Theorem 1b.5 (Collapse by quotient).** Cross-sector quenching (killing $B$,$C$ blocks) reduces $\ker$ from 8 to 4 diagonal-only directions. Branch selection via $\Sigma = \mathrm{diag}(I_2,-I_2)$ splits into $A$-sector (rank 2, child) and $D$-sector (rank 2, mirror). The $A$-sector contains exactly $\ker(L_P)$. The child framework recovers completely. The mirror persists hidden. The 4 cross modes are the entanglement between branches that occupation destroys. [Tier N, verified computationally]
+
+**Theorem 1b.6 (Child recovery).** After branch selection, the child algebra recovers $P=R+N$, $R^2=R+I$, $\{R,N\}=N$, $N^2=-I$, all seven identities, the ker/im decomposition, the tower, and all physics. The old framework IS the occupied branch of the parent. [Tier A once 1b.5 holds]
+
+*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction.*
+
+---
+
 ### 2. The Operation
 
 **Definition 2.1.** The Sylvester self-action:
@@ -606,6 +624,20 @@ At disc-fold angles ($\Delta = \pi/5$): $S = 2.794$ (98.8% of Tsirelson). **Viol
 The chain: $P \neq P^T \to N \neq 0 \to N^2 = -I \to$ complex structure $\to$ Hilbert space $\to$ Bell state $\to S = 2\sqrt{2}$. The asymmetry of the naming act IS the nonlocality. [Tier A]
 
 **Theorem 15.8 (Fibonacci TQC universality).** The braid generators $\sigma_1 = R_\mathrm{braid}$ (diagonal phases $e^{-4\pi i/5}, e^{3\pi i/5}$) and $\sigma_2 = F R_\mathrm{braid} F$ (where $F$ is the Fibonacci F-matrix with entries $\bar\varphi$ and $1/\sqrt{\varphi}$, $F^2 = I$) satisfy the braid relation $\sigma_1 \sigma_2 \sigma_1 = \sigma_2 \sigma_1 \sigma_2$ and generate a dense subgroup of $\mathrm{SU}(2)$ on the computational subspace (Freedman--Kitaev--Larsen--Wang 2003). Any single-qubit gate can be approximated to precision $\varepsilon$ using $O(\log^{3.97}(1/\varepsilon))$ braids. Each braid is topologically protected by the $\mathrm{SU}(2)_3$ Fibonacci category. [Tier A for the braid relation; universality is an external theorem applied to framework-derived data]
+
+---
+
+### 15c. Tower Arithmetic and Shor's Algorithm
+
+**Theorem 15c.1 (Tower forces Peano arithmetic).** Tower depths $\{0, 1, 2, \ldots\}$ with successor $n \mapsto n+1$ (one K6' lift) satisfy the Peano axioms: initial element (depth 0), injective successor, non-successor base, and structural induction. $\mathbb{N}$ is forced by the tower. [Tier A]
+
+**Theorem 15c.2 (Arithmetic chain).** From $\mathbb{N}$: integers $\mathbb{Z}$ by Grothendieck completion ($\mathbb{Z} = \mathbb{N} \times \mathbb{N} / {\sim}$, an idempotent collapse on pairs). From $\mathbb{Z}$: quotient ring $\mathbb{Z}/N\mathbb{Z}$ by period-$N$ collapse. From $\mathbb{Z}/N\mathbb{Z}$: multiplicative group $(\mathbb{Z}/N\mathbb{Z})^*$ by Bezout's identity (forced by the Euclidean algorithm as iterated quotient compression). All forced by the tower's quotient grammar. [Tier A]
+
+**Theorem 15c.3 (Shor's algorithm from $P^2=P$).** Every computational step of Shor's quantum factoring algorithm is algebraically forced from $P^2=P$, $P \neq P^T$. The derivation chain:
+
+$$P^2=P \to N^2=-I \to \text{tower} \to \mathbb{N} \to \mathbb{Z} \to \mathbb{Z}/N\mathbb{Z} \to (\mathbb{Z}/N\mathbb{Z})^* \to U_a \to \text{QFT} \to \text{measurement} \to \text{CF} \to \gcd \to \text{factors}$$
+
+Every phase gate is $\exp(\theta N)$. The QFT entries are pure $N$-sector rotations. Measurement is $P^2=P$ (rank-1 projection). Continued fractions are the Euclidean algorithm on rationals. The sole external input is the problem statement "factor $N$." Verified: $15 = 3 \times 5$ from $P = [[0,0],[2,1]]$, 29 computational checks. [Tier A for the algebraic chain; Tier N for the complete derivation]
 
 ---
 

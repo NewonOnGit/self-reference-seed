@@ -42,7 +42,7 @@ All three generating equations follow algebraically from P^2 = P with P != P^T:
 
 **Thm 0b.2 (Parent Spine).** With R-hat = diag(R,R) and N-hat = diag(N,-N): R-hat^2 = R-hat + I4, {R-hat, N-hat} = N-hat, N-hat^2 = -I4, and M = R-hat + N-hat. The parent satisfies the same unit spine as the child. The parent is not a container. It is itself a lawful seed.
 
-**Thm 0b.3 (Exchange Invariance).** The parent is invariant under branch exchange only through an identified mirror intertwiner K with KPK^-1=P^T. The symmetry is T = [[0,K^-1],[K,0]], T^2=I, TMT^-1=M. Not raw swap. Identified exchange.
+**Thm 0b.3 (Exchange Invariance).** The parent is invariant under branch exchange through the intertwiner K = 2J - h (twice the ground minus the Cartan). K^2 = disc*I, det(K) = -disc, KPK^-1 = P^T. K is the DUAL of the harness C = 2h + J: swap the coefficients, both square to disc*I. The exchange symmetry is T = [[0,K^-1],[K,0]]. Not raw swap. Identified exchange through the discriminant.
 
 **Thm 0b.4 (Parent Sylvester Decomposition).** L_{M,M} on End(W) decomposes into four sectors: child-preserving (A), mirror-preserving (D), and two cross-sectors (B,C). Parent ker(L_M) = 8 = child(2) + mirror(2) + cross-mixing(4).
 
@@ -452,6 +452,11 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 | collapse 8->4->2 (cross-quench + branch) | COMPUTED (P5 verified: child ker recovered exactly) |
 | tower -> Peano arithmetic -> Z -> Z/NZ | FORCED (tower depths satisfy Peano axioms) |
 | Shor's algorithm from P^2=P | FORCED (29 checks pass, 15=3x5 from [[0,0],[2,1]]) |
+| K = 2J-h (intertwiner), K^2=disc*I | COMPUTED (dual of harness C=2h+J; both square to disc) |
+| phi(disc) = d^2 = \|V_4\| | COMPUTED (Euler totient of 5 = 4 = Klein four size) |
+| 64 = 2^disclosure_rank(1) = 2^dim(so(3,1)) | COMPUTED (generation freeze = 2^Lorentz) |
+| 30 = d*N_c*disc = \|S_0\|*color*disc | COMPUTED (Clifford count = three cardinals) |
+| 17 = 2^(d^2)+1 = Fermat prime F_d | COMPUTED (neutrino factor = Fermat prime at Fermat index d) |
 | T = e^phi/pi | ENCODED (bridge constant, P1 on P2 / P3) |
 
 ---
