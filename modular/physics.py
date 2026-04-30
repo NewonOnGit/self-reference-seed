@@ -287,8 +287,9 @@ def bell_test_optimal():
 
 
 def bell_test_framework():
-    """S at disc-fold angles (pi/5 spacing)."""
-    return chsh(bell_phi_plus(), 0, np.pi / 2, np.pi / 5, np.pi / 2 + np.pi / 5)
+    """S at disc-fold angles (pi/disc spacing)."""
+    _disc = int(round(np.trace(_R).real**2 - 4 * np.linalg.det(_R).real))
+    return chsh(bell_phi_plus(), 0, np.pi / 2, np.pi / _disc, np.pi / 2 + np.pi / _disc)
 
 
 def fibonacci_F_matrix():

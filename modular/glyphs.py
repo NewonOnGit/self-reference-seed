@@ -174,8 +174,9 @@ class Glyphs:
             "{R,N}=N": np.allclose(R @ N + N @ R, N),
             "N²=-I": np.allclose(N @ N, -self.I),
             "(RN)²=I": np.allclose((R @ N) @ (R @ N), self.I),
-            "[R,N]²=5I": np.allclose(
-                (R @ N - N @ R) @ (R @ N - N @ R), 5 * self.I
+            "[R,N]²=disc*I": np.allclose(
+                (R @ N - N @ R) @ (R @ N - N @ R),
+                int(round(np.trace(R)**2 - 4*np.linalg.det(R))) * self.I
             ),
         }
 
