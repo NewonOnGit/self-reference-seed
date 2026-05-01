@@ -188,7 +188,9 @@ class Tower:
 
     def generation_decay(self):
         """ker²→im rank at each depth. The void's reach.
-    FRAMEWORK_REF: Thm 7.1, Thm 7.2"""
+    FRAMEWORK_REF: Thm 7.1, Thm 7.2
+    NOTE: n_ker must be large enough that n_ker² >= im_dim,
+    otherwise rank is capped by product count, not algebra."""
         results = []
         for d in self.depths:
             obs = d["observer"]
@@ -197,7 +199,11 @@ class Tower:
             ker_basis = obs.frame["ker_basis"]
             _, _, _, Q_ker = ker_im_decomposition(obs.state)
 
-            n_ker = min(len(ker_basis), 8)
+            # Need n_ker² >= im_dim to avoid sampling artifact.
+            # Cap at 24 for computational feasibility (24²=576 > 512=im at depth 4).
+            import math
+            min_needed = max(int(math.ceil(math.sqrt(d["im_dim"]))), 2)
+            n_ker = min(len(ker_basis), max(min_needed, 24))
             if n_ker < 2:
                 results.append({"depth": d["depth"], "rank": 0, "im_dim": d["im_dim"], "pct": 0})
                 continue

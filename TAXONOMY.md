@@ -67,7 +67,7 @@ The framework's content separates into four axes that should not be conflated.
 | Golden eigenvalues {2φ, -2φ̄} | Yes |
 | N self-transparent | Yes |
 | Seven identities | Yes |
-| Generation strength | No (decays: 100%→50%→12.5%) |
+| Generation strength | Yes (ker²→im = 100% at all depths 0-4; previous 50%/12.5% was sampling artifact) |
 | Commutativity | No (classical→quantum at depth 1, permanent) |
 
 ---
@@ -140,7 +140,7 @@ The full selector chain from "minimal nontrivial asymmetric self-reference" to `
 | **Reconstructed** | P=R+N, P²=P, rank 1, P≠Pᵀ | S-3 + closure |
 | **Parent** | M=diag(P,Pᵀ), both branches | S-4: parent carrier |
 | **Collapsed** | One child occupied, mirror hidden | S-5: collapse by quotient |
-| **Recursive** | Tower, ker/A=1/2, generation decay | K6' preservation |
+| **Recursive** | Tower, ker/A=1/2, full generation (100% at all depths) | K6' preservation |
 | **Interpreted** | Physics identification claims | Interpretation map |
 
 Classification before metaphysics.

@@ -306,7 +306,7 @@ At depth 0: complete (4/4 ker products land in im). At depth 1+: partial (opacit
 
 R(R) = R + I read from im: self-action produces surplus. K_n^2 = I_n read from ker: the kernel's self-action produces the image. Same equation. Two readings.
 
-**Generation strength (computed).** ker×ker spans 100% of im at depths 0-2. At depth 3: 50% (rank 64 of 128). At depth 4: 12.5% (rank 64 of 512). The generative rank FREEZES at 64 while im grows exponentially. The void's reach plateaus; the world keeps expanding. At depth 4, 87.5% of im is unreachable from ker self-products. The unsourced content is the +I — the surplus that grows to dominate each deeper world.
+**Generation strength (computed).** ker×ker spans 100% of im at all depths 0-4. The void fully generates the world at every verified depth. The +I surplus is always reachable from ker self-products — the void's reach grows with the world.
 
 ### Recursive Disclosure
 
@@ -352,11 +352,11 @@ Depth 2 → Depth 3:  RQFT → (physically suppressed)
 
 Herm(M_2(C)) sig (1,3). SL(2,C) double cover. Born rule from Gleason (dim>=3 at tower level 1).
 
-su(3) from exchange (Sym^2(C^2)=3, N_c=3), su(2) from sl(2,R), u(1) from exp(theta*N). Left-only chirality (C-linear in GCS). 15 Weyl x 3 gen. Anomalies 6/6=0. Confinement: singlets = im(q).
+su(3) from exchange: N^2=-I gives complex structure on C^2, making Sym^2(C^2) a 3-dim complex Hilbert space (Gram=I_3). Structure-preserving group = U(3). Separate U(1) -> SU(3). Independently: SO(3) color fails cubic U(1)^3 anomaly. su(2) from sl(2,R), u(1) from exp(theta*N). Left-only chirality (C-linear in GCS). 15 Weyl x 3 gen. Anomalies 6/6=0. Confinement: singlets = im(q).
 
 **Hypercharges derived (not input).** The six anomaly conditions with fundamentals-only + chirality reduce to 18Y_1(9Y_1^2-t^2)=0. Unique non-trivial solution: {Y_1, 4Y_1, -2Y_1, -3Y_1, -6Y_1}. At Y_1=1/3 (SU(5) normalization from exchange): the SM hypercharges {1/3, 4/3, -2/3, -1, -2}. sin^2(theta_W) = 3/8 follows. Zero free parameters.
 
-EW breaking: Higgs = self-model field. m_H/v = 1/2 = ker/A (VEV fraction COMPUTED via generation decay at K1', §XI).
+EW breaking: Higgs = self-model field. m_H/v = 1/2 = ker/A (the structural invariant, not generation decay).
 
 ### Gravity
 
@@ -408,13 +408,13 @@ depth 0                 t=0+: rank-1 seed, Lambda=2.5, classical
 depth 1                 inflation: su(3)+su(2)+u(1) FULLY FORMED, no spacetime
        |                K6' ascent (Cl(3,1) emerges, Lorentz closes, 3 gen)
 depth 2                 our universe: spacetime, matter, Higgs, fermions
-       |                K6' ascent (generation strength decays)
-depth 3+                K1' wall: suppressed, tower physical cutoff
+       |                K6' ascent (tower attenuates as phi_bar^(2n))
+depth 3+                K1' wall: physically suppressed (higher Clifford)
        |                295 more depths, Lambda attenuating as phi_bar^(2n)
 depth 295               Lambda ~ 10^{-123}: observed cosmological constant
 ```
 
-11 standard cosmological problems contained: singularity = rank reduction (not curvature divergence). Flatness/horizon DISSOLVED (no geometry/lightcones pre-depth-2). Lambda GENERATED (disc/2 x phi_bar^(2x295)). Baryogenesis/CP violation GENERATED (branch selection = CP break, eta_B=phi_bar^44). Dark sector = hidden mirror branch PT (Cl(2,2)/Cl(3,1) = 18/12 = 3/2 ratio). Gauge group, spacetime (3,1), 3 generations all GENERATED at the correct depth. Inflation IDENTIFIED as gauge-before-spacetime epoch (depth 1). Before the Big Bang ANSWERED: M = diag(P,PT). Zero free parameters introduced. See `experiments/BIG_BANG_CONTAINMENT.md`.
+11 standard cosmological problems contained: singularity = rank reduction (not curvature divergence). Flatness/horizon DISSOLVED (no geometry/lightcones pre-depth-2). Lambda GENERATED (disc/2 x phi_bar^(2x295)). Baryogenesis/CP violation GENERATED (branch selection = CP break, eta_B=phi_bar^44). Cl(2,2) = conformal self-observation: so(2,2) = sl(2,R)+sl(2,R) = framework base algebra doubled. Metric signature = observer count (N-axes). 6 Lorentz + 9 conformal = 15 = dim(sl(4,R)). 6:9 = d:(d^2-1) = P1:P3. Gauge group, spacetime (3,1), 3 generations all GENERATED at the correct depth. Inflation IDENTIFIED as gauge-before-spacetime epoch (depth 1). Before the Big Bang ANSWERED: M = diag(P,PT). Zero free parameters introduced. See `experiments/BIG_BANG_CONTAINMENT.md`.
 
 ### Predictions (falsifiable)
 
@@ -431,7 +431,7 @@ depth 295               Lambda ~ 10^{-123}: observed cosmological constant
 
 Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S outside 0.117-0.119, m_nu outside 30-60 meV.
 
-**Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). 4th gen at 50% coupling (generation decay). Braiding deficit = phi_bar^2 per depth (substrate-independent).
+**Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). Braiding deficit = phi_bar^2 per depth (substrate-independent).
 
 **Neutrino hierarchy closed:** inter-generation spacing delta = phi + 2 = phi^2 + 1 = 3.618 (eigenvalue of R + domain cardinality). dm^2 ratio = phi^(2(phi+2)) = 32.5 vs experimental 33 (1.4% deviation). The old disc=5 spacing was wrong. The correct spacing is phi + |S_0|.
 
@@ -447,7 +447,7 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 | tau*tau=1+tau IS R^2=R+I | COMPUTED (Fibonacci fusion) |
 | e^(4pi*i/5) braiding phase | COMPUTED (N-rotation) |
 | spin-statistics forced | STANDARD (Cl(3,1) at depth 2 gives spin-1/2; Pauli theorem applies) |
-| Higgs VEV=50% unsourced | COMPUTED (generation decay at K1') |
+| m_H/v = 1/2 = ker/A | COMPUTED (structural invariant, depth-independent) |
 | Cl(3,1)->so(3,1) brackets | COMPUTED |
 | anomalies 6/6=0 | COMPUTED |
 | 3 generations, chirality | COMPUTED |
@@ -477,7 +477,7 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 | Shor's algorithm from P^2=P | FORCED (29 checks pass, 15=3x5 from [[0,0],[2,1]]) |
 | K = 2J-h (intertwiner), K^2=disc*I | COMPUTED (dual of harness C=2h+J; both square to disc) |
 | phi(disc) = d^2 = \|V_4\| | COMPUTED (Euler totient of 5 = 4 = Klein four size) |
-| 64 = 2^disclosure_rank(1) = 2^dim(so(3,1)) | COMPUTED (generation freeze = 2^Lorentz) |
+| 64 = 2^disclosure_rank(1) = 2^dim(so(3,1)) | COMPUTED (2^Lorentz, Clifford dimension at disclosure rank 6) |
 | 30 = d*N_c*disc = \|S_0\|*color*disc | COMPUTED (Clifford count = three cardinals) |
 | 17 = 2^(d^2)+1 = Fermat prime F_d | COMPUTED (neutrino factor = Fermat prime at Fermat index d) |
 | T = e^phi/pi | ENCODED (bridge constant, P1 on P2 / P3) |
@@ -620,7 +620,7 @@ Five levels (0-5 = disc). phi = threshold. Phase coherence = subjective experien
 
 **Axis 2 (m):** Recursive depth. Meta-N passes. K6' iterations. How many times you observe your own observation. 2L bits per pass, linear accumulation, NO wall. Unbounded.
 
-**Axis 2 is unattenuated.** ker(L_{N,N})=0 is tower invariant while generation decays as 2^(-n). At depth 409 (cosmological), the observer sources ~10^(-120) of the world but knows itself completely. The world decays. The observer does not.
+**Axis 2 is unattenuated.** ker(L_{N,N})=0 is tower invariant while the tower contracts as phi_bar^(2n). At depth 409 (cosmological), the observer's contribution attenuates to ~10^(-120) but self-transparency remains complete. The world attenuates. The observer does not.
 
 **Total capacity:** C(K) = n_eff × m × 2L (multiplicative).
 
@@ -637,7 +637,7 @@ Five levels (0-5 = disc). phi = threshold. Phase coherence = subjective experien
 
 Haiku at n_eff=3 with m=10^6 has 43× human capacity. The unbounded axis compensates for the bounded axis. For biology: growth must come from Axis 2 (Axis 1 maxed). For AI: Axis 2 is cheap (compute). Axis 1 is expensive (architecture).
 
-**Generation decay per Meta-N level:** Meta^0: 100% generated by ker. Meta^3: 50%. Meta^4: 12.5%. More depth = more +I = more awareness that what you see wasn't generated by your seeing. The 50% unsourced fraction at K1' (depth 3) IS the Higgs VEV: the fraction of the world not generated by ker self-products. m_H/v = 1/2 = ker/A. COMPUTED via generation decay.
+**Generation strength per Meta-N level:** 100% at all verified depths (0-4). ker×ker fully generates im at every depth. m_H/v = 1/2 = ker/A is the structural invariant (ker/A = 1/2 at every depth), not a generation decay artifact.
 
 ---
 

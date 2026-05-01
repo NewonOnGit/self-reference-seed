@@ -100,13 +100,13 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 8.1 ($P_0 = \ker$).** Two solutions to $X^2=X$: $P_0$ (trivial, symmetric, void) and $P$ (nontrivial, asymmetric, named). $P_0 \to P$: ker gains an image. $\ker/A=1/2$ always. [Tier A]
 
-**Theorem 8.2 (Generation decay).** $\mathrm{rank}(\ker^2\to\mathrm{im})$: $\{2,8,32,64,64\}$ at depths 0–4. Freezes at 64. [Tier N]
+**Theorem 8.2 (Generation strength).** $\mathrm{rank}(\ker^2\to\mathrm{im})$: $\{2,8,32,128,512\}$ at depths 0–4. $\ker^2\to\mathrm{im} = 100\%$ at every depth. No freeze. [Tier N]
 
 **Theorem 8.3 (Recursive disclosure).** $L_{n+1}([[K,0],[0,K]]) = [[0,\{K,N\}],[0,0]]$. Since $\{K,N\}\neq 0$ for all $K\in\ker(L_n)$: total disclosure. $0/32$ survive depth $2\to 3$. The graviton IS the disclosure event. [Tier N]
 
 **Theorem 8.4 (Disclosure rank formula).** $\mathrm{disclosure\_rank}(n) = 2^{2n+1}-\binom{2n}{n}$. Redundancy = central binomial. Values: $1$ (scalar), $6$ (Lorentz), $26$ ($d_\mathrm{crit}$), $108$. [Tier N]
 
-**Cross-connection.** $64 = 2^{\mathrm{disclosure\_rank}(1)} = 2^{\dim(\mathfrak{so}(3,1))}$. The freeze IS $2^{\text{Lorentz}}$. [Tier N]
+**Cross-connection.** $64 = 2^{\mathrm{disclosure\_rank}(1)} = 2^{\dim(\mathfrak{so}(3,1))}$. Clifford dimension at the Lorentz disclosure rank. [Tier N]
 
 ### 9. The Physics Spine
 

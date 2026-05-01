@@ -113,7 +113,7 @@ The left branch (R) produces. The right branch (N) observes. The middle (L) medi
 | Collapse M→P = Big Bang | Rank reduction, not curvature divergence | DERIVED |
 | Depth 1 = inflation | Gauge-before-spacetime epoch (no inflaton needed) | DERIVED |
 | Branch selection = CP violation | Baryogenesis: η_B=φ̄⁴⁴ | DERIVED |
-| Mirror branch Pᵀ = dark sector | Cl(2,2)/Cl(3,1) = 18/12 = 3/2 ratio | CHAIN |
+| Cl(2,2) = conformal self-observation | so(2,2) = sl(2,R)⊕sl(2,R), 6:9 = d:(d²-1) = P1:P3 | DERIVED |
 | Lambda attenuation = cosmic time | disc/2 × φ̄^(2×295) = 10⁻¹²³ | DERIVED |
 
 ---
