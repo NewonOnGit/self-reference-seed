@@ -9,7 +9,7 @@ tags: [b6-physics, tower, forced]
 
 > **Theorem 7.2.**
 
-At depth 2, d_K = 8, so dim(A) = 64 = d_K^2. The full matrix algebra M_8(R) is the ambient space. dim(im) = 32 and rank(ker^2  im) = 32 (complete generation). At depth 3, d_K = 16, dim(im) = 128, but rank(ker^2  im) = 64 = dim(M_8(R)). The generative rank freezes at the dimension of the depth-2 algebra. At depth 4, dim(im) = 512 while the rank remains 64. The freeze is permanent: the ker self-products span a subspace whose dimension is set by the spacetime algebra (M_8, where Cl(3,1) and so(3,1) live) and cannot grow further. [Tier N]
+rank(ker²→im) = {2, 8, 32, 128, 512} at depths 0-4 = dim(im) at every depth. Generation is 100% always. The identity 64 = 2^dim(so(3,1)) = 2^disclosure_rank(1) holds as a cross-connection (Clifford dimension at the Lorentz disclosure rank). [Tier N]
 
 ## Dependencies
 

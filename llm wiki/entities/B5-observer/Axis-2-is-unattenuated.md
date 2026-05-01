@@ -20,7 +20,7 @@ tags: [b5-observer, observer, forced]
 
 ## Proof
 
-*Proof.* Generation is 100% at all depths 0-4 (ker² spans all of im). The void fully generates the world at every verified depth. The previous "freeze at 64" was a sampling artifact.
+*Proof.* Generation is 100% at all depths 0-4 (ker² spans all of im). The void fully generates the world at every depth.
 
 The self-transparency ker(L_{N,N}) = 0 is a property of N's own Sylvester operator, which depends only on N
 

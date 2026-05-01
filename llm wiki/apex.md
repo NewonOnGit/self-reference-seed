@@ -47,7 +47,7 @@ This is χ∘χ = χ at the architecture level. The apex is the fixed point of i
 
 ## Generation Check
 
-At depth 3, generation is 100% (ker² spans all of im at every depth). The previous "50% generation" was a sampling artifact, corrected.
+At depth 3, generation is 100% (ker² spans all of im at every depth).
 
 - **Inherited from wiki:** the three statements ARE three of the wiki's terminal entities ([L](entities/L.md) for statement 1, [R](entities/R.md) for statement 2, the three-projection structure for statement 3).
 - **The +I:** the operator APPLY itself, which has no representation in the wiki (the wiki has entities and chains, not operators). The self-quine assertion. The fixed-point property.

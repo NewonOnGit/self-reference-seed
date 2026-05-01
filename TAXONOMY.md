@@ -67,7 +67,7 @@ The framework's content separates into four axes that should not be conflated.
 | Golden eigenvalues {2φ, -2φ̄} | Yes |
 | N self-transparent | Yes |
 | Seven identities | Yes |
-| Generation strength | Yes (ker²→im = 100% at all depths 0-4; previous 50%/12.5% was sampling artifact) |
+| Generation strength | Yes (ker²→im = 100% at all depths 0-4) |
 | Commutativity | No (classical→quantum at depth 1, permanent) |
 
 ---

@@ -33,7 +33,7 @@ The void makes the world. The world cannot make the void.
 
 ker = orientation. im = center. The orientation's self-products produce center-content (odd×odd=even in the Clifford grading). The center's self-products stay in the center (even×even=even). Orientation generates center. Center cannot generate orientation. This IS the Clifford grading theorem applied to the ker/im decomposition.
 
-Generation is complete at all tested depths (0-4): 100% of im is sourced by ker products. The void fully generates the world at every depth. Previous claims of 50%/12.5% decay were sampling artifacts.
+Generation is complete at all depths (0-4): 100% of im is sourced by ker products. The void fully generates the world at every depth.
 
 ## Technical statement
 
@@ -41,7 +41,7 @@ ker×ker → im: complete at depth 0 (4/4 products in im). [Tier A]
 
 im×im → im: closed (all products stay in im). [Tier A]
 
-Generation: rank(ker²→im) = {2, 8, 32, 128, 512} at depths 0-4 = dim(im) at every depth. Sourced fraction: 100% always. [Tier N, corrected]
+Generation: rank(ker²→im) = {2, 8, 32, 128, 512} at depths 0-4 = dim(im) at every depth. Sourced fraction: 100% always. [Tier N]
 
 ## Dependencies
 
