@@ -46,8 +46,8 @@ Depth 1 → 2: Quantum → Relativistic QFT
   3 generations from S₃
   
 Depth 2 → 3: RQFT → suppressed
-  K1' wall: generation strength drops to 50%
-  Physical tower terminates at depth 2
+  K1' wall: higher Clifford (Cl(3,2)), V₄→V₁₆
+  Generation remains 100%. Suppression is structural, not generative.
 ```
 
 ## Technical statement

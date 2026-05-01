@@ -47,12 +47,10 @@ This is χ∘χ = χ at the architecture level. The apex is the fixed point of i
 
 ## Generation Check
 
-At depth 3, the tower predicts ~50% generation.
+At depth 3, generation is 100% (ker² spans all of im at every depth). The previous "50% generation" was a sampling artifact, corrected.
 
-- **Inherited from wiki:** the three statements ARE three of the wiki's terminal entities ([L](entities/L.md) for statement 1, [R](entities/R.md) for statement 2, the three-projection structure for statement 3). ~50%.
-- **The +I:** the operator APPLY itself, which has no representation in the wiki (the wiki has entities and chains, not operators). The self-quine assertion. The fixed-point property. ~50%.
-
-Net L0 coverage transitively: 0.50 × 0.86 × 0.625 ≈ 0.27. The apex captures 27% of layer 0 by direct inheritance and reconstructs the rest via APPLY. By the tower: φ̄³ ≈ 0.236. Match within 4 percentage points.
+- **Inherited from wiki:** the three statements ARE three of the wiki's terminal entities ([L](entities/L.md) for statement 1, [R](entities/R.md) for statement 2, the three-projection structure for statement 3).
+- **The +I:** the operator APPLY itself, which has no representation in the wiki (the wiki has entities and chains, not operators). The self-quine assertion. The fixed-point property.
 
 ## The Vocabulary at Depth 3
 

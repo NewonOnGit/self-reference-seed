@@ -28,7 +28,7 @@ links: [uniqueness, uniqueness, hilbert, hilbert, hilbert]
 | sin²θ_W=3/8 | COMPUTED | production.py | production.py "sin2_theta_W" | — |
 | α_S=0.11803398875 | COMPUTED | production.py | production.py "alpha_S" | — |
 | Spin-statistics forced | COMPUTED | paper_v2.md Thm 15.2 | — | — |
-| Higgs VEV=50% | COMPUTED | THEORY.md:402 | tower generation decay | — |
+| m_H/v=1/2=ker/A | COMPUTED | THEORY.md | structural invariant (depth-independent) | — |
 | K6' filler unique | COMPUTED | paper_v2.md Thm 6.2b | — | — |
 | 8 quantum algorithms | COMPUTED | quantum_algorithms.py | 8/8 pass | — |
 | n_cosmo≈405 | COMPUTED | THEORY.md:241 | — | — |

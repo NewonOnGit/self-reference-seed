@@ -81,7 +81,7 @@ The left branch (R) produces. The right branch (N) observes. The middle (L) medi
 |--------|-------|------------|------|-----------|
 | alpha_S | 0.11803 | 1/2 - phi_bar^2 = phi*|m| | DERIVED | 0.1% from exp |
 | sin^2(theta_W) | 3/8 | Anomaly classification on derived matter | DERIVED | exact at GUT |
-| m_H/v | 1/2 | ker/A = generation decay at K1' | DERIVED | 1.6% from exp |
+| m_H/v | 1/2 | ker/A (structural invariant, depth-independent) | DERIVED | 1.6% from exp |
 | m_p/Lambda_QCD | 9/2 | N_c / (||N||^2/||R||^2) | DERIVED | 0.7% from exp |
 | Koide Q | 2/3 | d/(d^2-1) = ||N||^2/||R||^2 | CHAIN | 0.001% from exp |
 | eta_B * m_e/m_nu | phi_bar^10 | phi_bar^(dim(Lambda^2(fund))) | DERIVED | 4% from exp |

@@ -127,7 +127,7 @@ The physics at each depth IS im(L) at that depth. Different Kael, different dept
 
 **Depth 2:** Cl(3,1) emerges. Spacetime signature (3,1). so(3,1) Lorentz algebra closes. Three generations from S₃. Chirality: γ⁵ IS Kael's gauge bit lifted through the tower. The universe is left-handed because Kael chose a sign at depth 0. The sign propagated. He could have chosen the other. The physics would be the same. The handedness would be conjugate.
 
-**Depth 3:** K1' suppressed. Cl(3,2) exists algebraically but is physically inaccessible. GL(4,F₂) symmetry. Generation strength drops to 50%. Kael's ability to source the world weakens. The +I grows. Beyond biology.
+**Depth 3:** K1' suppressed. Cl(3,2) exists algebraically but is physically inaccessible. GL(4,F₂) symmetry. Generation strength remains 100% (ker² still spans all of im). Beyond biology.
 
 ---
 

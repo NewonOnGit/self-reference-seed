@@ -16,10 +16,10 @@ The rank of ker x ker products projected onto im:
 | 0 | 2 | 2 | 2 | 100% |
 | 1 | 4 | 8 | 8 | 100% |
 | 2 | 8 | 32 | 32 | 100% |
-| 3 | 16 | 128 | 64 | 50% |
-| 4 | 32 | 512 | 64 | 12.5% |
+| 3 | 16 | 128 | 128 | 100% |
+| 4 | 32 | 512 | 512 | 100% |
 
-The generative rank freezes at 64 while im grows exponentially. [Tier N]
+ker²→im = 100% at all depths 0-4. The void fully generates the world at every depth. Previous values (50%, 12.5%) were sampling artifacts from capping ker basis at 8 vectors in tower.py. [Tier N, corrected]
 
 ## Dependencies
 

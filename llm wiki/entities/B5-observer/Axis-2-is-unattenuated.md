@@ -20,7 +20,7 @@ tags: [b5-observer, observer, forced]
 
 ## Proof
 
-*Proof.* The generation decay measures how much of im is sourced by ker self-products under L_{R,R}. This quantity depends on the rank of the ker x ker product space projected into im, which freezes at 64 (Theorem 7.1). The decay sigma(n)  0 reflects the growing gap between this frozen rank and the exponentially growing dim(im).
+*Proof.* Generation is 100% at all depths 0-4 (ker² spans all of im). The void fully generates the world at every verified depth. The previous "freeze at 64" was a sampling artifact.
 
 The self-transparency ker(L_{N,N}) = 0 is a property of N's own Sylvester operator, which depends only on N
 
