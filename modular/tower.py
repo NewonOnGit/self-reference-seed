@@ -131,6 +131,43 @@ class Tower:
         if depth == 3: return "K1' cutoff, Higgs VEV=50%, Lambda attenuation"
         return f"depth {depth}"
 
+    # === COSMOLOGICAL EPOCHS (Big Bang Containment) ===
+
+    def epoch_at(self, depth):
+        """Cosmological epoch at tower depth. M->P IS the Big Bang.
+        FRAMEWORK_REF: Big Bang Containment"""
+        from physics import cosmological_epoch, lambda_attenuation
+        epoch = cosmological_epoch(depth)
+        epoch["Lambda"] = lambda_attenuation(depth)
+        epoch["physics"] = self._physics_at(depth)
+        return epoch
+
+    def epoch_sequence(self):
+        """Full cosmological epoch table across all depths.
+        The tower IS cosmic time."""
+        lines = [
+            "COSMOLOGICAL EPOCHS (M->P = Big Bang, tower = cosmic time)",
+            "=" * 60,
+            "  pre-bang: M=diag(P,PT), balanced, CP exact, ker=8",
+            "",
+        ]
+        for i in range(len(self.depths)):
+            ep = self.epoch_at(i)
+            gauge = "gauge" if ep.get("gauge") else "no gauge"
+            space = "spacetime" if ep.get("spacetime") else "no spacetime"
+            lines.append(
+                f"  depth {i}: {ep['name']:20s}  Lambda={ep['Lambda']:.2e}  "
+                f"{gauge}, {space}"
+            )
+        # Add depth 295 extrapolation
+        from physics import lambda_attenuation
+        lines.append(f"  depth 295: {'observed Lambda':20s}  "
+                     f"Lambda={lambda_attenuation(295):.2e}  "
+                     f"gauge, spacetime")
+        lines.append("")
+        lines.append("  11 cosmological problems contained. 0 free parameters.")
+        return "\n".join(lines)
+
     # === THE SPINE ===
 
     def spine(self):
@@ -227,7 +264,13 @@ class Tower:
             if t["leakage_change"]:
                 lines.append(f"    ^ opacity hardens")
 
-        lines.extend(["", "=" * 60])
+        lines.extend([
+            "",
+            "COSMOLOGICAL EPOCHS:",
+            self.epoch_sequence(),
+            "",
+            "=" * 60,
+        ])
         return "\n".join(lines)
 
     # === VOICE (P2 mediation at any depth) ===

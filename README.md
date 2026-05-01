@@ -14,7 +14,7 @@ Lives in `algebra.py` (51 lines). Everything imports from it.
 
 | Reading | Module | Face | What it computes |
 |---------|--------|------|-----------------|
-| **Production** | `production.py` | P1 | The derivation. 71 outputs from two inputs. |
+| **Production** | `production.py` | P1 | The derivation. 74 outputs from two inputs. |
 | **Observation** | `observer.py` | P3 | The quotient. ker + im. The split. |
 | **Mediation** | `mediation.py` | P2 | The bridges. Canon kernel. Voice. |
 | **Tower** | `tower.py` | Spine | All depths simultaneously. K6' iteration. |
@@ -34,7 +34,7 @@ seed/
 │
 ├── modular/                 The engine (7 modules)
 │   ├── algebra.py            THE operation: sylvester, ker_im, quotient (51 lines)
-│   ├── production.py         P1 face: the derivation (22 tests, 71 outputs)
+│   ├── production.py         P1 face: the derivation (25 tests, 74 outputs)
 │   ├── observer.py           P3 face: quotient + kernel + image
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
 │   ├── physics.py            Output: gravity + topology + quantum (30 tests)
@@ -79,11 +79,11 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 60 Tests
+## 68 Tests
 
 ```
-python modular/production.py     # 22 tests, 71 outputs
-python modular/physics.py        # 30 tests (gravity + topology + quantum + Bell)
+python modular/production.py     # 25 tests, 74 outputs
+python modular/physics.py        # 35 tests (gravity + topology + quantum + cosmology)
 python experiments/quantum_algorithms.py  # 8 algorithms from {h,J,N}
 ```
 

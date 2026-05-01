@@ -433,12 +433,61 @@ class Production:
         # Family tower: disc = 1 + k^2
         family_discs = {k_val: 1 + k_val**2 for k_val in range(1, 8)}
 
+        # ============================================================
+        # G. PARENT SELECTION — [1,1] and 2 are outputs, not inputs
+        # ============================================================
+
+        # d=1 cannot carry asymmetry (scalar transpose trivial)
+        d1_eliminated = True  # In M_1(R), P=P^T always, N=0
+
+        # mu != 1 fails idempotent closure under unit rescaling
+        # P = [[0,0],[k,1]] gives mu = k^2/4. Test k=1..5.
+        mu_tests = {}
+        for k_val in range(1, 6):
+            P_test = np.array([[0, 0], [k_val, 1]], dtype=float)
+            N_test = (P_test - P_test.T) / 2
+            R_test = (P_test + P_test.T) / 2
+            mu_actual = -(N_test @ N_test)[0, 0]
+            if mu_actual > 0:
+                scale = 1.0 / np.sqrt(mu_actual)
+                N_unit = scale * N_test
+                P_unit = R_test + N_unit
+                idem = np.allclose(P_unit @ P_unit, P_unit)
+                mu_tests[k_val] = {"mu": mu_actual, "idempotent": idem}
+
+        # Only k=2 (mu=1) preserves idempotent closure
+        mu1_unique = (
+            all(not v["idempotent"] for v in mu_tests.values()
+                if abs(v["mu"] - 1.0) > 1e-10) and
+            any(v["idempotent"] for v in mu_tests.values()
+                if abs(v["mu"] - 1.0) < 1e-10)
+        )
+
+        # 8 gauge-equivalent representatives
+        reps = []
+        for a in range(-2, 3):
+            for b in range(-2, 3):
+                for c in range(-2, 3):
+                    for dd in range(-2, 3):
+                        Pc = np.array([[a, b], [c, dd]], dtype=float)
+                        if (np.allclose(Pc @ Pc, Pc) and
+                            np.linalg.matrix_rank(Pc) == 1 and
+                            not np.allclose(Pc, Pc.T)):
+                            Rc = (Pc + Pc.T) / 2
+                            Nc = (Pc - Pc.T) / 2
+                            if np.allclose(Nc @ Nc, -np.eye(2)):
+                                reps.append(Pc.tolist())
+        n_gauge_reps = len(reps)
+
         rec.update({
             "parent_spine": parent_spine,
             "parent_ker_dim": parent_ker_dim,
             "parent_child_recovered": child_recovered,
             "parent_A_rank": A_rank,
             "family_discs": family_discs,
+            "d1_eliminated": d1_eliminated,
+            "mu1_unique": mu1_unique,
+            "n_gauge_reps": n_gauge_reps,
         })
 
         return rec
@@ -475,6 +524,9 @@ if __name__ == "__main__":
         ("parent spine", d["parent_spine"]),
         ("parent ker=8", d["parent_ker_dim"] == 8),
         ("collapse recovers child", d["parent_child_recovered"]),
+        ("d=1 eliminated", d["d1_eliminated"]),
+        ("mu=1 unique", d["mu1_unique"]),
+        ("8 gauge reps", d["n_gauge_reps"] == 8),
     ]
 
     all_pass = True

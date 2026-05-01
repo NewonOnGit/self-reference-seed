@@ -205,6 +205,66 @@ def clifford_fibonacci():
 
 
 # ================================================================
+# COSMOLOGY — Big Bang Containment
+# ================================================================
+
+def lambda_attenuation(depth=None):
+    """Lambda(n) = (disc/2) * phi_bar^(2n). Scalar channel attenuated by tower.
+    If depth=None, returns the function. If depth given, returns value.
+    FRAMEWORK_REF: Big Bang Containment"""
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    disc = 5
+    Lambda_0 = disc / 2.0
+    if depth is None:
+        return {f"depth_{n}": Lambda_0 * phi_bar ** (2 * n)
+                for n in [0, 1, 2, 10, 100, 200, 295]}
+    return Lambda_0 * phi_bar ** (2 * depth)
+
+
+def dark_sector_ratio(cl31_count=12, cl22_count=18):
+    """Cl(2,2)/Cl(3,1) = 18/12 = 3/2. The mirror branch.
+    FRAMEWORK_REF: Big Bang Containment"""
+    total = cl31_count + cl22_count
+    return {
+        "cl31_matter": cl31_count,
+        "cl22_hidden": cl22_count,
+        "total": total,
+        "ratio": cl22_count / cl31_count,
+        "matter_fraction": cl31_count / total,
+        "hidden_fraction": cl22_count / total,
+        "total_is_30": total == 30,
+    }
+
+
+def cosmological_epoch(depth):
+    """What physics exists at each tower depth.
+    The tower IS cosmic time. M->P IS the Big Bang.
+    FRAMEWORK_REF: Big Bang Containment"""
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    Lambda_n = (5.0 / 2.0) * phi_bar ** (2 * depth)
+
+    epochs = {
+        0: {"name": "Planck", "gauge": False, "spacetime": False,
+            "classical": True, "description": "t=0+: rank-1 seed, distinction only"},
+        1: {"name": "Inflation/GUT", "gauge": True, "spacetime": False,
+            "classical": False, "description": "su(3)+su(2)+u(1) fully formed, no metric"},
+        2: {"name": "Electroweak", "gauge": True, "spacetime": True,
+            "classical": False, "description": "Cl(3,1), so(3,1), 3 gen, Higgs"},
+        3: {"name": "Suppressed", "gauge": True, "spacetime": True,
+            "classical": False, "description": "K1' wall, generation strength 50%"},
+    }
+    base = epochs.get(depth, {
+        "name": f"Post-K1' (depth {depth})", "gauge": True, "spacetime": True,
+        "classical": False, "description": f"Lambda attenuating, depth {depth}"
+    })
+    base["Lambda"] = Lambda_n
+    base["depth"] = depth
+    return base
+
+
+# ================================================================
 # NEUTRINO SPACING
 # ================================================================
 
@@ -366,6 +426,18 @@ if __name__ == "__main__":
     nu = neutrino_spacing()
     checks.append(("delta = phi+2", nu["delta_is_phi_plus_2"]))
     checks.append(("dm2 ratio ~33", nu["within_2pct_of_33"]))
+
+    # --- Cosmology ---
+    la = lambda_attenuation()
+    checks.append(("Lambda(0)=2.5", np.allclose(la["depth_0"], 2.5)))
+    checks.append(("Lambda(295)~10^-123",
+                    abs(np.log10(la["depth_295"]) - (-123)) < 1))
+    ds = dark_sector_ratio()
+    checks.append(("dark sector 30=2*3*5", ds["total_is_30"]))
+    checks.append(("Cl(2,2)/Cl(3,1)=3/2", np.allclose(ds["ratio"], 1.5)))
+    ep = cosmological_epoch(1)
+    checks.append(("depth 1 = gauge no spacetime",
+                    ep["gauge"] and not ep["spacetime"]))
 
     # --- Quantum ---
     H = hadamard()
