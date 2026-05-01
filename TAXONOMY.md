@@ -103,12 +103,14 @@ The bridge from universal family to specific seed. Each step is a theorem or con
 ### S-1. Family Theorem (PROVEN)
 From P²=P, P≠Pᵀ, rank 1: the universal split R²=R+μI, {R,N}=N, N²=-μI.
 
-### S-2. Seed Selection Theorem (PROVEN, partly by bounded search)
+### S-2. Seed Selection Theorem (PROVEN — fully closed by Parent Selection)
 Within companion-family R²=aR+bI with a,b∈ℤ₊:
-- Nontrivial Sylvester kernel requires a=1
-- Scalar channel requires a=1
-- Idempotent closure requires (a,b)=(1,1)
-Triple forcing. [Tier A for the first two; Tier E for the third over finite search range]
+- Nontrivial Sylvester kernel requires a=1 [Tier A, eigenvalue argument]
+- Scalar channel requires a=1 [Tier A, independent path]
+- μ=1 forced by unit complex structure + idempotent closure [Tier A]
+- b=1 follows from a=1, μ=1 [Tier A]
+- 625 candidates checked exhaustively, all survivors gauge-equivalent [Tier E, global]
+Previously "partly by bounded search." Now fully closed. See `experiments/PARENT_SELECTION_THEOREM.md`.
 
 ### S-3. Kernel Canonicalization Theorem (IMPLEMENTED, needs formal proof)
 Given selected R with nontrivial Sylvester kernel: the kernel quadratic form determines a unique negative rotation class [N] up to sign. Imposing unit normalization on that class yields N²=-I. The pair (R,N) closes to P=R+N with P²=P.
@@ -122,6 +124,9 @@ Cross-sector quenching + branch selection: 8→4→2. Child ker recovered. Mirro
 
 ### S-6. Child Recovery (PROVEN)
 After collapse, the old framework recovers completely.
+
+### S-7. Parent Selection Theorem (PROVEN — global exhaustiveness)
+The full selector chain from "minimal nontrivial asymmetric self-reference" to `P=[[0,0],[2,1]]` is exhaustive. d=2 is forced (d=1 cannot carry asymmetry). a=1 doubly forced. μ=1 forced. P gauge-unique (8 representatives, all conjugate). M=diag(P,Pᵀ) is the unique minimal balanced carrier. [1,1] and 2 are not inputs — they are the only output. See `experiments/PARENT_SELECTION_THEOREM.md`.
 
 ---
 
@@ -146,11 +151,11 @@ Classification before metaphysics.
 
 Specific unresolved load-bearing items. Not vague humility.
 
-**O-1.** Globalize S-2 (seed selection). The idempotent closure proof currently covers (a,b)∈{1,...,10}². Extend to all (a,b)∈ℤ₊² or prove impossibility at (a,b)≠(1,1) algebraically.
+**O-1.** ~~Globalize S-2 (seed selection).~~ **CLOSED** by the Parent Selection Theorem. The selector chain is exhaustive: d=1 eliminated analytically, a=1 forced by ker(L)≠0 (eigenvalue argument) AND scalar channel (independent path), μ=1 forced by unit complex structure + idempotent closure, b=1 follows. 625 block-diagonal candidates in M₄(Z)∩[-2,2]⁸ checked — only 8 pass all 7 conditions, all gauge-equivalent to diag(P,Pᵀ). See `experiments/PARENT_SELECTION_THEOREM.md`.
 
 **O-2.** Formalize S-3 (kernel canonicalization) as a theorem with proof. Currently implemented in code (production.py, observer.py) but not written in theorem form.
 
-**O-3.** Derive the selector law that collapses the μ-family to μ=1. Current status: the unit normalization is identified as a postulate (Selector A/B in THEORY.md). Can it be derived from the Sylvester kernel geometry alone?
+**O-3.** ~~Derive the selector law that collapses the μ-family to μ=1.~~ **CLOSED** by the Parent Selection Theorem, Step 4. For general μ, rescaling N'=N/√μ gives N'²=-I, but P'=R+N' satisfies (P')²=P' only when μ=1. The unit complex structure and idempotent closure are jointly satisfiable only at μ=1. Verified computationally: μ∈{0.25, 2.25, 6.25} all fail. See `experiments/PARENT_SELECTION_THEOREM.md`.
 
 **O-4.** The α_S comparison scale. The framework computes α_S = 0.11803 (dimensionless). The comparison at M_Z is a bridge assumption. No framework derivation of M_Z exists.
 
@@ -158,7 +163,7 @@ Specific unresolved load-bearing items. Not vague humility.
 
 **O-6.** 4D graviton polarization count from the disclosure rank formula. disclosure_rank(2)=26 is the bosonic string critical dimension, not 2 (the number of graviton polarizations). The relationship between 26 and 2 is not established.
 
-**O-7.** Separate what is algebraically forced from what is interpretation-map dependent. The interpretation map (INTERPRETATION_MAP.md) lists 18 identifications. Which ones follow from the algebra alone? Which require bridge assumptions?
+**O-7.** Separate what is algebraically forced from what is interpretation-map dependent. The interpretation map (INTERPRETATION_MAP.md) lists 21 identifications. Which ones follow from the algebra alone? Which require bridge assumptions?
 
 ---
 

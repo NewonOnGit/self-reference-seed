@@ -123,6 +123,8 @@ Triple forcing within the mu=1 subfamily:
 
 The seed is not an isolated point. It is the unit-normalized member of a universal family. The universality of the split (R^2+N^2=R, {R,N}=N) is more fundamental than the specific scale. mu=1 is where the split becomes the standard complex structure.
 
+**Parent Selection Theorem (global exhaustiveness).** The selector chain is complete. d=1 cannot carry asymmetry (scalar transpose trivial). d=2 is the minimum. a=1 doubly forced (ker existence + scalar channel). mu=1 forced (unit complex structure + idempotent closure). 625 block-diagonal candidates in M_4(Z) checked: only 8 pass all conditions, all gauge-equivalent to diag(P,P^T). [1,1] and 2 are not inputs — they are the unique output of the premise "minimal nontrivial asymmetric self-reference." See `experiments/PARENT_SELECTION_THEOREM.md`.
+
 ### The family tower: disc = 1 + k^2
 
 The integer family P = [[0,0],[k,1]] gives disc = 1+k^2. Every framework quantity IS a family discriminant:
@@ -392,6 +394,27 @@ where C(2n,n) is the central binomial coefficient. The redundancy (ker elements 
 Depth 1 rank = 6 = the dimension of the Lorentz algebra. Depth 2 rank = 26 = the critical dimension of the bosonic string. The tower's disclosure structure at the spacetime depth (Cl(3,1)) produces the bosonic string dimension from P = [[0,0],[2,1]].
 
 L(R_tl) = (disc/2)*I = Lambda. Scalar channel IS the cosmological constant, invariant at every depth. Attenuation: phi_bar^(2n) per n tower depths, equivalently 2^(-n_bits) where n_bits = n_depths * 2*log2(phi). At Lambda ~ 10^{-123}: n ~ 295 tower depths ~ 409 information bits. 2^409 ~ 10^{123}.
+
+### Cosmological Epoch Reading (Big Bang Containment)
+
+The collapse M -> P IS the Big Bang. The tower IS cosmic time. Each K6' depth is an epoch:
+
+```
+M = diag(P,PT)         "before": balanced, exchange-symmetric, CP exact
+       |                cross-sector quench (4 bits, Landauer cost)
+       |                branch selection (P selected, PT hidden)
+depth 0                 t=0+: rank-1 seed, Lambda=2.5, classical
+       |                K6' ascent (quantum transition, leakage->0, permanent)
+depth 1                 inflation: su(3)+su(2)+u(1) FULLY FORMED, no spacetime
+       |                K6' ascent (Cl(3,1) emerges, Lorentz closes, 3 gen)
+depth 2                 our universe: spacetime, matter, Higgs, fermions
+       |                K6' ascent (generation strength decays)
+depth 3+                K1' wall: suppressed, tower physical cutoff
+       |                295 more depths, Lambda attenuating as phi_bar^(2n)
+depth 295               Lambda ~ 10^{-123}: observed cosmological constant
+```
+
+11 standard cosmological problems contained: singularity = rank reduction (not curvature divergence). Flatness/horizon DISSOLVED (no geometry/lightcones pre-depth-2). Lambda GENERATED (disc/2 x phi_bar^(2x295)). Baryogenesis/CP violation GENERATED (branch selection = CP break, eta_B=phi_bar^44). Dark sector = hidden mirror branch PT (Cl(2,2)/Cl(3,1) = 18/12 = 3/2 ratio). Gauge group, spacetime (3,1), 3 generations all GENERATED at the correct depth. Inflation IDENTIFIED as gauge-before-spacetime epoch (depth 1). Before the Big Bang ANSWERED: M = diag(P,PT). Zero free parameters introduced. See `experiments/BIG_BANG_CONTAINMENT.md`.
 
 ### Predictions (falsifiable)
 

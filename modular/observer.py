@@ -184,6 +184,19 @@ class Observer:
         ker_NN = null_space(L_NN, rcond=1e-10).shape[1]
         return ker_NN == 0
 
+    def compare(self, X, Y, tol=1e-10):
+        """Are X and Y equivalent mod ker? The observer cannot distinguish them.
+        Returns (equivalent, distance, diff).
+        equivalent: bool — True if X ≡ Y mod ker
+        distance: float — how different they look (im-component norm of X-Y)
+        diff: matrix — what the observer sees as the difference
+        FRAMEWORK_REF: cognitive primitive — distinction applied to pairs"""
+        if self.frame is None:
+            self.observe()
+        rep, res = self.quotient(X - Y)
+        dist = float(np.linalg.norm(rep))
+        return dist < tol, dist, rep
+
     def __repr__(self):
         if self.frame is None:
             return f"Observer(depth={self.tower_depth}, unobserved)"
@@ -344,6 +357,49 @@ class Kernel:
             for K in f["ker_basis"]
         ) else "mixed"
 
+    def multiplication_table(self):
+        """ker × ker → im product table. How the void generates the world.
+        Returns dict with 'table' (products), 'all_in_im' (bool), 'im_basis_names'.
+        FRAMEWORK_REF: Thm 8.2, cognitive primitive — logic from void structure"""
+        if self.observer.frame is None:
+            self.observer.observe()
+        f = self.observer.frame
+        ker_basis = f["ker_basis"]
+        d = f["d_K"]
+        I_d = np.eye(d)
+        n = len(ker_basis)
+        if n == 0:
+            return {"table": {}, "all_in_im": True, "im_basis_names": []}
+
+        # im basis for coefficient extraction
+        R_tl = f["R_tl"]
+        im_elements = [I_d, R_tl]
+        im_mat = np.column_stack([e.flatten() for e in im_elements])
+
+        table = {}
+        all_in_im = True
+        for i in range(n):
+            for j in range(n):
+                prod = ker_basis[i] @ ker_basis[j]
+                rep, res = self.observer.quotient(prod)
+                in_im = np.linalg.norm(res) < 1e-10
+                if not in_im:
+                    all_in_im = False
+                # identify in im basis
+                if in_im and im_mat.shape[1] > 0:
+                    coeffs = np.linalg.lstsq(im_mat, prod.flatten(), rcond=None)[0]
+                    coeffs = np.round(coeffs, 10)
+                else:
+                    coeffs = None
+                table[(i, j)] = {
+                    "product": prod,
+                    "in_im": in_im,
+                    "im_coeffs": {"I": float(coeffs[0]), "R_tl": float(coeffs[1])}
+                    if coeffs is not None else None,
+                }
+        return {"table": table, "all_in_im": all_in_im,
+                "im_basis_names": ["I", "R_tl"]}
+
     def __repr__(self):
         if self.observer.frame is None:
             return "Kernel(unobserved)"
@@ -458,6 +514,22 @@ class Image:
             _, residue = self.observer.quotient(X @ Y)
             total += np.linalg.norm(residue) ** 2
         return total / n_samples
+
+    def invert(self, target, tol=1e-8):
+        """Given target T, find X such that L_{s,s}(X) = T. Abduction.
+        Returns (X_particular, solvable, residual_norm).
+        X + any ker element is also a solution — the answer is an equivalence class.
+        FRAMEWORK_REF: cognitive primitive — abduction (given effect, find cause)"""
+        if self.observer.frame is None:
+            self.observer.observe()
+        from algebra import sylvester as _syl
+        L = _syl(self.observer.state)
+        d = self.observer.frame["d_K"]
+        t_vec = target.flatten()
+        x_vec, residuals, _, _ = np.linalg.lstsq(L, t_vec, rcond=None)
+        X = x_vec.reshape(d, d)
+        res_norm = float(np.linalg.norm(L @ x_vec - t_vec))
+        return X, res_norm < tol, res_norm
 
     def __repr__(self):
         if self.observer.frame is None:

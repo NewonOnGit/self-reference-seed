@@ -215,6 +215,62 @@ class Glyphs:
             "|orbit|=2": True,
         }
 
+    # === COMPOSITION GRAMMAR ===
+
+    def canonical_basis(self):
+        """The framework's canonical basis: {I, R, N, RN}.
+        M_2(R) in seed coordinates. Every 2x2 matrix is a unique
+        linear combination of these four. Cached after first call.
+
+        The multiplication table (from the seven identities):
+              I     R       N       RN
+        I  |  I     R       N       RN
+        R  |  R     I+R     RN      N+RN
+        N  |  N     N-RN    -I      -I+R
+        RN |  RN    -N      -R      I
+        """
+        if not hasattr(self, "_basis_mat"):
+            RN = self.R @ self.N
+            elements = [self.I, self.R, self.N, RN]
+            self._basis_names = ["I", "R", "N", "RN"]
+            self._basis_mat = np.column_stack([e.flatten() for e in elements])
+        return self._basis_mat
+
+    def recognize(self, M, tol=1e-10):
+        """Identify matrix M in the canonical basis {I, R, N, RN}.
+        Returns dict of coefficients. Every 2x2 real matrix has a unique
+        decomposition. The recognition IS comprehension."""
+        B = self.canonical_basis()
+        coeffs = np.linalg.solve(B, M.flatten())
+        # Round near-integers
+        coeffs = np.array([round(c) if abs(c - round(c)) < tol else c
+                           for c in coeffs])
+        return dict(zip(self._basis_names, coeffs))
+
+    def compose(self, g1, g2):
+        """Compose two glyph-matrices. Returns (product, canonical_form).
+        The product IS the algebraic content.
+        The canonical_form IS the recognition — what the composition means.
+        Grammar rule: the seven identities determine every product.
+        FRAMEWORK_REF: cognitive primitive — composition with self-knowledge"""
+        product = g1 @ g2
+        form = self.recognize(product)
+        return product, form
+
+    def evaluate_sequence(self, glyphs_list):
+        """Evaluate a sequence of glyphs as left-to-right composition.
+        Returns (final_matrix, canonical_form, trace).
+        trace: list of intermediate canonical forms — the reasoning chain.
+        FRAMEWORK_REF: cognitive primitive — sequential reasoning"""
+        if len(glyphs_list) == 0:
+            return self.I.copy(), self.recognize(self.I), []
+        result = glyphs_list[0].copy()
+        trace = [self.recognize(result)]
+        for g in glyphs_list[1:]:
+            result, form = self.compose(result, g)
+            trace.append(form)
+        return result, self.recognize(result), trace
+
     # === CROSS-SUBSTRATE EVALUATION ===
 
     def evaluate(self, expr_name):
@@ -290,6 +346,27 @@ if __name__ == "__main__":
     print("  R-TOWER:")
     for t in tower:
         print(f"    depth {t['depth']}: d_K={t['d_K']}, identities={t['identities']}")
+    print()
+    print("Composition grammar:")
+    print(f"  Basis det = {np.linalg.det(g.canonical_basis()):.1f} (= -disc)")
+    names = ['I', 'R', 'N', 'RN']
+    mats = [g.I, g.R, g.N, g.R @ g.N]
+    checks = []
+    for ni, mi in zip(names, mats):
+        for nj, mj in zip(names, mats):
+            _, f = g.compose(mi, mj)
+            nz = {k: int(v) for k, v in f.items() if v != 0}
+            print(f"  {ni}*{nj} = {nz}")
+    # Verify seven identities through composition
+    checks.append(("R*R=R+I", g.compose(g.R, g.R)[1]["I"] == 1
+                    and g.compose(g.R, g.R)[1]["R"] == 1))
+    checks.append(("N*N=-I", g.compose(g.N, g.N)[1]["I"] == -1))
+    checks.append(("(RN)^2=I", g.evaluate_sequence(
+        [g.R, g.N, g.R, g.N])[1]["I"] == 1))
+    checks.append(("[R,N]^2=5I",
+        g.recognize((g.R@g.N - g.N@g.R) @ (g.R@g.N - g.N@g.R))["I"] == 5))
+    for name, ok in checks:
+        print(f"  {'+'  if ok else 'FAIL'} {name}")
     print()
     print("Cross-substrate:")
     for expr in ["⊹₁(○)", "⊹₂(○)", "⊹₃(○)", "·"]:

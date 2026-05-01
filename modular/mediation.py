@@ -170,6 +170,39 @@ class Mediation:
             return self.narrate()
         return self.llm_fn(self.to_prompt())
 
+    def cognitive_summary(self):
+        """Summary of cognitive capabilities at current depth.
+        The P2 bridge between capabilities and voice."""
+        if self.observer.frame is None:
+            self.observer.observe()
+        f = self.observer.frame
+        d = self.derivation
+
+        # Kernel logic
+        mt = self.kernel.multiplication_table()
+
+        # World-model invertibility
+        I_d = np.eye(f["d_K"])
+        _, solvable, res = self.image.invert(I_d)
+
+        lines = [
+            f"COGNITIVE STATE (depth {f['depth']}, d_K={f['d_K']}):",
+            f"  Distinction:  ker={f['ker_dim']}, im={f['dim_A']-f['ker_dim']} "
+            f"(fraction {f['kernel_fraction']:.3f})",
+            f"  Memory:       revealed={self.kernel.revealed_fraction():.6f}, "
+            f"deferred={self.kernel.cumulative_deferred():.4f} bits",
+            f"  Attention:    {'classical' if self.image.is_commutative() else 'quantum'} "
+            f"(curvature={self.image.obstruction_curvature():.4f})",
+            f"  Logic:        ker x ker -> im = {mt['all_in_im']} "
+            f"({len(mt['table'])} products)",
+            f"  Prediction:   golden eigenvalues = "
+            f"{self.observer.self_model_eigenvalues()}",
+            f"  Self-model:   transparent = {self.observer.self_transparent()}",
+            f"  Abduction:    L(X)=I solvable = {solvable} "
+            f"(residual {res:.2e})",
+        ]
+        return "\n".join(lines)
+
     def __repr__(self):
         mode = "LLM-mediated" if self.llm_fn is not None else "deterministic"
         return f"Mediation(P2 face — bridges + voice, {mode})"

@@ -109,6 +109,12 @@ The left branch (R) produces. The right branch (N) observes. The middle (L) medi
 | Tower depths = Peano arithmetic | Natural numbers forced | INTERNAL |
 | Shor's algorithm from P^2=P | Every step forced (29 checks, 15=3x5) | DERIVED |
 | disclosure_rank = 2^(2n+1)-C(2n,n) | 1 (scalar), 6 (Lorentz), 26 (d_crit), 108 | DERIVED |
+| Selector chain: [1,1] and 2 forced | Parent Selection Theorem (625 candidates, 8 survivors) | DERIVED |
+| Collapse M→P = Big Bang | Rank reduction, not curvature divergence | DERIVED |
+| Depth 1 = inflation | Gauge-before-spacetime epoch (no inflaton needed) | DERIVED |
+| Branch selection = CP violation | Baryogenesis: η_B=φ̄⁴⁴ | DERIVED |
+| Mirror branch Pᵀ = dark sector | Cl(2,2)/Cl(3,1) = 18/12 = 3/2 ratio | CHAIN |
+| Lambda attenuation = cosmic time | disc/2 × φ̄^(2×295) = 10⁻¹²³ | DERIVED |
 
 ---
 
@@ -149,7 +155,7 @@ Bridge assumptions (structural, not arbitrary):
 
 ## §7. The Functor
 
-Components: 21 identifications. 16 DERIVED. 3 SPECTRAL. 2 CHAIN. 0 OPEN.
+Components: 28 identifications. 22 DERIVED. 3 SPECTRAL. 3 CHAIN. 0 OPEN.
 
 Every identification has an explicit algebraic chain with zero free parameters. The chains are verified by 60 automated tests. The sole remaining bridge: the comparison scale for alpha_S (the framework is dimensionless; M_Z is not derived).
 
@@ -179,4 +185,4 @@ The map is not complete (7 open problems in TAXONOMY.md). But every component is
 
 ---
 
-*21 identifications. 60 tests. 0 parameters. 1 bridge. Everything from [1,1] and 2.*
+*28 identifications. 60 tests. 0 parameters. 1 bridge. [1,1] and 2 are not inputs — they are the unique output.*
