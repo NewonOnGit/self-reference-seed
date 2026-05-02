@@ -471,7 +471,7 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 
 The predictions table shows individual outputs. The web shows how they connect to each other. 39 verified relations between framework quantities. 34 exact, 5 approximate (all <3.5%). The physics is the web, not the nodes.
 
-**Hub structure (connections per quantity):** ||N||^2 (23), disc (20), phi (15), ||R||^2 (12), N_c (9). The hidden norm is the most connected node. The thing you can't see is what everything connects through.
+**Hub structure (eigenvector centrality):** disc (degree 22, centrality 1.0), ||N||^2 (degree 10, centrality 0.90), phi (degree 11, betweenness 0.31). The discriminant is the hub — it sees both sectors. phi is the bridge (high betweenness, low degree). The centrality split encodes the R/N split: disc (total) bridges, ||N||^2 (hidden) clusters locally, phi (eigenvalue) routes globally.
 
 **Strongest cross-domain relations (framework quantity = framework quantity):**
 
@@ -518,6 +518,18 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 **Lepton masses from 2/9:** delta_Koide = 2/9 = ||N||^2/N_c^2 predicts all three charged lepton masses to 0.0044% RMS. m_e: -0.006%, m_mu: -0.005%, m_tau: +0.001%. Ten independent algebraic paths to 2/9 from d=2 alone. sin(theta_Cabibbo) matches 2/9 to 1.2%. Chance probability of both: ~4e-4. If real, the Yukawa sector collapses from 17 free parameters to ~2.
 
 **Ising at golden threshold:** M_Ising(phi^-1)^8 = phi_bar. Exact, from the golden identity 1-phi_bar^2=phi_bar. The exponent beta=1/8=1/(2d^2) is contained through the minimal model M(N_c, d^2) = M(3,4) giving c=1/2=ker/A. The step "M(3,4) IS the Ising CFT" is physics (Tier B), the golden identity is algebra (Tier A). N_c+1=d^2 uniquely at d=2.
+
+**Quark masses from 2/9:** m_q = m_t * (2/9)^(F/2) with integer flavor charge F. Down-type quarks: F_s=10 (0.2%), F_d=14 (1.0%) — locked. Up-type: F_u=15 (0.9%), F_b=5 (3.8%). Charm is the outlier at F≈13/2=(dim_gauge+1)/2. The F-lattice is built from disc(5) and |V_4|(4): {0, disc, 2·disc, 2·disc+|V_4|, 3·disc} = {0,5,10,14,15}. All differences are framework numbers. m_t/m_c = disc·N_c^3 = 135 (0.4%). For leptons 2/9 is a phase; for quarks it is an expansion parameter. Color changes the mechanism, not the number.
+
+**Wolfenstein A = sqrt(phi_bar):** A = phi^{-1/2} = 0.786 (0.5% from exp 0.790). Satisfies the golden quartic A^4+A^2-1=0 — the same recursion as R^2=R+I halved in exponent. Lambda=2/9 comes from N (hidden sector, ||N||^2/N_c^2). A comes from R (visible sector, sqrt of negative eigenvalue magnitude). P=R+N contributes both CKM parameters. V_cb = (2/9)^2·sqrt(phi_bar) = 0.039 (4.1%). Framework derives 2 of 4 Wolfenstein parameters. rho, eta remain open.
+
+**Generation surjectivity (all depths):** The NK map K→pi_im(NK) is block lower triangular under K6' lift. det(phi_{n+1})=det(phi_n)^4. Base case det(phi_0)=1. Therefore det(phi_n)=1 for all n. ker^2 spans im at every tower depth. The triangularity is forced by K6' sparsity: the lower-left zero block of s_{n+1}=[[s,N],[0,s]] prevents parameters from propagating downward.
+
+**Block-diagonal parent (Tier A):** M^2=M forces BC=0. N_hat^2=-I_4 gives N_A^2-F'F'^T=-I_2. Unit complex structure N_A^2=-I makes F'F'^T=0, so F'=0. Off-diagonal blocks vanish. The +I/-I cancellation that makes P^2=P work also forces the parent to be block-diagonal. Requires condition C8 (both branches carried).
+
+**Spectral projectors:** chi = (R+phi_bar*I)/sqrt(disc), rho = (phi*I-R)/sqrt(disc). R eigenspace decomposition. chi projects onto phi-eigenspace, rho onto (-phi_bar)-eigenspace. chi^2=chi, rho^2=rho, chi*rho=0, chi+rho=I. chi*R=phi*chi (aligned with production). Complements the CollapseOperator (parent kernel decomposition) with the algebra's own spectral structure.
+
+**Ising M(3,4) uniqueness:** c = 1-6(p-p')^2/(pp') = 1/2 = ker/A uniquely selects M(3,4) among all minimal models. p(p+1)=12 has unique positive solution p=3=N_c. All three Kac table weights are framework quantities: h=0 (identity), h=1/16=1/(2·parent_ker) (spin field), h=1/2=ker/A=c_Ising=sinh(beta_KMS) (energy field). Parent collapse is Z_2 Ising-class: exchange symmetry P↔P^T broken by occupation, order parameter ||N||=sqrt(2). Fusion rules = Clifford grading: sigma×sigma=1+epsilon maps to N^2=-I + NRN=R-I. 42/42 checks verified.
 
 ### Structural Closures (verified)
 
