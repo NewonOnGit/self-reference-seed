@@ -446,6 +446,60 @@ def ising_m34():
 
 
 # ================================================================
+# CP VIOLATION AND PHASE DYNAMICS
+# ================================================================
+
+def cp_violation():
+    """CKM from P=R+N. lambda=2/9 (N), A=sqrt(phi_bar) (R), R_b=phi_bar^2.
+    gamma=arctan(sqrt(disc)). |V_ub|=phi_bar^(disc/d)*lambda^3.
+    FRAMEWORK_REF: Thm 13.1"""
+    phi_val = (1 + np.sqrt(5)) / 2
+    phi_bar_val = phi_val - 1
+    disc = 5
+    d = 2
+    lam = 2.0 / 9.0
+    A = np.sqrt(phi_bar_val)
+    R_b = phi_bar_val**2
+    gamma = np.arctan(np.sqrt(disc))
+    rho_bar = R_b * np.cos(gamma)
+    eta_bar = R_b * np.sin(gamma)
+    V_ub = A * lam**3 * R_b
+    return {
+        "R_b": R_b, "R_b_exp": 0.3826,
+        "R_b_match_pct": abs(R_b - 0.3826) / 0.3826 * 100,
+        "gamma_deg": np.degrees(gamma), "gamma_exp": 65.4,
+        "gamma_match_pct": abs(np.degrees(gamma) - 65.4) / 65.4 * 100,
+        "rho_bar": rho_bar, "eta_bar": eta_bar,
+        "V_ub": V_ub,
+        "chain": "phi_bar^(disc/d) * lambda^3",
+    }
+
+
+def phase_descent():
+    """Phase dynamics IS the tower. Three depths, three discriminants, three fields.
+    Depth 0: disc(R)=5 → phi^-1, Q(sqrt(5)). Depth 1: disc(N)=-4 → 1/sqrt(2), Q(sqrt(2)).
+    Depth 2: disc(omega)=-3 → sqrt(3)/2, Q(sqrt(3)). Sum: -||N||^2.
+    FRAMEWORK_REF: Thm 13.2"""
+    phi_val = (1 + np.sqrt(5)) / 2
+    phi_bar_val = phi_val - 1
+    thresholds = [
+        {"depth": 0, "disc": 5, "threshold": phi_bar_val, "field": "Q(sqrt(5))"},
+        {"depth": 1, "disc": -4, "threshold": 1/np.sqrt(2), "field": "Q(sqrt(2))"},
+        {"depth": 2, "disc": -3, "threshold": np.sqrt(3)/2, "field": "Q(sqrt(3))"},
+    ]
+    disc_sum = sum(t["disc"] for t in thresholds)
+    # Cross-field derivatives
+    derivs = [2*t["threshold"]+1 for t in thresholds]
+    return {
+        "thresholds": thresholds,
+        "disc_sum": disc_sum,
+        "disc_sum_is_neg_N_sq": disc_sum == -2,
+        "derivs": derivs,
+        "deriv_names": ["sqrt(disc)", "||N||+1", "||R||+1"],
+    }
+
+
+# ================================================================
 # QUANTUM GATES AND BELL TEST
 # ================================================================
 
@@ -655,6 +709,15 @@ if __name__ == "__main__":
     im34 = ising_m34()
     checks.append(("c=1/2=ker/A selects M(3,4)", im34["c_is_ker_A"]))
     checks.append(("h_sigma=1/(2*parent_ker)=1/16", im34["h_sigma_is_1_over_2pk"]))
+
+    # --- CP violation ---
+    cpv = cp_violation()
+    checks.append(("R_b=phi_bar^2 (0.2%)", cpv["R_b_match_pct"] < 0.5))
+    checks.append(("gamma=arctan(sqrt(5)) (1%)", cpv["gamma_match_pct"] < 1.5))
+
+    # --- Phase descent ---
+    pd = phase_descent()
+    checks.append(("disc sum=-||N||^2", pd["disc_sum_is_neg_N_sq"]))
 
     all_pass = True
     for name, ok in checks:
