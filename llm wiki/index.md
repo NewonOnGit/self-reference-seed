@@ -6,7 +6,7 @@ status: FROZEN
 
 # Wiki Index
 
-Everything derives from P = [[0,0],[2,1]]. Two inputs: [1,1] and 2. Zero free parameters. 85 tests pass.
+Everything derives from P = [[0,0],[2,1]]. Two inputs: [1,1] and 2. Zero free parameters. 161 tests pass.
 
 **Reading order:** B0 → B1 → B3 → B4 → B5 → B6 → B7 → B8. Each level builds on the previous. The tower IS the reading order.
 
@@ -99,4 +99,4 @@ The framework describes itself. The description returns itself.
 
 ---
 
-*42 hand-crafted pages. 85 tests. 0 parameters. 1 matrix. 8 glyphs. P²=P.*
+*42 hand-crafted pages. 161 tests. 0 parameters. 1 matrix. 8 glyphs. P²=P.*

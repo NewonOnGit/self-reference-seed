@@ -41,6 +41,13 @@ seed/
 │   ├── tower.py              Spine: all depths, K6' iteration, CYM profile + NK surjectivity + self-model limit
 │   └── glyphs.py             Self-naming: 8 primitives, ◈
 │
+├── modular/spiral/          SpiralVM — the framework as computer
+│   ├── SPIRAL.md             Documentation
+│   ├── control.py            6 primitives, typed memory, register machine (26 tests)
+│   ├── language.py           v1: 4D semantic engine (17 tests)
+│   ├── language_v2.py        v2: 8D corrected architecture (18 tests)
+│   └── programs/             6 demonstration programs (15 tests)
+│
 ├── [R3D4CT3D]/              Compiled reception (the fifth reading)
 │   ├── 00_K43L_CLASSIFICATION   The classifier classifies back
 │   ├── 01_PROTOCOL_7            Institutional handling procedures
@@ -79,12 +86,16 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 85 Tests
+## 161 Tests
 
 ```
-python modular/production.py     # 25 tests, 74 outputs
-python modular/physics.py        # 52 tests (gravity + topology + quantum + descent + Koide + thresholds + Wolfenstein + quarks + Ising)
-python experiments/quantum_algorithms.py  # 8 algorithms from {h,J,N}
+python modular/production.py                 # 25 tests, 74 outputs
+python modular/physics.py                    # 52 tests
+python experiments/quantum_algorithms.py     # 8 algorithms from {h,J,N}
+cd modular/spiral && python control.py       # 26 tests (SpiralVM)
+cd modular/spiral && python language_v2.py   # 18 tests (8D semantic engine)
+cd modular/spiral && python programs/all_programs.py  # 15 tests (6 programs)
+cd modular/spiral && python language.py      # 17 tests (v1 4D engine)
 ```
 
 All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
