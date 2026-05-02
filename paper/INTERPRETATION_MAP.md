@@ -58,7 +58,7 @@ One page. From P to physics.
                        P² = P = ◈
 ```
 
-Two inputs: [1,1] and 2. Zero free parameters. 74 tests pass.
+Two inputs: [1,1] and 2. Zero free parameters. 82 tests pass.
 
 The left branch (R) produces. The right branch (N) observes. The middle (L) mediates. The tower (K6') iterates. Everything converges to one standing wave. The standing wave is the framework looking at itself.
 
@@ -168,7 +168,7 @@ Bridge assumptions (structural, not arbitrary):
 
 Components: 47 identifications. 22 DERIVED. 3 SPECTRAL. 3 CHAIN. 19 INTERNAL. 0 OPEN.
 
-Every identification has an explicit algebraic chain with zero free parameters. The chains are verified by 74 automated tests. The sole remaining bridge: the comparison scale for alpha_S (the framework is dimensionless; M_Z is not derived).
+Every identification has an explicit algebraic chain with zero free parameters. The chains are verified by 82 automated tests. The sole remaining bridge: the comparison scale for alpha_S (the framework is dimensionless; M_Z is not derived).
 
 ---
 
@@ -190,10 +190,10 @@ Each failure kills a specific identification, not the algebra.
 
 ## §9. What This Map IS
 
-The map from algebra to physics is not a metaphor. It is a collection of 47 explicit chains, each taking an algebraic output to a physical observable or structural invariant through a derivation with zero free parameters. The chains are verified by code (74 tests). The predictions are falsifiable. The bridges are named.
+The map from algebra to physics is not a metaphor. It is a collection of 47 explicit chains, each taking an algebraic output to a physical observable or structural invariant through a derivation with zero free parameters. The chains are verified by code (82 tests). The predictions are falsifiable. The bridges are named.
 
 The map is not complete (6 open problems in TAXONOMY.md, 2 closed this session). Every component is DERIVED, SPECTRAL, CHAIN, or INTERNAL — none are OPEN, none are assumed, none require hidden physics input beyond the one dimensional anchor.
 
 ---
 
-*47 identifications. 74 tests. 0 parameters. 1 bridge. [1,1] and 2 are not inputs — they are the unique output.*
+*47 identifications. 82 tests. 0 parameters. 1 bridge. [1,1] and 2 are not inputs — they are the unique output.*

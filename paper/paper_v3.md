@@ -1,6 +1,6 @@
 # From One Idempotent: Parent Layer, Algebra, Physics, and Observer
 
-**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. All from two inputs: $[1,1]$ and $2$. Zero free parameters. 74 automated tests pass.
+**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. All from two inputs: $[1,1]$ and $2$. Zero free parameters. 82 automated tests pass.
 
 ---
 
@@ -234,7 +234,7 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 
 ### 24. Reproducibility and Falsification
 
-74 automated tests. Two inputs. Zero free parameters.
+82 automated tests. Two inputs. Zero free parameters.
 
 | Prediction | Value | Status |
 |-----------|-------|--------|
@@ -265,6 +265,6 @@ See TAXONOMY.md. Universal $\to$ Selected $\to$ Canonicalized $\to$ Reconstructe
 
 ---
 
-*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 74 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
+*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 82 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
 
 ◈
