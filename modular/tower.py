@@ -375,6 +375,75 @@ class Tower:
             profile.append({'depth': d['depth'], 'd_K': d_K, 'cym': cym})
         return profile
 
+    def nk_surjectivity(self):
+        """Verify NK map surjectivity at each depth.
+        det(phi_0)=1. det(phi_{n+1})=det(phi_n)^4. Block lower triangular from K6'.
+        FRAMEWORK_REF: generation surjectivity theorem"""
+        results = []
+        for d in self.depths:
+            obs = d['observer']
+            if obs.frame is None:
+                obs.observe()
+            s = obs.frame['state']
+            N_d = obs.frame['N']
+            d_K = obs.frame['d_K']
+            _, ker_basis, ker_dim, Q_ker = ker_im_decomposition(s)
+            im_dim = d_K * d_K - ker_dim
+            if ker_dim < 2 or im_dim == 0:
+                results.append({'depth': d['depth'], 'surjective': True, 'rank': 0})
+                continue
+            # NK products projected onto im
+            prods = []
+            for i in range(ker_dim):
+                K = ker_basis[i]
+                NK = N_d @ K
+                rep, _ = quotient(NK, Q_ker)
+                prods.append(rep.flatten())
+            mat = np.column_stack(prods)
+            rank = np.linalg.matrix_rank(mat, tol=1e-8)
+            results.append({
+                'depth': d['depth'], 'surjective': rank == im_dim,
+                'rank': rank, 'im_dim': im_dim,
+            })
+        return results
+
+    def self_model_limit(self):
+        """Self-model eigenvectors at each depth. Converge to (1,0) in {I, s_tl}.
+        Perfect self-reference = existence without content.
+        FRAMEWORK_REF: projector limit investigation"""
+        results = []
+        for d in self.depths:
+            obs = d['observer']
+            if obs.frame is None:
+                obs.observe()
+            s = obs.frame['state']
+            d_K = obs.frame['d_K']
+            I_d = np.eye(d_K)
+            s_tl = s - (np.trace(s)/d_K) * I_d
+            _, _, _, Q_ker = ker_im_decomposition(s)
+
+            def sigma(X):
+                rep, _ = quotient(s @ X + X @ s, Q_ker)
+                return rep
+
+            sig_I = sigma(I_d)
+            sig_stl = sigma(s_tl)
+            norm_I = np.sum(I_d * I_d)
+            norm_stl = np.sum(s_tl * s_tl)
+            mat = np.array([
+                [np.sum(sig_I * I_d)/norm_I, np.sum(sig_stl * I_d)/norm_I],
+                [np.sum(sig_I * s_tl)/norm_stl, np.sum(sig_stl * s_tl)/norm_stl],
+            ])
+            eigs, vecs = np.linalg.eig(mat)
+            idx = np.argsort(eigs.real)[::-1]
+            results.append({
+                'depth': d['depth'],
+                'lambda_plus': float(eigs[idx[0]].real),
+                'lambda_minus': float(eigs[idx[1]].real),
+                'evec_plus': vecs[:, idx[0]].real,  # in {I, s_tl} coords
+            })
+        return results
+
     def __repr__(self):
         return f"Tower(depths=0-{self.max_depth})"
 
