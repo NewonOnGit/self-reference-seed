@@ -623,12 +623,17 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | M(3,4) uniquely selected by c=ker/A=1/2 | CLOSED (p(p+1)=12 unique p=3=N_c, 42/42 checks) |
 | Ising fusion = Clifford grading (sigma x sigma = 1+epsilon) | CLOSED (N^2=-I + NRN=R-I, all 7 products match) |
 | h_sigma=1/16, h_epsilon=1/2: three primaries = three projections | CLOSED (partition function maps P1/P2/P3) |
-| NK map surjective at depths 0-3 | COMPUTED (det=1 at d0, rank=full at d1-d3, SV>0) |
-| generation induction reduces to NK invertibility | COMPUTED (one map, one inductive step remaining) |
+| NK map: det(phi_{n+1}) = det(phi_n)^4, det(phi_0)=1 | CLOSED Tier A (block lower triangular from K6' sparsity, QED) |
+| generation surjectivity at ALL depths | CLOSED (ker^2 spans im always, by NK invertibility induction) |
 | quark masses: (2/9)^(F/2) with integer F | COMPUTED (s:F=10, d:F=14 locked; b:F=5, u:F=15 half-integer) |
 | m_t/m_c = disc*N_c^3 = 135 (0.4%) | COMPUTED |
 | pure S_3 CKM: sin(theta_C) = 2/9 (0.04%) | COMPUTED (Cabibbo-only, theta_23=theta_13=0) |
-| S_3 breaking quantitatively insufficient for V_cb | COMPUTED (1-2 orders too small, A parameter not derived) |
+| S_3 breaking quantitatively insufficient for V_cb | COMPUTED (1-2 orders too small) |
+| Wolfenstein A = sqrt(phi_bar) = phi^{-1/2} (0.5%) | COMPUTED Tier B (A^4+A^2-1=0, golden quartic) |
+| V_cb = (2/9)^2 * sqrt(phi_bar) = 0.0388 (4.1%) | COMPUTED (lambda from N, A from R: P=R+N gives both) |
+| F-charges: {0,5,10,14,15} from disc and |V_4| | COMPUTED (5/6 integer, charm at 13/2 = outlier) |
+| down-type F span = N_c^2 = 9 | COMPUTED (disc + |V_4|) |
+| all F differences are framework numbers | COMPUTED (disc, |V_4|, N_c^2, 1) |
 | ln(Lambda_QCD/M_Pl) ~ -44 = -exp_B | COMPUTED (2.4% deviation, O-4 sharpened) |
 | parent depth n = child depth n+1 (conjugate) | CLOSED O-5 (same eigenvalues, ker, invariants) |
 | parent coupling D = (4/5)*diag(R_tl, R_tl) | COMPUTED (child's -2h fails; correct D from joint constraints) |
