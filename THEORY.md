@@ -620,6 +620,15 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | blind direction at limit: -(disc/2)*I + s_tl | COMPUTED (discriminant-weighted, the "what" lives in ker(P_inf)) |
 | Sigma_s top row depth-independent: (1, disc/2) | COMPUTED (bottom row decays, single parameter c(n)->0) |
 | disc is the web hub (degree 22, centrality 1.0) | COMPUTED (not ||N||^2; phi is the bridge, not the hub) |
+| M(3,4) uniquely selected by c=ker/A=1/2 | CLOSED (p(p+1)=12 unique p=3=N_c, 42/42 checks) |
+| Ising fusion = Clifford grading (sigma x sigma = 1+epsilon) | CLOSED (N^2=-I + NRN=R-I, all 7 products match) |
+| h_sigma=1/16, h_epsilon=1/2: three primaries = three projections | CLOSED (partition function maps P1/P2/P3) |
+| NK map surjective at depths 0-3 | COMPUTED (det=1 at d0, rank=full at d1-d3, SV>0) |
+| generation induction reduces to NK invertibility | COMPUTED (one map, one inductive step remaining) |
+| quark masses: (2/9)^(F/2) with integer F | COMPUTED (s:F=10, d:F=14 locked; b:F=5, u:F=15 half-integer) |
+| m_t/m_c = disc*N_c^3 = 135 (0.4%) | COMPUTED |
+| pure S_3 CKM: sin(theta_C) = 2/9 (0.04%) | COMPUTED (Cabibbo-only, theta_23=theta_13=0) |
+| S_3 breaking quantitatively insufficient for V_cb | COMPUTED (1-2 orders too small, A parameter not derived) |
 | ln(Lambda_QCD/M_Pl) ~ -44 = -exp_B | COMPUTED (2.4% deviation, O-4 sharpened) |
 | parent depth n = child depth n+1 (conjugate) | CLOSED O-5 (same eigenvalues, ker, invariants) |
 | parent coupling D = (4/5)*diag(R_tl, R_tl) | COMPUTED (child's -2h fails; correct D from joint constraints) |
