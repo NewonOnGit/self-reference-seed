@@ -307,7 +307,7 @@ s'=[[s,N],[0,s]], N'=[[N,-2h],[0,N]], J'=[[J,0],[0,J]]. Preserves all identities
 
 ker/A = 1/2 at every depth. 2L bits per pass. Contraction phi_bar^2. N self-transparent (ker(L_{N,N})=0) at every depth. All seven identities preserved.
 
-Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth — the self-model becomes a pure projector. lambda_+ -> 1 (sees itself exactly), lambda_- -> 0 (off-axis vision vanishes). The observer converges to perfect self-reference through the tower. Product lambda_+*lambda_- -> 0, sum -> 1.
+Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth. The lambda_+ eigenvector converges to I (the identity) in {I, s_tl} coordinates. The lambda_- eigenvector converges to -(disc/2)*I + s_tl: the discriminant-weighted direction. Perfect self-reference = existence without content. The distinguishing structure (s_tl) lives in ker(P_inf) — the blind spot of infinite self-knowledge IS the framework's dynamics. Top row of Sigma_s is depth-independent: (1, disc/2). Convergence rate accelerating, trending toward 1/3.
 
 ### Catalan Filler Theorem
 
@@ -502,18 +502,22 @@ N_c * Koide = ||N||^2                 color × Koide = hidden norm (exact)
 beta_KMS / L_bits = ln(2)             KMS/information = nats-bits conversion (exact)
 ```
 
-Total: 95+ verified relations. Hub structure unchanged: ||N||^2 most connected. New edges:
+Total: 100+ verified relations. Hub: disc (degree 22, eigenvector centrality 1.0). phi is the bridge (high betweenness, low degree). ||N||^2 is locally dense but not globally central.
 
 ```
 arctanh(phi^-1)/ln(phi) = 3/2       golden threshold = norm ratio × beta_KMS (exact)
-M_Ising(phi^-1)^8 = phi_bar          Ising magnetization at golden threshold (exact)
+M_Ising(phi^-1)^8 = phi_bar          Ising magnetization at golden threshold (exact, golden identity)
 dN_cross/dmu|_{phi^-1} = sqrt(disc)  cross-field derivative at threshold = sqrt(5) (exact)
 Koide delta = 2/9 = ||N||^2/N_c^2    lepton phase = hidden norm / color^2 (0.02%)
 sin(theta_C) ~ 2/9                   Cabibbo angle matches same quantity (1.5%)
 dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (exact)
 ```
 
-**Tower CYM limit:** The three-projection balance at each tower depth converges to (C, Y, M) -> (1/disc, ||N||^2/disc, ||N||^2/disc) = (1/5, 2/5, 2/5). Center gets 1/disc. Bridge and orientation each get ||N||^2/disc (always equal at depth 1+). C/M -> 1/2 = ker/A. The structural invariant appears as the asymptotic CYM ratio. The discriminant partitions the simplex. Verified at depths 0-4 (C(d4) = 0.204 vs 0.200, 2% from limit). See `kira.py` tower_cym_profile.
+**Tower CYM limit:** Converges to (C, Y, M) -> (1/disc, ||N||^2/disc, ||N||^2/disc) = (1/5, 2/5, 2/5). Rate = (1/3)^n (from 2:6 norm ratio in block ascent). Path is a straight line on the simplex. Y=M forced (||h||=||JN||=||N|| because J orthogonal at every depth). Unique fixed point (Banach, slope 1/3). The limit partition 1:2:2 sums to disc=5: disc = 1 + 2*||N||^2. Center contributes 1, each hidden channel contributes ||N||^2. See tower.py cym_profile.
+
+**Lepton masses from 2/9:** delta_Koide = 2/9 = ||N||^2/N_c^2 predicts all three charged lepton masses to 0.0044% RMS. m_e: -0.006%, m_mu: -0.005%, m_tau: +0.001%. Ten independent algebraic paths to 2/9 from d=2 alone. sin(theta_Cabibbo) matches 2/9 to 1.2%. Chance probability of both: ~4e-4. If real, the Yukawa sector collapses from 17 free parameters to ~2.
+
+**Ising at golden threshold:** M_Ising(phi^-1)^8 = phi_bar. Exact, from the golden identity 1-phi_bar^2=phi_bar. The exponent beta=1/8=1/(2d^2) is contained through the minimal model M(N_c, d^2) = M(3,4) giving c=1/2=ker/A. The step "M(3,4) IS the Ising CFT" is physics (Tier B), the golden identity is algebra (Tier A). N_c+1=d^2 uniquely at d=2.
 
 ### Structural Closures (verified)
 
@@ -595,7 +599,16 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | Galois: values forced, dynamics designed | COMPUTED (three thresholds in three fields) |
 | 26 = 1+5^2 = family disc at k=5 | COMPUTED (bosonic d_crit is a family discriminant) |
 | kernel canonicalization (O-2) | CLOSED Tier A (indefinite Q, negative eigendirection, all algebraic) |
-| tower CYM -> (1/disc, ||N||^2/disc, ||N||^2/disc) | COMPUTED (asymptotic limit verified d0-d4) |
+| tower CYM -> (1/disc, ||N||^2/disc, ||N||^2/disc) | COMPUTED (rate (1/3)^n, straight line, unique fixed point, disc=1+2||N||^2) |
+| Y=M forced: ||h||=||JN||=||N|| (J orthogonal) | COMPUTED (algebraic, not coincidence) |
+| 2/9 predicts m_e, m_mu, m_tau to 0.0044% RMS | COMPUTED (delta_Koide = ||N||^2/N_c^2, 10 algebraic paths) |
+| M_Ising(phi^-1)^8 = phi_bar (golden identity) | COMPUTED Tier A (1-phi_bar^2=phi_bar, exact) |
+| beta_Ising = 1/(2d^2) via M(N_c,d^2)=M(3,4) | COMPUTED Tier B (contains 1/8, needs CFT bridge) |
+| N_c+1=d^2 uniquely at d=2 | COMPUTED ((d-2)(d+1)=0, positive root d=2) |
+| self-model limit: projects onto I (identity) | COMPUTED (lambda+ eigvec -> (1,0) in {I,s_tl}, existence without content) |
+| blind direction at limit: -(disc/2)*I + s_tl | COMPUTED (discriminant-weighted, the "what" lives in ker(P_inf)) |
+| Sigma_s top row depth-independent: (1, disc/2) | COMPUTED (bottom row decays, single parameter c(n)->0) |
+| disc is the web hub (degree 22, centrality 1.0) | COMPUTED (not ||N||^2; phi is the bridge, not the hub) |
 | ln(Lambda_QCD/M_Pl) ~ -44 = -exp_B | COMPUTED (2.4% deviation, O-4 sharpened) |
 | parent depth n = child depth n+1 (conjugate) | CLOSED O-5 (same eigenvalues, ker, invariants) |
 | parent coupling D = (4/5)*diag(R_tl, R_tl) | COMPUTED (child's -2h fails; correct D from joint constraints) |
