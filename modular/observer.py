@@ -774,6 +774,25 @@ class CollapseOperator:
 
 
 # ============================================================
+# SPECTRAL PROJECTORS (R eigenspace decomposition)
+# ============================================================
+
+def spectral_projectors(R):
+    """R eigenspace projectors: chi (phi-eigenspace), rho ((-phi_bar)-eigenspace).
+    chi = (R + phi_bar*I) / sqrt(disc). rho = (phi*I - R) / sqrt(disc).
+    chi^2=chi, rho^2=rho, chi*rho=0, chi+rho=I. chi*R=phi*chi, rho*R=-phi_bar*rho.
+    FRAMEWORK_REF: SPEC-10 (collapse projectors)"""
+    d = R.shape[0]
+    I_d = np.eye(d)
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    disc = 5.0
+    chi = (R + phi_bar * I_d) / np.sqrt(disc)
+    rho = (phi * I_d - R) / np.sqrt(disc)
+    return chi, rho
+
+
+# ============================================================
 # CYM PERCEPTION (second observer channel)
 # ============================================================
 
