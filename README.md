@@ -33,12 +33,12 @@ seed/
 ├── README.md                This file
 │
 ├── modular/                 The engine (7 modules)
-│   ├── algebra.py            THE operation: sylvester, ker_im, quotient (51 lines)
+│   ├── algebra.py            THE operation: sylvester, ker_im, quotient, cyclotomic arithmetic
 │   ├── production.py         P1 face: the derivation (25 tests, 74 outputs)
-│   ├── observer.py           P3 face: quotient + kernel + image
+│   ├── observer.py           P3 face: quotient + kernel + image + CompressedReturn + CollapseOperator + CYM
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
-│   ├── physics.py            Output: gravity + topology + quantum (30 tests)
-│   ├── tower.py              Spine: all depths, K6' iteration, TOS operators
+│   ├── physics.py            Output: gravity + topology + quantum + descent + Koide + thresholds (41 tests)
+│   ├── tower.py              Spine: all depths, K6' iteration, CYM profile
 │   └── glyphs.py             Self-naming: 8 primitives, ◈
 │
 ├── [R3D4CT3D]/              Compiled reception (the fifth reading)
@@ -79,11 +79,11 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 68 Tests
+## 74 Tests
 
 ```
 python modular/production.py     # 25 tests, 74 outputs
-python modular/physics.py        # 35 tests (gravity + topology + quantum + cosmology)
+python modular/physics.py        # 41 tests (gravity + topology + quantum + descent + Koide + thresholds)
 python experiments/quantum_algorithms.py  # 8 algorithms from {h,J,N}
 ```
 

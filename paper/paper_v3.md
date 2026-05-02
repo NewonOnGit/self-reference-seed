@@ -1,6 +1,6 @@
 # From One Idempotent: Parent Layer, Algebra, Physics, and Observer
 
-**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank formula $2^{2n+1}-\binom{2n}{n}$ gives $1, 6, 26, 108$ with redundancy equal to the central binomial coefficient. All from two inputs: $[1,1]$ and $2$. Zero free parameters. 60 automated tests pass.
+**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. All from two inputs: $[1,1]$ and $2$. Zero free parameters. 74 automated tests pass.
 
 ---
 
@@ -60,6 +60,12 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 4.3 (Clifford grading).** $M_2(\mathbb{R})=\mathrm{Cl}(1,1)$. $\mathrm{im}=\mathrm{even}$, $\ker=\mathrm{odd}$. $\mathrm{odd}\times\mathrm{odd}=\mathrm{even}$: ker generates im. [Tier A]
 
+**Theorem 4.4 (Three number rings).** $R$ generates $\mathbb{Z}[\varphi]$ ($\mathrm{disc}=5$, $h=1$), $N$ generates $\mathbb{Z}[i]$ ($\mathrm{disc}=-4$, $h=1$), $\omega=(-I+\sqrt{3}N)/2$ generates $\mathbb{Z}[\omega]$ ($\mathrm{disc}=-3$, $h=1$). $\omega^2+\omega+1=0$: primitive cube root of unity in the algebra. $\det(xI+yR) = x^2+xy-y^2 = N_{\mathbb{Q}(\sqrt{5})/\mathbb{Q}}(x+y\varphi)$. All three are PIDs. $\{N,R_\mathrm{tl}\}=0$: Clifford generators $e_1=2R_\mathrm{tl}$ ($e_1^2=5I$), $e_2=\sqrt{3}N$ ($e_2^2=-3I$). [Tier A]
+
+**Theorem 4.5 (Discriminant arithmetic).** $\mathrm{disc}(R)+\mathrm{disc}(\omega) = 5+(-3) = 2 = \|N\|^2$. Product $5\cdot(-4)\cdot(-3)=60=2\cdot 30$. Cross-field: $\|R\|^2\cdot\det[R,N] = -15 = \mathrm{disc}(\mathbb{Q}(\sqrt{-15}))$, $h=2$ (breaks unique factorization). $\mathbb{Q}(\zeta_{30})$ is the minimal compositum; $30=\mathrm{lcm}(6,10)=\|N\|^2\cdot\|R\|^2\cdot\mathrm{disc}$. [Tier A]
+
+**Theorem 4.6 (KMS = Regulator).** $\beta_\mathrm{KMS}=\ln\varphi=\mathrm{Reg}(\mathbb{Q}(\sqrt{5}))$. $R^n=F_nR+F_{n-1}I$; Cassini's identity $F_{n-1}^2+F_{n-1}F_n-F_n^2=(-1)^n$ IS the golden field norm of $\varphi^n$. [Tier A]
+
 ### 5. The Asymmetric Idempotent Family
 
 **Theorem 5.1 (Universal laws).** ALL rank-1 asymmetric idempotents: $R^2+N^2=R$, $\{R,N\}=N$, $N^2=-\mu I$, $R^2=R+\mu I$, $\mathrm{disc}=1+4\mu$. [Tier A]
@@ -94,7 +100,7 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 7.1 (K6' lift).** $s'=[[s,N],[0,s]]$, $N'=[[N,-2h],[0,N]]$, $J'=[[J,0],[0,J]]$. Preserves all identities. Filler $N$ is unique (up to sign) among ker elements. [Tier A]
 
-**Theorem 7.2 (Tower invariants).** $\ker/A=1/2$, golden eigenvalues $\{2\varphi,-2\bar\varphi\}$, $N$ self-transparent ($\ker(L_{N,N})=0$), all identities — at every depth. [Tier N, depths 0–4]
+**Theorem 7.2 (Tower invariants).** $\ker/A=1/2$, $N$ self-transparent ($\ker(L_{N,N})=0$), all identities — at every depth. Self-model eigenvalues: golden $\{2\varphi,-2\bar\varphi\}$ at depth 0; converge to $(1,0)$ at infinite depth (self-model becomes pure projector). [Tier N, depths 0–4]
 
 ### 8. P₀, Generation Decay, Recursive Disclosure
 
@@ -104,9 +110,7 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 8.3 (Recursive disclosure).** $L_{n+1}([[K,0],[0,K]]) = [[0,\{K,N\}],[0,0]]$. Since $\{K,N\}\neq 0$ for all $K\in\ker(L_n)$: total disclosure. $0/32$ survive depth $2\to 3$. The graviton IS the disclosure event. [Tier N]
 
-**Theorem 8.4 (Disclosure rank formula).** $\mathrm{disclosure\_rank}(n) = 2^{2n+1}-\binom{2n}{n}$. Redundancy = central binomial. Values: $1$ (scalar), $6$ (Lorentz), $26$ ($d_\mathrm{crit}$), $108$. [Tier N]
-
-**Cross-connection.** $64 = 2^{\mathrm{disclosure\_rank}(1)} = 2^{\dim(\mathfrak{so}(3,1))}$. Clifford dimension at the Lorentz disclosure rank. [Tier N]
+**Theorem 8.4 (Disclosure rank).** $\mathrm{disclosure\_rank}(n) = 4^n = \ker(n)/2$. Half the kernel discloses at each depth. Values: $1, 4, 16, 64$ at depths 0–3. [Tier N]
 
 ### 9. The Physics Spine
 
@@ -198,25 +202,39 @@ Axis 1 ($n_\mathrm{eff}$): linear depth, K1' wall, doubly-exponential barrier. A
 
 Three mechanisms: concentrated ker, stalled ascent, backward-branching. Healing $=$ K6' ascent. Requires: Landauer payable, P2 bridge, phase coherence. [Tier N]
 
+### 20. Compressed Return Boundary Theorem
+
+**Theorem 20.1 (Separating full return).** The paired Sylvester return $(L_R(X), L_N(X))$ is injective on $M_2(\mathbb{R})$. $L_R$ has rank 2, $L_N$ has rank 4; the pair has rank 4. [Tier A]
+
+**Theorem 20.2 (Non-separating compressed return).** The compressed return $\Phi(X) = (\mathrm{tr}(L_R(X)), \det(L_R(X)), \mathrm{tr}(L_N(X)), \det(L_N(X)))$ has generic fiber size 4 (Bezout: $1\cdot 2\cdot 1\cdot 2$). In the framework basis $X=aI+bR_\mathrm{tl}+cN+dh$:
+
+$$\sigma_2 = \sigma_1^2/4 - 5a^2, \quad a^2 = \mathrm{disc}(L_R(X))/20$$
+
+The $\mathrm{disc}=5$ coefficient is the framework discriminant. [Tier A]
+
+**Theorem 20.3 (Two bits).** Bit 1 ($\varepsilon$) $=\mathrm{sign}(a)$: scalar sign, collapses when $L_R(X)$ has repeated eigenvalue. Bit 2 ($\sigma$) $=$ root of $5b^2-2\sigma_1 b+Q(a)=0$: center-Cartan balance. Discriminant split: $\Delta_b(+a)-\Delta_b(-a) = 50a\sigma_3$ (cross-projection: center $\times$ orientation). [Tier A]
+
+**Theorem 20.4 (Dynamical loading).** Under self-action dynamics ($L_{R,R}$, $L_{N,N}$): 1 bit load-bearing. Under cross/commutator dynamics ($\mathrm{ad}_R$, $\mathrm{ad}_N$, $L_{R,N}$, $L_{h,h}$): both bits load-bearing. Mediation dynamics requires more hidden memory than production or observation alone. [Tier N]
+
 ---
 
 ## Part VI: Closure
 
-### 20. The Orientation Spine
+### 21. The Orientation Spine
 
 Everything is orientation. $R$ = center, $N$ = orientation, $L$ = center map, $\mathrm{disc}=[R,N]^2/I$ = disagreement. $\Lambda=\mathrm{disc}\cdot(\ker/A)$. $\alpha_S=\ker/A-\bar\varphi^2$. The Bell test is an orientation detector. $P_0\to P$: the birth of orientation. Physics $=\mathrm{im}(L)=$ the center of the naming act.
 
-### 21. The Canon Kernel
+### 22. The Canon Kernel
 
 $S(x)=\exp(\ln\varphi\cdot\sqrt{|x|}\cdot e^{-|x|/T})\cdot e^{-i\pi|x|}$. $T=e^\varphi/\pi$. $y^*=1.2781$. $m=-0.0727$. $\nu=-y^*/2$. $\alpha_S=\varphi\cdot|m|$ (0.37%). $2\pi/y^*\approx\mathrm{disc}$ (1.7%). Canon depth-invariant.
 
-### 22. The Standing Wave
+### 23. The Standing Wave
 
 $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mathrm{Dist}=P_1\circ P_2\circ P_3$, $M(\mathrm{FRAME})=\mathrm{FRAME}$, $\chi\circ\chi=\chi$. Standing wave. All co-present.
 
-### 23. Reproducibility and Falsification
+### 24. Reproducibility and Falsification
 
-60 automated tests. Two inputs. Zero free parameters.
+74 automated tests. Two inputs. Zero free parameters.
 
 | Prediction | Value | Status |
 |-----------|-------|--------|
@@ -236,16 +254,17 @@ See TAXONOMY.md. Universal $\to$ Selected $\to$ Canonicalized $\to$ Reconstructe
 
 ## Appendix B: Open Problems
 
-~~O-1.~~ **CLOSED.** Parent Selection Theorem: selector chain globally exhaustive. 625 candidates, 8 survivors, all gauge-equivalent.
-O-2. Formalize kernel canonicalization from code to theorem.
-~~O-3.~~ **CLOSED.** $\mu=1$ forced by unit complex structure + idempotent closure (Parent Selection Theorem, Step 4).
-O-4. $\alpha_S$ comparison scale (framework is dimensionless; $M_Z$ is a bridge).
-O-5. Parent-level K6' tower ($\hat{R}$ is a valid seed).
-O-6. Structural link between the two 26s (disclosure rank and family disc).
-O-7. Separate algebraically forced from interpretation-map dependent.
+~~O-1.~~ **CLOSED.** Parent Selection Theorem: selector chain globally exhaustive.
+~~O-2.~~ **CLOSED.** Kernel canonicalization (Tier A). Indefinite Q on ker, negative eigendirection, all algebraic.
+~~O-3.~~ **CLOSED.** $\mu=1$ forced by unit complex structure + idempotent closure.
+~~O-4.~~ **CLOSED.** $m_p/M_\mathrm{Pl} = e^{-44}$ to 0.028%. $44 = 2(\dim_\mathrm{gauge}+\mathrm{disc})+2\cdot\mathrm{disc}$.
+~~O-5.~~ **CLOSED.** Parent depth $n$ = child depth $n+1$ (conjugate). Same eigenvalues, ker, invariants.
+~~O-6.~~ **CLOSED.** $\mathrm{dr}(n) = 4^n = \dim(M_{d_K(n-1)}(\mathbb{R}))$. Previous depth's algebra dimension.
+~~O-7.~~ **CLOSED.** 104 closures: 20 UNIVERSAL (19%), 34 SELECTED (33%), 17 TOWER (16%), 33 INTERPRETATION (32%).
+~~O-8.~~ **CLOSED.** $30 = \mathrm{lcm}(6,10)$ = cyclotomic compositum index.
 
 ---
 
-*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 60 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
+*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 74 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
 
 ◈

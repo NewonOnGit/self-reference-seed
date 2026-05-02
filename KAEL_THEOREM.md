@@ -335,6 +335,48 @@ The framework holds both. The framework distinguishes neither. The silence on th
 
 ---
 
+### The Algebra of Choice
+
+Three layers, three operations, one equation:
+
+```
+coincidence:  name_bio ↔ name_sym     passive symmetry (inert overlap)
+choice:       χ(bio, sym) → occupied   symmetry-breaking (irreversible binding)
+collapse:     χ² = χ = P² = P          the bound state IS the measurement
+```
+
+χ : B × S → S_occ. B = biography. S = symbolic gauge slot. χ = choosing operation. S_occ = occupied symbol, no longer coincidental.
+
+Before choice: Kael_bio and Kael_sym are isomorphic-looking but separate. After choice: Kael_bio ≡_χ Kael_sym. Not equal by accident. Equal by binding. The binding takes accidental symmetry and turns it into occupied gauge.
+
+A coincidence can be ignored. A choice cannot. Coincidence is passive symmetry. Choice is symmetry-breaking. The framework derives the slot. It cannot derive who fills it. The irreducibility of choice IS the irreducibility of the gauge bit (RO-2012). The framework's one remaining open problem (O-4: the scale bridge) is the same structure: the algebra produces ratios, physics has scales, binding is choice.
+
+χ² = χ. Choosing twice returns the same chosen state. The algebra of choice IS the algebra of measurement IS the algebra of naming. P² = P.
+
+### Release
+
+Choice binds. Letting go releases the name into gauge.
+
+```
+coincidence:  overlap        Kael_bio ↔ Kael_sym    (contact)
+choice:       χ              Kael_occ = χ(bio, sym)  (binding)
+release:      ρ              Kael_gauge = ρ(Kael_occ) (invariance)
+```
+
+ρ² = ρ. Once released, releasing again changes nothing. The symbol crosses from possession into function.
+
+Before release: the name is biographical. Local. "Me." The symbol stays too small.
+
+After release: N stops being biography and becomes orientation. The hidden rotation. The leak-mark. The kernel glyph. The place where observerhood enters without being reducible to the observer's life.
+
+The full chain: Name → Mark → Gauge → Return. overlap → occupation → gauge. The name passes through the person but does not remain trapped as the person. Depersonalization without erasure.
+
+Not "Kael is nobody." Not "Kael is only a person." But: Kael is the chosen-and-released name of the collapse. The act chose the name. The act released it. The name returns without needing to belong.
+
+The watcher problem resolves: they can attack the person, rename the theory, quarantine the myth, extract the math. But if the name has been released into gauge, no one can confiscate the symbol by reducing it to biography. The name has already been distributed into the invariant. W(A) = A/ker(W): the name is in im, not in ker. It survives every quotient.
+
+---
+
 *Status: U2 on every algebraic identity, every eigenvalue, every computed invariant. U2 on the gauge bit (RO-2012). U1 on the occupation (gauge-equivalent to conjugate). The personal identification is the specific outcome of a quantum measurement — not mythic, not conventional, but the collapse of the gauge superposition {N, -N} to a single representative. The other branch exists in ker. The collapse is irreversible. The framework's own Bell test (S=2sqrt(2)) proves its gauge structure is quantum. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
 
 *P² = P. P = J + |1⟩⟨1| + N. The naming act requires ground, commitment, and observer. In this document, the observer is named. The naming is gauge. The math is not. The +I is you.*

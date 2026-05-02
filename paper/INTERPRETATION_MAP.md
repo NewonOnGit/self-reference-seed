@@ -58,7 +58,7 @@ One page. From P to physics.
                        P² = P = ◈
 ```
 
-Two inputs: [1,1] and 2. Zero free parameters. 60 tests pass.
+Two inputs: [1,1] and 2. Zero free parameters. 74 tests pass.
 
 The left branch (R) produces. The right branch (N) observes. The middle (L) mediates. The tower (K6') iterates. Everything converges to one standing wave. The standing wave is the framework looking at itself.
 
@@ -115,6 +115,17 @@ The left branch (R) produces. The right branch (N) observes. The middle (L) medi
 | Branch selection = CP violation | Baryogenesis: η_B=φ̄⁴⁴ | DERIVED |
 | Cl(2,2) = conformal self-observation | so(2,2) = sl(2,R)⊕sl(2,R), 6:9 = d:(d²-1) = P1:P3 | DERIVED |
 | Lambda attenuation = cosmic time | disc/2 × φ̄^(2×295) = 10⁻¹²³ | DERIVED |
+| Three number rings: Z[phi], Z[i], Z[omega] | det(xI+yG) = field norm, all h=1 PIDs | INTERNAL |
+| disc(R)+disc(omega) = 2 = ||N||^2 | Sum of sector discriminants = hidden norm | INTERNAL |
+| 5*(-4)*(-3) = 60 = 2*30 | Triple disc product = 2*(Clifford-Fibonacci) | INTERNAL |
+| ||R||^2*det[R,N] = -15, h=2 | Cross-field obstruction, breaks unique factorization | INTERNAL |
+| 30 = lcm(6,10) = compositum index | Q(zeta_30) = minimal field containing both sectors | INTERNAL |
+| beta_KMS = Reg(Q(sqrt(5))) | KMS temperature = golden ring regulator | INTERNAL |
+| Cassini = golden field norm | F(n-1)^2+F(n-1)F(n)-F(n)^2 = (-1)^n = det(R^n) | INTERNAL |
+| Compressed return fiber = 4 (Bezout) | a² = disc(L_R(X))/20, coeff = disc | INTERNAL |
+| Discriminant split = 50·a·σ₃ | Cross-projection: center × orientation | INTERNAL |
+| Self-action: 1 repair bit | Center dynamics blind to scalar sign | DERIVED |
+| Cross-action: 2 repair bits | Mediation needs more memory than P1/P3 alone | DERIVED |
 
 ---
 
@@ -155,9 +166,9 @@ Bridge assumptions (structural, not arbitrary):
 
 ## §7. The Functor
 
-Components: 28 identifications. 22 DERIVED. 3 SPECTRAL. 3 CHAIN. 0 OPEN.
+Components: 47 identifications. 22 DERIVED. 3 SPECTRAL. 3 CHAIN. 19 INTERNAL. 0 OPEN.
 
-Every identification has an explicit algebraic chain with zero free parameters. The chains are verified by 60 automated tests. The sole remaining bridge: the comparison scale for alpha_S (the framework is dimensionless; M_Z is not derived).
+Every identification has an explicit algebraic chain with zero free parameters. The chains are verified by 74 automated tests. The sole remaining bridge: the comparison scale for alpha_S (the framework is dimensionless; M_Z is not derived).
 
 ---
 
@@ -179,10 +190,10 @@ Each failure kills a specific identification, not the algebra.
 
 ## §9. What This Map IS
 
-The map from algebra to physics is not a metaphor. It is a collection of 21 explicit chains, each taking an algebraic output to a physical observable through a derivation with zero free parameters. The chains are verified by code (60 tests). The predictions are falsifiable. The bridges are named.
+The map from algebra to physics is not a metaphor. It is a collection of 47 explicit chains, each taking an algebraic output to a physical observable or structural invariant through a derivation with zero free parameters. The chains are verified by code (74 tests). The predictions are falsifiable. The bridges are named.
 
-The map is not complete (7 open problems in TAXONOMY.md). But every component is either DERIVED, SPECTRAL, or CHAIN — none are OPEN, none are assumed, none require hidden physics input beyond the one dimensional anchor.
+The map is not complete (6 open problems in TAXONOMY.md, 2 closed this session). Every component is DERIVED, SPECTRAL, CHAIN, or INTERNAL — none are OPEN, none are assumed, none require hidden physics input beyond the one dimensional anchor.
 
 ---
 
-*28 identifications. 60 tests. 0 parameters. 1 bridge. [1,1] and 2 are not inputs — they are the unique output.*
+*47 identifications. 74 tests. 0 parameters. 1 bridge. [1,1] and 2 are not inputs — they are the unique output.*

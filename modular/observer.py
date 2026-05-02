@@ -537,3 +537,304 @@ class Image:
         f = self.observer.frame
         dim_im = f["dim_A"] - f["ker_dim"]
         return f"Image(dim={dim_im}/{f['dim_A']}, fraction={dim_im/f['dim_A']:.3f})"
+
+
+# ============================================================
+# COMPRESSED RETURN (the Boundary Theorem)
+# ============================================================
+
+class CompressedReturn:
+    """The compressed Sylvester return map and its fiber structure.
+
+    Phi(X) = (tr(L_R(X)), det(L_R(X)), tr(L_N(X)), det(L_N(X)))
+
+    Full paired return is separating. Compressed return has generic
+    fiber size 4 (Bezout: 1*2*1*2). Two bits lost:
+      epsilon = sign of I-coefficient (scalar sign)
+      sigma   = b-root choice (center-Cartan balance)
+
+    The disc = 5 runs through every equation.
+
+    FRAMEWORK_REF: Thm 8.5 (Compressed Return Boundary Theorem)
+    GRID: B(5, P3)
+    APEX_LINK: I2*TDL*LoMI=Dist (compression IS observation with loss)
+    """
+
+    def __init__(self, observer):
+        self.observer = observer
+        if observer.frame is None:
+            observer.observe()
+        self._s = observer.frame["state"]
+        self._N = observer.frame["N"]
+        self._J = observer.frame["J"]
+        self._d = observer.frame["d_K"]
+        # Framework basis (depth 0 only for now)
+        if self._d == 2:
+            I2 = np.eye(2)
+            R_tl = self._s - 0.5 * I2
+            h = self._J @ self._N
+            self._basis = [I2, R_tl, self._N, h]
+            self._basis_mat = np.column_stack([m.flatten() for m in self._basis])
+
+    def signature(self, X):
+        """Compressed return: (tr(L_R(X)), det(L_R(X)), tr(L_N(X)), det(L_N(X)))."""
+        s, N_obs = self._s, self._N
+        lr = s @ X + X @ s - X
+        ln = N_obs @ X + X @ N_obs - X
+        return np.array([np.trace(lr), np.linalg.det(lr),
+                         np.trace(ln), np.linalg.det(ln)])
+
+    def decompose(self, X):
+        """X -> (a, b, c, d) in {I, R_tl, N, h} basis."""
+        return np.linalg.solve(self._basis_mat, X.flatten())
+
+    def recompose(self, a, b, c, d):
+        """(a, b, c, d) -> X."""
+        return a * self._basis[0] + b * self._basis[1] + \
+               c * self._basis[2] + d * self._basis[3]
+
+    def fiber(self, X):
+        """Exact fiber of the compressed return through X.
+        Returns list of matrices sharing the same compressed signature.
+        FRAMEWORK_REF: Thm 8.5"""
+        if self._d != 2:
+            raise NotImplementedError("Exact fiber only at depth 0 (d=2)")
+        sig = self.signature(X)
+        s1, s2, s3, s4 = sig
+
+        # Bit 1: a^2 = disc(L_R(X)) / 20
+        a_sq = (s1**2 - 4 * s2) / 20.0
+        if a_sq < -1e-12:
+            return []
+        a_vals = [0.0] if a_sq < 1e-12 else [np.sqrt(a_sq), -np.sqrt(a_sq)]
+
+        solutions = []
+        for a in a_vals:
+            # Bit 2: 5b^2 - 2*s1*b + Q(a) = 0
+            Q = s4 - 5*a**2 - 5*(2*a + s3)**2/16.0 + s1**2/4.0
+            disc_b = 4*s1**2 - 20*Q
+            if disc_b < -1e-12:
+                continue
+            elif disc_b < 1e-12:
+                b_vals = [s1 / 5.0]
+            else:
+                sq = np.sqrt(disc_b)
+                b_vals = [(2*s1 + sq) / 10.0, (2*s1 - sq) / 10.0]
+
+            for b in b_vals:
+                c = -(2*a + s3) / 4.0
+                d = (5*b - s1) / 2.0
+                solutions.append(self.recompose(a, b, c, d))
+
+        return solutions
+
+    def fiber_size(self, X):
+        """Number of states sharing the same compressed signature."""
+        return len(self.fiber(X))
+
+    def bits(self, X):
+        """Identify the two hidden bits for X.
+        Returns (epsilon, sigma, a_value, b_value).
+        epsilon = sign of I-coefficient (+1 or -1)
+        sigma   = which b-root (index 0 or 1)"""
+        coeffs = self.decompose(X)
+        a = coeffs[0]
+        epsilon = 1 if a >= 0 else -1
+        sig = self.signature(X)
+        b_center = sig[0] / 5.0
+        sigma = 0 if coeffs[1] >= b_center else 1
+        return epsilon, sigma, float(a), float(coeffs[1])
+
+    def discriminant_split(self, X):
+        """Delta_b(+a) - Delta_b(-a) = 50*a*sig_3. Cross-projection quantity.
+        Returns (split, a_val, sig_3_val)."""
+        coeffs = self.decompose(X)
+        a = coeffs[0]
+        sig = self.signature(X)
+        s3 = sig[2]
+        return 50 * abs(a) * s3, abs(a), s3
+
+    def __repr__(self):
+        return f"CompressedReturn(d={self._d}, generic_fiber=4, bits=2)"
+
+
+# ============================================================
+# COLLAPSE OPERATOR
+# ============================================================
+
+class CollapseOperator:
+    """The collapse M → P as explicit projectors on ker(L_M).
+
+    Parent M = diag(P, Pᵀ) has ker(L_M) = 8, decomposing into:
+      A-sector (child): dim 2 → ker(L_P)
+      D-sector (mirror): dim 2 → ker(L_Pᵀ)
+      B+C cross-sectors: dim 4 → entanglement, destroyed by collapse
+
+    chi = branch selection (projects onto A-sector)
+    rho = mirror (projects onto D-sector)
+    Q   = quenching (kills cross-sectors)
+
+    chi + rho = Q. chi·rho = 0. chi²=chi. rho²=rho. Q²=Q.
+    Two bits lost: 1 for quenching (8→4), 1 for selection (4→2).
+
+    FRAMEWORK_REF: Thm 0b.5 (Collapse by quotient)
+    """
+
+    def __init__(self):
+        from algebra import sylvester as _syl
+        from scipy.linalg import null_space
+
+        P = np.array([[0,0],[2,1]], dtype=float)
+        Z = np.zeros((2, 2))
+        M = np.block([[P, Z], [Z, P.T]])
+
+        L_M = _syl(M)
+        ker_M = null_space(L_M, rcond=1e-10)
+        self.ker_dim = ker_M.shape[1]  # should be 8
+
+        # Classify kernel vectors by sector
+        d = 2
+        A_vecs, D_vecs, cross_vecs = [], [], []
+        for i in range(self.ker_dim):
+            K = ker_M[:, i].reshape(4, 4)
+            A_block = K[:d, :d]
+            D_block = K[d:, d:]
+            B_block = K[:d, d:]
+            C_block = K[d:, :d]
+            a_norm = np.linalg.norm(A_block)
+            d_norm = np.linalg.norm(D_block)
+            cross_norm = np.linalg.norm(B_block) + np.linalg.norm(C_block)
+            if cross_norm < 1e-8:
+                if a_norm > 1e-8 and d_norm < 1e-8:
+                    A_vecs.append(ker_M[:, i])
+                elif d_norm > 1e-8 and a_norm < 1e-8:
+                    D_vecs.append(ker_M[:, i])
+                else:
+                    # Both nonzero diagonal — split
+                    A_vecs.append(ker_M[:, i])
+            else:
+                cross_vecs.append(ker_M[:, i])
+
+        # Build projectors in kernel basis
+        all_vecs = np.column_stack(A_vecs + D_vecs + cross_vecs) if (A_vecs + D_vecs + cross_vecs) else ker_M
+        n_A = len(A_vecs)
+        n_D = len(D_vecs)
+
+        # Orthonormal kernel basis
+        Q_full, _ = np.linalg.qr(ker_M)
+        Q_A = np.column_stack(A_vecs) if A_vecs else np.zeros((16, 0))
+        Q_D = np.column_stack(D_vecs) if D_vecs else np.zeros((16, 0))
+
+        if Q_A.shape[1] > 0:
+            Q_A, _ = np.linalg.qr(Q_A)
+        if Q_D.shape[1] > 0:
+            Q_D, _ = np.linalg.qr(Q_D)
+
+        # Projectors (in the full 16-dim space)
+        self.chi_proj = Q_A @ Q_A.T if Q_A.shape[1] > 0 else np.zeros((16, 16))
+        self.rho_proj = Q_D @ Q_D.T if Q_D.shape[1] > 0 else np.zeros((16, 16))
+        self.Q_proj = self.chi_proj + self.rho_proj
+
+        self.A_dim = n_A
+        self.D_dim = n_D
+        self.cross_dim = len(cross_vecs)
+        self.entropy_bits = np.log2(self.ker_dim) - np.log2(max(n_A, 1))
+
+    def chi(self, v):
+        """Child selection: project onto A-sector."""
+        return self.chi_proj @ v
+
+    def rho(self, v):
+        """Mirror: project onto D-sector."""
+        return self.rho_proj @ v
+
+    def quench(self, v):
+        """Kill cross-sectors: project onto diagonal."""
+        return self.Q_proj @ v
+
+    def verify(self):
+        """Check all operator identities."""
+        I = np.eye(16)
+        chi, rho, Q = self.chi_proj, self.rho_proj, self.Q_proj
+        return {
+            "chi^2=chi": np.allclose(chi @ chi, chi),
+            "rho^2=rho": np.allclose(rho @ rho, rho),
+            "Q^2=Q": np.allclose(Q @ Q, Q),
+            "chi+rho=Q": np.allclose(chi + rho, Q),
+            "chi*rho=0": np.allclose(chi @ rho, 0),
+            "rho*chi=0": np.allclose(rho @ chi, 0),
+            "A_dim": self.A_dim,
+            "D_dim": self.D_dim,
+            "cross_dim": self.cross_dim,
+            "entropy_bits": self.entropy_bits,
+        }
+
+    def __repr__(self):
+        return f"CollapseOperator(ker={self.ker_dim}, A={self.A_dim}, D={self.D_dim}, cross={self.cross_dim})"
+
+
+# ============================================================
+# CYM PERCEPTION (second observer channel)
+# ============================================================
+
+class CYM:
+    """CYM field decomposition: perception through cyclotomic channels.
+    C (Cyan) -> Q(zeta_6) disc=-3. M (Magenta) -> Q(zeta_10) disc=5.
+    Y (Yellow) -> Q(sqrt(-15)) disc=-15 (cross-field, h=2).
+    FRAMEWORK_REF: Thm 4.4, SPEC-03"""
+
+    MU_PARADOX = (np.sqrt(5) - 1) / 2  # phi^{-1}
+    MU_LENS = np.sqrt(3) / 2
+    MU_UNITY = 1.0
+
+    @staticmethod
+    def from_rgb(r_mean, g_mean, b_mean):
+        """RGB means (0-255) -> normalized CYM triple (sum=1)."""
+        c_raw = 1.0 - (r_mean / 255.0)
+        y_raw = 1.0 - (b_mean / 255.0)
+        m_raw = 1.0 - (g_mean / 255.0)
+        total = c_raw + y_raw + m_raw
+        if total > 0:
+            return {'C': c_raw/total, 'Y': y_raw/total, 'M': m_raw/total}
+        return {'C': 1/3, 'Y': 1/3, 'M': 1/3}
+
+    @staticmethod
+    def from_pixels(pixels):
+        """Numpy pixel array (H,W,3) -> CYM triple."""
+        return CYM.from_rgb(float(np.mean(pixels[:,:,0])),
+                            float(np.mean(pixels[:,:,1])),
+                            float(np.mean(pixels[:,:,2])))
+
+    @staticmethod
+    def from_coupling(mu):
+        """Coupling mu -> CYM triple (internal state model)."""
+        if mu < CYM.MU_PARADOX:
+            t_holo, info_cap = 1.0, 0.0
+        elif mu < CYM.MU_LENS:
+            t = (mu - CYM.MU_PARADOX) / (CYM.MU_LENS - CYM.MU_PARADOX)
+            t_holo, info_cap = 1.0 - 0.5*t, 0.3*t
+        elif mu < CYM.MU_UNITY:
+            t = (mu - CYM.MU_LENS) / (CYM.MU_UNITY - CYM.MU_LENS)
+            t_holo, info_cap = 0.5*(1.0-t), 0.3 + 0.7*t
+        else:
+            t_holo, info_cap = 0.0, 1.0
+        c = max(0, min(1, t_holo * info_cap))
+        m = max(0, min(1, (1-t_holo) * (1-info_cap*0.5)))
+        return {'C': c, 'Y': max(0, min(1, 1-c-m)), 'M': m}
+
+    @staticmethod
+    def dominant(cym):
+        return max(cym, key=cym.get)
+
+    @staticmethod
+    def phase(mu):
+        if mu < CYM.MU_PARADOX: return 'SUB_CRITICAL'
+        elif mu < CYM.MU_LENS: return 'PARADOX'
+        elif mu < CYM.MU_UNITY: return 'LENS'
+        else: return 'UNITY'
+
+    @staticmethod
+    def hellinger(p, q):
+        """Hellinger distance between two CYM dicts. Range [0,1]. d_H=0 is closure."""
+        s = sum((np.sqrt(max(p[k],0)) - np.sqrt(max(q[k],0)))**2 for k in ['C','Y','M'])
+        return float(np.sqrt(s) / np.sqrt(2))

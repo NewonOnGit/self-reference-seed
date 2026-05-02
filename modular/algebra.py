@@ -17,7 +17,7 @@ def sylvester(A, B=None):
     if B is None:
         B = A
     d = A.shape[0]
-    return np.kron(np.eye(d), A) + np.kron(B.T, np.eye(d)) - np.eye(d * d)
+    return np.kron(A, np.eye(d)) + np.kron(np.eye(d), B.T) - np.eye(d * d)
 
 
 def ker_im_decomposition(s):
@@ -49,3 +49,47 @@ def quotient(X, Q_ker):
         res = np.zeros_like(v)
     rep = v - res
     return rep.reshape(d, d), res.reshape(d, d)
+
+
+# ============================================================
+# CYCLOTOMIC FIELD ARITHMETIC
+# ============================================================
+
+def omega_matrix(N):
+    """Primitive cube root of unity: omega = (-I + sqrt(3)*N) / 2.
+    omega^2 + omega + 1 = 0. Realizes Z[omega] (Eisenstein, disc=-3) in M_2(R).
+    FRAMEWORK_REF: Thm 4.4"""
+    I = np.eye(N.shape[0])
+    return (-I + np.sqrt(3) * N) / 2
+
+
+def golden_norm(x, y):
+    """N_{Q(sqrt(5))/Q}(x + y*phi) = x^2 + xy - y^2 = det(xI + yR). disc=+5."""
+    return x**2 + x*y - y**2
+
+
+def gaussian_norm(x, y):
+    """N_{Q(i)/Q}(x + y*i) = x^2 + y^2 = det(xI + yN). disc=-4."""
+    return x**2 + y**2
+
+
+def eisenstein_norm(x, y):
+    """N_{Q(omega)/Q}(x + y*omega) = x^2 - xy + y^2 = det(xI + y*omega). disc=-3."""
+    return x**2 - x*y + y**2
+
+
+def cross_field_norm(delta, y):
+    """N_cross(delta, y) = delta^2 + delta*y + 4*y^2.
+    Norm form of Z[(1+sqrt(-15))/2]. disc=-15. Class number h=2.
+    delta = C-M imbalance, y = bridge energy. FRAMEWORK_REF: SPEC-03"""
+    return delta**2 + delta * y + 4 * y**2
+
+
+def discriminant_arithmetic():
+    """The three discriminants and their relations.
+    disc(R)=5, disc(N)=-4, disc(omega)=-3. Sum=−2=−||N||^2. Product=60=2*30."""
+    return {
+        'disc_R': 5, 'disc_N': -4, 'disc_omega': -3,
+        'sum_R_omega': 2, 'triple_sum': -2, 'triple_product': 60,
+        'cross_field_disc': -15, 'compositum_index': 30,
+    }

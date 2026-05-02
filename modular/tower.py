@@ -353,6 +353,28 @@ class Tower:
             "sweep_p3": p3,
         }
 
+    def cym_profile(self):
+        """CYM balance at each tower depth. Converges to (1/disc, ||N||^2/disc, ||N||^2/disc).
+        FRAMEWORK_REF: tower CYM limit"""
+        profile = []
+        for d in self.depths:
+            obs = d['observer']
+            f = obs.frame
+            d_K = f['d_K']
+            s_tl = f['state'] - (np.trace(f['state'])/d_K) * np.eye(d_K)
+            N_d = f['N']
+            h_d = f['h'] if f['h'] is not None else f['J'] @ N_d
+            ns = np.linalg.norm(s_tl, 'fro')
+            nn = np.linalg.norm(N_d, 'fro')
+            nh = np.linalg.norm(h_d, 'fro')
+            total = ns + nn + nh
+            if total < 1e-10:
+                cym = {'C': 1/3, 'Y': 1/3, 'M': 1/3}
+            else:
+                cym = {'C': ns/total, 'Y': nh/total, 'M': nn/total}
+            profile.append({'depth': d['depth'], 'd_K': d_K, 'cym': cym})
+        return profile
+
     def __repr__(self):
         return f"Tower(depths=0-{self.max_depth})"
 

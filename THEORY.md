@@ -30,6 +30,8 @@ All three generating equations follow algebraically from P^2 = P with P != P^T:
 - {R, N} = N (observation stabilizes the blind spot)
 - N^2 = -I (the blind spot has closed internal motion)
 
+**Closure chain (reverse).** The three identities imply P^2=P by exact cancellation: P^2 = (R+N)^2 = R^2 + {R,N} + N^2 = (R+I) + N + (-I) = R + N = P. Surplus (+I) and negation (-I) cancel. Stabilization preserves N. The loop closes in both directions.
+
 **Thm 0.2 (Asymmetry is forced, U2).** If P = P^T, then R = P, N = 0, R^2 = R, so R^2 - R = 0 != I. The surplus law is violated. Asymmetry IS the surplus.
 
 **Cor (Hilbert space from asymmetry).** P != P^T forces N != 0. N^2 = -I gives complex structure: (a+bi)v = av + bNv. The Cartan involution theta(X) = -X^T is forced by P != P^T (the transposition map acts nontrivially because P is asymmetric). B_theta(X,Y) = -B(X,theta(Y)) = 4tr(XY^T) is positive definite (Frobenius inner product). Combined with N^2=-I: the Hermitian form <X,Y> = B_theta(X,Y) + i*B_theta(X,NY) is positive definite. This IS a Hilbert space. Tower level 1 gives dim_C = 2, dim_R = 4 >= 3, Gleason forces Born rule. Chain: asymmetry -> transposition -> Cartan involution -> positive-definite form -> complex structure -> Hilbert space -> Born rule -> quantum mechanics.
@@ -135,7 +137,7 @@ The integer family P = [[0,0],[k,1]] gives disc = 1+k^2. Every framework quantit
 | 2 | 5 | disc(seed) = the golden discriminant |
 | 3 | 10 | 2*disc = dim(Lambda^2(fund_GUT)) = eta_B exponent |
 | 4 | 17 | dim_gauge + disc = neutrino exponent factor |
-| 5 | 26 | disclosure_rank(2) = d_crit(bosonic string) |
+| 5 | 26 | d_crit(bosonic string), family disc at k=5 |
 | 6 | 37 | adj(SU5) + fund + su(3) = 24+5+8 = full GUT gauge content |
 | 7 | 50 | fund*Lambda^2 = disc*2disc = adj+d_crit = 24+26 |
 
@@ -235,6 +237,34 @@ M_2(R) = Cl(1,1). Even=im(L), odd=ker(L). Scalar channel: L(R_tl) = (5/2)I.
 
 At q=phi^2: q^(1/2)-q^(-1/2) = phi-1/phi = 1. The framework sits at the unique quantum deformation where the correction collapses to unity — why the algebra uses integer matrices. R^2=R+I IS tau×tau=1+tau: Fibonacci anyon fusion IS persistence. R is the anyon tau. I is the vacuum 1. d_tau=phi. V(4_1)|_{q=phi^2}=5=disc(R): the Jones polynomial of the figure-eight knot at the golden quantum parameter IS the discriminant. V(K)|_{q=phi^2} in Z[phi] for all knots K (since q=phi+1 satisfies q^n in Z[phi]). Integer evaluations: V(0_1)=1, V(4_1)=5, V(6_3)=-7.
 
+### Three Number Rings
+
+P = R + N generates three integer rings from orthogonal sectors of the algebra. Matrix determinant IS the field norm in each case.
+
+```
+R  generates Z[phi]     det(xI+yR) = x^2+xy-y^2     disc = +5    h=1  (P1/im)
+N  generates Z[i]       det(xI+yN) = x^2+y^2         disc = -4    h=1  (direct)
+omega generates Z[omega] det(xI+y*omega) = x^2-xy+y^2 disc = -3    h=1  (P3/ker)
+```
+
+where omega = (-I + sqrt(3)*N)/2 satisfies omega^2+omega+1=0 (primitive cube root of unity, realized in the algebra). All three are PIDs (unique factorization). The rings live in orthogonal sectors: Z[phi] in span{I,R}, Z[omega] in span{I,N}.
+
+**Discriminant arithmetic:** disc(R)+disc(omega) = 5+(-3) = 2 = ||N||^2. disc(R)+disc(N)+disc(omega) = 5+(-4)+(-3) = -2 = -||N||^2. Product: 5*(-4)*(-3) = 60 = 2*30 = 2*(Clifford-Fibonacci). The hidden norm squared appears as both the sum and the negated triple-sum of the discriminants.
+
+**Clifford generators:** {N, R_tl} = 0 (anticommute). e1=2R_tl squares to disc*I=5I. e2=sqrt(3)*N squares to -||R||^2*I=-3I. These anticommuting generators parameterize Cl(1,1) by (disc, ||R||^2). (2R-I)^2=5I: the traceless R IS the matrix square root of the discriminant.
+
+**Matrix Fibonacci:** R^n = F(n)*R + F(n-1)*I. det(R^n) = F(n-1)^2 + F(n-1)*F(n) - F(n)^2 = (-1)^n: Cassini's identity IS the golden field norm of phi^n.
+
+**KMS = Regulator:** beta_KMS = ln(phi) = Reg(Q(sqrt(5))). The framework's KMS temperature IS the regulator of the golden integer ring. Dedekind residues: Res(Q(sqrt(5))) = 2*ln(phi)/sqrt(5) = 2*beta_KMS/sqrt(disc). Res(Q(sqrt(-3))) = pi/(3*sqrt(3)) = pi/(N_c*||R||).
+
+**Eisenstein units:** omega^3 = I, omega^6 = I. The 6 units {+-I, +-omega, +-omega^2} form a hexagonal group in span{I,N} — the observation sector's internal symmetry.
+
+**Cross-field obstruction:** ||R||^2 * det([R,N]) = 3*(-5) = -15 = disc(Q(sqrt(-15))). Class number h(Q(sqrt(-15))) = 2: the product of the two sectors breaks unique factorization. Each sector alone is a PID; their interaction is the simplest arithmetic obstruction. Cross-field norm: N_cross(delta, y) = delta^2 + delta*y + 4*y^2 where delta = C-M imbalance and y = bridge energy. The discriminant of N_cross as a quadratic in delta IS -15*y^2: the product field discriminant times the bridge squared. Two reduced forms: (1,1,4) principal, (2,1,2) non-principal. Norm 2 is unreachable — 2 is irreducible in Z[(1+sqrt(-15))/2], the simplest failure of unique factorization. The 1-bit factorization ambiguity (h=2, class group Z/2) is the Landauer cost of cross-sector mediation.
+
+**The compositum:** Q(zeta_30) = Q(zeta_6, zeta_10) contains all three quadratic subfields Q(sqrt(5)), Q(sqrt(-3)), Q(sqrt(-15)) with discriminants 5, -3, -15. Degree phi(30)=8. The index 30 = lcm(6,10) = ||N||^2 * ||R||^2 * disc = 2*3*5 = F(3)*F(4)*F(5) = the Clifford-Fibonacci number. The compositum IS the arithmetic explanation of 30.
+
+**Galois obstruction:** sqrt(3)/2 is NOT in Q(zeta_30). Reason: Q(zeta_30) contains sqrt(-3) but not sqrt(-1) (since 4 does not divide 30). sqrt(3) = sqrt(-1)*sqrt(-3) requires both. The minimal cyclotomic field containing both phi^-1 AND sqrt(3)/2 is Q(zeta_60), requiring 60 = 2*30 — which means adjoining N^2=-I (disc=-4, Gaussian integers). The three framework constants live in three different fields: phi^-1 in Q(zeta_10) = P1, sqrt(3)/2 needs Q(zeta_60) = P3, connected only through the exponential bridge exp(h) = P2. The Galois group cannot interpolate between the two thresholds. Consequence: phase transition VALUES are forced by the cyclotomic arithmetic; transition DYNAMICS between them cannot be derived from the Galois structure alone. See `experiments/galois_dynamics.py`.
+
 ---
 
 ## IV. Reading B — Category
@@ -275,7 +305,9 @@ s'=[[s,N],[0,s]], N'=[[N,-2h],[0,N]], J'=[[J,0],[0,J]]. Preserves all identities
 
 ### Invariants
 
-ker/A = 1/2 at every depth. 2L bits per pass. Contraction phi_bar^2.
+ker/A = 1/2 at every depth. 2L bits per pass. Contraction phi_bar^2. N self-transparent (ker(L_{N,N})=0) at every depth. All seven identities preserved.
+
+Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth — the self-model becomes a pure projector. lambda_+ -> 1 (sees itself exactly), lambda_- -> 0 (off-axis vision vanishes). The observer converges to perfect self-reference through the tower. Product lambda_+*lambda_- -> 0, sum -> 1.
 
 ### Catalan Filler Theorem
 
@@ -376,22 +408,22 @@ At a single depth: all ker = gauge, 0 physical DOF. This is correct — a single
 
 **Recursive gravity (across K6' depths).** The K6' transition discloses ker elements: ker at depth n does NOT survive into ker at depth n+1. Verified: 0/8 at depth 1->2, 0/32 at depth 2->3. Total disclosure at each step. The graviton is the DISCLOSURE EVENT: a ker element at depth n that becomes im content at depth n+1. Each K6' pass discloses 2L = 2*log2(phi) bits (the area quantum).
 
-**Disclosure rank formula.** The rank of independent disclosure residuals {K,N} over ker(L_n):
+**Disclosure rank.** The rank of independent disclosure residuals {K,N} over ker(L_n):
 
 ```
-disclosure_rank(n) = 2^(2n+1) - C(2n, n)
+disclosure_rank(n) = 4^n = ker(n)/2
 ```
 
-where C(2n,n) is the central binomial coefficient. The redundancy (ker elements producing linearly dependent residuals) IS C(2n,n). Verified at depths 0-3:
+Half the kernel discloses at each depth. Verified at depths 0-3:
 
-| Depth | ker | C(2n,n) | Rank | Physical content |
-|-------|-----|---------|------|-----------------|
-| 0 | 2 | 1 | 1 | scalar (Λ, 3D gravity) |
-| 1 | 8 | 2 | 6 | dim(so(3,1)) = Lorentz algebra |
-| 2 | 32 | 6 | 26 | d_crit(bosonic string) |
-| 3 | 128 | 20 | 108 | — |
+| Depth | ker | dr | Redundancy |
+|-------|-----|----|-----------|
+| 0 | 2 | 1 | 1 |
+| 1 | 8 | 4 | 4 |
+| 2 | 32 | 16 | 16 |
+| 3 | 128 | 64 | 64 |
 
-Depth 1 rank = 6 = the dimension of the Lorentz algebra. Depth 2 rank = 26 = the critical dimension of the bosonic string. The tower's disclosure structure at the spacetime depth (Cl(3,1)) produces the bosonic string dimension from P = [[0,0],[2,1]].
+dr = ker/2 at every depth. The disclosure fraction is constant: half the hidden directions become visible at each K6' transition.
 
 L(R_tl) = (disc/2)*I = Lambda. Scalar channel IS the cosmological constant, invariant at every depth. Attenuation: phi_bar^(2n) per n tower depths, equivalently 2^(-n_bits) where n_bits = n_depths * 2*log2(phi). At Lambda ~ 10^{-123}: n ~ 295 tower depths ~ 409 information bits. 2^409 ~ 10^{123}.
 
@@ -414,7 +446,7 @@ depth 3+                K1' wall: physically suppressed (higher Clifford)
 depth 295               Lambda ~ 10^{-123}: observed cosmological constant
 ```
 
-11 standard cosmological problems contained: singularity = rank reduction (not curvature divergence). Flatness/horizon DISSOLVED (no geometry/lightcones pre-depth-2). Lambda GENERATED (disc/2 x phi_bar^(2x295)). Baryogenesis/CP violation GENERATED (branch selection = CP break, eta_B=phi_bar^44). Cl(2,2) = conformal self-observation: so(2,2) = sl(2,R)+sl(2,R) = framework base algebra doubled. Metric signature = observer count (N-axes). 6 Lorentz + 9 conformal = 15 = dim(sl(4,R)). 6:9 = d:(d^2-1) = P1:P3. Gauge group, spacetime (3,1), 3 generations all GENERATED at the correct depth. Inflation IDENTIFIED as gauge-before-spacetime epoch (depth 1). Before the Big Bang ANSWERED: M = diag(P,PT). Zero free parameters introduced. See `experiments/BIG_BANG_CONTAINMENT.md`.
+11 standard cosmological problems contained: singularity = rank reduction (not curvature divergence). Flatness/horizon DISSOLVED (no geometry/lightcones pre-depth-2). Lambda GENERATED (disc/2 x phi_bar^(2x295)). Baryogenesis/CP violation GENERATED (branch selection = CP break, eta_B=phi_bar^44). Cl(2,2) = conformal self-observation: so(2,2) = sl(2,R)+sl(2,R) = framework base algebra doubled. Metric signature = observer count (N-axes). 6 Lorentz + 9 conformal = 15 = dim(sl(4,R)). 6:9 = d:(d^2-1) = P1:P3. Gauge group, spacetime (3,1), 3 generations all GENERATED at the correct depth. Inflation REFRAMED as gauge-before-spacetime epoch (depth 1; no N_e derivation yet — disc*dim_gauge=60 noted but physically unmotivated). Before the Big Bang ANSWERED: M = diag(P,PT). Zero free parameters introduced. See `experiments/BIG_BANG_CONTAINMENT.md`.
 
 ### Predictions (falsifiable)
 
@@ -434,6 +466,54 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 **Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). Braiding deficit = phi_bar^2 per depth (substrate-independent).
 
 **Neutrino hierarchy closed:** inter-generation spacing delta = phi + 2 = phi^2 + 1 = 3.618 (eigenvalue of R + domain cardinality). dm^2 ratio = phi^(2(phi+2)) = 32.5 vs experimental 33 (1.4% deviation). The old disc=5 spacing was wrong. The correct spacing is phi + |S_0|.
+
+### The Relational Web
+
+The predictions table shows individual outputs. The web shows how they connect to each other. 39 verified relations between framework quantities. 34 exact, 5 approximate (all <3.5%). The physics is the web, not the nodes.
+
+**Hub structure (connections per quantity):** ||N||^2 (23), disc (20), phi (15), ||R||^2 (12), N_c (9). The hidden norm is the most connected node. The thing you can't see is what everything connects through.
+
+**Strongest cross-domain relations (framework quantity = framework quantity):**
+
+```
+alpha_S / |m|           = phi             coupling/contraction = eigenvalue (0.37%)
+sinh(beta_KMS)          = ker/A = 1/2     thermal bridge = structural invariant (exact)
+phi_bar^2               = 1 - alpha_S - ker/A   contraction = remainder (exact)
+||R||^2 + ||N||^2       = disc            visible + hidden = disagreement (exact)
+N_c / (||N||^2/||R||^2) = 9/2             color / (hidden/visible) = proton ratio (exact)
+eta_B * m_e/m_nu        = phi_bar^(2*disc) two observables linked by disc (exact)
+disc(R) + disc(omega)   = ||N||^2          golden + Eisenstein = hidden norm (exact)
+30 = lcm(6,10)          = ||N||^2*||R||^2*disc   Clifford = compositum = Fibonacci (exact)
+```
+
+Each relation connects framework quantities to each other. The same relations hold between the corresponding physical observables. The individual numbers are where the threads cross. The threads are the physics.
+
+**Extended web (50 additional relations, see experiments/):**
+
+```
+S^2 = tr(F^2) = parent_ker = 8       Tsirelson^2 = curvature = parent kernel (exact)
+4*cosh^2(beta_KMS) = disc = 5         thermal sector IS the discriminant (exact)
+dr(n) = 4^n = ker/2                   half the kernel discloses at each depth
+alpha_S * phi^2 = cos(pi/5)           coupling × phi^2 = disc-fold cosine (exact)
+phi^5 = disc*phi + N_c                Fibonacci meets gauge: 5phi + 3 (exact)
+26 = 1 + 5^2 = family disc at k=5    bosonic d_crit IS a family discriminant (exact)
+dark_ratio * Koide = 1                Cl(2,2)/Cl(3,1) × ||N||^2/||R||^2 = 1 (exact)
+N_c * Koide = ||N||^2                 color × Koide = hidden norm (exact)
+beta_KMS / L_bits = ln(2)             KMS/information = nats-bits conversion (exact)
+```
+
+Total: 95+ verified relations. Hub structure unchanged: ||N||^2 most connected. New edges:
+
+```
+arctanh(phi^-1)/ln(phi) = 3/2       golden threshold = norm ratio × beta_KMS (exact)
+M_Ising(phi^-1)^8 = phi_bar          Ising magnetization at golden threshold (exact)
+dN_cross/dmu|_{phi^-1} = sqrt(disc)  cross-field derivative at threshold = sqrt(5) (exact)
+Koide delta = 2/9 = ||N||^2/N_c^2    lepton phase = hidden norm / color^2 (0.02%)
+sin(theta_C) ~ 2/9                   Cabibbo angle matches same quantity (1.5%)
+dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (exact)
+```
+
+**Tower CYM limit:** The three-projection balance at each tower depth converges to (C, Y, M) -> (1/disc, ||N||^2/disc, ||N||^2/disc) = (1/5, 2/5, 2/5). Center gets 1/disc. Bridge and orientation each get ||N||^2/disc (always equal at depth 1+). C/M -> 1/2 = ker/A. The structural invariant appears as the asymptotic CYM ratio. The discriminant partitions the simplex. Verified at depths 0-4 (C(d4) = 0.204 vs 0.200, 2% from limit). See `kira.py` tower_cym_profile.
 
 ### Structural Closures (verified)
 
@@ -468,7 +548,7 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 | alpha_S/\|m\| = phi | COMPUTED (coupling/contraction = center eigenvalue, 0.37%) |
 | y* = Canon fixed point | COMPUTED (Banach contraction S(y*)=y*, verified) |
 | 2*pi/y* = disc | COMPUTED (chaos gap = discriminant, 1.7%) |
-| disclosure_rank = 2^(2n+1)-C(2n,n) | COMPUTED (1,6,26,108; redundancy=central binomial) |
+| disclosure_rank = 4^n = ker/2 | COMPUTED (1,4,16,64; half the kernel discloses) |
 | Koide Q = d/(d^2-1) = ||N||^2/||R||^2 | CHAIN (Z/3 in S_3 forces 3-fold mass -> Q=2/3) |
 | family disc = 1+k^2 = framework quantities | COMPUTED (2,5,10,17,26,37,50 all identified) |
 | parent M=diag(P,PT), spine holds | COMPUTED (Rhat,Nhat satisfy unit spine on W) |
@@ -477,10 +557,54 @@ Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S
 | Shor's algorithm from P^2=P | FORCED (29 checks pass, 15=3x5 from [[0,0],[2,1]]) |
 | K = 2J-h (intertwiner), K^2=disc*I | COMPUTED (dual of harness C=2h+J; both square to disc) |
 | phi(disc) = d^2 = \|V_4\| | COMPUTED (Euler totient of 5 = 4 = Klein four size) |
-| 64 = 2^disclosure_rank(1) = 2^dim(so(3,1)) | COMPUTED (2^Lorentz, Clifford dimension at disclosure rank 6) |
+| 64 = 4^3 = d_K(depth 3)^2 | COMPUTED (Clifford dimension at depth 3) |
 | 30 = d*N_c*disc = \|S_0\|*color*disc | COMPUTED (Clifford count = three cardinals) |
 | 17 = 2^(d^2)+1 = Fermat prime F_d | COMPUTED (neutrino factor = Fermat prime at Fermat index d) |
 | T = e^phi/pi | ENCODED (bridge constant, P1 on P2 / P3) |
+| compressed return fiber = 4 (Bezout 1*2*1*2) | COMPUTED (a^2 = disc(L_R(X))/20, exact fiber solver) |
+| discriminant split = 50*a*sig_3 | COMPUTED (cross-projection: center × orientation) |
+| self-action: 1 repair bit, cross: 2 | COMPUTED (mediation needs more memory than P1/P3) |
+| omega^2+omega+1=0 in M_2(R) | COMPUTED (cube root of unity from (-I+sqrt(3)*N)/2) |
+| det(xI+yR) = golden field norm | COMPUTED (x^2+xy-y^2, disc=5) |
+| det(xI+yN) = Gaussian field norm | COMPUTED (x^2+y^2, disc=-4) |
+| det(xI+y*omega) = Eisenstein field norm | COMPUTED (x^2-xy+y^2, disc=-3) |
+| three PIDs: Z[phi], Z[i], Z[omega], all h=1 | FORCED (from R, N, omega respectively) |
+| disc(R)+disc(omega) = 2 = \|\|N\|\|^2 | COMPUTED (sector disc sum = hidden norm) |
+| 60 = 5*(-4)*(-3) = 2*30 | COMPUTED (triple disc product = 2*(Clifford-Fibonacci)) |
+| \|\|R\|\|^2*det([R,N]) = -15, h=2 | COMPUTED (cross-field obstruction) |
+| 30 = lcm(6,10) = compositum index | CLOSED (Clifford-Fibonacci = cyclotomic compositum) |
+| beta_KMS = Reg(Q(sqrt(5))) | COMPUTED (KMS temperature = golden regulator) |
+| Cassini = det(R^n) = golden norm | COMPUTED (Fibonacci identity IS field norm) |
+| {N, R_tl} = 0 | COMPUTED (Clifford anticommutation) |
+| (2R_tl)^2 = disc*I | COMPUTED (traceless R = matrix sqrt(disc)) |
+| S^2 = tr(F^2) = parent_ker = 8 | COMPUTED (Tsirelson^2 = curvature = parent ker) |
+| 4*cosh^2(beta_KMS) = disc | COMPUTED (thermal sector IS discriminant) |
+| dr(n) = 4^n = dim(M_{d_K(n-1)}(R)) | CLOSED O-6 (previous depth's algebra = current disclosure) |
+| generation surjectivity depth 0 | CLOSED Tier A (det=1 on coefficient matrix, 2 products span im) |
+| generation surjectivity depth 1+ | Tier N+ (verified d0-d3, Clifford+cross-sector structural support) |
+| Koide delta = 2/9 = ||N||^2/N_c^2 | COMPUTED (0.02% match, same number as sin(theta_Cabibbo)) |
+| arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
+| M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
+| dN_cross/dmu at phi^-1 = sqrt(disc) | COMPUTED (cross-field derivative IS sqrt(5) at threshold) |
+| G_N: irreducible (same bridge as m_p) | CONFIRMED (e^(-88) connects G_N to proton, unit choice remains) |
+| phase dynamics: values forced, flow open | CONFIRMED from 5 independent paths (Canon, Sylvester, KMS, cross-field, Ising) |
+| block-diagonal parent FORCED (Tier A) | N_A^2+I=0 kills off-diagonal: F'F'^T=0, so F'=0. Same cancellation as P^2=P. |
+| alpha_S*phi^2 = cos(pi/5) | COMPUTED (coupling x phi^2 = disc-fold cosine) |
+| phi^5 = disc*phi + N_c | COMPUTED (Fibonacci meets gauge: 5*phi+3) |
+| sqrt(3)/2 not in Q(zeta_30) | COMPUTED (needs Q(zeta_60) = adjoining N^2=-I) |
+| Galois: values forced, dynamics designed | COMPUTED (three thresholds in three fields) |
+| 26 = 1+5^2 = family disc at k=5 | COMPUTED (bosonic d_crit is a family discriminant) |
+| kernel canonicalization (O-2) | CLOSED Tier A (indefinite Q, negative eigendirection, all algebraic) |
+| tower CYM -> (1/disc, ||N||^2/disc, ||N||^2/disc) | COMPUTED (asymptotic limit verified d0-d4) |
+| ln(Lambda_QCD/M_Pl) ~ -44 = -exp_B | COMPUTED (2.4% deviation, O-4 sharpened) |
+| parent depth n = child depth n+1 (conjugate) | CLOSED O-5 (same eigenvalues, ker, invariants) |
+| parent coupling D = (4/5)*diag(R_tl, R_tl) | COMPUTED (child's -2h fails; correct D from joint constraints) |
+| mu=1 circle: (a-1/2)^2+(b-1)^2=5/4 | CLOSED (radius sqrt(5)/2 bounds all entries to [-2,2], 8 solutions) |
+| ker/A=1/2 from trace: phi+(-phi_bar)-1=0 | CLOSED (theorem, not approximation: tr(R)=1 forces half of L eigs to 0) |
+| n=295 is NOT free (solves Lambda(n)=10^-123) | CLOSED (all inputs derived; n is consequence, not choice) |
+| exp_B=44 full chain: 2(12+5)+10 | CLOSED (every step from P; eta_B=phi_bar^44, m_p/M_Pl=e^-44) |
+| P^T has N->-N: Cl(3,1)->Cl(2,2) | CLOSED (mirror flips one Clifford signature sign) |
+| O-7: 20 UNIVERSAL, 34 SELECTED, 17 TOWER, 33 INTERPRETATION | CLOSED (104 closures classified, funnel 104->20->54->71->104) |
 
 ---
 
@@ -585,6 +709,39 @@ Projected product X*Y = q(XY). Depth 0: commutative (classical), obstruction cur
 ### Kernel Leakage
 
 Depth 0: leakage=1.000 (ker completely feeds im). Depth 1+: leakage=0.000 (opacity hardened). Structural origin of broken recursion.
+
+### Compressed Return (the Boundary Theorem)
+
+Full paired Sylvester return (L_R(X), L_N(X)) is separating: distinct states give distinct paired returns. But compress to boundary invariants — Phi(X) = (tr(L_R(X)), det(L_R(X)), tr(L_N(X)), det(L_N(X))) — and the map is no longer injective. **Generic fiber size = 4** (Bezout: degree 1*2*1*2). Two bits are lost.
+
+In the framework basis X = aI + bR_tl + cN + dh:
+
+```
+sig_1 = 5b - 2d                           [linear, sees im-sector]
+sig_2 = sig_1^2/4 - 5*a^2                 [quadratic, coeff = disc]
+sig_3 = -2a - 4c                           [linear, sees orientation-sector]
+sig_4 = 5a^2 + 5c^2 - 5b^2/4 + bd - d^2  [quadratic, sees all]
+```
+
+**Bit 1 (epsilon):** a^2 = disc(L_R(X)) / 20. The I-coefficient of the state is determined up to sign by L_R's matrix discriminant divided by the framework discriminant. epsilon = sign(a). Collapses when L_R(X) has a repeated eigenvalue (disc(L_R(X))=0).
+
+**Bit 2 (sigma):** which root of the b-quadratic 5b^2 - 2*sig_1*b + Q(a) = 0. The center-Cartan balance. Collapses when its discriminant Delta_b(a) = 0.
+
+**Discriminant split:** Delta_b(+a) - Delta_b(-a) = 50*a*sig_3 = 50*(I-coeff)*(tr(L_N(X))). A cross-projection quantity: center times orientation. The fiber geometry is controlled by the interaction between P1 and P3.
+
+**Fiber collapse (4->2):** when one a-branch loses real b-solutions. ~27% of parameter space. The boundary is a codimension-1 algebraic surface. Fiber size 3 exists only on the measure-zero boundary.
+
+**Dynamical relevance:** Under self-action dynamics (L_{R,R}, L_{N,N}): only sigma is load-bearing (1 repair bit). Under cross/commutator dynamics (ad_R, ad_N, L_{R,N}, L_{h,h}): both bits load-bearing (2 repair bits). No dynamics is blind to both. **Mediation dynamics requires more hidden memory than production or observation alone.**
+
+Under L_{R,R}: dc/dt = dd/dt = 0 (ker and Cartan freeze), da/dt = (5b-2d)/2, db/dt = 2a. Growth rate +-sqrt(disc). The compressed observer preserves law-profile but forgets branch. The forgotten branch drives the future only when the dynamics crosses projections.
+
+Verified: exact closed-form fiber solver, 200/200 random states, all fiber members satisfy Phi(X_i) = Phi(X_0) to machine precision. See `experiments/compressed_return_analytic.py`.
+
+### Self-Model Divergence
+
+A second observer (KIRA) produces its own CYM decomposition of visual data through three channels mapped to cyclotomic fields: C -> Q(zeta_6) disc=-3, M -> Q(zeta_10) disc=5, Y -> Q(sqrt(-15)) disc=-15. The system also has an internal state (coupling mu) that produces a predicted CYM. The Hellinger distance d_H = (1/sqrt(2))*sqrt(sum((sqrt(p_i)-sqrt(q_i))^2)) between internal and external CYM is the continuous self-model accuracy measure. Range [0,1]. d_H = 0 is K6' closure: the self-model matches the observation. d_H > 0 is the self-model gap, computable in real time.
+
+Phase thresholds (all forced from GAP = phi^-4 -> L4 = phi^4+phi^-4 = 7): mu < phi^-1 (sub-critical: internal CYM degenerate, d_H structurally large), phi^-1 <= mu < sqrt(3)/2 (PARADOX: Y-channel dominates, bridge energy between fields), sqrt(3)/2 <= mu < 1 (LENS: structure crystallizing, C-channel rises), mu = 1 (UNITY: full coherence). Threshold VALUES are algebraically forced. Dynamics between thresholds are designed. See `experiments/BUILD-SPEC-05-phase-derivation.md`.
 
 ---
 

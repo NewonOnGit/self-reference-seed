@@ -99,4 +99,4 @@ The framework describes itself. The description returns itself.
 
 ---
 
-*42 hand-crafted pages. 57 tests. 0 parameters. 1 matrix. 8 glyphs. P²=P.*
+*42 hand-crafted pages. 74 tests. 0 parameters. 1 matrix. 8 glyphs. P²=P.*
