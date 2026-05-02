@@ -263,7 +263,7 @@ where omega = (-I + sqrt(3)*N)/2 satisfies omega^2+omega+1=0 (primitive cube roo
 
 **The compositum:** Q(zeta_30) = Q(zeta_6, zeta_10) contains all three quadratic subfields Q(sqrt(5)), Q(sqrt(-3)), Q(sqrt(-15)) with discriminants 5, -3, -15. Degree phi(30)=8. The index 30 = lcm(6,10) = ||N||^2 * ||R||^2 * disc = 2*3*5 = F(3)*F(4)*F(5) = the Clifford-Fibonacci number. The compositum IS the arithmetic explanation of 30.
 
-**Galois obstruction:** sqrt(3)/2 is NOT in Q(zeta_30). Reason: Q(zeta_30) contains sqrt(-3) but not sqrt(-1) (since 4 does not divide 30). sqrt(3) = sqrt(-1)*sqrt(-3) requires both. The minimal cyclotomic field containing both phi^-1 AND sqrt(3)/2 is Q(zeta_60), requiring 60 = 2*30 — which means adjoining N^2=-I (disc=-4, Gaussian integers). The three framework constants live in three different fields: phi^-1 in Q(zeta_10) = P1, sqrt(3)/2 needs Q(zeta_60) = P3, connected only through the exponential bridge exp(h) = P2. The Galois group cannot interpolate between the two thresholds. Consequence: phase transition VALUES are forced by the cyclotomic arithmetic; transition DYNAMICS between them cannot be derived from the Galois structure alone. See `experiments/galois_dynamics.py`.
+**Galois obstruction:** sqrt(3)/2 is NOT in Q(zeta_30). Reason: Q(zeta_30) contains sqrt(-3) but not sqrt(-1) (since 4 does not divide 30). sqrt(3) = sqrt(-1)*sqrt(-3) requires both. The minimal cyclotomic field containing both phi^-1 AND sqrt(3)/2 is Q(zeta_60), requiring 60 = 2*30 — which means adjoining N^2=-I (disc=-4, Gaussian integers). The three framework constants live in three different fields: phi^-1 in Q(zeta_10) = P1, sqrt(3)/2 needs Q(zeta_60) = P3, connected only through the exponential bridge exp(h) = P2. The Galois group cannot interpolate between the two thresholds. Consequence: phase transition VALUES are forced by the cyclotomic arithmetic; transition DYNAMICS between them cannot be derived from the Galois structure alone.
 
 ---
 
@@ -513,7 +513,7 @@ sin(theta_C) ~ 2/9                   Cabibbo angle matches same quantity (1.5%)
 dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (exact)
 ```
 
-**Tower CYM limit:** Converges to (C, Y, M) -> (1/disc, ||N||^2/disc, ||N||^2/disc) = (1/5, 2/5, 2/5). Rate = (1/3)^n (from 2:6 norm ratio in block ascent). Path is a straight line on the simplex. Y=M forced (||h||=||JN||=||N|| because J orthogonal at every depth). Unique fixed point (Banach, slope 1/3). The limit partition 1:2:2 sums to disc=5: disc = 1 + 2*||N||^2. Center contributes 1, each hidden channel contributes ||N||^2. See tower.py cym_profile.
+**Tower CYM limit:** Converges to (C, Y, M) -> (1/disc, ||N||^2/disc, ||N||^2/disc) = (1/5, 2/5, 2/5). Rate = (1/3)^n (from 2:6 norm ratio in block ascent). Path is a straight line on the simplex. Y=M forced (||h||=||JN||=||N|| because J orthogonal at every depth). Unique fixed point (Banach, slope 1/3). The limit partition 1:2:2 sums to disc=5: disc = 1 + 2*||N||^2. Center contributes 1, each hidden channel contributes ||N||^2.
 
 **Lepton masses from 2/9:** delta_Koide = 2/9 = ||N||^2/N_c^2 predicts all three charged lepton masses to 0.0044% RMS. m_e: -0.006%, m_mu: -0.005%, m_tau: +0.001%. Ten independent algebraic paths to 2/9 from d=2 alone. sin(theta_Cabibbo) matches 2/9 to 1.2%. Chance probability of both: ~4e-4. If real, the Yukawa sector collapses from 17 free parameters to ~2.
 
@@ -530,6 +530,9 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 **Spectral projectors:** chi = (R+phi_bar*I)/sqrt(disc), rho = (phi*I-R)/sqrt(disc). R eigenspace decomposition. chi projects onto phi-eigenspace, rho onto (-phi_bar)-eigenspace. chi^2=chi, rho^2=rho, chi*rho=0, chi+rho=I. chi*R=phi*chi (aligned with production). Complements the CollapseOperator (parent kernel decomposition) with the algebra's own spectral structure.
 
 **Ising M(3,4) uniqueness:** c = 1-6(p-p')^2/(pp') = 1/2 = ker/A uniquely selects M(3,4) among all minimal models. p(p+1)=12 has unique positive solution p=3=N_c. All three Kac table weights are framework quantities: h=0 (identity), h=1/16=1/(2·parent_ker) (spin field), h=1/2=ker/A=c_Ising=sinh(beta_KMS) (energy field). Parent collapse is Z_2 Ising-class: exchange symmetry P↔P^T broken by occupation, order parameter ||N||=sqrt(2). Fusion rules = Clifford grading: sigma×sigma=1+epsilon maps to N^2=-I + NRN=R-I. 42/42 checks verified.
+
+**The Lagrangian:** S = integral d^4x sqrt(-g) [gauge + gravity + fermion + Higgs + Yukawa]. Gauge kinetic: -(1/4g^2)tr(F^2) with A=N, F=-2h, tr(F^2)=8, g^2=alpha_S. Gravity: (1/2kappa^2)(R_scalar-2Lambda) with Lambda=(disc/2)*phi_bar^(2n). Fermion: psi_bar(i*gamma^mu*D_mu)psi with 3 generations, 5 field types, chirality, anomalies 6/6=0. Higgs: |D_mu H|^2 - (1/8)(|H|^2-v^2/2)^2 with m_H/v=1/2=ker/A, lambda_H=1/8. Yukawa: y_f*psi_bar_L*H*psi_R with Koide Q=2/3, delta=2/9, lepton masses to 0.0044% RMS. 22 quantities derived, 4 gaps (G_N irreducible, v open, quark Yukawas partial, CKM/PMNS open). 
+**Watcher-return dataset:** W(A) = {im_preserved, ker_erased, conjugation, test_status, refusal_mode, confidence, time_to_split}. Six watcher classes: E (extractor), R (renamer), T (tester), C (container), F (flattener), D (dismisser). W(W(A))=W(A) (idempotent). ker(W)!=empty for any nontrivial observer (UKI). The fingerprint is transformation, not opinion. The fifth reading as data, not prophecy.
 
 ### Structural Closures (verified)
 
@@ -785,7 +788,7 @@ sig_4 = 5a^2 + 5c^2 - 5b^2/4 + bd - d^2  [quadratic, sees all]
 
 Under L_{R,R}: dc/dt = dd/dt = 0 (ker and Cartan freeze), da/dt = (5b-2d)/2, db/dt = 2a. Growth rate +-sqrt(disc). The compressed observer preserves law-profile but forgets branch. The forgotten branch drives the future only when the dynamics crosses projections.
 
-Verified: exact closed-form fiber solver, 200/200 random states, all fiber members satisfy Phi(X_i) = Phi(X_0) to machine precision. See `experiments/compressed_return_analytic.py`.
+Verified: exact closed-form fiber solver, 200/200 random states, all fiber members satisfy Phi(X_i) = Phi(X_0) to machine precision.
 
 ### Self-Model Divergence
 
