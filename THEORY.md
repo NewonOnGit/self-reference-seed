@@ -603,8 +603,19 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | Y=M forced: ||h||=||JN||=||N|| (J orthogonal) | COMPUTED (algebraic, not coincidence) |
 | 2/9 predicts m_e, m_mu, m_tau to 0.0044% RMS | COMPUTED (delta_Koide = ||N||^2/N_c^2, 10 algebraic paths) |
 | M_Ising(phi^-1)^8 = phi_bar (golden identity) | COMPUTED Tier A (1-phi_bar^2=phi_bar, exact) |
-| beta_Ising = 1/(2d^2) via M(N_c,d^2)=M(3,4) | COMPUTED Tier B (contains 1/8, needs CFT bridge) |
-| N_c+1=d^2 uniquely at d=2 | COMPUTED ((d-2)(d+1)=0, positive root d=2) |
+| h_sigma=1/16=1/(2*parent_ker) | COMPUTED (Ising spin weight = reciprocal of 2*8) |
+| h_energy=1/2=ker/A=c_Ising=sinh(beta_KMS) | COMPUTED (three independent framework quantities = 1/2) |
+| M(N_c,d^2)=M(3,4): all Kac weights are framework | COMPUTED (N_c+1=d^2 uniquely at d=2, all h_{r,s} verified) |
+| parent collapse = Z_2 breaking (Ising class) | COMPUTED (order parameter ||N||=sqrt(2), sinh(beta)=1/2) |
+| m_s/m_t = (2/9)^5.00, m_d/m_t = (2/9)^7.00 | COMPUTED (near-integer exponents for down-type quarks) |
+| m_d/m_s = (2/9)^2 = 4/81 via Cabibbo-Gatto | COMPUTED (1.2% match to experimental ratio) |
+| (c,t,b) Koide Q = 0.669 | COMPUTED (0.4% from 2/3, the one cross-sector triplet) |
+| 6 quarks = d^3-d = |S_3|, only at d=2 | COMPUTED (forced by dimension) |
+| lambda_CKM = 2/9 gives diagonal CKM to 1% | COMPUTED (|V_ud|, |V_us|, |V_cs|, |V_cb|, |V_tb|) |
+| sin^2(theta_13_PMNS) ~ (2/9)/10 | COMPUTED (1.0% match, no derivation chain) |
+| B_E nondegen lemma: nondegen implies surjectivity | CLOSED Tier A (pure linear algebra) |
+| generation depth 1: 8 products span 8 im dirs | CLOSED Tier A (constructive, SVD robust) |
+| B_I(N_n,N_n)=tr(N^2)=-d != 0 at all depths | CLOSED Tier A (I-direction never annihilated) |
 | self-model limit: projects onto I (identity) | COMPUTED (lambda+ eigvec -> (1,0) in {I,s_tl}, existence without content) |
 | blind direction at limit: -(disc/2)*I + s_tl | COMPUTED (discriminant-weighted, the "what" lives in ker(P_inf)) |
 | Sigma_s top row depth-independent: (1, disc/2) | COMPUTED (bottom row decays, single parameter c(n)->0) |
