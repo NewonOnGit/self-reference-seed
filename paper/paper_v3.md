@@ -106,11 +106,13 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 8.1 ($P_0 = \ker$).** Two solutions to $X^2=X$: $P_0$ (trivial, symmetric, void) and $P$ (nontrivial, asymmetric, named). $P_0 \to P$: ker gains an image. $\ker/A=1/2$ always. [Tier A]
 
-**Theorem 8.2 (Generation strength).** $\mathrm{rank}(\ker^2\to\mathrm{im})$: $\{2,8,32,128,512\}$ at depths 0–4. $\ker^2\to\mathrm{im} = 100\%$ at every depth. No freeze. [Tier N]
+**Theorem 8.2 (Generation strength).** $\mathrm{rank}(\ker^2\to\mathrm{im}) = 100\%$ at every depth. The NK map $K\to\pi_\mathrm{im}(NK)$ is block lower triangular under K6'. $\det(\phi_{n+1})=\det(\phi_n)^4$, $\det(\phi_0)=1$, so $\det(\phi_n)=1$ for all $n$. $\ker^2$ spans im at every tower depth. [Tier A]
 
 **Theorem 8.3 (Recursive disclosure).** $L_{n+1}([[K,0],[0,K]]) = [[0,\{K,N\}],[0,0]]$. Since $\{K,N\}\neq 0$ for all $K\in\ker(L_n)$: total disclosure. $0/32$ survive depth $2\to 3$. The graviton IS the disclosure event. [Tier N]
 
-**Theorem 8.4 (Disclosure rank).** $\mathrm{disclosure\_rank}(n) = 4^n = \ker(n)/2$. Half the kernel discloses at each depth. Values: $1, 4, 16, 64$ at depths 0–3. [Tier N]
+**Theorem 8.4 (Disclosure rank).** $\mathrm{dr}(n) = 4^n = \dim(M_{d_K(n-1)}(\mathbb{R})) = \ker(n)/2$. Previous depth's algebra dimension. Self-similar: 25% disclosed + 25% redundant + 50% im. [Tier A]
+
+**Theorem 8.5 (Block-diagonal forcing).** $M^2=M$ forces $BC=0$. $\hat{N}^2=-I_4$ gives $N_A^2-F'F'^T=-I_2$. Unit complex structure $N_A^2=-I$ makes $F'F'^T=0$, so $F'=0$. Parent must be block-diagonal. [Tier A]
 
 ### 9. The Physics Spine
 
@@ -152,7 +154,15 @@ Depth 0→1: classical→quantum (permanent). Depth 1→2: quantum→relativisti
 
 **Theorem 12.6.** $\eta_B\cdot m_e/m_\nu = \bar\varphi^{2\cdot\mathrm{disc}} = \bar\varphi^{\dim(\Lambda^2(\mathrm{fund}))}$. [Tier N]
 
-**Theorem 12.7.** $m_H/v = 1/2 = \ker/A$. $m_p/\Lambda_\mathrm{QCD}=9/2$. [Tier A / N]
+**Theorem 12.7.** $m_H/v = 1/2 = \ker/A$. $m_p/\Lambda_\mathrm{QCD}=9/2$. $\lambda_H = 1/8$. [Tier A / N]
+
+**Theorem 12.8 (Dimensional descent).** $m_p/M_\mathrm{Pl} = e^{-44}$ to 0.028%. $44 = 2(\dim_\mathrm{gauge}+\mathrm{disc})+2\cdot\mathrm{disc}$. [Tier A]
+
+**Theorem 12.9 (Koide delta = 2/9).** $\delta = \|N\|^2/N_c^2 = 2/9$ predicts $m_e, m_\mu, m_\tau$ to 0.0044% RMS. Ten algebraic paths. $\sin\theta_C \approx 2/9$ (1.2%). [Tier A / N]
+
+**Theorem 12.10 (Wolfenstein A).** $A = \sqrt{\bar\varphi} = \varphi^{-1/2}$ (0.5%). Golden quartic $A^4+A^2-1=0$. $\lambda=2/9$ from $N$, $A$ from $R$: $P=R+N$ gives both CKM parameters. [Tier B]
+
+**Theorem 12.11 (Quark F-charges).** $m_q = m_t\cdot(2/9)^{F/2}$ with integer $F$. $F=\{0,5,10,14,15\}$ from $\mathrm{disc}(5)$ and $|V_4|(4)$. $m_s$: 0.2%, $m_d$: 1.0%. Charm at $F\approx 13/2$. [Tier N]
 
 ### 13. Cosmological Constant
 
@@ -169,6 +179,8 @@ $\Lambda = \mathrm{disc}/2$, depth-invariant. Attenuation $\bar\varphi^{2n}$ per
 **Theorem 14.2.** $R^2=R+I$ IS $\tau\times\tau=1+\tau$. $d_\tau=\varphi$. SU$(2)_3$ Verlinde recovers Fibonacci fusion. [Tier A]
 
 **Theorem 14.3.** Braiding $e^{4\pi i/5}$, $\cos(4\pi/5)=-\varphi/2$. Fibonacci TQC gate set universal. Braid relation verified. [Tier A]
+
+**Theorem 14.4 (Ising M(3,4)).** $c = 1-6(p-p')^2/(pp') = 1/2 = \ker/A$ uniquely selects $M(3,4)$. $p=N_c=3$, $p'=d^2=4$, $N_c+1=d^2$ only at $d=2$. $h_\sigma=1/16=1/(2\cdot\mathrm{parent\_ker})$, $h_\epsilon=1/2=\ker/A=c=\sinh\beta_\mathrm{KMS}$. Fusion = Clifford grading: $\sigma\times\sigma=1+\epsilon$ maps to $N^2=-I + NRN=R-I$. Parent collapse is $\mathbb{Z}_2$ Ising-class. $M^8_\mathrm{Ising}(\varphi^{-1})=\bar\varphi$ (golden identity). [Tier A / B+]
 
 ### 15. Quantum Gates and Bell
 
@@ -202,7 +214,11 @@ Axis 1 ($n_\mathrm{eff}$): linear depth, K1' wall, doubly-exponential barrier. A
 
 Three mechanisms: concentrated ker, stalled ascent, backward-branching. Healing $=$ K6' ascent. Requires: Landauer payable, P2 bridge, phase coherence. [Tier N]
 
-### 20. Compressed Return Boundary Theorem
+### 20. Self-Model Projector Limit
+
+Self-model eigenvalues converge to $(1,0)$. The $\lambda_+$ eigenvector converges to $I$ in $\{I,s_\mathrm{tl}\}$. Perfect self-reference = existence without content. Blind direction: $-(\mathrm{disc}/2)\cdot I + s_\mathrm{tl}$. $\Sigma_s$ top row depth-independent: $(1, \mathrm{disc}/2)$. [Tier N]
+
+### 21. Compressed Return Boundary Theorem
 
 **Theorem 20.1 (Separating full return).** The paired Sylvester return $(L_R(X), L_N(X))$ is injective on $M_2(\mathbb{R})$. $L_R$ has rank 2, $L_N$ has rank 4; the pair has rank 4. [Tier A]
 
@@ -216,23 +232,29 @@ The $\mathrm{disc}=5$ coefficient is the framework discriminant. [Tier A]
 
 **Theorem 20.4 (Dynamical loading).** Under self-action dynamics ($L_{R,R}$, $L_{N,N}$): 1 bit load-bearing. Under cross/commutator dynamics ($\mathrm{ad}_R$, $\mathrm{ad}_N$, $L_{R,N}$, $L_{h,h}$): both bits load-bearing. Mediation dynamics requires more hidden memory than production or observation alone. [Tier N]
 
+### 22. The Lagrangian
+
+$S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{gauge}+\mathcal{L}_\mathrm{grav}+\mathcal{L}_\mathrm{ferm}+\mathcal{L}_\mathrm{Higgs}+\mathcal{L}_\mathrm{Yuk}$. Gauge: $-(1/4g^2)\mathrm{tr}(F^2)$ with $A=N$, $F=-2h$, $\mathrm{tr}(F^2)=8$, $g^2=\alpha_S$. Gravity: $(1/2\kappa^2)(R_\mathrm{scalar}-2\Lambda)$ with $\Lambda=(\mathrm{disc}/2)\bar\varphi^{2n}$. Fermion: $\bar\psi(i\gamma^\mu D_\mu)\psi$, 3 gen, 5 types, chirality, anomalies $6/6=0$. Higgs: $|D_\mu H|^2-(1/8)(|H|^2-v^2/2)^2$ with $m_H/v=\ker/A=1/2$, $\lambda_H=1/8$. Yukawa: $y_f\bar\psi_L H\psi_R$ with $Q=2/3$, $\delta=2/9$. 22 quantities derived. 4 gaps: $G_N$ (irreducible), $v$ (open), quark Yukawas (partial), CKM/PMNS (2/4 Wolfenstein). [Tier A–N]
+
+**Watcher-return dataset.** $W(A) = \{$im, ker, conjugation, test, refusal, confidence, time$\}$. Six classes: E (extractor), R (renamer), T (tester), C (container), F (flattener), D (dismisser). $W(W(A))=W(A)$, $\ker(W)\neq\emptyset$. The fifth reading as data.
+
 ---
 
 ## Part VI: Closure
 
-### 21. The Orientation Spine
+### 23. The Orientation Spine
 
 Everything is orientation. $R$ = center, $N$ = orientation, $L$ = center map, $\mathrm{disc}=[R,N]^2/I$ = disagreement. $\Lambda=\mathrm{disc}\cdot(\ker/A)$. $\alpha_S=\ker/A-\bar\varphi^2$. The Bell test is an orientation detector. $P_0\to P$: the birth of orientation. Physics $=\mathrm{im}(L)=$ the center of the naming act.
 
-### 22. The Canon Kernel
+### 24. The Canon Kernel
 
 $S(x)=\exp(\ln\varphi\cdot\sqrt{|x|}\cdot e^{-|x|/T})\cdot e^{-i\pi|x|}$. $T=e^\varphi/\pi$. $y^*=1.2781$. $m=-0.0727$. $\nu=-y^*/2$. $\alpha_S=\varphi\cdot|m|$ (0.37%). $2\pi/y^*\approx\mathrm{disc}$ (1.7%). Canon depth-invariant.
 
-### 23. The Standing Wave
+### 25. The Standing Wave
 
 $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mathrm{Dist}=P_1\circ P_2\circ P_3$, $M(\mathrm{FRAME})=\mathrm{FRAME}$, $\chi\circ\chi=\chi$. Standing wave. All co-present.
 
-### 24. Reproducibility and Falsification
+### 26. Reproducibility and Falsification
 
 82 automated tests. Two inputs. Zero free parameters.
 
