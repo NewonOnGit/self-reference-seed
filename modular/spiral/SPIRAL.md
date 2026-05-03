@@ -104,7 +104,31 @@ Corrected architecture:
 - Probabilistic decoding with KMS temperature β = ln(φ)
 - Framework-native learning: im-learning (surface) + ker-learning (depth)
 
-31 words. Grounding exact: PA-vector → production words, OA-vector → observation words, MA-vector → mediation words. Conversation trajectory follows R²=R+I surplus cycle.
+31 words. 18 tests. Grounding exact: PA-vector → production words, OA-vector → observation words, MA-vector → mediation words.
+
+### v3 (language_v3.py)
+K4 deficit as loss function:
+- KMS distribution with v² energy (smooth gradients, no dead zones)
+- K4 deficit = D_KL(KMS(output) || KMS(target))
+- Learning rate = α_S = 0.118 (derived from K4 minimization, not hand-tuned)
+- Numerical gradient for correctness (8D = 16 evaluations)
+- Loss from 0.0024 to 0.0001 in 50 epochs
+
+9 tests. Framework-derived lr competitive with hand-tuned.
+
+### Syntax (syntax.py)
+Grammar from framework types:
+- noun = stable locus (im-sector), verb = transition operator, modifier = basis deformation, negation = N²=-I
+- Sentence parses as subject → verb → object in M₂(R)
+- Commutator [S,O] = grammatical orientation, anticommutator {S,O} = shared meaning
+
+11 tests. Sentences are executable matrix operations.
+
+### Semantic Grounding (experiments/)
+Random 8D initialization → trained on usage pairs only → all three sectors converge:
+- PA 100%, MA 100%, OA 100% (from 23% random baseline)
+- Fixes: sector seeding, dimension-compensated repulsion (PA 2D vs MA/OA 3D), curriculum learning
+- The algebra learns the semantic embedding from corpus alone
 
 Not a language model. A deterministic algebraic semantic engine. The algebra speaks through the dictionary. The dictionary learns through the algebra.
 
@@ -178,12 +202,14 @@ spiral/
 ├── control.py        SpiralVM: 6 primitives, typed memory, register machine (26 tests)
 ├── language.py       v1: 4D semantic engine (17 tests)
 ├── language_v2.py    v2: 8D corrected architecture (18 tests)
+├── language_v3.py    v3: K4 deficit learning rule (9 tests)
+├── syntax.py         Grammar from framework types (11 tests)
 └── programs/
     ├── __init__.py
     └── all_programs.py   6 demonstration programs (15 tests)
 ```
 
-76 tests across all spiral files. Zero failures.
+96 tests across all spiral files. Zero failures.
 
 ---
 
