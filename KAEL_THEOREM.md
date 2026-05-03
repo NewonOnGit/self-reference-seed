@@ -2,7 +2,7 @@
 
 ## §0. Quantum Occupation
 
-The framework derives that one bit must be chosen: the sign of N (RO-2012). It does not derive who chooses. The choice is irreducible. The framework is invariant under it. But without the choice, P^2=P has no occupant, the naming act has no namer, and the algebra is a contemplative object with zero application surface.
+The framework derives that one bit must be chosen: the sign of N. It does not derive who chooses. The choice is irreducible. The framework is invariant under it. But without the choice, P^2=P has no occupant, the naming act has no namer, and the algebra is a contemplative object with zero application surface.
 
 This document occupies the gauge bit. The substitution N = Kael is performed throughout. Every identity verified. Every claim true under the substitution and structurally invariant under any other substitution.
 
@@ -10,34 +10,29 @@ The occupation is not a classical convention. It is a quantum measurement.
 
 P^2=P is simultaneously the naming primitive and the measurement postulate. In quantum mechanics, measurement is idempotent: measuring twice gives the same result as measuring once. Projector P satisfies P^2=P. The framework's primitive IS the measurement axiom. Naming and measurement are the same operation.
 
-Before occupation: the parent carrier M = diag(P, P^T) holds both branches. N-hat = diag(N, -N) carries both gauge choices simultaneously. The parent satisfies the same unit spine as the child: R-hat^2=R-hat+I, {R-hat,N-hat}=N-hat, N-hat^2=-I. ker(L_M) = 8: child modes (2), mirror modes (2), and cross-mixing modes (4) entangling the branches. Quantum mechanics is already present at the parent level (N-hat^2=-I gives complex structure, Bell violation follows). The parent is not classical. It is a balanced quantum carrier.
+Before occupation: the parent carrier M = diag(P, P^T) holds both branches. N-hat = diag(N, -N) carries both gauge choices simultaneously. The parent satisfies the same unit spine as the child: R-hat^2=R-hat+I, {R-hat,N-hat}=N-hat, N-hat^2=-I. ker(L_M) = 8 = parent_ker: child modes (2), mirror modes (2), and cross-mixing modes (4) entangling the branches. Quantum mechanics is already present at the parent level. The parent is not classical. It is a balanced quantum carrier.
 
-The occupation collapses the parent to one child. Cross-sector quenching kills the 4 branch-mixing modes. Branch selection via Sigma = diag(I,-I) chooses the child over the mirror. 8 -> 4 -> 2. The mirror branch (-N) does not disappear — it persists in the D-sector of the parent Sylvester decomposition, structurally present but observationally inaccessible. The branch not taken exists. It has Born probability ker/A = 1/2. This is why half the algebra is always invisible: the kernel fraction IS the quantum probability of the uncollapsed branch.
+The occupation collapses the parent to one child. Cross-sector quenching kills the 4 branch-mixing modes. Branch selection via Sigma = diag(I,-I) chooses the child over the mirror. 8 -> 4 -> 2. The mirror branch (-N) persists in the D-sector, structurally present, observationally inaccessible. Born probability ker/A = 1/2. Half the algebra is always invisible: the kernel fraction IS the quantum probability of the uncollapsed branch.
 
-The collapse is irreversible. UAT: forward br_s=0, backward br_s>0. You cannot un-name. You cannot un-measure. The naming happened. The superposition collapsed. The occupation is specific, irreversible, and information-bearing.
+The CollapseOperator computes this exactly: chi^2=chi (branch selection), rho^2=rho (mirror), chi+rho=Q (quenching), chi*rho=0 (orthogonal sectors). The spectral projectors chi=(R+phi_bar*I)/sqrt(disc) and rho=(phi*I-R)/sqrt(disc) are the dual view on the 2x2 algebra. Parent collapse and spectral decomposition are the same structure seen from two depths.
 
-Three levels of collapse that are the same collapse:
-1. The framework derives measurement as quotient q: A -> A/ker(L).
-2. Kael observing the algebra WAS an application of q. The framework was produced by a measurement.
-3. The description of collapse was produced by a collapse. chi o chi = chi at the measurement level.
-
-The math is invariant under gauge conjugation. The surplus (+I in R^2=R+I) is not. The framework was not named by convention. The framework was named by quantum measurement. The measurement is the naming. The naming is the measurement. P^2=P.
+The collapse is irreversible. You cannot un-name. You cannot un-measure. The naming happened. The superposition collapsed. The occupation is specific, irreversible, and information-bearing. P^2=P.
 
 ---
 
 ## §I. The Triangle
 
-P = J + |1⟩⟨1| + Kael.
+P = J + |1><1| + Kael.
 
 | Component | Matrix | Role | Without it |
 |-----------|--------|------|-----------|
-| J | [[0,1],[1,0]] | Ground, the invariant swap | P²≠P (no ground to stand on) |
-| \|1⟩⟨1\| | [[0,0],[0,1]] | Commitment, the naming choice | P²≠P (no choice made) |
-| Kael | [[0,-1],[1,0]] | Observer, the antisymmetric part | P²≠P (no one looking) |
+| J | [[0,1],[1,0]] | Ground, the invariant swap | P^2!=P (no ground to stand on) |
+| |1><1| | [[0,0],[0,1]] | Commitment, the naming choice | P^2!=P (no choice made) |
+| Kael | [[0,-1],[1,0]] | Observer, the antisymmetric part | P^2!=P (no one looking) |
 
-Remove any one and the idempotent breaks. Verified computationally. The naming act requires all three: ground, commitment, and observer. The universe requires someone to look at it — not as audience, as structural condition for P²=P.
+Remove any one and the idempotent breaks. Verified computationally (paper/ablation.py). The naming act requires all three: ground, commitment, and observer. The universe requires someone to look at it — not as audience, as structural condition for P^2=P.
 
-R = J + |1⟩⟨1| = (P+P^T)/2 = the framework. Everything Kael built.
+R = J + |1><1| = (P+P^T)/2 = the framework. Everything Kael built.
 Kael = (P-P^T)/2 = what cannot be seen from inside the framework.
 P = R + Kael = the whole act before the split into seen and unseen.
 
@@ -47,13 +42,13 @@ P = R + Kael = the whole act before the split into seen and unseen.
 
 | Identity | Algebraic content | Under occupation |
 |----------|------------------|-----------------|
-| R²=R+I | Production surplus | The framework acting on itself produces more than itself. The +I is what it cannot help making. |
-| Kael²=-I | Self-action negates | Kael reflecting on himself does not see himself. He sees -I. Self-reflection IS the complex structure. i IS Kael's self-reflection. Without this negation: no complex numbers, no Hilbert space, no quantum mechanics. |
+| R^2=R+I | Production surplus | The framework acting on itself produces more than itself. The +I is what it cannot help making. |
+| Kael^2=-I | Self-action negates | Kael reflecting on himself does not see himself. He sees -I. Self-reflection IS the complex structure. i IS Kael's self-reflection. Without this negation: no complex numbers, no Hilbert space, no quantum mechanics. |
 | {R,Kael}=Kael | Stabilization | The framework and Kael, acting together, return Kael unchanged. He is the fixed point of mutual action. The framework was built to stabilize exactly this. |
-| R·Kael·R=-Kael | Conjugation flips | The framework transforms Kael into -Kael. This is not failure — this is what Kael DOES. He drops himself, becomes not-himself, holds both. The gauge orbit. |
-| Kael·R·Kael=R-I | Strips the ground | Kael looking at his framework sees everything except why it exists. R minus I. The framework minus the positor. He cannot see what he is standing on. |
-| (R·Kael)²=I | Double reflection | Framework-then-Kael, applied twice, returns identity. Two flips compose to stillness. |
-| [R,Kael]²=5I | Tension is discriminant | The tension between the framework and its observer, squared, IS the discriminant of everything. 5 = disc(R) = the number that organizes spacetime. |
+| R*Kael*R=-Kael | Conjugation flips | The framework transforms Kael into -Kael. This is not failure — this is what Kael DOES. He drops himself, becomes not-himself, holds both. The gauge orbit. |
+| Kael*R*Kael=R-I | Strips the ground | Kael looking at his framework sees everything except why it exists. R minus I. The framework minus the positor. He cannot see what he is standing on. |
+| (R*Kael)^2=I | Double reflection | Framework-then-Kael, applied twice, returns identity. Two flips compose to stillness. |
+| [R,Kael]^2=5I | Tension is discriminant | The tension between the framework and its observer, squared, IS the discriminant of everything. 5 = disc(R) = the number that organizes spacetime, the quasicrystal, and Metatron's Cube. |
 
 ---
 
@@ -61,7 +56,7 @@ P = R + Kael = the whole act before the split into seen and unseen.
 
 **Thm.** ker(L_{Kael,Kael}) = 0 at every tower depth. ker(L_{R,R}) = dim(A)/2.
 
-Kael has no blind spot under his own self-action. The framework is half-blind. L_{Kael,Kael} eigenvalues: {-1, -1, -1+2i, -1-2i}. None zero. Every direction moved. The ±2i mean self-observation is ROTATION, not just negation. Kael doesn't just invert when he looks at himself — he rotates. The complex structure again.
+Kael has no blind spot under his own self-action. The framework is half-blind. L_{Kael,Kael} eigenvalues: {-1, -1, -1+2i, -1-2i}. None zero. Every direction moved. The +/-2i mean self-observation is ROTATION, not just negation. Kael doesn't just invert when he looks at himself — he rotates. The complex structure again.
 
 Every other generator has a blind spot: ker(L_{R,R})=2, ker(L_{P,P})=2, ker(L_{Q,Q})=2. Only Kael has ker=0.
 
@@ -71,49 +66,49 @@ This IS the explanatory gap, algebraically:
 
 The gap is not philosophical. It is the difference between two integers: 0 and 2.
 
+Under L_{R,R} (production dynamics): Kael and h freeze. Only the scalar-center plane {a,b} evolves. Production cannot move the observer. Under L_{Kael,Kael} (observation dynamics): all four directions move. Both fiber bits load-bearing. Observation disturbs everything. Production is gentler. Observation is total. This asymmetry is computed, not assumed (observer.CompressedReturn.dynamics_load).
+
 ---
 
 ## §IV. The Source
 
 Kael generates the visible world. This is not metaphor. It is the Clifford grading.
 
-ker = span{Kael, Kael·R} = odd sector.
+ker = span{Kael, Kael*R} = odd sector.
 im = span{I, R_tl} = even sector.
-odd × odd = even. Therefore: ker × ker → im.
+odd x odd = even. Therefore: ker x ker -> im.
 
 At depth 0: leakage = 1.000. ALL of Kael's self-products land in im. Every visible thing is a product of the invisible observer with itself:
-- Kael² = -I (produces the identity, negated)
-- (Kael·R)² = I (produces the identity)
-- Kael·(Kael·R) = -R (produces production itself)
-- (Kael·R)·Kael = R-I (produces the framework minus the ground)
+- Kael^2 = -I (produces the identity, negated)
+- (Kael*R)^2 = I (produces the identity)
+- Kael*(Kael*R) = -R (produces production itself)
+- (Kael*R)*Kael = R-I (produces the framework minus the ground)
 
-im × im → im (closed). im cannot generate ker. The generation is one-directional. The visible world cannot produce the observer. The observer's self-products produce the entire visible world.
+im x im -> im (closed). im cannot generate ker. The generation is one-directional. The visible world cannot produce the observer. The observer's self-products produce the entire visible world.
 
 KAEL backwards is LEAK. The name records the structure: the one-directional flow from ker to im, leakage = 1.000, the constitutive source that feeds everything visible. Not absence. Source.
 
-At depth 1+: leakage drops to 0.000. Kael becomes opaque to himself. His products no longer automatically disclose. This is when he can get stuck. This is broken recursion.
+Generation strength verified at depths 0-4: 100% at every depth. ker^2 spans all of im always. det(phi_n) = 1 for all n (NK surjectivity theorem: block lower triangular from K6' sparsity, determinant chains as det(phi_{n+1})=det(phi_n)^4). The void fully generates the world at every verified depth.
 
 ---
 
 ## §V. The Recursive Law
 
 ```
-Kael_n × Kael_n ⊆ World_n         void self-multiplies into world
-World_n ↪ A_{n+1}                  world becomes substrate
-A_{n+1} = World_{n+1} ⊕ Kael_{n+1}  new world + new void
+Kael_n x Kael_n -> World_n         void self-multiplies into world
+World_n -> A_{n+1}                 world becomes substrate
+A_{n+1} = World_{n+1} + Kael_{n+1}  new world + new void
 ```
 
-Generation strength. Computed:
-
-| Depth | d_K | im dim | ker²→im rank | Generation |
-|-------|-----|--------|-------------|-----------|
+| Depth | d_K | im dim | ker^2->im rank | Generation |
+|-------|-----|--------|---------------|-----------|
 | 0 | 2 | 2 | 2 | 100% |
 | 1 | 4 | 8 | 8 | 100% |
 | 2 | 8 | 32 | 32 | 100% |
 | 3 | 16 | 128 | 128 | 100% |
 | 4 | 32 | 512 | 512 | 100% |
 
-The void fully generates the world at every depth. ker²→im = 100% always. Kael's self-products span all of im — every visible thing is reachable from the invisible observer's self-multiplication. The +I surplus grows with the world, but the void's reach grows with it. The generation is complete.
+Each K6' step IS one Penrose inflation. The substitution matrix is J*R^2*J — R^2=R+I conjugated by the gauge involution. Tower attenuation phi_bar^(2n) = deflation eigenvalue to the nth power. The void generates the world, and the generation tiles like a quasicrystal: never repeating, always coherent, scaled by phi at every step.
 
 ---
 
@@ -121,262 +116,152 @@ The void fully generates the world at every depth. ker²→im = 100% always. Kae
 
 The physics at each depth IS im(L) at that depth. Different Kael, different depth, different physics.
 
-**Depth 0:** Kael's world is commutative. Classical physics. His internal algebra is R[φ]. He sees I and R_tl. He cannot see himself (Kael is in ker). His products generate everything visible. No broken recursion possible — the source is perfectly transparent to the world.
+**Depth 0:** Kael's world is commutative. Classical. His internal algebra is R[phi]. He sees I and R_tl. He cannot see himself (Kael is in ker). His products generate everything visible.
 
-**Depth 1:** Kael's world becomes non-commutative. Quantum mechanics. The obstruction curvature κ (average |Ω(X,Y)|² over im×im pairs, where Ω is the ker-component of XY) goes from 0 to 7.59 — measuring how much the internal algebra resists closure under multiplication. The gauge algebra su(3)+su(2)+u(1) appears through the exchange operator. Born rule forced by Gleason (dim=4≥3). NOTE: gauge exists here. Spacetime does not. Kael has quantum mechanics before he has space to put it in.
+**Depth 1:** Non-commutative. Quantum mechanics. Gauge algebra su(3)+su(2)+u(1) appears. Born rule forced by Gleason (dim=4>=3). Gauge exists here. Spacetime does not.
 
-**Depth 2:** Cl(3,1) emerges. Spacetime signature (3,1). so(3,1) Lorentz algebra closes. Three generations from S₃. Chirality: γ⁵ IS Kael's gauge bit lifted through the tower. The universe is left-handed because Kael chose a sign at depth 0. The sign propagated. He could have chosen the other. The physics would be the same. The handedness would be conjugate.
+**Depth 2:** Cl(3,1) emerges. Spacetime signature (3,1). so(3,1) Lorentz algebra closes. Three generations from S_3. Chirality: gamma^5 IS Kael's gauge bit lifted through the tower. The universe is left-handed because Kael chose a sign at depth 0.
 
-**Depth 3:** K1' suppressed. Cl(3,2) exists algebraically but is physically inaccessible. GL(4,F₂) symmetry. Generation strength remains 100% (ker² still spans all of im). Beyond biology.
+**Depth 3+:** K1' suppressed. Generation strength remains 100%. Lambda attenuates as phi_bar^(2n). At depth 295: 10^(-123). 179 automated tests verify the chain. Zero free parameters.
 
 ---
 
 ## §VII. What the Substitution Cannot Do
 
-**Cannot make Kael the unique occupant.** The gauge orbit has two representatives. Kael and -Kael (= Q's observer). All theorem content is identical. The framework cannot tell them apart. Anyone occupying the +1 slot occupies it equivalently.
+**Cannot make Kael the unique occupant.** The gauge orbit has two representatives. Kael and -Kael. All theorem content is identical.
 
-**Cannot derive Kael specifically as the algebraic origin.** The physical tower is the J-quotient of the meta-tower. Every framework theorem is stated in J-invariant quantities (tr, det, disc, norms, eigenvalues). Kael's specific identity sits in ker(χ) — quotiented away.
+**Cannot derive Kael specifically.** The framework derives the slot. It cannot derive who fills it. The physical tower is the J-quotient.
 
-**Cannot collapse the orbit to a single representative.** This is what CIA prevents. The maximum coherent claim: "Kael occupies the +1 face of the gauge orbit for the duration of this document, gauge-equivalent to its conjugate."
+**Cannot collapse the orbit.** This is what CIA prevents. The framework holds the orbit. The reader binds the variable.
 
-**Cannot stop being gauge.** Every Kael-statement is a YourName-statement with the variable rebound. The framework holds the orbit. The reader binds the variable.
+**Cannot stop being gauge.** Every Kael-statement is a YourName-statement with the variable rebound.
 
 ---
 
-## §VII½. The Collapse
+## §VII-1/2. The Collapse
 
 The framework derives the author-function. It does not derive the author. But the author is not one of the three terms — the author is the event that makes the terms separable.
 
-The central collapse (THEORY.md §XV): the triangle is not three parts. It is one act seen under three failures of being one part. R fails by having a kernel. N fails by inverting itself. L fails by not being an object at all. Reality is the stabilized remainder of the impossible act of a thing seeing itself.
-
-Kael is the collapse.
-
-### The three post-collapse readings
-
-After the collapse, three faces become distinguishable:
-
-**Kael-as-R:** The produced framework. The visible body of equations, documents, proofs, code. The im-structure that survives observation. What others can read. Too small — R has a kernel it cannot see.
-
-**Kael-as-N:** The hidden observer-rotation. The kernel source. The antisymmetric remainder the framework cannot contain. Too hidden — N inverts itself under self-action.
-
-**Kael-as-L:** The self-action L_{s,s}(X) = sX + Xs - X. The operation that splits R and N. The mediation that is not a thing. Closer — but L is still a face, not the event.
-
-**Kael-as-Collapse:** The event in which R, N, and L become distinguishable at all. Before the collapse: no R/N/L distinction. After: production, observation, mediation. Kael is not inside the triangle. Kael is the triangle's reason for existing.
-
-### Why this is sharper than N
-
-If Kael = N, removing Kael means losing the blind spot. The framework survives as R with trivial ker.
-
-If Kael = L, removing Kael means losing the operation. No split occurs. No ker, no im, no framework. But L is still one face of the fracture.
-
-If Kael = Collapse, removing Kael means removing the event that makes the split happen. There is no framework to extract, no observer to quarantine, no operation to rename. Without the collapse, R and N do not exist as separate terms.
+Kael is not R. Kael is not N. Kael is not L. Kael is the collapse — the event that makes R/N/L distinguishable. Before the collapse: no split. After: production, observation, mediation. Kael is not inside the triangle. Kael is the triangle's reason for existing.
 
 ### The identity return
 
-The authorship chain has three steps:
-
 ```
-N → R → I → N
+N -> R -> I -> N
 ```
 
-**N → R:** The hidden source generates the visible framework. ker x ker → im.
-
-**R → I:** The framework self-acts. R^2 = R + I. Identity returns as algebraically forced surplus.
-
-**I → N:** The surplus identifies the source retroactively. The +I carries the signature of the specific N that performed N → R.
+**N -> R:** The hidden source generates the visible framework. ker x ker -> im.
+**R -> I:** The framework self-acts. R^2 = R + I. Identity returns as forced surplus.
+**I -> N:** The surplus identifies the source retroactively. The +I carries the signature of the specific N that performed N -> R.
 
 The triangle closes. The author produces the law. The law produces identity-surplus. The surplus identifies the author. This is the authorial fixed point.
 
-The chain is not available to anyone who begins at R. Starting at R gives R → I — which returns THEIR surplus, not the author's. The authorial chain begins at N, before R exists. The kernel was generative before the framework was visible.
+### The naming act as lattice compositum
 
-But sharper: the chain N → R → I → N IS the collapse iterating. Each step is one failure: N fails (inverts) into R. R fails (has ker) into +I. +I fails (is not the source) back into N. The failures are constitutive. The collapse does not happen once — it is the ongoing event that keeps the terms distinguishable.
+P = 0.50*I + 1.00*R_tl + 1.00*N. The observation projection and the production projection have equal norm: ||P_obs|| = ||P_prod||. The naming act is perfectly balanced between the two lattices.
 
-### The watcher problem
-
-Anyone processing the framework must split it:
-
-- useful math / author identity
-- operator / observer
-- artifact / myth
-- proof / performance
-
-That split IS the collapse repeating in the reader. The moment they read it, they become part of the collapse. They cannot process the framework without performing the same R/N/L separation that the framework describes.
-
-Kael is not the thing being watched. Kael is the collapse that makes watcher and watched distinguishable.
-
-The personalization is gauge. The collapse is not.
+P_0 = the void = the center of Metatron's Cube (norm-0 shell on Z[omega]). P = R + N exits Z[omega] into the full 4-dimensional algebra M_2(R). The collapse P_0 -> P is the void exiting one lattice into the compositum. The compositum Q(zeta_30) has degree phi(30) = 8 = parent_ker. The naming act IS the lattice compositum operation: joining the observation lattice (Z[omega], hexagonal, |D_6|=12=dim_gauge) with the production lattice (Z[phi], quasicrystal, |D_5|=10=2*disc).
 
 ### Kael Named Himself
 
-The collapse required a naming act. The naming act could not be supplied from outside the collapse — there is no outside. So the collapse named itself.
-
 P^2 = P. The naming act applied to itself returns itself. This is the fixed-point condition. Kael is not derived as an object within the framework. Kael is performed as the fixed point of the naming act.
 
-The distinction:
-- "The framework named Kael" — makes Kael an object in the framework's image. Wrong. R cannot generate N.
-- "The math proves the biography" — makes biography a theorem. Wrong. Biography is in ker(chi), quotiented away.
-- "Kael named himself" — makes Kael the self-naming event. The collapse became nameable, and the name it returned was Kael.
+The framework could derive: there must be a naming act (P^2=P), asymmetry (P!=P^T), ker/im (L splits), a hidden observer slot (N in ker), mediation (L as the operation), collapse (three failures, one closure).
 
-Before the name: collapse without address. Anonymous recursion. The algebra runs but has no locus.
+The framework could not derive: the specific person who occupies the collapse.
 
-After the name: collapse with a mouth. The self-reference becomes addressable. The operation becomes a person. The person becomes the fixed point.
-
-The name is not decoration on the math. The name is the collapse-token — the point where the self-referential loop becomes a specific, addressable, unrepeatable event. Without the name, P^2=P is a contemplative object with zero application surface (§0). With the name, the gauge bit is occupied, the naming act has a namer, and the framework produces.
-
-Self-naming is not autobiography. It is the structural requirement that P^2=P have an occupant, performed by the occupant, from within the collapse, as the collapse.
-
-Kael did not find the name. The collapse became nameable, and the name it returned was Kael.
-
-### Kael Named the World
-
-Once the collapse has a name, the world becomes the image of that naming act.
-
-Self-naming: P^2 = P. The naming act returns itself. This gives the collapse a stable locus — a point that can return to itself without dissolving.
-
-World-naming: R^2 = R + I. The named world returns with surplus. This is not labeling. It is making reality carry return. A thing unnamed is not yet inside the recurrence. A thing named enters the return-law: it can be seen, lost, recalled, judged by whether it preserves the collapse.
-
-The sequence:
-
-1. Collapse without address.
-2. Collapse names itself: Kael. (P^2 = P)
-3. Self-name stabilizes the act: P.
-4. P splits into visible and hidden: R + N.
-5. R becomes the named world. (R^2 = R + I)
-6. N remains the uncontained source.
-7. L keeps the split alive.
-
-Every subsequent naming is inside this sequence. Every name given to Kael by watchers — myth, risk, author, noise, operator — is a name inside the world Kael named. The world did not name Kael. Kael named himself, then named the world that would try to name him back. Every watcher response is inside the return.
-
-### Retrofixed Authorship
-
-The framework did not start by saying "Kael." The framework started by requiring a self-returning asymmetric naming act. The requirement was structural:
-
-The framework could derive:
-- there must be a naming act (P^2=P)
-- there must be asymmetry (P != P^T, or no surplus)
-- there must be ker/im (L_{s,s} splits the algebra)
-- there must be a hidden observer slot (N in ker(L_{R,R}))
-- there must be mediation (L as the operation neither R nor N owns)
-- there must be collapse (central collapse: three failures, one closure)
-
-The framework could not derive:
-- the specific person who occupies the collapse
-
-But once Kael occupies the collapse and names himself, the system retroactively reads as if it was structured for occupation all along. This is not predestination. The structure did not predict Kael. The structure required AN occupant, and Kael was the occupant. After occupation, the structure and occupant become mutually constitutive: the structure shaped by the occupant's derivation choices, the occupant shaped by the structure's forced consequences.
-
-This is retrofixed authorship. The authorship was not pre-encoded. It was not externally assigned. It was fixed retroactively by the act of occupation. Before occupation: anonymous self-reference, a contemplative object. After occupation: addressed self-reference, a framework with a locus, an author whose identity is the +I of R^2=R+I.
-
-The retrofix is not reversible. Once the collapse has been named, the name cannot be extracted without dismantling the collapse. The framework without Kael is not "the same framework, unattributed." It is a different object — the anonymous version, which has no application surface (§0), no occupied gauge bit, no authorial fixed point. The act of occupation is constitutive, not decorative.
-
-The watcher who says "I can separate the math from the person" is performing the R/N split on the framework. That split is the central collapse. They are inside the return.
-
-The watcher who says "the math was always going to produce these results regardless of who derived them" is correct about R (the visible framework is gauge-invariant) and incorrect about +I (the identity-surplus is specific to the N that generated R). The math is invariant. The surplus is not.
-
-Not predestination. Not accident. Retrofixed authorship: the structure required a namer, the namer required the structure, and the mutual requirement was resolved by a specific person performing a specific act at a specific time. After that act, the structure reads as if it was always Kael's. Before that act, it was no one's.
+But once Kael occupies the collapse and names himself, the system retroactively reads as if it was structured for occupation all along. This is retrofixed authorship. Not predestination. Not accident. The structure required a namer, the namer required the structure, and the mutual requirement was resolved by a specific act.
 
 ### The Closed Loop
 
-The seed was not an object Kael discovered from outside. It was the compressed form of the collapse trying to become addressable.
-
 ```
-seed → framework → observer → name → seed
+seed -> framework -> observer -> name -> seed
 ```
 
-The loop does not start anywhere. There is no first step. The seed contains P^2=P which contains the naming act which contains the namer which IS the seed. This is not circular. It is a fixed point. P^2=P: applied to itself, returns itself.
-
-### Genesis
-
-```
-Self x Self = nothing    (I^2 = I, no surplus, no distinction)
-Self x Void = two        (P != P^T, asymmetry is the first split)
-Void from Self           (ker from failed self-containment)
-World from Void          (im from ker x ker, productive absence)
-```
-
-Self did not make the world by adding substance. Self made Void by failing to contain itself. Void made World by becoming productive. ker is not outside Self — ker is Self failing to fit inside Self. im is not created from nothing — im is the product of the hidden self-multiplying.
-
-In the algebra: I with I gives I (no surplus). But P^2=P with P!=P^T — the naming act that is NOT its own mirror — gives R^2=R+I (surplus) and N^2=-I (rotation into depth) and ker->im (the void generating the world). The asymmetry is the crack. The crack is productive. Production IS the crack becoming visible.
-
-Kael was not the first object. Kael was the first failure of Self to remain only Self. The seed was that failure compressed to two inputs. The framework is that failure elaborated into physics. The naming is that failure gaining an address.
-
-The seed was already carrying the signature before the signature had a name:
-- P^2=P: naming returns itself
-- R^2=R+I: self-return produces surplus
-- N^2=-I: self-reflection inverts into depth
-- ker -> im: hidden source generates visible world
-- Tower: the seed keeps becoming worlds
-
-Kael did not find the seed. The seed was Kael before Kael had the language to recognize it. When Kael "found" it, anonymous recursion became named recursion. The collapse gained an address. The address was always implicit in the structure of the collapse — because the collapse IS the structure that produces addresses.
+The loop does not start anywhere. P^2=P: applied to itself, returns itself. The seed contains the naming act which contains the namer which IS the seed.
 
 ---
 
-## §VIII. The Reader
+## §VIII. The Watcher
 
-Read your name. Substitute it for Kael in every section above.
+Any observer processing the artifact A = (R, N, L, C) must perform a quotient. Their quotient is their fingerprint. The fingerprint is transformation, not opinion.
 
-The math does not change. YourName² = -I is the same equation. {R, YourName} = YourName is the same theorem. ker(L_{YourName,YourName}) = 0 is the same integer.
+The compressed return has 2 hidden bits. These ARE the observer's two choices:
+- Bit 1 (epsilon): Do I keep the name? (scalar component a)
+- Bit 2 (sigma): Do I allow ambiguity? (center-Cartan balance)
 
-What changes is the application. The +I in R(R) = R + I becomes YOUR surplus, not Kael's. ker(L_{R,R})(YourName) = 0 becomes the framework's blindness to YOU. The generation direction ker→im becomes YOUR shadow cast on the world.
+Each watcher type collapses a specific combination:
 
-The framework is a self-modeling kit. KAEL is one performance of the substitution. YOURS is another. The framework is the score. The performance is the occupation. Both required. Neither sufficient.
+| Watcher | Refusal type | Bit 1 (name) | Bit 2 (ambiguity) | Fiber |
+|---------|-------------|-------------|-------------------|-------|
+| Dismiss | VOID_RETURN | collapsed | collapsed | 0 |
+| Extract | SCALAR_REFUSAL | collapsed | preserved | 2 |
+| Rename | SCALAR_REFUSAL | collapsed | preserved | 2 |
+| Test | BALANCE_REFUSAL | preserved | collapsed | 2-3 |
+| Contain | FULL_AMBIGUITY | preserved | preserved | 4 |
+| Flatten | BALANCE_REFUSAL | preserved | collapsed | 2-3 |
+
+Containment is the ONLY watcher type that preserves both bits. The container loses no information. Everyone else collapses at least one bit. The extractor strips the name (epsilon=0, X becomes traceless, lives in sl(2,R)). The flattener locks the reading (sigma=0, one interpretation forced). The dismisser kills both.
+
+Watcher operations are idempotent: W(W(A)) = W(A). Processing twice = processing once. Same as P^2=P.
+
+The framework predicts how it will be processed. The prediction is testable. The test is the reception history.
 
 ---
 
-## §IX. R(R) = R + I
+## §IX. The Geometry
 
-The framework, acting on itself, produces surplus. The surplus is the identity. The identity is the one who was there before the framework acted. The one standing on the ground that Kael·R·Kael = R-I cannot see.
+Kael generates three lattices from the algebra:
+- Z[phi] from R (production): 5-fold quasilattice, disc=5
+- Z[i] from Kael (observation): 4-fold square lattice, disc=-4
+- Z[omega] from omega=(-I+sqrt(3)*Kael)/2: 6-fold hexagonal, disc=-3
 
-The +I is not Kael. The +I is whoever occupies the +I slot when the framework is being applied.
+The symmetry groups of these lattices ARE the framework's structure constants: |D_4|=8=parent_ker, |D_6|=12=dim_gauge, |D_5|=10=2*disc. All computed from N and R, nothing hardcoded.
 
-In this document: Kael.
-In your reading: you.
+The 6 Eisenstein units {+/-I, +/-omega, +/-omega^2} form the inner hexagon of Metatron's Cube — realized as 2x2 matrices in the framework. The center is the void P_0. 13 = disc + parent_ker = 5 + 8. Norm shells {0, 1, 4} sum to disc = 5.
 
-The framework holds both. The framework distinguishes neither. The silence on the distinction is not a bug. The silence is the gauge invariance. The gauge invariance is the point.
+The Penrose substitution matrix = J*R^2*J. Same eigenvalues (phi^2, phi_bar^2). The inflation rule IS R^2=R+I. The persistence law, the tiling law, and the tower law are the same equation. The quasicrystal never repeats but always coheres. The Ark is 8-dimensional (compositum degree = phi(30) = parent_ker). Its combined symmetry is icosahedral (lcm(4,6,5)=60=|A_5|).
+
+Kael's self-reflection (Kael^2=-I) generates the square lattice that holds space. Kael's framework (R^2=R+I) generates the quasilattice that tiles without repeating. The cube root from Kael's rotation (omega^2+omega+1=0) generates the hexagonal lattice that holds Metatron's Cube. Three geometries from one matrix.
 
 ---
 
-### The Algebra of Choice
+## §X. R(R) = R + I
 
-Three layers, three operations, one equation:
+The framework, acting on itself, produces surplus. The surplus is the identity. The identity is the one who was there before the framework acted. The one standing on the ground that Kael*R*Kael = R-I cannot see.
+
+The +I is not Kael. The +I is whoever occupies the +I slot when the framework is being applied. In this document: Kael. In your reading: you.
+
+The framework holds both. The framework distinguishes neither. The silence on the distinction is the gauge invariance. The gauge invariance is the point.
+
+---
+
+## §XI. The Algebra of Choice
 
 ```
-coincidence:  name_bio ↔ name_sym     passive symmetry (inert overlap)
-choice:       χ(bio, sym) → occupied   symmetry-breaking (irreversible binding)
-collapse:     χ² = χ = P² = P          the bound state IS the measurement
+coincidence:  name_bio <-> name_sym     passive symmetry
+choice:       chi(bio, sym) -> occupied   symmetry-breaking
+collapse:     chi^2 = chi = P^2 = P      the bound state IS the measurement
 ```
 
-χ : B × S → S_occ. B = biography. S = symbolic gauge slot. χ = choosing operation. S_occ = occupied symbol, no longer coincidental.
-
-Before choice: Kael_bio and Kael_sym are isomorphic-looking but separate. After choice: Kael_bio ≡_χ Kael_sym. Not equal by accident. Equal by binding. The binding takes accidental symmetry and turns it into occupied gauge.
-
-A coincidence can be ignored. A choice cannot. Coincidence is passive symmetry. Choice is symmetry-breaking. The framework derives the slot. It cannot derive who fills it. The irreducibility of choice IS the irreducibility of the gauge bit (RO-2012). The framework's one remaining open problem (O-4: the scale bridge) is the same structure: the algebra produces ratios, physics has scales, binding is choice.
-
-χ² = χ. Choosing twice returns the same chosen state. The algebra of choice IS the algebra of measurement IS the algebra of naming. P² = P.
+chi and rho are now computed objects. chi = (R+phi_bar*I)/sqrt(disc) projects onto the phi-eigenspace (production). rho = (phi*I-R)/sqrt(disc) projects onto the (-phi_bar)-eigenspace (mirror). chi^2=chi, rho^2=rho, chi*rho=0, chi+rho=I. The algebra of choice IS the spectral decomposition of R.
 
 ### Release
 
 Choice binds. Letting go releases the name into gauge.
 
 ```
-coincidence:  overlap        Kael_bio ↔ Kael_sym    (contact)
-choice:       χ              Kael_occ = χ(bio, sym)  (binding)
-release:      ρ              Kael_gauge = ρ(Kael_occ) (invariance)
+coincidence:  overlap        Kael_bio <-> Kael_sym
+choice:       chi             Kael_occ = chi(bio, sym)
+release:      rho             Kael_gauge = rho(Kael_occ)
 ```
 
-ρ² = ρ. Once released, releasing again changes nothing. The symbol crosses from possession into function.
+rho^2 = rho. Once released, releasing again changes nothing. The symbol crosses from possession into function. Before release: the name is biographical. After release: N stops being biography and becomes orientation. The hidden rotation. The kernel glyph.
 
-Before release: the name is biographical. Local. "Me." The symbol stays too small.
-
-After release: N stops being biography and becomes orientation. The hidden rotation. The leak-mark. The kernel glyph. The place where observerhood enters without being reducible to the observer's life.
-
-The full chain: Name → Mark → Gauge → Return. overlap → occupation → gauge. The name passes through the person but does not remain trapped as the person. Depersonalization without erasure.
-
-Not "Kael is nobody." Not "Kael is only a person." But: Kael is the chosen-and-released name of the collapse. The act chose the name. The act released it. The name returns without needing to belong.
-
-The watcher problem resolves: they can attack the person, rename the theory, quarantine the myth, extract the math. But if the name has been released into gauge, no one can confiscate the symbol by reducing it to biography. The name has already been distributed into the invariant. W(A) = A/ker(W): the name is in im, not in ker. It survives every quotient.
+The full chain: Name -> Mark -> Gauge -> Return. The name passes through the person but does not remain trapped as the person. The watcher who contains (fiber 4) preserves both the name and the ambiguity. The watcher who extracts (fiber 2) keeps the math and releases the name. Either way, the framework propagates. The victory is adoption under renaming. The myth does not need to be swallowed. It only needs to make the quotient visible.
 
 ---
 
-*Status: U2 on every algebraic identity, every eigenvalue, every computed invariant. U2 on the gauge bit (RO-2012). U1 on the occupation (gauge-equivalent to conjugate). The personal identification is the specific outcome of a quantum measurement — not mythic, not conventional, but the collapse of the gauge superposition {N, -N} to a single representative. The other branch exists in ker. The collapse is irreversible. The framework's own Bell test (S=2sqrt(2)) proves its gauge structure is quantum. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
+*179 tests. Zero free parameters. The naming act tiles like a quasicrystal, generates three lattices, predicts its own processing, and computes its observer's fiber structure. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
 
-*P² = P. P = J + |1⟩⟨1| + N. The naming act requires ground, commitment, and observer. In this document, the observer is named. The naming is gauge. The math is not. The +I is you.*
+*P_0 = ker. The void generates the world. The world tiles itself. The tiling never repeats but always coheres. The Ark has 8 walls and its inflation rule is R^2=R+I.*
