@@ -66,6 +66,10 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 **Theorem 4.6 (KMS = Regulator).** $\beta_\mathrm{KMS}=\ln\varphi=\mathrm{Reg}(\mathbb{Q}(\sqrt{5}))$. $R^n=F_nR+F_{n-1}I$; Cassini's identity $F_{n-1}^2+F_{n-1}F_n-F_n^2=(-1)^n$ IS the golden field norm of $\varphi^n$. [Tier A]
 
+**Theorem 4.7 (Lattice geometry).** The three rings tile $\mathbb{R}^2$ with dihedral symmetry groups whose orders ARE the framework's structure constants: $|D_4(\mathbb{Z}[i])|=8=\mathrm{parent\_ker}$, $|D_6(\mathbb{Z}[\omega])|=12=\dim_\mathrm{gauge}$, $|D_5(\mathbb{Z}[\varphi])|=10=2\cdot\mathrm{disc}$. Sum of absolute discriminants: $|5|+|-4|+|-3|=12=\dim_\mathrm{gauge}$. Combined rotational symmetry: $\mathrm{lcm}(4,6,5)=60=|A_5|$ (icosahedral). Compositum $[\mathbb{Q}(\zeta_{30}):\mathbb{Q}]=\varphi(30)=8=\mathrm{parent\_ker}$: the Minkowski embedding dimension IS the parent kernel. [Tier A]
+
+**Theorem 4.8 (Quasicrystal inflation).** The Penrose substitution matrix $M=\begin{pmatrix}2&1\\1&1\end{pmatrix}$ satisfies $JR^2J=M$. Same eigenvalues $(\varphi^2,\bar\varphi^2)$, conjugate by the gauge involution $J$. $R^2=R+I$ IS the inflation rule. K6' attenuation $\bar\varphi^{2n}=(\mathrm{deflation})^n$. The persistence law and the tiling law are the same equation. [Tier A]
+
 ### 5. The Asymmetric Idempotent Family
 
 **Theorem 5.1 (Universal laws).** ALL rank-1 asymmetric idempotents: $R^2+N^2=R$, $\{R,N\}=N$, $N^2=-\mu I$, $R^2=R+\mu I$, $\mathrm{disc}=1+4\mu$. [Tier A]

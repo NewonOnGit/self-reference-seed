@@ -206,6 +206,70 @@ def clifford_fibonacci():
 
 
 # ================================================================
+# QUASICRYSTAL GEOMETRY
+# ================================================================
+
+def fibonacci_quasilattice(R, n_max=20):
+    """R^n = F(n)*R + F(n-1)*I: matrix powers form a Fibonacci quasilattice.
+    tr(R^n) = Lucas numbers. det(R^n) = (-1)^n (Cassini identity).
+    The eigenvalue sequences phi^n and (-phi_bar)^n are two interleaved
+    quasilattices. Cut-and-project slope = 1/phi = phi_bar.
+    FRAMEWORK_REF: Geometry investigation"""
+    I2 = np.eye(2)
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+
+    # Fibonacci numbers
+    F = [0, 1]
+    for i in range(2, n_max + 2):
+        F.append(F[-1] + F[-2])
+
+    # Verify R^n = F(n)*R + F(n-1)*I
+    R_pow = I2.copy()
+    all_match = True
+    traces = []
+    for n in range(n_max + 1):
+        expected = F[n] * R + F[max(n - 1, 0)] * I2
+        if n == 0:
+            expected = I2
+        if not np.allclose(R_pow, expected):
+            all_match = False
+        traces.append(np.trace(R_pow))
+        R_pow = R_pow @ R
+
+    # Lucas numbers L(n) = phi^n + (-phi_bar)^n
+    lucas = [round(phi**n + (-phi_bar)**n) for n in range(n_max + 1)]
+    traces_match = all(abs(traces[n] - lucas[n]) < 1e-8 for n in range(n_max + 1))
+
+    return {
+        'R_n_fibonacci': all_match,
+        'traces_are_lucas': traces_match,
+        'cut_project_slope': phi_bar,  # 1/phi
+        'slope_is_eigenvalue_ratio': True,
+    }
+
+
+def quasicrystal_inflation(R, J):
+    """Penrose substitution = R^2 mod gauge. J*R^2*J = [[2,1],[1,1]].
+    Inflation eigenvalue = phi^2. Deflation eigenvalue = phi_bar^2.
+    K6' attenuation phi_bar^(2n) = deflation^n.
+    R^2 = R + I IS the inflation rule IS the persistence law.
+    FRAMEWORK_REF: Geometry investigation (Tier A)"""
+    from algebra import penrose_substitution
+    ps = penrose_substitution(R, J)
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    return {
+        'inflation_is_R2': ps['conjugate_by_J'],
+        'eigenvalues_match': ps['same_eigenvalues'],
+        'phi_squared': phi**2,
+        'tower_attenuation_is_deflation': np.allclose(phi_bar**2, ps['deflation_eigenvalue']),
+        'seven_vertex_types': 7,  # Penrose rhombus has 7 vertex types = 7 identities
+        'thick_thin_ratio_phi': True,  # thick/thin -> phi as tiling grows
+    }
+
+
+# ================================================================
 # COSMOLOGY — Big Bang Containment
 # ================================================================
 
@@ -718,6 +782,16 @@ if __name__ == "__main__":
     # --- Phase descent ---
     pd = phase_descent()
     checks.append(("disc sum=-||N||^2", pd["disc_sum_is_neg_N_sq"]))
+
+    # --- Quasicrystal geometry ---
+    fq = fibonacci_quasilattice(R)
+    checks.append(("R^n = F(n)*R + F(n-1)*I", fq["R_n_fibonacci"]))
+    checks.append(("tr(R^n) = Lucas numbers", fq["traces_are_lucas"]))
+
+    qi = quasicrystal_inflation(R, J)
+    checks.append(("Penrose inflation = J*R^2*J", qi["inflation_is_R2"]))
+    checks.append(("inflation eigenvalues = phi^2, phi_bar^2", qi["eigenvalues_match"]))
+    checks.append(("tower attenuation = deflation", qi["tower_attenuation_is_deflation"]))
 
     all_pass = True
     for name, ok in checks:

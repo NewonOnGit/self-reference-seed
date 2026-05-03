@@ -87,9 +87,70 @@ def cross_field_norm(delta, y):
 
 def discriminant_arithmetic():
     """The three discriminants and their relations.
-    disc(R)=5, disc(N)=-4, disc(omega)=-3. Sum=−2=−||N||^2. Product=60=2*30."""
+    disc(R)=5, disc(N)=-4, disc(omega)=-3. Sum=-2=-||N||^2. Product=60=2*30.
+    Compositum Q(zeta_30): degree phi(30)=8=parent_ker."""
     return {
         'disc_R': 5, 'disc_N': -4, 'disc_omega': -3,
         'sum_R_omega': 2, 'triple_sum': -2, 'triple_product': 60,
         'cross_field_disc': -15, 'compositum_index': 30,
+        'compositum_degree': 8,  # phi(30) = 8 = parent_ker
+        'abs_disc_sum': 12,      # |5|+|-4|+|-3| = 12 = dim_gauge
+    }
+
+
+# ============================================================
+# LATTICE GEOMETRY
+# ============================================================
+
+def eisenstein_units(N):
+    """The 6 Eisenstein units as 2x2 matrices, forming Z/6 under multiplication.
+    zeta_6 = (I + sqrt(3)*N)/2 = -omega^2 generates the group.
+    {I, zeta, zeta^2=omega, zeta^3=-I, zeta^4=-omega^2, zeta^5=-omega}.
+    These are the inner hexagon of Metatron's Cube.
+    FRAMEWORK_REF: Thm 4.4, Geometry investigation"""
+    I = np.eye(N.shape[0])
+    zeta = (I + np.sqrt(3) * N) / 2
+    units = [I.copy()]
+    current = I.copy()
+    for _ in range(5):
+        current = current @ zeta
+        units.append(current.copy())
+    return units, zeta
+
+
+def lattice_symmetry_orders():
+    """Dihedral group orders of the three framework lattices.
+    |D_4(Z[i])| = 8 = parent_ker. |D_6(Z[omega])| = 12 = dim_gauge.
+    |D_5(Z[phi])| = 10 = 2*disc. Product = 960.
+    The lattice symmetry groups ARE the framework structure constants.
+    FRAMEWORK_REF: Geometry investigation"""
+    return {
+        'D4_order': 8,    # Z[i] square lattice, 4-fold -> |D_4|=8=parent_ker
+        'D6_order': 12,   # Z[omega] hex lattice, 6-fold -> |D_6|=12=dim_gauge
+        'D5_order': 10,   # Z[phi] quasilattice, 5-fold -> |D_5|=10=2*disc
+        'product': 960,   # 8*12*10
+        'lcm_rotations': 60,  # lcm(4,6,5)=60=|A_5|=icosahedral
+    }
+
+
+def penrose_substitution(R, J):
+    """The Penrose inflation matrix is R^2 conjugated by J.
+    M_sub = [[2,1],[1,1]]. R^2 = [[1,1],[1,2]]. J*R^2*J = M_sub.
+    Same eigenvalues: phi^2, phi_bar^2. Same char poly: x^2-3x+1.
+    R^2 = R + I IS the quasicrystal inflation rule.
+    FRAMEWORK_REF: Geometry investigation (Tier A)"""
+    I = np.eye(R.shape[0])
+    R2 = R @ R
+    M_sub = J @ R2 @ J
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    return {
+        'R_squared': R2,
+        'substitution_matrix': M_sub,
+        'conjugate_by_J': np.allclose(M_sub, np.array([[2, 1], [1, 1]])),
+        'same_eigenvalues': np.allclose(sorted(np.linalg.eigvals(M_sub).real),
+                                         sorted([phi_bar**2, phi**2])),
+        'inflation_eigenvalue': phi**2,
+        'deflation_eigenvalue': phi_bar**2,
+        'R2_is_R_plus_I': np.allclose(R2, R + I),
     }

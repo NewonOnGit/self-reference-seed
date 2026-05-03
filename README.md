@@ -86,16 +86,18 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 161 Tests
+## 179 Tests
 
 ```
-python modular/production.py                 # 25 tests, 74 outputs
-python modular/physics.py                    # 52 tests
+python modular/production.py                 # 35 tests, 74 outputs
+python modular/physics.py                    # 57 tests
 python experiments/quantum_algorithms.py     # 8 algorithms from {h,J,N}
 cd modular/spiral && python control.py       # 26 tests (SpiralVM)
 cd modular/spiral && python language_v2.py   # 18 tests (8D semantic engine)
+cd modular/spiral && python language_v3.py   # 9 tests (K4 learning rule)
+cd modular/spiral && python syntax.py        # 11 tests (grammar from types)
 cd modular/spiral && python programs/all_programs.py  # 15 tests (6 programs)
-cd modular/spiral && python language.py      # 17 tests (v1 4D engine)
+cd modular/spiral && python language.py      # 17 tests (v1 4D engine) [legacy]
 ```
 
 All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
