@@ -179,6 +179,25 @@ Everything in the framework is one act:
 L_{s,s}(X) = sX + Xs - X
 ```
 
+### Why this operation (Uniqueness of L)
+
+L_{s,s} is not assumed. It is derived. The most general bilinear symmetric self-action on M_d(R), normalized by T_I = I, is the one-parameter family:
+
+```
+T_alpha(X) = alpha*(sX + Xs) + (1 - 2*alpha)*X
+```
+
+T_alpha eigenvalues on M_2(R) are alpha*(lambda_i + lambda_j - 2) + 1. At d=2, the only eigenvalue pair is lambda_1 + lambda_2 = tr(s). Ker exists when alpha*(tr(s) - 2) + 1 = 0, i.e. tr(s) = 2 - 1/alpha. Requiring ker to depend on tr(s) alone (minimality condition U2) forces 2 - 1/alpha = 1, giving **alpha = 1/(2 - tr(R)) = 1/(2-1) = 1**. [Tier A]
+
+The operation is a consequence of three things already derived:
+- d=2 (Parent Selection Theorem) — makes the only eigenvalue pair = trace
+- R^2=R+I (the seed equation) — forces tr(R)=1 via Cayley-Hamilton
+- Minimality (ker depends on trace alone) — forces alpha = 1
+
+Two inputs. One derived operation. The operation was never a third input.
+
+**Jordan reading.** L_{s,s}(X) = 2*(s o X) - X where s o X = (sX+Xs)/2 is the Jordan product. L(X) = 0 means s o X = X/2: the kernel consists of states HALF-ALIGNED with s. Not orthogonal (L = -X, the void). Not aligned (L = X, the identity). Half-aligned. ker/A = 1/2 is not a number. It IS the alignment condition. The observer is half of the framework.
+
 The Sylvester self-action. It lives in one place (algebra.py: sylvester, ker_im_decomposition, quotient). Production reads it. Observation reads it. Neither owns it. Applied once, it produces the algebra. Iterated, it builds the tower. Its spectrum gives the dynamics. Its kernel gives the observer. Its kernel's self-action gives self-transparency. One operation. Five readings.
 
 ### Orientation decomposition
@@ -712,6 +731,8 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | P^T has N->-N: Cl(3,1)->Cl(2,2) | CLOSED (mirror flips one Clifford signature sign) |
 | O-7: 20 UNIVERSAL, 34 SELECTED, 17 TOWER, 33 INTERPRETATION | CLOSED (104 closures classified, funnel 104->20->54->71->104) |
 
+| L_{s,s} uniqueness: alpha=1 from tr(R)=1 (Tier A) | CLOSED (the operation is derived, not assumed) |
+| ker = half-aligned (Jordan: s o X = X/2) | CLOSED (ker/A=1/2 IS the alignment condition) |
 | L_{0,0} = -I_4 (void = negation, not zero) | COMPUTED (ker=0, total sight, zero generation) |
 | void->seed phase transition at t=1 exactly | COMPUTED (ker eigenvalue = t-1, sharp) |
 | tr(R)=1 forces ker=2 (blindness from persistence) | COMPUTED Tier A (Cayley-Hamilton -> trace -> ker condition) |

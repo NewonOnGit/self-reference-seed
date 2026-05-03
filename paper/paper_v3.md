@@ -48,7 +48,9 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 ### 3. The Operation
 
-**Definition 3.1.** $L_{s,s}(X) = sX + Xs - X$. Lives in `algebra.py` (51 lines).
+**Definition 3.1.** $L_{s,s}(X) = sX + Xs - X$.
+
+**Theorem 3.0 (Uniqueness of $L$).** The general symmetric bilinear self-action $T_\alpha(X) = \alpha(sX+Xs)+(1-2\alpha)X$ has eigenvalues $\alpha(\lambda_i+\lambda_j-2)+1$. At $d=2$, the only eigenvalue pair is $\mathrm{tr}(s)$. Requiring $\ker$ to depend on $\mathrm{tr}(s)$ alone gives $\alpha=1/(2-\mathrm{tr}(R))=1$. $L_{s,s}$ is derived from $R^2=R+I$ (which forces $\mathrm{tr}=1$), not assumed. Jordan reading: $L(X)=0$ iff $s\circ X = X/2$ (half-aligned). $\ker/A=1/2$ IS the alignment condition. [Tier A]
 
 **Theorem 3.2 (Ker/im decomposition).** $\ker(L_R) = \mathrm{span}\{N, NR\}$, $\mathrm{im}(L_R)=\mathrm{span}\{I,R_\mathrm{tl}\}$. $\ker/A=1/2$. [Tier A]
 

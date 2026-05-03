@@ -531,7 +531,8 @@ if __name__ == "__main__":
 
     # --- Lattice geometry (algebra.py) ---
     from algebra import (eisenstein_units, lattice_symmetry_orders,
-                         penrose_substitution, discriminant_arithmetic)
+                         penrose_substitution, discriminant_arithmetic,
+                         sylvester_uniqueness)
     eu, zeta = eisenstein_units(d["N"])
     checks.append(("Eisenstein: 6 units", len(eu) == 6))
     checks.append(("zeta_6^6 = I", np.allclose(eu[0], np.eye(2))))
@@ -549,6 +550,10 @@ if __name__ == "__main__":
     da = discriminant_arithmetic(d["R"], d["N"])
     checks.append(("phi(30)=8=parent_ker", da['compositum_degree'] == d["parent_ker_dim"]))
     checks.append(("|disc| sum=12=dim_gauge", da['abs_disc_sum'] == d["dim_gauge"]))
+
+    su = sylvester_uniqueness(d["R"])
+    checks.append(("L uniqueness: alpha=1", su['alpha_is_one']))
+    checks.append(("L uniqueness: ker=2 at alpha=1", su['ker_dim_at_alpha_1'] == 2))
 
     all_pass = True
     for name, ok in checks:

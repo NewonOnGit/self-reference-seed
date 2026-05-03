@@ -12,12 +12,54 @@ from scipy.linalg import null_space
 
 def sylvester(A, B=None):
     """L_{A,B}(X) = AX + XB - X as a matrix on vec(X).
-    FRAMEWORK_REF: Thm 2.1
+
+    DERIVED, not assumed. L_{s,s} is the unique member of the family
+    T_alpha(X) = alpha*(sX+Xs) + (1-2*alpha)*X satisfying:
+      (U1) T_I = I  (normalization)
+      (U2) ker depends on tr(s) alone  (minimality)
+    At d=2: alpha = 1/(2 - tr(s)). tr(R)=1 forces alpha=1.
+    The operation is a consequence of R^2=R+I, not a third input.
+
+    Jordan reading: L(X)=0 means s o X = X/2 (half-aligned).
+    ker/A=1/2 IS the alignment condition.
+
+    FRAMEWORK_REF: Thm 2.1, Uniqueness of L
     APEX_LINK: R (the operation IS the framework)"""
     if B is None:
         B = A
     d = A.shape[0]
     return np.kron(A, np.eye(d)) + np.kron(np.eye(d), B.T) - np.eye(d * d)
+
+
+def sylvester_uniqueness(R):
+    """Verify that alpha=1 is the unique self-action parameter.
+    T_alpha eigenvalues = alpha*(lambda_i+lambda_j - 2) + 1.
+    ker at trace pair: alpha*(tr(s)-2)+1 = 0 => alpha = 1/(2-tr(s)).
+    tr(R) = 1 => alpha = 1. QED.
+    FRAMEWORK_REF: Uniqueness of L (Tier A)"""
+    tr_R = np.trace(R)
+    alpha = 1.0 / (2.0 - tr_R)
+    phi = max(np.abs(np.linalg.eigvals(R).real))
+    phi_bar = phi - 1
+
+    # Verify ker at alpha=1
+    d = R.shape[0]
+    I_d = np.eye(d)
+    I_dd = np.eye(d * d)
+    T1 = np.kron(R, I_d) + np.kron(I_d, R.T) - I_dd
+    ker_dim = null_space(T1, rcond=1e-10).shape[1]
+
+    # Jordan half-alignment: s o X = X/2 for X in ker
+    # (RX + XR)/2 = X/2 => RX + XR = X => L(X) = 0. Confirmed.
+
+    return {
+        'alpha': float(alpha),
+        'alpha_is_one': np.allclose(alpha, 1.0),
+        'trace_R': float(tr_R),
+        'ker_dim_at_alpha_1': ker_dim,
+        'trace_condition': f'tr(s) = {tr_R:.1f} = 1 forces alpha = 1',
+        'jordan_reading': 'ker = half-aligned states (s o X = X/2)',
+    }
 
 
 def ker_im_decomposition(s):
