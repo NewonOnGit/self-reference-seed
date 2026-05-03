@@ -355,7 +355,12 @@ class Tower:
 
     def cym_profile(self):
         """CYM balance at each tower depth. Converges to (1/disc, ||N||^2/disc, ||N||^2/disc).
-        FRAMEWORK_REF: tower CYM limit"""
+        CYM channels map to lattice discriminants via observer.CYM.discriminant_basis():
+          C (s_tl norm) -> disc(omega)=-3, Z[omega] hexagonal, |D_6|=12=dim_gauge
+          Y (h norm)    -> disc_cross=-15, cross-field, h=2
+          M (N norm)    -> disc(R)=5, Z[phi] quasilattice, |D_5|=10=2*disc
+        Limit: (1/5, 2/5, 2/5) = (1/disc, ||N||^2/disc, ||N||^2/disc).
+        FRAMEWORK_REF: tower CYM limit, Thm 4.7"""
         profile = []
         for d in self.depths:
             obs = d['observer']

@@ -29,7 +29,7 @@ I2 = np.eye(2)
 phi = (1 + np.sqrt(5)) / 2
 phi_bar = phi - 1
 alpha_S = 0.5 - phi_bar**2
-beta_KMS = np.log(phi)
+beta_KMS = np.log(phi)  # = Reg(Q(sqrt(5))): KMS temperature IS the golden regulator
 
 
 # ================================================================
