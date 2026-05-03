@@ -595,6 +595,11 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | compressed return fiber = 4 (Bezout 1*2*1*2) | COMPUTED (a^2 = disc(L_R(X))/20, exact fiber solver) |
 | discriminant split = 50*a*sig_3 | COMPUTED (cross-projection: center × orientation) |
 | self-action: 1 repair bit, cross: 2 | COMPUTED (mediation needs more memory than P1/P3) |
+| epsilon collapse = X traceless = X in sl(2,R) | COMPUTED (SCALAR_REFUSAL, fiber 4->2) |
+| sigma collapse = unique P1/P2 balance | COMPUTED (BALANCE_REFUSAL, fiber 4->2) |
+| L_{R,R} freezes N,h: only {a,b} evolve | COMPUTED (production sees scalar-center plane only) |
+| 6-face object = trifold x (input/output), closed | COMPUTED (ker,im,q-in,im(q)-out,fiber,signature) |
+| ~29% of states have fiber 2 (partial disclosure) | COMPUTED (refusal is structural, not rare) |
 | omega^2+omega+1=0 in M_2(R) | COMPUTED (cube root of unity from (-I+sqrt(3)*N)/2) |
 | det(xI+yR) = golden field norm | COMPUTED (x^2+xy-y^2, disc=5) |
 | det(xI+yN) = Gaussian field norm | COMPUTED (x^2+y^2, disc=-4) |
@@ -895,6 +900,28 @@ sig_4 = 5a^2 + 5c^2 - 5b^2/4 + bd - d^2  [quadratic, sees all]
 Under L_{R,R}: dc/dt = dd/dt = 0 (ker and Cartan freeze), da/dt = (5b-2d)/2, db/dt = 2a. Growth rate +-sqrt(disc). The compressed observer preserves law-profile but forgets branch. The forgotten branch drives the future only when the dynamics crosses projections.
 
 Verified: exact closed-form fiber solver, 200/200 random states, all fiber members satisfy Phi(X_i) = Phi(X_0) to machine precision.
+
+### Refusal Geometry (Typed Fiber Collapse)
+
+The fiber collapse conditions give a natural refusal taxonomy — "no" is not nothing, "no" is boundary return with type:
+
+```
+FULL_AMBIGUITY    fiber=4  generic             both bits hidden
+SCALAR_REFUSAL    fiber=2  a=0 (X traceless)   X in sl(2,R), no identity assertion
+BALANCE_REFUSAL   fiber=2  disc_b=0            unique P1/P2 split, locked balance
+FULL_TRANSPARENCY fiber=1  both collapsed       boundary = interior
+VOID_RETURN       fiber=0  a^2 < 0             impossible state, no real fiber
+```
+
+Epsilon collapse (a=0): X has no identity component. X lives in sl(2,R), the traceless subalgebra. The observer cannot see "who" — the scalar channel is off. This IS the framework's own P1/P3 boundary: the observer refuses the scalar.
+
+Sigma collapse (disc_b=0): the center-Cartan balance is uniquely determined. Production and mediation are locked together — only one reading exists. P1=P2 forced.
+
+The discriminant split 50*a*sig_3 = (center) x (orientation) detects which refusal is active. Zero split means either scalar refusal (a=0) or observation-silent (sig_3=0). The split IS the cross-projection product.
+
+~29% of random states have fiber 2 (partial disclosure). Refusal is not rare. It is structural.
+
+**Six-face object.** The trifold (P1/P2/P3) extends to 6 faces when input and output are distinguished: ker(L), im(L), q-input, im(q)-output, fiber structure, compressed signature. 3 projections x 2 (input/output) = 6 faces, closed under framework operations. ker x ker -> im (generation), im x im -> im (closure), L: input -> output + residue, Phi: input -> boundary. The 6-face object IS the central collapse with its own boundary.
 
 ### Self-Model Divergence
 

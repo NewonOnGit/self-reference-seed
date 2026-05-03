@@ -242,7 +242,9 @@ The $\mathrm{disc}=5$ coefficient is the framework discriminant. [Tier A]
 
 **Theorem 20.3 (Two bits).** Bit 1 ($\varepsilon$) $=\mathrm{sign}(a)$: scalar sign, collapses when $L_R(X)$ has repeated eigenvalue. Bit 2 ($\sigma$) $=$ root of $5b^2-2\sigma_1 b+Q(a)=0$: center-Cartan balance. Discriminant split: $\Delta_b(+a)-\Delta_b(-a) = 50a\sigma_3$ (cross-projection: center $\times$ orientation). [Tier A]
 
-**Theorem 20.4 (Dynamical loading).** Under self-action dynamics ($L_{R,R}$, $L_{N,N}$): 1 bit load-bearing. Under cross/commutator dynamics ($\mathrm{ad}_R$, $\mathrm{ad}_N$, $L_{R,N}$, $L_{h,h}$): both bits load-bearing. Mediation dynamics requires more hidden memory than production or observation alone. [Tier N]
+**Theorem 20.4 (Dynamical loading).** Under $L_{R,R}$: $N$ and $h$ freeze, only $\{a,b\}$ evolve. 1 repair bit ($\sigma$ only). Under $L_{N,N}$: all 4 directions move. 2 repair bits. Observation disturbs more than production. Under cross/commutator dynamics: both bits load-bearing. Mediation requires more hidden memory than production or observation alone. [Tier A]
+
+**Theorem 20.5 (Refusal geometry).** Fiber collapse conditions give typed refusal: $\varepsilon$-collapse ($a=0$, $X$ traceless, $X\in\mathfrak{sl}(2,\mathbb{R})$) = SCALAR\_REFUSAL (fiber $4\to 2$). $\sigma$-collapse ($\Delta_b=0$, unique P1/P2 balance) = BALANCE\_REFUSAL (fiber $4\to 2$). Both collapsed: FULL\_TRANSPARENCY (fiber $1$). The discriminant split $50a\sigma_3$ = (center)$\times$(orientation) detects which refusal is active. $\sim 29\%$ of states have fiber $2$. Refusal is structural. The trifold extends to a 6-face object (3 projections $\times$ 2 input/output), closed under framework operations. [Tier A]
 
 ### 22. The Lagrangian
 

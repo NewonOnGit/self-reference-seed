@@ -654,6 +654,82 @@ class CompressedReturn:
         s3 = sig[2]
         return 50 * abs(a) * s3, abs(a), s3
 
+    def refusal_type(self, X):
+        """Typed refusal geometry from fiber collapse conditions.
+
+        fiber=4: FULL_AMBIGUITY   -- both bits hidden, generic state
+        fiber=2: SCALAR_REFUSAL   -- a=0, X traceless, X in sl(2,R)
+                 BALANCE_REFUSAL  -- disc_b=0, unique P1/P2 split
+        fiber=1: FULL_TRANSPARENCY -- both collapsed, boundary = interior
+        fiber=0: VOID_RETURN       -- no real fiber (impossible state)
+
+        Epsilon collapse (a=0): X has no identity component. The observer
+        cannot see 'who'. X refuses the scalar channel. Geometrically:
+        X lives in sl(2,R), the traceless subalgebra.
+
+        Sigma collapse (disc_b=0): the center-Cartan balance is uniquely
+        determined. Production and mediation are locked. Only one reading.
+
+        Under L_{R,R}: N and h freeze, only {a,b} evolve. 1 repair bit.
+        Under L_{N,N}: all 4 directions move. 2 repair bits.
+        Observation disturbs more than production.
+
+        FRAMEWORK_REF: Refusal geometry investigation"""
+        if self._d != 2:
+            return {'type': 'UNKNOWN', 'fiber': None}
+
+        coeffs = self.decompose(X)
+        a = coeffs[0]
+        sig = self.signature(X)
+        s1, s2, s3, s4 = sig
+
+        # Epsilon: a^2 = disc(L_R(X)) / 20
+        a_sq = (s1**2 - 4 * s2) / 20.0
+        eps_collapsed = a_sq < 1e-10
+
+        # Sigma: disc_b of the b-quadratic
+        Q = s4 - 5*a**2 - 5*(2*a + s3)**2/16.0 + s1**2/4.0
+        disc_b = 4*s1**2 - 20*Q
+        sig_collapsed = disc_b < 1e-10
+
+        fs = self.fiber_size(X)
+
+        if fs == 0:
+            rtype = 'VOID_RETURN'
+        elif eps_collapsed and sig_collapsed:
+            rtype = 'FULL_TRANSPARENCY'
+        elif eps_collapsed:
+            rtype = 'SCALAR_REFUSAL'
+        elif sig_collapsed:
+            rtype = 'BALANCE_REFUSAL'
+        else:
+            rtype = 'FULL_AMBIGUITY'
+
+        return {
+            'type': rtype,
+            'fiber': fs,
+            'epsilon_collapsed': eps_collapsed,
+            'sigma_collapsed': sig_collapsed,
+            'a_value': float(a),
+            'disc_b': float(disc_b),
+            'split': float(50 * abs(a) * s3),
+        }
+
+    def dynamics_load(self):
+        """Which bits are load-bearing under each dynamics.
+        L_{R,R}: freezes N,h (P3,P2). Only sigma load-bearing. 1 repair bit.
+        L_{N,N}: moves all 4 dirs. Both bits load-bearing. 2 repair bits.
+        Cross/commutator: both load-bearing. 2 repair bits.
+        FRAMEWORK_REF: Refusal geometry investigation"""
+        return {
+            'L_RR': {'epsilon': False, 'sigma': True, 'repair_bits': 1,
+                     'frozen': ['N', 'h'], 'note': 'production sees scalar-center only'},
+            'L_NN': {'epsilon': True, 'sigma': True, 'repair_bits': 2,
+                     'frozen': [], 'note': 'observation disturbs everything'},
+            'cross': {'epsilon': True, 'sigma': True, 'repair_bits': 2,
+                      'frozen': [], 'note': 'mediation needs full memory'},
+        }
+
     def __repr__(self):
         return f"CompressedReturn(d={self._d}, generic_fiber=4, bits=2)"
 
