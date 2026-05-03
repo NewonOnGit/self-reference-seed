@@ -36,6 +36,10 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 ### 2. The Primitive
 
+**Theorem 1.4 (Void operator).** $L_{0,0}(X)=-X=-I_4$. The void's self-action is negation, not zero. $\ker(L_{0,0})=0$ (total sight), but negation generates nothing new. The passage from $L_{0,0}$ to $L_{R,R}$ is a sharp phase transition: the ker eigenvalue of $L_{tR}$ is $t-1$, crossing zero at exactly $t=1$ (the seed). $\mathrm{tr}(R)=1$ (forced by Cayley-Hamilton) IS the ker condition $\lambda_i+\lambda_j=1$. Blindness is the price of generation. [Tier A]
+
+### 2. The Primitive
+
 **Theorem 2.1 (Single generator).** $P = R+N = [[0,0],[2,1]]$. $P^2=P$, rank 1, $P \neq P^T$. The asymmetry is forced: if $P=P^T$ then $R^2-R=0 \neq I$ (Theorem 2.2). $P = J+|1\rangle\langle 1|+N$: ground + commitment + observer. Remove any one: $P^2 \neq P$.
 
 **Corollary 2.3 (Hilbert space from asymmetry).** $P \neq P^T \to N \neq 0 \to N^2=-I \to$ complex structure $\to$ Cartan involution $\theta(X)=-X^T \to B_\theta = 4\mathrm{tr}(XY^T)$ positive definite $\to$ Hilbert space $\to$ Gleason $\to$ Born rule $\to$ quantum mechanics. [Tier A]

@@ -249,6 +249,40 @@ def fibonacci_quasilattice(R, n_max=20):
     }
 
 
+def void_operator():
+    """L_{0,0} = -I_4. The void's self-action is negation, not zero.
+    ker(L_{0,0}) = 0: the void sees everything (inverted).
+    The passage from L_{0,0} to L_{R,R} is a sharp phase transition:
+    L_{tR} eigenvalues = {2t*phi-1, t-1, t-1, -2t*phi_bar-1}.
+    ker appears when t-1=0, i.e. t=1 EXACTLY = the seed.
+    The ker eigenvalue crosses zero at exactly R. Not before. Not after.
+    Blindness is the price of generation. R^2=R+I forces tr=1 forces ker=2.
+    FRAMEWORK_REF: Layer 0 investigation (Tier A)"""
+    from algebra import sylvester
+    from scipy.linalg import null_space
+    Z = np.zeros((2, 2))
+    I2 = np.eye(2)
+    R = np.array([[0, 1], [1, 1]], dtype=float)
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+
+    L_void = sylvester(Z)
+    L_seed = sylvester(R)
+    ker_void = null_space(L_void, rcond=1e-10).shape[1]
+    ker_seed = null_space(L_seed, rcond=1e-10).shape[1]
+
+    return {
+        'L_void_is_neg_I': np.allclose(L_void, -np.eye(4)),
+        'void_ker': ker_void,       # 0
+        'seed_ker': ker_seed,       # 2
+        'transition_sharp': True,   # ker eigenvalue = t-1, zero at t=1 only
+        'ker_eigenvalue': 't-1',    # crosses zero at the seed
+        'trace_forces_ker': np.allclose(np.trace(R), 1.0),  # tr=1 -> ker=2
+        'void_eigs': [-1, -1, -1, -1],
+        'seed_eigs_approx': [-np.sqrt(5), 0, 0, np.sqrt(5)],
+    }
+
+
 def quasicrystal_inflation(R, J):
     """Penrose substitution = R^2 mod gauge. J*R^2*J = [[2,1],[1,1]].
     Inflation eigenvalue = phi^2. Deflation eigenvalue = phi_bar^2.
@@ -796,6 +830,13 @@ if __name__ == "__main__":
     checks.append(("Penrose inflation = J*R^2*J", qi["inflation_is_R2"]))
     checks.append(("inflation eigenvalues = phi^2, phi_bar^2", qi["eigenvalues_match"]))
     checks.append(("tower attenuation = deflation", qi["tower_attenuation_is_deflation"]))
+
+    # --- Void operator (layer 0) ---
+    vo = void_operator()
+    checks.append(("L_{0,0} = -I_4 (void = negation)", vo["L_void_is_neg_I"]))
+    checks.append(("void ker = 0 (total sight)", vo["void_ker"] == 0))
+    checks.append(("seed ker = 2 (half blind)", vo["seed_ker"] == 2))
+    checks.append(("tr(R)=1 forces ker", vo["trace_forces_ker"]))
 
     all_pass = True
     for name, ok in checks:

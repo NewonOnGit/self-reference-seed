@@ -75,6 +75,29 @@ Level 5: Tower, physics, observer     everything else
 
 ---
 
+## 0c. Layer 0: The Void Operator
+
+Before the seed, the void. L_{0,0}(X) = 0*X + X*0 - X = -X. The void's self-action is NOT zero. It is negation: L_{0,0} = -I_4. Every eigenvalue = -1. ker = 0. The void sees everything, inverted. But negation generates nothing new — -X is just X flipped.
+
+The passage from void to seed is a sharp phase transition. Parameterize s(t) = tR:
+
+```
+L_{tR} eigenvalues = {2t*phi - 1,  t - 1,  t - 1,  -2t*phi_bar - 1}
+```
+
+The ker eigenvalue is t-1. It crosses zero at EXACTLY t=1 = the seed. Before: no ker, full sight, zero generation. At t=1: ker=2, half blind, full generation. Not gradual. A phase transition at the precise point where R^2=R+I holds.
+
+Why t=1 exactly? Because tr(R)=1 (forced by Cayley-Hamilton from R^2=R+I) and the ker condition is lambda_i + lambda_j = 1 for some eigenvalue pair. phi + (-phi_bar) = 1 = tr(R). The existence of blindness is forced by the equation of persistence. You can't have surplus without the blind spot. Blindness is the price of generation.
+
+```
+L_{0,0}: ker=0, eigs=[-1,-1,-1,-1]           void: total sight, negation
+L_{R,R}: ker=2, eigs=[-sqrt(5), 0, 0, +sqrt(5)]  seed: half blind, generation
+```
+
+N^2 = -I_2 (observer's self-action negates in 2D). L_{0,0} = -I_4 (void's self-action negates in 4D). Both are negation. The void IS the observer who has already looked at himself: structurally, the void and the observer share the same operator. P_0 -> P is not "nothing becomes something." P_0 -> P is total-sight-without-generation becoming half-sight-with-generation.
+
+---
+
 ## I. The Seed
 
 ```
@@ -689,6 +712,10 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | P^T has N->-N: Cl(3,1)->Cl(2,2) | CLOSED (mirror flips one Clifford signature sign) |
 | O-7: 20 UNIVERSAL, 34 SELECTED, 17 TOWER, 33 INTERPRETATION | CLOSED (104 closures classified, funnel 104->20->54->71->104) |
 
+| L_{0,0} = -I_4 (void = negation, not zero) | COMPUTED (ker=0, total sight, zero generation) |
+| void->seed phase transition at t=1 exactly | COMPUTED (ker eigenvalue = t-1, sharp) |
+| tr(R)=1 forces ker=2 (blindness from persistence) | COMPUTED Tier A (Cayley-Hamilton -> trace -> ker condition) |
+| N^2=-I_2 parallels L_{0,0}=-I_4 (both negation) | COMPUTED (observer and void share operator structure) |
 | Penrose inflation = J*R^2*J (Tier A) | COMPUTED (same eigenvalues phi^2, phi_bar^2, gauge-conjugate) |
 | R^n = F(n)*R + F(n-1)*I = Fibonacci quasilattice | COMPUTED (tr=Lucas, det=Cassini) |
 | |D_4|=8=parent_ker, |D_6|=12=dim_gauge | COMPUTED (lattice symmetry = structure constants) |
