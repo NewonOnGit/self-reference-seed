@@ -110,7 +110,12 @@ class Tower:
     # === TRANSITIONS (what changes between depths) ===
 
     def transitions(self):
-        """What changes at each depth transition."""
+        """What changes at each depth transition.
+        Includes quasicrystal inflation: each K6' step is one Penrose
+        inflation (J*R^2*J). Attenuation phi_bar^(2n) = deflation^n."""
+        from physics import quasicrystal_inflation
+        phi_bar = self.derivation["phi"] - 1
+        qi = quasicrystal_inflation(self.derivation["R"], self.derivation["J"])
         t = []
         for i in range(1, len(self.depths)):
             prev = self.depths[i-1]
@@ -121,6 +126,8 @@ class Tower:
                 "commutativity_change": prev["commutative"] != curr["commutative"],
                 "leakage_change": prev["leakage"] != curr["leakage"],
                 "new_physics": self._physics_at(i),
+                "attenuation": phi_bar ** (2 * i),
+                "inflation_is_R2": qi['inflation_is_R2'],
             })
         return t
 
@@ -415,6 +422,7 @@ class Tower:
     def self_model_limit(self):
         """Self-model eigenvectors at each depth. Converge to (1,0) in {I, s_tl}.
         Perfect self-reference = existence without content.
+        Extends observer.self_model_eigenvalues() with eigenvector tracking.
         FRAMEWORK_REF: projector limit investigation"""
         results = []
         for d in self.depths:

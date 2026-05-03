@@ -11,7 +11,12 @@ Five irreducible computer functions:
 With all five: universal computation from P²=P.
 
 Memory is not an array. Memory is a quotiented latent substrate.
-A read performs q(substrate) → visible representative.
+A read performs q(substrate) -> visible representative.
+
+Natural numbers encoded as R^n. R^n = F(n)*R + F(n-1)*I (Fibonacci).
+This encoding IS the 1D Fibonacci quasilattice (physics.fibonacci_quasilattice).
+INC = compose(R), DEC = compose(R-I). The register machine operates on
+a quasicrystal. The inflation rule R^2=R+I IS the persistence law.
 """
 import numpy as np
 import sys

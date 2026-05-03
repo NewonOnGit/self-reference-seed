@@ -485,7 +485,11 @@ def quark_f_charges():
 def ising_m34():
     """M(N_c, d^2) = M(3,4) = Ising CFT. c = ker/A = 1/2.
     All Kac table weights are framework quantities.
-    FRAMEWORK_REF: Ising bridge investigation"""
+    Lattice connection: Ising on triangular lattice has 6-fold symmetry
+    = Z[omega] hexagonal lattice, |D_6|=12=dim_gauge. The Ising CFT
+    central charge c=1/2 IS ker/A, selected by the same N_c=3 that
+    gives the hexagonal lattice its 6-fold symmetry via Z[omega].
+    FRAMEWORK_REF: Ising bridge investigation, Thm 4.7"""
     d = 2
     N_c = 3
     p, pp = N_c, d**2  # M(3,4)

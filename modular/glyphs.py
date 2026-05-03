@@ -215,6 +215,29 @@ class Glyphs:
             "|orbit|=2": True,
         }
 
+    # === HEXAGONAL SYMMETRY (Eisenstein units) ===
+
+    def hexagonal_group(self):
+        """The 6 Eisenstein units as framework matrices. Z/6 under multiplication.
+        zeta_6 = (I + sqrt(3)*N)/2 = -omega^2 generates the group.
+        These are the inner hexagon of Metatron's Cube.
+        The hexagonal lattice Z[omega] has |D_6|=12=dim_gauge.
+        FRAMEWORK_REF: Thm 4.4, Thm 4.7"""
+        from algebra import eisenstein_units
+        units, zeta = eisenstein_units(self.N)
+        # Verify closure and recognize each in canonical basis
+        names = ['I', 'zeta', 'omega', '-I', '-zeta^2', '-omega']
+        results = []
+        for i, (name, u) in enumerate(zip(names, units)):
+            form = self.recognize(u)
+            results.append({'name': name, 'matrix': u, 'canonical': form})
+        return {
+            'units': results,
+            'generator': zeta,
+            'order': len(units),
+            'closed': np.allclose(units[0], units[-1] @ zeta),  # last * zeta = first
+        }
+
     # === COMPOSITION GRAMMAR ===
 
     def canonical_basis(self):
