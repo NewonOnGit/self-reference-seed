@@ -716,18 +716,36 @@ class CompressedReturn:
         }
 
     def dynamics_load(self):
-        """Which bits are load-bearing under each dynamics.
-        L_{R,R}: freezes N,h (P3,P2). Only sigma load-bearing. 1 repair bit.
-        L_{N,N}: moves all 4 dirs. Both bits load-bearing. 2 repair bits.
-        Cross/commutator: both load-bearing. 2 repair bits.
+        """Which bits are load-bearing under each dynamics. COMPUTED.
+        Tests which basis directions {I, R_tl, N, h} are frozen (zero derivative)
+        under L_{R,R}, L_{N,N}, and L_{R,N}.
         FRAMEWORK_REF: Refusal geometry investigation"""
+        if self._d != 2:
+            return {}
+        s, N_obs = self._s, self._N
+        I2 = np.eye(2)
+        R_tl = s - 0.5 * I2
+        h_mat = np.array([[0, 1], [1, 0]]) @ N_obs  # J @ N
+        basis_names = ['I', 'R_tl', 'N', 'h']
+
+        def check_frozen(dynamics_fn):
+            """Which basis directions have zero derivative under dynamics_fn?"""
+            X_test = 0.5*I2 + 0.3*R_tl + 0.7*N_obs + 0.4*h_mat
+            dX = dynamics_fn(X_test)
+            dX_coeffs = np.linalg.solve(self._basis_mat, dX.flatten())
+            frozen = [basis_names[i] for i in range(4) if abs(dX_coeffs[i]) < 1e-10]
+            moving = 4 - len(frozen)
+            # epsilon depends on a (I-coeff), sigma on b (R_tl-coeff)
+            eps_load = abs(dX_coeffs[0]) > 1e-10  # I moves
+            sig_load = abs(dX_coeffs[1]) > 1e-10  # R_tl moves
+            repair = sum([eps_load, sig_load])
+            return {'epsilon': eps_load, 'sigma': sig_load, 'repair_bits': repair,
+                    'frozen': frozen}
+
         return {
-            'L_RR': {'epsilon': False, 'sigma': True, 'repair_bits': 1,
-                     'frozen': ['N', 'h'], 'note': 'production sees scalar-center only'},
-            'L_NN': {'epsilon': True, 'sigma': True, 'repair_bits': 2,
-                     'frozen': [], 'note': 'observation disturbs everything'},
-            'cross': {'epsilon': True, 'sigma': True, 'repair_bits': 2,
-                      'frozen': [], 'note': 'mediation needs full memory'},
+            'L_RR': check_frozen(lambda X: s @ X + X @ s - X),
+            'L_NN': check_frozen(lambda X: N_obs @ X + X @ N_obs - X),
+            'L_RN': check_frozen(lambda X: s @ X + X @ N_obs - X),
         }
 
     def __repr__(self):
@@ -964,8 +982,10 @@ class CYM:
         three framework lattices.
         FRAMEWORK_REF: Thm 4.4, Thm 4.7"""
         from algebra import discriminant_arithmetic, lattice_symmetry_orders
-        da = discriminant_arithmetic()
-        lso = lattice_symmetry_orders()
+        R = np.array([[0, 1], [1, 1]], dtype=float)
+        N = np.array([[0, -1], [1, 0]], dtype=float)
+        da = discriminant_arithmetic(R, N)
+        lso = lattice_symmetry_orders(R, N)
         return {
             'C': {'disc': da['disc_omega'], 'lattice': 'Z[omega]', 'fold': 6,
                   'symmetry_order': lso['D6_order'], 'framework': 'dim_gauge'},

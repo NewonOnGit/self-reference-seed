@@ -537,7 +537,7 @@ if __name__ == "__main__":
     checks.append(("zeta_6^6 = I", np.allclose(eu[0], np.eye(2))))
     checks.append(("zeta^3 = -I", np.allclose(eu[3], -np.eye(2))))
 
-    lso = lattice_symmetry_orders()
+    lso = lattice_symmetry_orders(d["R"], d["N"])
     checks.append(("|D_4|=8=parent_ker", lso['D4_order'] == d["parent_ker_dim"]))
     checks.append(("|D_6|=12=dim_gauge", lso['D6_order'] == d["dim_gauge"]))
     checks.append(("lcm(4,6,5)=60", lso['lcm_rotations'] == 60))
@@ -546,7 +546,7 @@ if __name__ == "__main__":
     checks.append(("J*R^2*J = inflation", ps['conjugate_by_J']))
     checks.append(("inflation eigs = phi^2,phi_bar^2", ps['same_eigenvalues']))
 
-    da = discriminant_arithmetic()
+    da = discriminant_arithmetic(d["R"], d["N"])
     checks.append(("phi(30)=8=parent_ker", da['compositum_degree'] == d["parent_ker_dim"]))
     checks.append(("|disc| sum=12=dim_gauge", da['abs_disc_sum'] == d["dim_gauge"]))
 
