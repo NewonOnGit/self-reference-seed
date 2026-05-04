@@ -698,6 +698,17 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | B-DNA 10.5 bp/turn = 2*disc + ker/A (exact) | COMPUTED (A=2*disc+1, Z=2*disc+d=dim_gauge) |
 | Eigen threshold mu*L = d*ln(phi) (3.8% for RNA) | COMPUTED (selective advantage = phi) |
 | life = P^2=P at depth 2, evolution = ker^2->im | STRUCTURAL (NASA definition = framework operations) |
+| wobble silent fraction = 2/3 = Koide Q (EXACT) | COMPUTED (third codon position loses ||N||^2/||R||^2 of info) |
+| 4-fold wobble classes = 8 = parent_ker | COMPUTED (8 of 16 prefixes fully degenerate) |
+| proofreading = d^2*disc^2 = 100x (exact) | COMPUTED (polymerase error-checking factor) |
+| mismatch repair = parent_ker*disc^3 = 1000x | COMPUTED (repair factor from pk and disc) |
+| alpha helix = 57 deg = disc*dim_gauge - N_c | COMPUTED (backbone angle IS gauge-count relation) |
+| |phi_R|-|psi| = 10 = 2*disc in alpha helix | COMPUTED (backbone angle difference = twice discriminant) |
+| icosahedron: V=12=dim_gauge, E=30, F=20=amino | COMPUTED (gauge/Clifford/biology in one polyhedron) |
+| T-numbers = Eisenstein norms, disc=5 not a T-number | COMPUTED (the discriminant hides from the lattice it created) |
+| virus capsid T in {N_c, d^2, N_c^2, dim_gauge, disc^2} | COMPUTED (capsid classification IS framework arithmetic) |
+| consonant intervals = framework ratios (d:1, N_c:d, ...) | IDENTIFIED (overtone series IS the cardinal tower) |
+| 12 semitones = dim_gauge | IDENTIFIED (octave divided by gauge algebra) |
 | 4D Ricci intertwining from L2 | GAP (so(3,1) not L2-invariant, leaks into M_8) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
