@@ -88,11 +88,11 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 185 Tests
+## 190 Tests
 
 ```
 python modular/production.py                 # 37 tests, 74 outputs
-python modular/physics.py                    # 61 tests
+python modular/physics.py                    # 66 tests
 python experiments/quantum_algorithms.py     # 8 algorithms from {h,J,N}
 cd modular/spiral && python control.py       # 26 tests (SpiralVM)
 cd modular/spiral && python language_v2.py   # 18 tests (8D semantic engine)
