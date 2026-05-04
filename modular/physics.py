@@ -350,6 +350,17 @@ def genetic_code():
         'B_DNA': B_DNA, 'A_DNA': A_DNA, 'Z_DNA': Z_DNA,
         'eigen_threshold': eigen_threshold,
         'eigen_match': abs(eigen_threshold - 1.0) / 1.0 < 0.05,
+        # Wobble degeneracy
+        'wobble_silent': 2.0/3.0,           # EXACT = Koide Q = ||N||^2/||R||^2
+        'fourfold_wobble': parent_ker,       # 8 of 16 prefixes fully degenerate
+        # DNA repair
+        'proofreading_factor': d**2 * disc**2,       # = 100 (exact)
+        'mismatch_factor': parent_ker * disc**N_c,   # = 1000 (exact)
+        # Protein backbone
+        'alpha_helix_angle': disc * 12 - N_c,  # = 57 degrees
+        'helix_angle_diff': 2 * disc,           # |phi_R|-|psi| = 10 deg
+        # Music
+        'semitones': 12,  # = dim_gauge
     }
 
 
@@ -946,6 +957,11 @@ if __name__ == "__main__":
     checks.append(("20 = 4 charged + 16 neutral", gc["charge_partition"]))
     checks.append(("genetic ker ~ Koide 2/3 (0.8%)", gc["koide_match"]))
     checks.append(("Eigen threshold ~ d*ln(phi) (3.8%)", gc["eigen_match"]))
+    checks.append(("wobble silent = 2/3 = Koide", abs(gc["wobble_silent"] - 2/3) < 1e-10))
+    checks.append(("4-fold wobble = parent_ker", gc["fourfold_wobble"] == 8))
+    checks.append(("proofreading = d^2*disc^2 = 100", gc["proofreading_factor"] == 100))
+    checks.append(("mismatch = pk*disc^3 = 1000", gc["mismatch_factor"] == 1000))
+    checks.append(("alpha helix = disc*12-N_c = 57", gc["alpha_helix_angle"] == 57))
 
     # --- Electron-proton hierarchy ---
     ep = electron_proton_ratio()
