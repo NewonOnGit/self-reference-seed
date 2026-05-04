@@ -686,6 +686,14 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | generation surjectivity depth 1+ | Tier N+ (verified d0-d3, Clifford+cross-sector structural support) |
 | Koide delta = 2/9 = ||N||^2/N_c^2 | COMPUTED (0.02% match, same number as sin(theta_Cabibbo)) |
 | m_e/m_p = (2/9)^disc = (2/9)^5 (0.49%) | COMPUTED (electron-proton ratio IS Koide^disc, F_e=10=2*disc=F_s) |
+| sin^2(theta_13) = 1/(N_c^2*disc) = 1/45 (1.0%) | COMPUTED Tier B (full chain from P through N_c and disc) |
+| sin^2(theta_23) = 1/2 + 2/45 = 47/90 (0.3%) | COMPUTED Tier B-C (ker/A + octant shift = 2*theta_13) |
+| sin^2(theta_12) = 1/N_c = 1/3 (8.6%, 2sigma) | COMPUTED Tier B (tribimaximal from S_3, needs correction) |
+| PMNS = tribimaximal + 1/45 correction | COMPUTED (CKM and PMNS connected via 1/45 = lambda/(2*disc)) |
+| Killing form on sl(2,R): sig (2,1) | COMPUTED (B(R_tl)=+10, B(N)=-8, B(h)=+8) |
+| K6' fiber gives Cl(3,1) at depth 2 (not naive sum) | COMPUTED (N1=[[N,-2h],[0,N]] flips effective signature) |
+| Lambda = disc/2 persists exactly at depth 2 | COMPUTED (L2(s2_tl) = 2.5*I_8 to machine precision) |
+| 4D Ricci intertwining from L2 | GAP (so(3,1) not L2-invariant, leaks into M_8) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
 | dN_cross/dmu at phi^-1 = sqrt(disc) | COMPUTED (cross-field derivative IS sqrt(5) at threshold) |
