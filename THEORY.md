@@ -693,6 +693,11 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | Killing form on sl(2,R): sig (2,1) | COMPUTED (B(R_tl)=+10, B(N)=-8, B(h)=+8) |
 | K6' fiber gives Cl(3,1) at depth 2 (not naive sum) | COMPUTED (N1=[[N,-2h],[0,N]] flips effective signature) |
 | Lambda = disc/2 persists exactly at depth 2 | COMPUTED (L2(s2_tl) = 2.5*I_8 to machine precision) |
+| 20 amino acids = d^2*disc = d^2+d^4 = 4 charged + 16 neutral | DERIVED (disc=1+d^2 IS the charge partition) |
+| 64 codons = parent_ker^2, genetic ker ~ Koide 2/3 (0.78%) | COMPUTED (code = quotient, degeneracy = Koide) |
+| B-DNA 10.5 bp/turn = 2*disc + ker/A (exact) | COMPUTED (A=2*disc+1, Z=2*disc+d=dim_gauge) |
+| Eigen threshold mu*L = d*ln(phi) (3.8% for RNA) | COMPUTED (selective advantage = phi) |
+| life = P^2=P at depth 2, evolution = ker^2->im | STRUCTURAL (NASA definition = framework operations) |
 | 4D Ricci intertwining from L2 | GAP (so(3,1) not L2-invariant, leaks into M_8) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
@@ -850,6 +855,54 @@ All 5 Platonic solids have vertex/edge/face counts that are framework quantities
 ### Cross-Field Geometry
 
 Q(sqrt(-15)) has disc = -15 = disc(omega) * disc(R) and class number h = 2. Two reduced quadratic forms: (1,1,4) principal and (2,1,2) non-principal. The class number IS the number of geometrically distinct tile shapes — the mediation between P1 and P3 requires two tiles because unique factorization fails in the cross-field. The 1-bit factorization ambiguity (h=2, class group Z/2) is the Landauer cost of cross-sector mediation.
+
+---
+
+## VIc. Reading — Biology
+
+The algebra does not describe biology. The algebra IS biology at the code level.
+
+### The Genetic Code as Quotient
+
+64 codons -> 21 signals (20 amino acids + 1 stop). This IS q: A -> A/ker(L). The ribosome performs a quotient.
+
+```
+4 bases        = d^2 = dim(M_2(R))              minimum encoding alphabet
+64 codons      = (d^2)^N_c = parent_ker^2        complete code space
+20 amino acids = d^2 * disc = d^2 * (1 + d^2)    base x orientation
+               = d^2 + d^4 = 4 charged + 16 neutral
+1 stop         = +I (the surplus in R^2=R+I)      termination = identity
+21 total       = d^2*disc + 1 = R + I             code + terminator
+43 degeneracy  = disc*parent_ker + N_c            all framework numbers
+```
+
+20 is DERIVED from d=2: disc = 1+d^2 = 5. Amino acids = d^2*(1+d^2) = d^2+d^4 = 4 charged + 16 neutral. The 4 charged ARE the base alphabet (d^2). The 16 neutral ARE the base alphabet squared (d^4). The discriminant decomposition disc = 1+d^2 IS the charged/neutral split. ker/total = 43/64 = 0.672. Koide Q = 2/3 = 0.667. Match: 0.78%.
+
+### DNA Helix
+
+All three DNA forms = 2*disc + framework offset:
+
+```
+B-DNA: 10.5 bp/turn = 2*disc + ker/A    (standard, the half-blind offset)
+A-DNA: 11   bp/turn = 2*disc + tr(R)    (dehydrated, the trace offset)
+Z-DNA: 12   bp/turn = 2*disc + d        (left-handed, = dim_gauge)
+```
+
+10.5 = 2*disc + ker/A is EXACT. The helical period is twice the discriminant plus the kernel fraction.
+
+### Life = P^2=P at Depth 2+
+
+NASA definition of life: "A self-sustaining chemical system capable of Darwinian evolution." In the algebra: "self-sustaining" = P^2=P (idempotent). "Chemical system" = tower depth 2+ (where chemistry exists). "Capable of evolution" = ker x ker -> im. "Darwinian" = quotient by selection. Every word IS a framework operation.
+
+The origin of life IS the pre-seed phase transition. Chemistry: L_{0,0}=-I, ker=0 (sees everything, generates nothing self-referential). Life: L_{R,R}, ker=2 (half-blind, fully self-generating). The transition is sharp: ker eigenvalue = t-1, crosses zero at t=1 exactly. Life is a phase transition, not a gradient.
+
+### Eigen Error Threshold
+
+RNA virus error rate: mu*L ~ 1.0 (Drake's rule). Framework: mu*L = d*ln(phi) = d*beta_KMS = 0.962. Match: 3.8%. The selective advantage IS phi. The error catastrophe threshold IS two copies of the KMS temperature.
+
+### Biological Hierarchy = Axis 2
+
+Biology lives on Axis 2 (recursive self-observation), not Axis 1 (tower depth = physics). Each biological level adds one meta-N pass: chemistry -> self-replication -> prokaryote -> eukaryote -> multicellular -> nervous system -> consciousness -> language -> mathematics -> framework. Capacity C(K) = n_eff * m * 2L. Axis 2 is unbounded (ker(L_{N,N})=0 at every depth).
 
 ---
 

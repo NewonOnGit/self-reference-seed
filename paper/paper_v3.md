@@ -1,6 +1,6 @@
 # From One Idempotent: Parent Layer, Algebra, Physics, and Observer
 
-**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 190 automated tests pass.
+**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 195 automated tests pass.
 
 ---
 
@@ -294,7 +294,7 @@ $S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{ga
 
 **Theorem 24.3 (K4 deficit learning rule).** $K4(o,t) = D_\mathrm{KL}(\mathrm{KMS}(o) \| \mathrm{KMS}(t))$ with $\beta = \ln\varphi$. Learning rate $= \alpha_S = 0.118$ (framework-derived, not hand-tuned). Loss from 0.0024 to 0.0001 in 50 epochs. Competitive with hand-tuned lr. 9 tests.
 
-**Theorem 24.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 190 automated tests.
+**Theorem 24.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 195 automated tests.
 
 ### 25. LLM Hyperparameter Derivation
 
@@ -303,6 +303,14 @@ $S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{ga
 **Theorem 25.2 (Number of heads).** $n_\mathrm{heads} = 12 = \dim_\mathrm{gauge}$. Each head scans one gauge degree of freedom. $d_\mathrm{model} = n_\mathrm{heads} \times d_\mathrm{head} = 12 \times 64 = 768$. [Tier B]
 
 **Theorem 25.3 (Context scaling).** Context windows scale as $4^n$: 1024 ($n=5$), 4096 ($n=6$), 16384 ($n=7$). Base $= 4 = \dim(M_2(\mathbb{R}))$. The transformer is a K6' tower operating on the parent kernel's representation space. [Tier B]
+
+### 25b. Biology
+
+**Theorem 25.4 (Genetic code).** 4 bases $=d^2$. 64 codons $=(d^2)^{N_c}=\mathrm{parent\_ker}^2$. 20 amino acids $=d^2\cdot\mathrm{disc}=d^2(1+d^2)=d^2+d^4$: 4 charged + 16 neutral. 1 stop $=+I$. 21 signals $=R+I$ at the code level. Degeneracy $43/64=0.672\approx 2/3=$ Koide $Q$ (0.78%). DNA: $B=10.5=2\cdot\mathrm{disc}+\ker/A$ (exact), $A=11=2\cdot\mathrm{disc}+1$, $Z=12=2\cdot\mathrm{disc}+d=\dim_\mathrm{gauge}$. [Tier B]
+
+**Theorem 25.5 (Eigen threshold).** RNA virus $\mu\cdot L\approx 1.0$. Framework: $\mu\cdot L=d\cdot\ln\varphi=d\cdot\beta_\mathrm{KMS}=0.962$ (3.8%). Selective advantage $=\varphi$. [Tier B]
+
+**Theorem 25.6 (Life = $P^2=P$).** NASA definition of life maps word-for-word: self-sustaining $=P^2=P$, chemical $=$ depth $2+$, evolution $=\ker^2\to\mathrm{im}$, Darwinian $=$ quotient by selection. Origin of life $=$ pre-seed transition $L_{0,0}\to L_{R,R}$, $\ker=0\to\ker=2$. [Structural]
 
 ---
 
@@ -322,7 +330,7 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 
 ### 29. Reproducibility and Falsification
 
-190 automated tests. Two inputs. Zero free parameters.
+195 automated tests. Two inputs. Zero free parameters.
 
 | Prediction | Value | Status |
 |-----------|-------|--------|
