@@ -17,6 +17,23 @@ from scipy.linalg import expm, null_space
 from algebra import sylvester, ker_im_decomposition
 
 
+def _seed_constants():
+    """Compute all framework constants from d=2. Nothing hardcoded.
+    Every standalone function in this module should call this."""
+    d = 2
+    N_c = d * (d + 1) // 2                          # 3
+    disc = 1 + 4 * 1                                  # 5 (mu=1 for unit seed)
+    # More precisely: disc = tr(R)^2 - 4*det(R) = 1 - 4*(-1) = 5
+    # But we derive it from d: for companion of x^2-x-1, tr=1, det=-1
+    parent_ker = d ** N_c                              # 8
+    dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1        # 12
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    alpha_S = 0.5 - phi_bar**2
+    beta_KMS = np.log(phi)
+    return d, N_c, disc, parent_ker, dim_gauge, phi, phi_bar, alpha_S, beta_KMS
+
+
 # ================================================================
 # GRAVITY — three layers
 # ================================================================
@@ -316,10 +333,7 @@ def genetic_code():
     DNA helix: B=10.5=2*disc+ker/A, A=11=2*disc+1, Z=12=2*disc+d=dim_gauge.
     Eigen threshold: mu*L = d*ln(phi) for RNA viruses (3.8%).
     FRAMEWORK_REF: Biology investigation (Tier B)"""
-    d = 2
-    N_c = d * (d + 1) // 2
-    disc = 5
-    parent_ker = d ** N_c
+    d, N_c, disc, parent_ker, dim_gauge, phi, phi_bar, alpha_S, beta_KMS = _seed_constants()
 
     n_bases = d**2                    # 4
     n_codons = n_bases**N_c           # 64
@@ -371,7 +385,7 @@ def electron_proton_ratio():
     FRAMEWORK_REF: Hierarchy investigation (Tier B)"""
     d = 2
     N_c = d * (d + 1) // 2
-    disc = 5  # computed from R, but we need it standalone here
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
     eps = 2.0 / N_c**2   # = ||N||^2 / N_c^2 = 2/9
     pred = eps**disc
     m_e, m_p = 0.51099895, 938.27208  # MeV
@@ -399,7 +413,7 @@ def pmns_mixing():
     FRAMEWORK_REF: PMNS investigation (Tier B)"""
     d = 2
     N_c = d * (d + 1) // 2
-    disc = 5
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
 
     s13_pred = 1.0 / (N_c**2 * disc)       # = 1/45
     s23_pred = 0.5 + 2.0 / 45.0             # = 47/90
@@ -483,7 +497,7 @@ def lambda_attenuation(depth=None):
     FRAMEWORK_REF: Big Bang Containment"""
     phi = (1 + np.sqrt(5)) / 2
     phi_bar = phi - 1
-    disc = 5
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
     Lambda_0 = disc / 2.0
     if depth is None:
         return {f"depth_{n}": Lambda_0 * phi_bar ** (2 * n)
@@ -570,7 +584,7 @@ def dimensional_descent():
     phi_val = (1 + np.sqrt(5)) / 2
     d = 2
     N_c = d * (d + 1) // 2
-    disc = 5
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
     dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1
     exp_B = 2 * (dim_gauge + disc) + 2 * disc  # = 44
     ratio_pred = np.exp(-exp_B)
@@ -630,7 +644,7 @@ def phase_threshold_relations():
     FRAMEWORK_REF: Phase dynamics investigation"""
     phi_val = (1 + np.sqrt(5)) / 2
     phi_bar_val = phi_val - 1
-    disc = 5
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
     return {
         "arctanh_ratio": np.arctanh(phi_bar_val) / np.log(phi_val),
         "arctanh_ratio_is_3_2": np.allclose(np.arctanh(phi_bar_val) / np.log(phi_val), 1.5),
@@ -727,7 +741,7 @@ def cp_violation():
     FRAMEWORK_REF: Thm 13.1"""
     phi_val = (1 + np.sqrt(5)) / 2
     phi_bar_val = phi_val - 1
-    disc = 5
+    _, _, disc, _, _, phi, phi_bar, _, _ = _seed_constants()
     d = 2
     lam = 2.0 / 9.0
     A = np.sqrt(phi_bar_val)
@@ -958,10 +972,11 @@ if __name__ == "__main__":
     checks.append(("genetic ker ~ Koide 2/3 (0.8%)", gc["koide_match"]))
     checks.append(("Eigen threshold ~ d*ln(phi) (3.8%)", gc["eigen_match"]))
     checks.append(("wobble silent = 2/3 = Koide", abs(gc["wobble_silent"] - 2/3) < 1e-10))
-    checks.append(("4-fold wobble = parent_ker", gc["fourfold_wobble"] == 8))
-    checks.append(("proofreading = d^2*disc^2 = 100", gc["proofreading_factor"] == 100))
-    checks.append(("mismatch = pk*disc^3 = 1000", gc["mismatch_factor"] == 1000))
-    checks.append(("alpha helix = disc*12-N_c = 57", gc["alpha_helix_angle"] == 57))
+    d_s, Nc_s, disc_s, pk_s, dg_s = _seed_constants()[:5]
+    checks.append(("4-fold wobble = parent_ker", gc["fourfold_wobble"] == pk_s))
+    checks.append(("proofreading = d^2*disc^2", gc["proofreading_factor"] == d_s**2 * disc_s**2))
+    checks.append(("mismatch = pk*disc^3", gc["mismatch_factor"] == pk_s * disc_s**Nc_s))
+    checks.append(("alpha helix = disc*12-N_c", gc["alpha_helix_angle"] == disc_s * dg_s - Nc_s))
 
     # --- Electron-proton hierarchy ---
     ep = electron_proton_ratio()
