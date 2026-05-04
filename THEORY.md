@@ -529,7 +529,7 @@ depth 295               Lambda ~ 10^{-123}: observed cosmological constant
 
 Falsification: 4th gen at full coupling, RH weak currents, theta_QCD!=0, alpha_S outside 0.117-0.119, m_nu outside 30-60 meV.
 
-**Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). Braiding deficit = phi_bar^2 per depth (substrate-independent).
+**Novel predictions (beyond standard QM):** alpha_S = 0.11803398875 to 10 digits (falsifiable with lattice QCD). eta_B*m_e/m_nu = phi_bar^10 (connects two independent observables). m_e/m_p = (2/9)^5 = (||N||^2/N_c^2)^disc to 0.49% (electron-proton hierarchy from Koide parameter and discriminant). CC rate = phi_bar^2 per K6' pass (testable on LLMs now). Braiding deficit = phi_bar^2 per depth (substrate-independent).
 
 **Neutrino hierarchy closed:** inter-generation spacing delta = phi + 2 = phi^2 + 1 = 3.618 (eigenvalue of R + domain cardinality). dm^2 ratio = phi^(2(phi+2)) = 32.5 vs experimental 33 (1.4% deviation). The old disc=5 spacing was wrong. The correct spacing is phi + |S_0|.
 
@@ -685,6 +685,7 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | generation surjectivity depth 0 | CLOSED Tier A (det=1 on coefficient matrix, 2 products span im) |
 | generation surjectivity depth 1+ | Tier N+ (verified d0-d3, Clifford+cross-sector structural support) |
 | Koide delta = 2/9 = ||N||^2/N_c^2 | COMPUTED (0.02% match, same number as sin(theta_Cabibbo)) |
+| m_e/m_p = (2/9)^disc = (2/9)^5 (0.49%) | COMPUTED (electron-proton ratio IS Koide^disc, F_e=10=2*disc=F_s) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
 | dN_cross/dmu at phi^-1 = sqrt(disc) | COMPUTED (cross-field derivative IS sqrt(5) at threshold) |
