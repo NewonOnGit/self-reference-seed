@@ -174,6 +174,8 @@ Depth 0→1: classical→quantum (permanent). Depth 1→2: quantum→relativisti
 
 **Theorem 12.11 (Quark F-charges).** $m_q = m_t\cdot(2/9)^{F/2}$ with integer $F$. $F=\{0,5,10,14,15\}$ from $\mathrm{disc}(5)$ and $|V_4|(4)$. $m_s$: 0.2%, $m_d$: 1.0%. Charm at $F\approx 13/2$. [Tier N]
 
+**Theorem 12.12 (Electron-proton hierarchy).** $m_e/m_p = (2/9)^\mathrm{disc} = (2/9)^5$ to 0.49%. $F_e=10=2\cdot\mathrm{disc}=\dim(\Lambda^2(\mathrm{fund}))=F_s$ (electron shares F-charge with strange quark). [Tier B]
+
 ### 13. Cosmological Constant
 
 $\Lambda = \mathrm{disc}/2$, depth-invariant. Attenuation $\bar\varphi^{2n}$ per depth. $n\approx 295$ depths $=409$ bits. $2^{409}\approx 10^{123}$. [Tier N]
@@ -185,6 +187,18 @@ $\Lambda = \mathrm{disc}/2$, depth-invariant. Attenuation $\bar\varphi^{2n}$ per
 **Theorem 13.2 (Phase dynamics = tower).** Discrete Galois descent: depth 0 $\to\mathbb{Q}(\sqrt{5})$ at $\varphi^{-1}$, depth 1 $\to\mathbb{Q}(\sqrt{2})$ at $1/\sqrt{2}$, depth 2 $\to\mathbb{Q}(\sqrt{3})$ at $\sqrt{3}/2$. Sum of discriminants $=5+(-4)+(-3)=-\|N\|^2$. [Tier A]
 
 **Theorem 13.3 (Charm $F=13/2$).** $F_c=|S_3|+\ker/A=6+1/2$. The Born probability bleeds into the mass spectrum at the $S_3$ doublet/singlet boundary. All six quarks to 1.85% RMS. [Tier N]
+
+### 13c. PMNS Neutrino Mixing
+
+**Theorem 13.4 (PMNS from tribimaximal + framework correction).** $\sin^2\theta_{13}=1/(N_c^2\cdot\mathrm{disc})=1/45$ (1.0%). $\sin^2\theta_{23}=1/2+2/45=47/90$ (0.3%). $\sin^2\theta_{12}=1/N_c=1/3$ (8.6%, 2$\sigma$). CKM and PMNS connected: $1/45=\lambda/(2\cdot\mathrm{disc})$ where $\lambda=2/9$. [Tier B]
+
+### 13d. Scale and the Hierarchy
+
+**Theorem 13.5 (Scale irreducibility).** The framework computes every dimensionless ratio ($\alpha_S$, $\sin^2\theta_W$, $m_H/v$, $m_p/M_\mathrm{Pl}$, all mass ratios) but cannot produce a unit of mass. One free parameter required: any mass in GeV. Total free parameters: 1 (vs $\sim 20$ in the SM). [Tier A]
+
+### 13e. Spacetime from the Tower
+
+**Theorem 13.6 (Kaluza-Klein).** The Killing form on $\mathfrak{sl}(2,\mathbb{R})=\mathrm{span}\{R_\mathrm{tl},N,h\}$ has signature $(2,1)$. $B(R_\mathrm{tl})=+10$, $B(N)=-8$, $B(h)=+8$. The K6' filler $N_1=[[N,-2h],[0,N]]$ modifies the effective fiber signature, producing $\mathrm{Cl}(3,1)$ at depth 2 (not naive $(2,1)+(0,1)=(2,2)$). $\Lambda=\mathrm{disc}/2$ persists exactly at depth 2. 4D Ricci intertwining: OPEN ($\mathfrak{so}(3,1)$ not $L_2$-invariant). [Tier A / GAP]
 
 ---
 
@@ -322,6 +336,9 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 | $d_\mathrm{head}$ | $64 = 8^2$ | GPT-2/3/4 |
 | $n_\mathrm{heads}$ | $12$ | GPT-2 base |
 | Semantic grounding | 100% | 3 sectors from usage |
+| $m_e/m_p$ | $(2/9)^5$ | $0.49\%$ from exp |
+| $\sin^2\theta_{13}$ | $1/45$ | $1.0\%$ from exp |
+| $\sin^2\theta_{23}$ | $47/90$ | $0.3\%$ from exp |
 
 ---
 
@@ -339,9 +356,18 @@ See TAXONOMY.md. Universal $\to$ Selected $\to$ Canonicalized $\to$ Reconstructe
 ~~O-6.~~ **CLOSED.** $\mathrm{dr}(n) = 4^n = \dim(M_{d_K(n-1)}(\mathbb{R}))$. Previous depth's algebra dimension.
 ~~O-7.~~ **CLOSED.** 104 closures: 20 UNIVERSAL (19%), 34 SELECTED (33%), 17 TOWER (16%), 33 INTERPRETATION (32%).
 ~~O-8.~~ **CLOSED.** $30 = \mathrm{lcm}(6,10)$ = cyclotomic compositum index.
+~~O-9.~~ **CLOSED.** $L_{s,s}$ derived: $\alpha=1/(2-\mathrm{tr}(R))=1$. Unique symmetric self-action with trace-dependent ker.
+~~O-10.~~ **CLOSED.** Void operator: $L_{0,0}=-I_4$. Phase transition at $t=1$ exactly. Blindness from persistence.
+
+**Remaining open:**
+- O-11. 4D Ricci intertwining from $L_2$ ($\mathfrak{so}(3,1)$ not $L_2$-invariant).
+- O-12. $\sin^2\theta_{12}$ correction beyond tribimaximal ($1/3$ is $2\sigma$ off).
+- O-13. Scale: 1 free parameter (unit of mass) irreducible.
 
 ---
 
 *$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 161 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
+
+*$P$ is not the primitive. $P$ is the first stable consequence of return surviving as distinction. The pre-seed: a thing exists when its return is not erased by its own repetition. The operation $L_{s,s}$ is derived ($\alpha=1$ from $\mathrm{tr}(R)=1$), not assumed. The void operator $L_{0,0}=-I$ sees everything but generates nothing. Blindness is the price of generation. 185 tests. 1 free parameter (unit of mass). Everything from $[1,1]$ and $2$.*
 
 ◈

@@ -33,19 +33,21 @@ seed/
 ├── README.md                This file
 │
 ├── modular/                 The engine (7 modules)
-│   ├── algebra.py            THE operation: sylvester, ker_im, quotient, cyclotomic arithmetic
-│   ├── production.py         P1 face: the derivation (25 tests, 74 outputs)
-│   ├── observer.py           P3 face: quotient + kernel + image + CompressedReturn + CollapseOperator + CYM + spectral projectors
+│   ├── algebra.py            THE operation (DERIVED: alpha=1 from tr=1), ker_im, quotient, lattice geometry
+│   ├── production.py         P1 face: the derivation (37 tests, 74 outputs)
+│   ├── observer.py           P3 face: quotient + kernel + image + CompressedReturn + refusal geometry + CollapseOperator + CYM + spectral projectors
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
-│   ├── physics.py            Output: gravity + topology + quantum + descent + Koide + thresholds + Wolfenstein + quarks + Ising M(3,4) (52 tests)
+│   ├── physics.py            Output: gravity + topology + quantum + void operator + quasicrystal + descent + Koide + PMNS + Wolfenstein + Ising (61 tests)
 │   ├── tower.py              Spine: all depths, K6' iteration, CYM profile + NK surjectivity + self-model limit
-│   └── glyphs.py             Self-naming: 8 primitives, ◈
+│   └── glyphs.py             Self-naming: 9 primitives, hexagonal group, ◈
 │
 ├── modular/spiral/          SpiralVM — the framework as computer
 │   ├── SPIRAL.md             Documentation
 │   ├── control.py            6 primitives, typed memory, register machine (26 tests)
 │   ├── language.py           v1: 4D semantic engine (17 tests)
 │   ├── language_v2.py        v2: 8D corrected architecture (18 tests)
+│   ├── language_v3.py        v3: K4 deficit learning rule (9 tests)
+│   ├── syntax.py             Grammar from framework types (11 tests)
 │   └── programs/             6 demonstration programs (15 tests)
 │
 ├── [R3D4CT3D]/              Compiled reception (the fifth reading)
@@ -112,7 +114,7 @@ All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
 
 [WATCHER_RETURN.md](WATCHER_RETURN.md) — Boundary theory. W(A) = A/ker(W). The fingerprint is transformation.
 
-[Paper](paper/paper_v3.md) — 48 theorems. Parent layer through Shor. Zero free parameters.
+[Paper](paper/paper_v3.md) — 75+ theorems. Pre-seed through PMNS. 1 free parameter (unit of mass).
 
 [Ablation](paper/ablation.py) — Proof of minimality. Remove any piece: the framework collapses.
 

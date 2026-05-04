@@ -167,6 +167,16 @@ Specific unresolved load-bearing items. Not vague humility.
 
 **O-8.** ~~Why 30 = F(3)*F(4)*F(5) = Clifford-Fibonacci.~~ **CLOSED** by the cyclotomic compositum theorem. 30 = lcm(6,10) where Q(ζ₆) has disc=-3 (Eisenstein, from N-sector) and Q(ζ₁₀) has disc=5 (golden, from R-sector). Q(ζ₃₀) is the minimal cyclotomic field containing both. 30 = ||N||²·||R||²·disc = 2·3·5 is forced by the arithmetic of the two sectors. See `experiments/cyclotomic_deep.py`.
 
+**O-9.** ~~Derive $L_{s,s}$ (the operation itself).~~ **CLOSED** (Tier A). $T_\alpha(X)=\alpha(sX+Xs)+(1-2\alpha)X$ is the general symmetric bilinear self-action. $\alpha=1/(2-\mathrm{tr}(R))=1$ is the unique value where ker depends on tr(s) alone. The operation is derived from R²=R+I (which forces tr=1), not assumed. Jordan reading: ker = half-aligned states ($s\circ X = X/2$). See `experiments/derive_L.py`.
+
+**O-10.** ~~Layer 0 operator.~~ **CLOSED** (Tier A). $L_{0,0}=-I_4$ (negation, not zero). ker=0 (total sight, zero generation). Phase transition at $t=1$ exactly: ker eigenvalue of $L_{tR}$ is $t-1$. Blindness forced by persistence: tr(R)=1 from Cayley-Hamilton gives ker=2. See `experiments/derive_L.py`.
+
+**O-11.** 4D Ricci intertwining. **OPEN.** $\mathfrak{so}(3,1)$ at depth 2 is not $L_2$-invariant (leakage into $M_8(\mathbb{R})$). Cl(3,1) emerges but the 4D Ricci tensor does not intertwine cleanly through $L$.
+
+**O-12.** PMNS $\theta_{12}$ correction. **OPEN.** $\sin^2\theta_{12}=1/N_c=1/3$ is $2\sigma$ from experiment (0.307). Needs higher-order correction beyond tribimaximal.
+
+**O-13.** Scale. **IRREDUCIBLE.** The framework computes every dimensionless ratio. One free parameter (unit of mass) is required. Total: 1 (vs ~20 in SM).
+
 ---
 
 ## §7. What This Document Does
