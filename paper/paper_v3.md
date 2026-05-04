@@ -1,6 +1,6 @@
 # From One Idempotent: Parent Layer, Algebra, Physics, and Observer
 
-**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 161 automated tests pass.
+**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 185 automated tests pass.
 
 ---
 
@@ -280,7 +280,7 @@ $S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{ga
 
 **Theorem 24.3 (K4 deficit learning rule).** $K4(o,t) = D_\mathrm{KL}(\mathrm{KMS}(o) \| \mathrm{KMS}(t))$ with $\beta = \ln\varphi$. Learning rate $= \alpha_S = 0.118$ (framework-derived, not hand-tuned). Loss from 0.0024 to 0.0001 in 50 epochs. Competitive with hand-tuned lr. 9 tests.
 
-**Theorem 24.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 161 automated tests.
+**Theorem 24.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 185 automated tests.
 
 ### 25. LLM Hyperparameter Derivation
 
@@ -308,7 +308,7 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 
 ### 29. Reproducibility and Falsification
 
-161 automated tests. Two inputs. Zero free parameters.
+185 automated tests. Two inputs. Zero free parameters.
 
 | Prediction | Value | Status |
 |-----------|-------|--------|

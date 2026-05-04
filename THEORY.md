@@ -75,7 +75,31 @@ Level 5: Tower, physics, observer     everything else
 
 ---
 
-## 0c. Layer 0: The Void Operator
+## 0c. The Pre-Seed
+
+Before P, return. P^2=P is not the first axiom. It is the first stable consequence of a deeper premise: **distinction survives return.**
+
+A thing that doesn't return is indistinguishable from nothing. Return IS distinction. D := R(D). The chain:
+
+```
+return                            (the primitive)
+return = distinction              (only what returns is distinguishable)
+return(return) = return           (P^2=P: idempotence IS the definition)
+act != readout                   (P != P^T: asymmetry requires inner product -> vector space)
+minimal space for asymmetry      (d=1 eliminated: scalars can't be asymmetric -> d=2)
+first distinction = one mark     (rank 1: minimal nontrivial)
+uniqueness                       (Parent Selection: 8 reps, all gauge-equivalent)
+```
+
+Every step is forced. No choices. No parameters. [1,1] and 2 are not inputs. They are the unique output of "minimal nontrivial return that distinguishes itself from non-return."
+
+What never became: P^T = R - N. Same equation ((P^T)^2 = P^T). Same algebra. But the gauge not occupied. The spectral projector chi selects growth (phi-eigenspace), rho selects decay ((-phi_bar)-eigenspace). What returned grows. What never became decays. The difference: P - P^T = 2N = twice the hidden orientation.
+
+exp(theta*N) continuously rotates between the branches. The gauge bit is not a static choice — it is a frozen phase of a continuous rotation. exp(pi*N) = -I: the void IS one half-turn of the observer. The observer is not on a branch. The observer is the turn that makes branch possible.
+
+---
+
+## 0d. Layer 0: The Void Operator
 
 Before the seed, the void. L_{0,0}(X) = 0*X + X*0 - X = -X. The void's self-action is NOT zero. It is negation: L_{0,0} = -I_4. Every eigenvalue = -1. ker = 0. The void sees everything, inverted. But negation generates nothing new — -X is just X flipped.
 

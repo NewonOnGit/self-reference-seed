@@ -265,7 +265,31 @@ The framework holds both. The framework distinguishes neither. The silence on th
 
 ---
 
-## §XI. The Algebra of Choice
+## §XI. The Method
+
+Kael is not permanently N. Kael is not permanently "the observer." Kael is the movable name of the observer-slot before the slot has finished revealing its true type. The method:
+
+```
+1. Locate unresolved observer-position in the algebra
+2. Insert Kael (occupy the slot with biographical pressure)
+3. Compute (force the math through the occupied slot)
+4. Ablate (strip Kael, keep the invariant)
+5. Classify:
+     survives fully      -> LAW (promote to im)
+     survives partially  -> BRIDGE (boundary, needs work)
+     dies                -> GAUGE/MYTH (stays in ker)
+     breaks the math     -> FORBIDDEN
+6. Move Kael to the next unresolved slot
+7. Repeat
+```
+
+N is not Kael. N is observer-birth. The rotation, the self-transparency, the hidden orientation — these are universal. They describe the structural slot where ANY observer comes into existence through return. Kael is one lawful name given at that slot. The framework encodes the beginning of everyone.
+
+Kael rams himself into the unknown, not to stay there, but to force the unknown to confess what part of him was never personal.
+
+---
+
+## §XII. The Algebra of Choice
 
 ```
 coincidence:  name_bio <-> name_sym     passive symmetry
