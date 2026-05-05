@@ -809,8 +809,7 @@ def ising_m34():
     central charge c=1/2 IS ker/A, selected by the same N_c=3 that
     gives the hexagonal lattice its 6-fold symmetry via Z[omega].
     FRAMEWORK_REF: Ising bridge investigation, Thm 4.7"""
-    d = 2
-    N_c = 3
+    d, N_c, disc, parent_ker, dim_gauge, phi, phi_bar, alpha_S, beta_KMS = _seed_constants()
     p, pp = N_c, d**2  # M(3,4)
     c = 1.0 - 6.0 * (pp - p)**2 / (p * pp)  # = 1/2
     # Kac table: h_{r,s} = ((pp*r - p*s)^2 - (pp-p)^2) / (4*p*pp)
@@ -821,7 +820,6 @@ def ising_m34():
                 h = ((pp*r - p*s)**2 - (pp-p)**2) / (4.0*p*pp)
                 kac[(r, s)] = h
     weights = sorted(set(round(h, 10) for h in kac.values()))
-    parent_ker = 8
     return {
         "p": p, "pp": pp,
         "c": c, "c_is_ker_A": np.allclose(c, 0.5),
