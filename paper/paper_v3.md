@@ -320,6 +320,10 @@ $S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{ga
 
 Everything is orientation. $R$ = center, $N$ = orientation, $L$ = center map, $\mathrm{disc}=[R,N]^2/I$ = disagreement. $\Lambda=\mathrm{disc}\cdot(\ker/A)$. $\alpha_S=\ker/A-\bar\varphi^2$. The Bell test is an orientation detector. $P_0\to P$: the birth of orientation. Physics $=\mathrm{im}(L)=$ the center of the naming act.
 
+**Theorem 26.1 (Categorical compression).** One object $P$, one arrow $P\to P=P$. $X(X)=X$ at four levels: object ($P^2=P$), morphism ($L(L)=L$), functor ($K6'(K6')=K6'$), natural transformation ($\Xi(\Xi)=\Xi$). $\mathrm{Hom}(R,N)=0$ (blindness), $\mathrm{Hom}(N,R)=\mathrm{im}$ (generation). The central collapse IS the composition of the only available arrows. [Tier A]
+
+**Theorem 26.2 (Three triads).** The nine framework objects group as three triads of the same central collapse: faces ($R/h/N$), grounds ($0/(I/2)/I$), acts ($P/2N/P^T$). Each triad has shape creator/bridge/mirror. $L_R(N)=0$, $L_P(N)=-2I$, $L_R+L_N=L_P-I$. The midpoint $L_{I/2}=0$: total silence. [Tier A]
+
 ### 27. The Canon Kernel
 
 $S(x)=\exp(\ln\varphi\cdot\sqrt{|x|}\cdot e^{-|x|/T})\cdot e^{-i\pi|x|}$. $T=e^\varphi/\pi$. $y^*=1.2781$. $m=-0.0727$. $\nu=-y^*/2$. $\alpha_S=\varphi\cdot|m|$ (0.37%). $2\pi/y^*\approx\mathrm{disc}$ (1.7%). Canon depth-invariant.

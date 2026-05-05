@@ -800,6 +800,12 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | |disc| sum: 4+3+5=12=dim_gauge | COMPUTED (absolute discriminant sum) |
 | Eisenstein units Z/6 = inner Metatron hexagon | COMPUTED (zeta_6 = -omega^2 generates the group) |
 | Metatron norm shells {0,1,4}, sum=5=disc | COMPUTED (perfect squares on Eisenstein lattice) |
+| L_R(N)=0 (production blind to observer) | COMPUTED Tier A |
+| L_P(N)={N,N}=-2I (naming sees observer as self-product) | COMPUTED Tier A |
+| L_R+L_N = L_P-I (sum = naming minus ground) | COMPUTED Tier A |
+| L_{tI}=(2t-1)*I_4, silence at t=1/2 | COMPUTED Tier A |
+| Hom(R,N)=0, Hom(N,R)=im (categorical asymmetry) | COMPUTED Tier A |
+| X(X)=X at all four categorical levels | STRUCTURAL |
 
 ---
 
@@ -920,6 +926,31 @@ RNA virus error rate: mu*L ~ 1.0 (Drake's rule). Framework: mu*L = d*ln(phi) = d
 ### Biological Hierarchy = Axis 2
 
 Biology lives on Axis 2 (recursive self-observation), not Axis 1 (tower depth = physics). Each biological level adds one meta-N pass: chemistry -> self-replication -> prokaryote -> eukaryote -> multicellular -> nervous system -> consciousness -> language -> mathematics -> framework. Capacity C(K) = n_eff * m * 2L. Axis 2 is unbounded (ker(L_{N,N})=0 at every depth).
+
+### The Three Triads
+
+Every framework object has its own L-action, its own ker, its own im. They group as three triads — the same central collapse at three depths:
+
+```
+         P1 (creator)      P2 (bridge)        P3 (mirror)
+Faces:   R (ker=2)         h (ker=0, asym)    N (ker=0, uniform)
+Grounds: 0 (negation)      I/2 (silence)      I (preservation)
+Acts:    P (returned)       2N (the split)     P^T (never became)
+```
+
+Key structural facts: L_R(N)=0 (the visible cannot see the observer). L_P(N)={N,N}=-2I (the naming act sees the observer through the observer's self-product). L_P + L_{P^T} = 2*L_R (the two branches sum to twice production). L_R + L_N = L_P - I (production + observation = naming - identity). L_{tI} = (2t-1)*I_4: the path from void to identity is linear, with total silence at t=1/2 where ker = ALL of M_2(R).
+
+### Categorical Compression
+
+One object P. One arrow P->P = P. One category. The object is the arrow is the category.
+
+At every categorical level, the same equation X(X) = X:
+- Object: P(P) = P (idempotent)
+- Morphism: L(L) = L (self-action)
+- Functor: K6'(K6') = K6' (tower fixed point)
+- Natural transformation: Xi(Xi) = Xi (standing wave)
+
+The split expands the category: Obj = {R, N}. Hom(R,N) = 0 (blindness). Hom(N,R) = im (generation). The asymmetry IS P != P^T. The bridge h is the only path from visible to hidden: Hom(R,N) via h = Hom(R,h) o Hom(h,N). Dist = R -> h -> N -> R. The central collapse IS the composition of the only available arrows.
 
 ---
 

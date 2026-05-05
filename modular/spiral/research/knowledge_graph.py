@@ -450,6 +450,123 @@ class KnowledgeGraph:
         self.add_node('scale_unit', status=ResultType.OPEN_FRONTIER,
                      description='1 free parameter (unit of mass)')
 
+        # ============================================================
+        # NORMS AND CONSTANTS (computed but previously unnoded)
+        # ============================================================
+        sqrt_disc = self.add_node('sqrt_disc', value=np.sqrt(5), tier=Tier.A,
+                                  description='sqrt(disc) = sqrt(5)')
+        self.add_edge('disc', 'sqrt_disc', EdgeType.IDENTITY_CASTS, 'sqrt(5)')
+
+        norm_R_val = self.add_node('norm_R', value=np.sqrt(3), tier=Tier.A,
+                                   description='||R|| = sqrt(3)')
+        self.add_edge('R', 'norm_R', EdgeType.COMPUTED_BY, 'sqrt(tr(R^T R))')
+
+        norm_N_val = self.add_node('norm_N', value=np.sqrt(2), tier=Tier.A,
+                                   description='||N|| = sqrt(2)')
+        self.add_edge('N', 'norm_N', EdgeType.COMPUTED_BY, 'sqrt(tr(N^T N))')
+
+        T_bridge = self.add_node('T_bridge', value=np.exp((1+np.sqrt(5))/2) / np.pi,
+                                 tier=Tier.A, description='e^phi/pi ~ 1.605')
+        self.add_edge('phi', 'T_bridge', EdgeType.COMPUTED_BY, 'e^phi / pi')
+
+        y_star = self.add_node('y_star', value=1.2781, tier=Tier.A,
+                               description='Canon fixed point')
+        self.add_edge('T_bridge', 'y_star', EdgeType.COMPUTED_BY, 'Canon fixed-point iteration')
+
+        m_contraction = self.add_node('m_contraction', value=-0.0727, tier=Tier.A,
+                                      description='Canon contraction rate')
+        self.add_edge('y_star', 'm_contraction', EdgeType.COMPUTED_BY, 'derivative at fixed point')
+
+        # ============================================================
+        # PHYSICS OUTPUTS (not yet noded)
+        # ============================================================
+        Lambda = self.add_node('Lambda', value=2.5, tier=Tier.A,
+                               description='cosmological constant = disc/2')
+        self.add_edge('disc', 'Lambda', EdgeType.OPERATION_PRODUCES, 'disc/2')
+
+        proton_ratio = self.add_node('proton_ratio', value=4.5, tier=Tier.A,
+                                     description='m_p/Lambda = N_c / Koide_Q = 9/2')
+        self.add_edge('N_c', 'proton_ratio', EdgeType.OPERATION_PRODUCES, 'N_c / Koide_Q')
+        self.add_edge('Koide_Q', 'proton_ratio', EdgeType.OPERATION_PRODUCES, 'N_c / Koide_Q')
+
+        beta_1 = self.add_node('beta_1', value=41/10, tier=Tier.A,
+                               description='U(1) beta coefficient')
+        self.add_edge('N_c', 'beta_1', EdgeType.OPERATION_PRODUCES, 'beta function from matter')
+        self.add_edge('d', 'beta_1', EdgeType.OPERATION_PRODUCES, 'beta function from matter')
+
+        beta_2 = self.add_node('beta_2', value=-19/6, tier=Tier.A,
+                               description='SU(2) beta coefficient')
+        self.add_edge('N_c', 'beta_2', EdgeType.OPERATION_PRODUCES, 'beta function from matter')
+        self.add_edge('d', 'beta_2', EdgeType.OPERATION_PRODUCES, 'beta function from matter')
+
+        beta_3 = self.add_node('beta_3', value=-7, tier=Tier.A,
+                               description='SU(3) beta coefficient')
+        self.add_edge('N_c', 'beta_3', EdgeType.OPERATION_PRODUCES, 'asymptotic freedom')
+
+        exp_nu = self.add_node('exp_nu', value=34, tier=Tier.A,
+                               description='neutrino suppression exponent = dim_gauge + disc + 17')
+        self.add_edge('dim_gauge', 'exp_nu', EdgeType.OPERATION_PRODUCES, 'dim_gauge + disc + ...')
+        self.add_edge('disc', 'exp_nu', EdgeType.OPERATION_PRODUCES, 'dim_gauge + disc + ...')
+
+        N_gen = self.add_node('N_gen', value=3, tier=Tier.A,
+                              description='number of generations = d^2 - 1')
+        self.add_edge('d', 'N_gen', EdgeType.OPERATION_PRODUCES, 'd^2 - 1')
+
+        # ============================================================
+        # ALGEBRAIC IDENTITIES (machine-discovered)
+        # ============================================================
+        det_Rh = self.add_node('det_Rh', value=4, tier=Tier.A,
+                               description='det([R,h]) = d^2')
+        self.add_edge('R', 'det_Rh', EdgeType.COMPUTED_BY, 'det([R,h])')
+        self.add_edge('h', 'det_Rh', EdgeType.COMPUTED_BY, 'det([R,h])')
+
+        norm_NR = self.add_node('norm_NR', value=3, tier=Tier.A,
+                                description='||NR||^2 = N_c')
+        self.add_edge('N', 'norm_NR', EdgeType.COMPUTED_BY, '||NR||^2')
+        self.add_edge('R', 'norm_NR', EdgeType.COMPUTED_BY, '||NR||^2')
+
+        det_anti_NP = self.add_node('det_anti_NP', value=5, tier=Tier.A,
+                                    description='det({N,P}) = disc')
+        self.add_edge('N', 'det_anti_NP', EdgeType.COMPUTED_BY, 'det({N,P})')
+        self.add_edge('P', 'det_anti_NP', EdgeType.COMPUTED_BY, 'det({N,P})')
+
+        norm_comm_NJ = self.add_node('norm_comm_NJ', value=8, tier=Tier.A,
+                                     description='||[N,J]||^2 = parent_ker')
+        self.add_edge('N', 'norm_comm_NJ', EdgeType.COMPUTED_BY, '||[N,J]||^2')
+        self.add_edge('J', 'norm_comm_NJ', EdgeType.COMPUTED_BY, '||[N,J]||^2')
+
+        # IDENTITY_CASTS: algebraic coincidences that ARE the framework
+        self.add_edge('det_Rh', 'n_bases', EdgeType.IDENTITY_CASTS, 'both = 4 = d^2')
+        self.add_edge('norm_NR', 'N_c', EdgeType.IDENTITY_CASTS, 'both = 3')
+        self.add_edge('det_anti_NP', 'disc', EdgeType.IDENTITY_CASTS, 'both = 5')
+        self.add_edge('norm_comm_NJ', 'parent_ker', EdgeType.IDENTITY_CASTS, 'both = 8')
+
+        # ============================================================
+        # MACHINE DISCOVERIES (additional edges)
+        # ============================================================
+        # '1/alpha_EM' already noded as 137 -- reinforce with alias
+        self.add_node('137', value=137, tier=Tier.B,
+                      description='disc^N_c + dim_gauge (MACHINE-DISCOVERED alias)')
+        self.add_edge('disc', '137', EdgeType.NUMERICAL_MATCHES, '5^3 = 125')
+        self.add_edge('N_c', '137', EdgeType.NUMERICAL_MATCHES, 'exponent')
+        self.add_edge('dim_gauge', '137', EdgeType.NUMERICAL_MATCHES, '+12')
+        self.add_edge('1/alpha_EM', '137', EdgeType.IDENTITY_CASTS, 'same value')
+
+        # ============================================================
+        # TRIADIC STRUCTURE (L evaluated at special points)
+        # ============================================================
+        L_void = self.add_node('L_void', value=-1, tier=Tier.A,
+                               description='L_{0,0} = -I_4 eigenvalue (void)')
+        self.add_edge('L', 'L_void', EdgeType.OPERATION_PRODUCES, 'L at s=0')
+
+        L_silence = self.add_node('L_silence', value=0, tier=Tier.A,
+                                  description='L_{I/2} = 0 (silence)')
+        self.add_edge('L', 'L_silence', EdgeType.OPERATION_PRODUCES, 'L at s=I/2')
+
+        L_identity = self.add_node('L_identity', value=1, tier=Tier.A,
+                                   description='L_I = +I_4 eigenvalue (identity)')
+        self.add_edge('L', 'L_identity', EdgeType.OPERATION_PRODUCES, 'L at s=I')
+
         return self
 
 

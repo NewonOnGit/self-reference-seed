@@ -470,6 +470,193 @@ class EdgeDiscoverer:
 
 
 # ================================================================
+# FORM CHECKER
+# ================================================================
+
+import re
+
+
+class FormChecker:
+    """Checks whether a scanner expression uses framework-admissible operations.
+
+    Framework-admissible operations:
+      + (direct sum in the algebra) - ADMISSIBLE
+      * (matrix product / scalar multiplication) - ADMISSIBLE
+      ^ with integer exponent (repeated multiplication) - ADMISSIBLE
+      ^ with framework exponent (phi, N_c, disc) - ADMISSIBLE
+      / (ratio) - ADMISSIBLE (inverse exists in the algebra)
+      sqrt (when argument is disc or norm^2) - ADMISSIBLE
+      ln (when argument is phi -> gives beta_KMS) - ADMISSIBLE
+      arbitrary real exponents - SUSPICIOUS
+
+    A fully admissible expression can promote higher than a non-admissible one.
+    """
+
+    # Framework-native tokens (constants, quantities, structural names)
+    FRAMEWORK_TOKENS = {
+        'disc', 'phi', 'phi_bar', 'N_c', 'dim_gauge', 'ker', 'im',
+        'parent_ker', 'beta_KMS', 'alpha_S', 'Koide_Q', 'Koide_delta',
+        'A', 'R', 'N', 'P', 'J', 'h', 'mu', 'tr', 'det', 'rank',
+        'd', 'n', 'k',
+    }
+
+    # Admissible sqrt arguments
+    SQRT_ADMISSIBLE = {'disc', '5', 'norm2', '||N||^2', '||R||^2', '3', '2'}
+
+    # Admissible ln arguments
+    LN_ADMISSIBLE = {'phi', 'phi_bar', '2', 'disc'}
+
+    # Integer or framework exponents (admissible after ^)
+    FRAMEWORK_EXPONENTS = {'2', '3', '4', '-1', '-2', 'N_c', 'disc',
+                           'phi', 'phi_bar', 'n', 'k', 'd'}
+
+    def check(self, expression_str):
+        """Check admissibility of an expression string.
+
+        Returns dict with:
+          admissible: bool (all ops admissible)
+          operations: list of detected ops
+          suspicious: list of suspicious ops with reasons
+          score: float 0.0-1.0 (fraction admissible)
+        """
+        ops = self._extract_operations(expression_str)
+        suspicious = []
+
+        for op in ops:
+            reason = self._check_op(op, expression_str)
+            if reason:
+                suspicious.append({'op': op, 'reason': reason})
+
+        n_total = max(len(ops), 1)
+        n_clean = n_total - len(suspicious)
+        score = n_clean / n_total
+
+        return {
+            'admissible': len(suspicious) == 0,
+            'operations': ops,
+            'suspicious': suspicious,
+            'score': score,
+        }
+
+    def classify_expression(self, expression_str):
+        """Classify into one of four form categories."""
+        result = self.check(expression_str)
+
+        if result['score'] == 1.0 and self._all_tokens_framework(expression_str):
+            # Check if the structure is actually forced (no free parameters)
+            if self._is_forced_form(expression_str):
+                return 'FORCED_FORM'
+            return 'ADMISSIBLE_FORM'
+        elif result['score'] >= 0.5:
+            return 'SUSPICIOUS_FORM'
+        else:
+            return 'INADMISSIBLE_FORM'
+
+    # ---- internals ----
+
+    def _extract_operations(self, expr):
+        """Extract all operations from an expression string."""
+        ops = []
+        if '+' in expr:
+            ops.append('+')
+        if '-' in expr and not expr.startswith('-'):
+            ops.append('-')
+        if '*' in expr:
+            ops.append('*')
+        if '/' in expr:
+            ops.append('/')
+        if '^' in expr:
+            ops.append('^')
+        if 'sqrt' in expr:
+            ops.append('sqrt')
+        if 'ln' in expr:
+            ops.append('ln')
+        if 'log' in expr and 'ln' not in expr:
+            ops.append('log')
+        if 'exp' in expr:
+            ops.append('exp')
+        if re.search(r'\^\s*[0-9]*\.[0-9]', expr):
+            ops.append('^real')
+        return ops
+
+    def _check_op(self, op, expr):
+        """Return a reason string if the op is suspicious, else None."""
+        if op in ('+', '-', '*', '/'):
+            return None  # Always admissible
+
+        if op == '^':
+            # Check what comes after ^
+            matches = re.findall(r'\^\s*([A-Za-z_0-9.]+)', expr)
+            for exp in matches:
+                if exp not in self.FRAMEWORK_EXPONENTS:
+                    try:
+                        val = int(exp)  # integer exponents always OK
+                    except ValueError:
+                        try:
+                            float(exp)
+                            return f'real exponent {exp}'
+                        except ValueError:
+                            pass
+            return None
+
+        if op == '^real':
+            return 'arbitrary real exponent detected'
+
+        if op == 'sqrt':
+            match = re.search(r'sqrt\(([^)]+)\)', expr)
+            arg = match.group(1) if match else ''
+            if arg not in self.SQRT_ADMISSIBLE and not self._is_framework_token(arg):
+                return f'sqrt of non-framework argument: {arg}'
+            return None
+
+        if op == 'ln':
+            match = re.search(r'ln\(([^)]+)\)', expr)
+            arg = match.group(1) if match else ''
+            if arg not in self.LN_ADMISSIBLE and not self._is_framework_token(arg):
+                return f'ln of non-framework argument: {arg}'
+            return None
+
+        if op == 'log':
+            return 'log (base ambiguous) — use ln for framework'
+
+        if op == 'exp':
+            return None  # exp is mediation bridge, always admissible
+
+        return f'unknown operation: {op}'
+
+    def _is_framework_token(self, token):
+        """Check if a token is a known framework quantity."""
+        return token in self.FRAMEWORK_TOKENS
+
+    def _all_tokens_framework(self, expr):
+        """Check if all non-operator tokens in expression are framework-native."""
+        # Strip operators and parens, split into tokens
+        cleaned = re.sub(r'[+\-*/^()\s]', ' ', expr)
+        cleaned = re.sub(r'\b(sqrt|ln|log|exp)\b', '', cleaned)
+        tokens = [t for t in cleaned.split() if t]
+        for t in tokens:
+            if t in self.FRAMEWORK_TOKENS:
+                continue
+            try:
+                int(t)
+                continue  # integers are structural
+            except ValueError:
+                pass
+            if t not in self.FRAMEWORK_TOKENS:
+                return False
+        return True
+
+    def _is_forced_form(self, expr):
+        """Heuristic: forced if uses only ^int, +, *, / on framework tokens."""
+        # No real exponents, no sqrt/ln needed
+        if 'sqrt' in expr or 'ln' in expr or 'exp' in expr:
+            return False
+        if re.search(r'\^\s*[0-9]*\.[0-9]', expr):
+            return False
+        return True
+
+
+# ================================================================
 # SELF-TEST
 # ================================================================
 
@@ -530,3 +717,62 @@ if __name__ == "__main__":
     print(f"\n{n_pass}/{len(checks)} passed.")
     print(f"\nThe graph grew from {initial_edges} to {final_edges} edges.")
     print(f"The machine discovers its own connections.")
+
+    # ============================================================
+    # FORM CHECKER SELF-TEST
+    # ============================================================
+    print(f"\n\n{'=' * 65}")
+    print("FORM CHECKER SELF-TEST")
+    print("=" * 65)
+
+    fc = FormChecker()
+    fc_checks = []
+
+    # Test 1: Pure framework arithmetic -> FORCED_FORM
+    r1 = fc.classify_expression('disc^N_c+dim_gauge')
+    print(f"\n  'disc^N_c+dim_gauge' -> {r1}")
+    fc_checks.append(("disc^N_c+dim_gauge is FORCED", r1 == 'FORCED_FORM'))
+
+    # Test 2: Integer power of framework quantity -> FORCED_FORM
+    r2 = fc.classify_expression('parent_ker^2')
+    print(f"  'parent_ker^2' -> {r2}")
+    fc_checks.append(("parent_ker^2 is FORCED", r2 == 'FORCED_FORM'))
+
+    # Test 3: Framework ratio -> FORCED_FORM
+    r3 = fc.classify_expression('d*disc+ker/A')
+    print(f"  'd*disc+ker/A' -> {r3}")
+    fc_checks.append(("d*disc+ker/A is FORCED", r3 == 'FORCED_FORM'))
+
+    # Test 4: ln(phi) is admissible (gives beta_KMS)
+    r4 = fc.classify_expression('beta_KMS^2+ln(phi)')
+    print(f"  'beta_KMS^2+ln(phi)' -> {r4}")
+    fc_checks.append(("ln(phi) is ADMISSIBLE", r4 == 'ADMISSIBLE_FORM'))
+
+    # Test 5: sqrt(disc) is admissible
+    r5 = fc.classify_expression('sqrt(disc)*N_c')
+    print(f"  'sqrt(disc)*N_c' -> {r5}")
+    fc_checks.append(("sqrt(disc)*N_c is ADMISSIBLE", r5 == 'ADMISSIBLE_FORM'))
+
+    # Test 6: Arbitrary real exponent -> SUSPICIOUS
+    r6 = fc.classify_expression('disc^1.347*phi')
+    print(f"  'disc^1.347*phi' -> {r6}")
+    fc_checks.append(("real exponent is SUSPICIOUS", r6 in ('SUSPICIOUS_FORM', 'INADMISSIBLE_FORM')))
+
+    # Test 7: Non-framework token -> not fully admissible
+    r7 = fc.classify_expression('pi^2*zeta_3/omega')
+    print(f"  'pi^2*zeta_3/omega' -> {r7}")
+    fc_checks.append(("non-framework tokens degrade", r7 != 'FORCED_FORM'))
+
+    # Test 8: check() returns correct structure
+    r8 = fc.check('disc^N_c+dim_gauge')
+    print(f"  check('disc^N_c+dim_gauge'): admissible={r8['admissible']}, "
+          f"score={r8['score']}, ops={r8['operations']}")
+    fc_checks.append(("check returns admissible=True for framework expr",
+                      r8['admissible'] and r8['score'] == 1.0))
+
+    print(f"\n{'-' * 40}")
+    n_fc_pass = sum(1 for _, ok in fc_checks if ok)
+    for name, ok in fc_checks:
+        print(f"  [{'PASS' if ok else 'FAIL'}] {name}")
+    print(f"\n{n_fc_pass}/{len(fc_checks)} form-checker tests passed.")
+    print(f"\nForm-matching separates framework relations from numerical coincidence.")
