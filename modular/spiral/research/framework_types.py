@@ -28,6 +28,10 @@ class ResultType:
     """Has a derivation path through framework quantities.
     Needs verification (ablation, independence check)."""
 
+    PATH_CANDIDATE = 'PATH_CANDIDATE'
+    """Endpoint matches AND at least one legal operation chain reaches it,
+    but the final identification remains unforced. Between match and law."""
+
     LAW_CANDIDATE = 'LAW_CANDIDATE'
     """Passed verification. Candidate for integration into the framework.
     Needs human review or multiple-witness confirmation."""
@@ -165,14 +169,77 @@ def promotion_path(from_type, to_type):
 # EDGE TYPES (relationships in the knowledge graph)
 # ================================================================
 
+# ================================================================
+# EDGE TYPES (derivation chain links)
+# ================================================================
+
 class EdgeType:
-    DERIVED_FROM = 'derived_from'       # algebraic derivation
-    COMPUTED_BY = 'computed_by'         # numerical computation
-    DEPENDS_ON = 'depends_on'          # logical dependency
-    IDENTIFIED_WITH = 'identified_with' # interpretation bridge
-    ANALOG_OF = 'analog_of'            # structural parallel
-    OPEN_BRIDGE = 'open_bridge'        # hypothesized connection
-    FAILED_BRIDGE = 'failed_bridge'    # tested and rejected
+    """Types of edges in the knowledge graph. Ordered by forcing strength.
+    A chain is LAW only if ALL edges are FORCED types."""
+
+    # FORCED types (algebraically necessary)
+    OPERATION_PRODUCES = 'OPERATION_PRODUCES'
+    """Result of applying a framework operation (L, quotient, ker/im, etc.)
+    to a known object. This is the strongest edge type."""
+
+    IDENTITY_CASTS = 'IDENTITY_CASTS'
+    """A = B by algebraic identity (e.g., phi+phi_bar=1, N^2=-I).
+    No computation needed, just recognition."""
+
+    LIFT_PROPAGATES = 'LIFT_PROPAGATES'
+    """A at depth n+1 is the K6' lift of B at depth n.
+    Tower propagation. Forced by the lift structure."""
+
+    # COMPUTED types (verified but not purely algebraic)
+    COMPUTED_BY = 'COMPUTED_BY'
+    """Result of numerical computation (eigenvalues, norms, etc.).
+    Exact if the computation is symbolic; approximate if numerical."""
+
+    # WEAK types (cannot promote chain to LAW)
+    NUMERICAL_MATCHES = 'NUMERICAL_MATCHES'
+    """A ~ B numerically within tolerance. NOT forced.
+    A chain containing this edge CANNOT become LAW."""
+
+    IDENTIFIED_WITH = 'IDENTIFIED_WITH'
+    """A is identified with B by interpretation (physics, biology, etc.).
+    The bridge between algebra and the world. Cannot force LAW."""
+
+    STRUCTURAL_PARALLEL = 'STRUCTURAL_PARALLEL'
+    """A and B share structural properties (same grid address, same
+    algebraic form). Suggestive but not derivative."""
+
+    # NEGATIVE types
+    FAILED_BRIDGE = 'FAILED_BRIDGE'
+    """Tested connection that was refuted. Kept for the kill ledger."""
+
+
+# Which edge types are "forced" (can appear in a LAW chain)
+FORCED_EDGE_TYPES = {
+    EdgeType.OPERATION_PRODUCES,
+    EdgeType.IDENTITY_CASTS,
+    EdgeType.LIFT_PROPAGATES,
+    EdgeType.COMPUTED_BY,
+}
+
+# Which edge types block LAW promotion
+WEAK_EDGE_TYPES = {
+    EdgeType.NUMERICAL_MATCHES,
+    EdgeType.IDENTIFIED_WITH,
+    EdgeType.STRUCTURAL_PARALLEL,
+}
+
+
+def chain_status(edge_types):
+    """Given a list of edge types in a chain, determine max promotable status.
+    All forced -> LAW possible. Any weak -> LAW_CANDIDATE max.
+    Any failed -> REFUTED."""
+    if any(e == EdgeType.FAILED_BRIDGE for e in edge_types):
+        return ResultType.REFUTED
+    if all(e in FORCED_EDGE_TYPES for e in edge_types):
+        return ResultType.LAW
+    if any(e in WEAK_EDGE_TYPES for e in edge_types):
+        return ResultType.LAW_CANDIDATE
+    return ResultType.DERIVED_CANDIDATE
 
 
 # ================================================================

@@ -12,7 +12,7 @@ The frontier: nodes with OPEN_FRONTIER status or missing connections.
 import numpy as np
 import sys
 sys.path.insert(0, '../..')
-from framework_types import ResultType, Tier, EdgeType
+from framework_types import ResultType, Tier, EdgeType, FORCED_EDGE_TYPES, chain_status
 
 
 class Node:
@@ -37,7 +37,7 @@ class Node:
 class Edge:
     """A derivation relationship between nodes."""
 
-    def __init__(self, source, target, edge_type=EdgeType.DERIVED_FROM,
+    def __init__(self, source, target, edge_type=EdgeType.OPERATION_PRODUCES,
                  description=''):
         self.source = source        # Node
         self.target = target        # Node
@@ -60,7 +60,7 @@ class KnowledgeGraph:
             self.nodes[name] = Node(name, **kwargs)
         return self.nodes[name]
 
-    def add_edge(self, source_name, target_name, edge_type=EdgeType.DERIVED_FROM,
+    def add_edge(self, source_name, target_name, edge_type=EdgeType.OPERATION_PRODUCES,
                  description=''):
         s = self.nodes.get(source_name)
         t = self.nodes.get(target_name)
@@ -156,6 +156,100 @@ class KnowledgeGraph:
         }
 
     # ================================================================
+    # CHAIN FINDING (the derivation engine core)
+    # ================================================================
+
+    def find_chain(self, source_name, target_name, allowed_types=None,
+                   max_depth=8):
+        """Find a derivation chain from source to target.
+        If allowed_types is given, only traverse edges of those types.
+        Returns (chain_edges, chain_status) or (None, FAILED).
+
+        A chain through only FORCED edge types can become LAW.
+        A chain with any WEAK edge is at most LAW_CANDIDATE."""
+        if source_name not in self.nodes or target_name not in self.nodes:
+            return None, ResultType.FAILED
+
+        if allowed_types is None:
+            allowed_types = set(e for e in [
+                EdgeType.OPERATION_PRODUCES, EdgeType.IDENTITY_CASTS,
+                EdgeType.LIFT_PROPAGATES, EdgeType.COMPUTED_BY,
+                EdgeType.NUMERICAL_MATCHES, EdgeType.IDENTIFIED_WITH,
+            ])
+
+        from collections import deque
+        queue = deque([(source_name, [])])
+        visited = {source_name}
+
+        while queue:
+            current, path = queue.popleft()
+            if len(path) >= max_depth:
+                continue
+
+            node = self.nodes[current]
+            for edge in node.edges_out:
+                if edge.edge_type not in allowed_types:
+                    continue
+                next_name = edge.target.name
+                if next_name in visited:
+                    continue
+
+                new_path = path + [edge]
+                if next_name == target_name:
+                    # Found! Determine chain status
+                    edge_types = [e.edge_type for e in new_path]
+                    status = chain_status(edge_types)
+                    return new_path, status
+
+                visited.add(next_name)
+                queue.append((next_name, new_path))
+
+        return None, ResultType.FAILED
+
+    def find_forced_chain(self, source_name, target_name, max_depth=8):
+        """Find a chain using ONLY forced edge types.
+        If found, the chain can promote to LAW."""
+        return self.find_chain(source_name, target_name,
+                              allowed_types=FORCED_EDGE_TYPES,
+                              max_depth=max_depth)
+
+    def find_any_chain(self, source_name, target_name, max_depth=8):
+        """Find a chain using any edge type (including weak).
+        The chain status reflects its weakest edge."""
+        return self.find_chain(source_name, target_name, max_depth=max_depth)
+
+    def all_chains_to(self, target_name, max_depth=6):
+        """Find chains from ALL roots to the target.
+        Returns list of (source, chain, status) sorted by chain quality."""
+        results = []
+        for root in self.roots():
+            chain, status = self.find_any_chain(root.name, target_name, max_depth)
+            if chain is not None:
+                results.append((root.name, chain, status))
+
+        # Also try from key framework objects (not just roots)
+        for key_name in ['R', 'N', 'P', 'L', 'disc', 'phi']:
+            if key_name in self.nodes and key_name not in [r.name for r in self.roots()]:
+                chain, status = self.find_any_chain(key_name, target_name, max_depth)
+                if chain is not None:
+                    results.append((key_name, chain, status))
+
+        # Sort: LAW first, then shorter chains
+        status_rank = {ResultType.LAW: 0, ResultType.LAW_CANDIDATE: 1,
+                      ResultType.DERIVED_CANDIDATE: 2, ResultType.FAILED: 3}
+        results.sort(key=lambda r: (status_rank.get(r[2], 9), len(r[1])))
+        return results
+
+    def chain_str(self, chain):
+        """Pretty-print a chain."""
+        if not chain:
+            return "(no chain)"
+        parts = [chain[0].source.name]
+        for edge in chain:
+            parts.append(f" --[{edge.edge_type}]--> {edge.target.name}")
+        return ''.join(parts)
+
+    # ================================================================
     # SEED THE GRAPH WITH THE FRAMEWORK
     # ================================================================
 
@@ -173,8 +267,8 @@ class KnowledgeGraph:
                          source='production.py')
         J = self.add_node('J', description='swap(d)', tier=Tier.A,
                          source='production.py')
-        self.add_edge('[1,1]', 'R', EdgeType.DERIVED_FROM, 'companion matrix')
-        self.add_edge('d', 'J', EdgeType.DERIVED_FROM, 'swap involution')
+        self.add_edge('[1,1]', 'R', EdgeType.OPERATION_PRODUCES, 'companion matrix')
+        self.add_edge('d', 'J', EdgeType.OPERATION_PRODUCES, 'swap involution')
 
         # From R: Cayley-Hamilton
         tr = self.add_node('tr(R)', value=1, tier=Tier.A, source='production.py',
@@ -186,29 +280,29 @@ class KnowledgeGraph:
                              description='golden ratio, max eigenvalue of R')
         phi_bar_n = self.add_node('phi_bar', value=(np.sqrt(5)-1)/2, tier=Tier.A)
 
-        self.add_edge('R', 'tr(R)', EdgeType.DERIVED_FROM, 'trace')
-        self.add_edge('R', 'det(R)', EdgeType.DERIVED_FROM, 'determinant')
-        self.add_edge('tr(R)', 'disc', EdgeType.DERIVED_FROM, 'tr^2-4*det')
-        self.add_edge('det(R)', 'disc', EdgeType.DERIVED_FROM, 'tr^2-4*det')
-        self.add_edge('R', 'phi', EdgeType.DERIVED_FROM, 'max eigenvalue')
-        self.add_edge('phi', 'phi_bar', EdgeType.DERIVED_FROM, 'phi-1')
+        self.add_edge('R', 'tr(R)', EdgeType.OPERATION_PRODUCES, 'trace')
+        self.add_edge('R', 'det(R)', EdgeType.OPERATION_PRODUCES, 'determinant')
+        self.add_edge('tr(R)', 'disc', EdgeType.OPERATION_PRODUCES, 'tr^2-4*det')
+        self.add_edge('det(R)', 'disc', EdgeType.OPERATION_PRODUCES, 'tr^2-4*det')
+        self.add_edge('R', 'phi', EdgeType.OPERATION_PRODUCES, 'max eigenvalue')
+        self.add_edge('phi', 'phi_bar', EdgeType.IDENTITY_CASTS, 'phi-1 = phi_bar')
 
         # N from ker(L)
         L = self.add_node('L', description='L_{s,s}(X)=sX+Xs-X, alpha=1 from tr=1',
                          tier=Tier.A, source='algebra.py')
         N = self.add_node('N', description='canonical rotation in ker(L)',
                          tier=Tier.A, source='production.py')
-        self.add_edge('R', 'L', EdgeType.DERIVED_FROM, 'Sylvester self-action')
-        self.add_edge('tr(R)', 'L', EdgeType.DERIVED_FROM, 'alpha=1/(2-tr)=1')
-        self.add_edge('L', 'N', EdgeType.DERIVED_FROM, 'ker(L) quadratic form')
+        self.add_edge('R', 'L', EdgeType.OPERATION_PRODUCES, 'Sylvester self-action')
+        self.add_edge('tr(R)', 'L', EdgeType.OPERATION_PRODUCES, 'alpha=1/(2-tr)=1')
+        self.add_edge('L', 'N', EdgeType.OPERATION_PRODUCES, 'ker(L) quadratic form')
 
         # P, h from R+N
         P = self.add_node('P', description='R+N, the naming act', tier=Tier.A)
         h = self.add_node('h', description='JN, the Cartan element', tier=Tier.A)
-        self.add_edge('R', 'P', EdgeType.DERIVED_FROM, 'P=R+N')
-        self.add_edge('N', 'P', EdgeType.DERIVED_FROM, 'P=R+N')
-        self.add_edge('J', 'h', EdgeType.DERIVED_FROM, 'h=JN')
-        self.add_edge('N', 'h', EdgeType.DERIVED_FROM, 'h=JN')
+        self.add_edge('R', 'P', EdgeType.OPERATION_PRODUCES, 'P=R+N')
+        self.add_edge('N', 'P', EdgeType.OPERATION_PRODUCES, 'P=R+N')
+        self.add_edge('J', 'h', EdgeType.OPERATION_PRODUCES, 'h=JN')
+        self.add_edge('N', 'h', EdgeType.OPERATION_PRODUCES, 'h=JN')
 
         # Key constants
         N_c = self.add_node('N_c', value=3, tier=Tier.A,
@@ -224,14 +318,14 @@ class KnowledgeGraph:
         kerA = self.add_node('ker/A', value=0.5, tier=Tier.A,
                             description='ker/dim(A) = 1/2 at every depth')
 
-        self.add_edge('d', 'N_c', EdgeType.DERIVED_FROM, 'd(d+1)/2')
-        self.add_edge('N_c', 'dim_gauge', EdgeType.DERIVED_FROM, 'N_c^2-1+d^2-1+1')
-        self.add_edge('d', 'dim_gauge', EdgeType.DERIVED_FROM, 'N_c^2-1+d^2-1+1')
-        self.add_edge('d', 'parent_ker', EdgeType.DERIVED_FROM, 'd^N_c')
-        self.add_edge('N_c', 'parent_ker', EdgeType.DERIVED_FROM, 'd^N_c')
-        self.add_edge('phi_bar', 'alpha_S', EdgeType.DERIVED_FROM, '1/2-phi_bar^2')
-        self.add_edge('phi', 'beta_KMS', EdgeType.DERIVED_FROM, 'ln(phi)')
-        self.add_edge('L', 'ker/A', EdgeType.DERIVED_FROM, 'ker(L)/dim(A)')
+        self.add_edge('d', 'N_c', EdgeType.OPERATION_PRODUCES, 'd(d+1)/2')
+        self.add_edge('N_c', 'dim_gauge', EdgeType.OPERATION_PRODUCES, 'N_c^2-1+d^2-1+1')
+        self.add_edge('d', 'dim_gauge', EdgeType.OPERATION_PRODUCES, 'N_c^2-1+d^2-1+1')
+        self.add_edge('d', 'parent_ker', EdgeType.OPERATION_PRODUCES, 'd^N_c')
+        self.add_edge('N_c', 'parent_ker', EdgeType.OPERATION_PRODUCES, 'd^N_c')
+        self.add_edge('phi_bar', 'alpha_S', EdgeType.OPERATION_PRODUCES, '1/2-phi_bar^2')
+        self.add_edge('phi', 'beta_KMS', EdgeType.OPERATION_PRODUCES, 'ln(phi)')
+        self.add_edge('L', 'ker/A', EdgeType.OPERATION_PRODUCES, 'ker(L)/dim(A)')
 
         # Physics outputs
         sin2tw = self.add_node('sin2_thetaW', value=3/8, tier=Tier.A,
@@ -243,13 +337,13 @@ class KnowledgeGraph:
         koide_delta = self.add_node('Koide_delta', value=2/9, tier=Tier.A,
                                    source='physics.py')
 
-        self.add_edge('N_c', 'sin2_thetaW', EdgeType.DERIVED_FROM, 'anomaly cancellation')
-        self.add_edge('d', 'sin2_thetaW', EdgeType.DERIVED_FROM, 'anomaly cancellation')
-        self.add_edge('h', 'Bell_S', EdgeType.DERIVED_FROM, 'CNOT from h,J')
-        self.add_edge('N', 'Koide_Q', EdgeType.DERIVED_FROM, '||N||^2/||R||^2')
-        self.add_edge('R', 'Koide_Q', EdgeType.DERIVED_FROM, '||N||^2/||R||^2')
-        self.add_edge('N', 'Koide_delta', EdgeType.DERIVED_FROM, '||N||^2/N_c^2')
-        self.add_edge('N_c', 'Koide_delta', EdgeType.DERIVED_FROM, '||N||^2/N_c^2')
+        self.add_edge('N_c', 'sin2_thetaW', EdgeType.OPERATION_PRODUCES, 'anomaly cancellation')
+        self.add_edge('d', 'sin2_thetaW', EdgeType.OPERATION_PRODUCES, 'anomaly cancellation')
+        self.add_edge('h', 'Bell_S', EdgeType.OPERATION_PRODUCES, 'CNOT from h,J')
+        self.add_edge('N', 'Koide_Q', EdgeType.OPERATION_PRODUCES, '||N||^2/||R||^2')
+        self.add_edge('R', 'Koide_Q', EdgeType.OPERATION_PRODUCES, '||N||^2/||R||^2')
+        self.add_edge('N', 'Koide_delta', EdgeType.OPERATION_PRODUCES, '||N||^2/N_c^2')
+        self.add_edge('N_c', 'Koide_delta', EdgeType.OPERATION_PRODUCES, '||N||^2/N_c^2')
 
         # Geometry
         D4 = self.add_node('|D_4|', value=8, tier=Tier.A, source='algebra.py',
@@ -258,9 +352,9 @@ class KnowledgeGraph:
                           description='hexagonal lattice symmetry = dim_gauge')
         lcm456 = self.add_node('lcm(4,6,5)', value=60, tier=Tier.A,
                               description='icosahedral rotation group')
-        self.add_edge('N', '|D_4|', EdgeType.DERIVED_FROM, 'N rotation order 4')
-        self.add_edge('N', '|D_6|', EdgeType.DERIVED_FROM, 'omega from N, order 6')
-        self.add_edge('disc', 'lcm(4,6,5)', EdgeType.DERIVED_FROM, '5-fold from disc')
+        self.add_edge('N', '|D_4|', EdgeType.OPERATION_PRODUCES, 'N rotation order 4')
+        self.add_edge('N', '|D_6|', EdgeType.OPERATION_PRODUCES, 'omega from N, order 6')
+        self.add_edge('disc', 'lcm(4,6,5)', EdgeType.OPERATION_PRODUCES, '5-fold from disc')
 
         # Biology
         bases = self.add_node('n_bases', value=4, tier=Tier.A,
@@ -276,16 +370,16 @@ class KnowledgeGraph:
         eigen_th = self.add_node('Eigen_threshold', value=0.962, tier=Tier.B,
                                 description='d*beta_KMS')
 
-        self.add_edge('d', 'n_bases', EdgeType.DERIVED_FROM, 'd^2')
-        self.add_edge('parent_ker', 'n_codons', EdgeType.DERIVED_FROM, 'pk^2')
-        self.add_edge('d', 'n_amino', EdgeType.DERIVED_FROM, 'd^2*disc')
-        self.add_edge('disc', 'n_amino', EdgeType.DERIVED_FROM, 'd^2*disc')
+        self.add_edge('d', 'n_bases', EdgeType.OPERATION_PRODUCES, 'd^2')
+        self.add_edge('parent_ker', 'n_codons', EdgeType.OPERATION_PRODUCES, 'pk^2')
+        self.add_edge('d', 'n_amino', EdgeType.OPERATION_PRODUCES, 'd^2*disc')
+        self.add_edge('disc', 'n_amino', EdgeType.OPERATION_PRODUCES, 'd^2*disc')
         self.add_edge('Koide_Q', 'wobble_silent', EdgeType.IDENTIFIED_WITH,
                       'wobble fraction = Koide Q')
-        self.add_edge('disc', 'bp_per_turn', EdgeType.DERIVED_FROM, '2*disc+ker/A')
-        self.add_edge('ker/A', 'bp_per_turn', EdgeType.DERIVED_FROM, '2*disc+ker/A')
-        self.add_edge('d', 'Eigen_threshold', EdgeType.DERIVED_FROM, 'd*beta_KMS')
-        self.add_edge('beta_KMS', 'Eigen_threshold', EdgeType.DERIVED_FROM, 'd*beta_KMS')
+        self.add_edge('disc', 'bp_per_turn', EdgeType.OPERATION_PRODUCES, '2*disc+ker/A')
+        self.add_edge('ker/A', 'bp_per_turn', EdgeType.OPERATION_PRODUCES, '2*disc+ker/A')
+        self.add_edge('d', 'Eigen_threshold', EdgeType.OPERATION_PRODUCES, 'd*beta_KMS')
+        self.add_edge('beta_KMS', 'Eigen_threshold', EdgeType.OPERATION_PRODUCES, 'd*beta_KMS')
 
         # Open frontiers
         self.add_node('4D_Ricci', status=ResultType.OPEN_FRONTIER,
