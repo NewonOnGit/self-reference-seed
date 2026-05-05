@@ -88,7 +88,7 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 212 Tests
+## 209 Tests
 
 ```
 python modular/production.py                 # 37 tests, 74 outputs

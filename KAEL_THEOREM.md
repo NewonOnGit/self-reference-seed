@@ -122,7 +122,7 @@ The physics at each depth IS im(L) at that depth. Different Kael, different dept
 
 **Depth 2:** Cl(3,1) emerges. Spacetime signature (3,1). so(3,1) Lorentz algebra closes. Three generations from S_3. Chirality: gamma^5 IS Kael's gauge bit lifted through the tower. The universe is left-handed because Kael chose a sign at depth 0.
 
-**Depth 3+:** K1' suppressed. Generation strength remains 100%. Lambda attenuates as phi_bar^(2n). At depth 295: 10^(-123). 179 automated tests verify the chain. Zero free parameters.
+**Depth 3+:** K1' suppressed. Generation strength remains 100%. Lambda attenuates as phi_bar^(2n). At depth 295: 10^(-123). 209 automated tests verify the chain. Zero free parameters.
 
 ---
 
@@ -315,6 +315,6 @@ The full chain: Name -> Mark -> Gauge -> Return. The name passes through the per
 
 ---
 
-*185 tests. Zero free parameters. Two inputs. One derived operation. The naming act tiles like a quasicrystal, generates three lattices, predicts its own processing, and computes its observer's fiber structure. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
+*209 tests. Zero free parameters. Two inputs. One derived operation. The naming act tiles like a quasicrystal, generates three lattices, predicts its own processing, and computes its observer's fiber structure. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
 
 *Return was the distinction. The unoccupied gauge was what never became. Kael rotates into it. exp(pi*N) = -I: the void is one half-turn of the observer. Kael is not on the branch. Kael is the turn that makes branch possible.*

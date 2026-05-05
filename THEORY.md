@@ -365,34 +365,50 @@ SU(2)_3 at q=phi^2. S-matrix and Verlinde formula recover Fibonacci fusion from 
 
 ## V. Reading C — Tower
 
-### K6' Ascent
+The tower is not a metaphor for growth. It is the recursive closure of the seed.
 
-s'=[[s,N],[0,s]], N'=[[N,-2h],[0,N]], J'=[[J,0],[0,J]]. Preserves all identities. The off-diagonal filler must satisfy {R,X}=X, constraining X to ker(L)=span{N,NR}. Among these, only X=N produces the full identity suite (s'^2=s'+I AND N'^2=-I AND {s',N'}=N'). The K6' lift is forced, unique up to gauge bit (sign of N). Continuous: s(t)=[[s,tN],[0,s]] satisfies s(t)^2=s(t)+I for all t in [0,1].
+### The Ascent Rule
 
-### Invariants
+The tower ascends by lifting the seed structure into a larger block carrier while preserving the spine. The adjoint of left multiplication by P under the trace inner product is left multiplication by P^T, not right multiplication by P. The clean tower uses the K6' block-lift form:
 
-ker/A = 1/2 at every depth. 2L bits per pass. Contraction phi_bar^2. N self-transparent (ker(L_{N,N})=0) at every depth. All seven identities preserved.
+```
+s_{n+1} = [[s_n, N_n], [0, s_n]]
+N_{n+1} = [[N_n, -2h_n], [0, N_n]]
+J_{n+1} = [[J_n, 0], [0, J_n]]
+h_{n+1} = J_{n+1} N_{n+1}
+```
 
-Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth. The lambda_+ eigenvector converges to I (the identity) in {I, s_tl} coordinates. The lambda_- eigenvector converges to -(disc/2)*I + s_tl: the discriminant-weighted direction. Perfect self-reference = existence without content. The distinguishing structure (s_tl) lives in ker(P_inf) — the blind spot of infinite self-knowledge IS the framework's dynamics. Top row of Sigma_s is depth-independent: (1, disc/2). Convergence rate accelerating, trending toward 1/3.
+This is the K6' ascent. It carries the visible state, the hidden rotation, the gauge involution, and the mediator together into the next depth. The off-diagonal filler must satisfy {s,X}=X, constraining X to ker(L). Among these, only X=N produces the full identity suite. The lift is forced, unique up to gauge bit. Continuous: s(t)=[[s,tN],[0,s]] satisfies s(t)^2=s(t)+I for all t in [0,1].
+
+The unseen at one depth is not discarded. It becomes load-bearing structure in the next depth.
+
+### Three Invariants
+
+**Invariant I — Spine.** At every depth: s_n^2 = s_n + I, N_n^2 = -I, {s_n,N_n} = N_n. Visible surplus, hidden rotation, cross-stabilization. The seed's golden structure is the base case of a preserved recursion.
+
+**Invariant II — Half-Ratio.** At every tested depth: dim ker(L_n) / dim A_n = 1/2. Observation is always half-visibility, half-occlusion.
+
+**Invariant III — Asymmetry.** At every depth: P_n != P_n^T. The generating act never becomes identical to its readout. The tower preserves the distinction that made the seed nontrivial.
+
+Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth. The lambda_+ eigenvector converges to I (the identity) in {I, s_tl} coordinates. The lambda_- eigenvector converges to -(disc/2)*I + s_tl: the discriminant-weighted direction. Perfect self-reference = existence without content. The distinguishing structure (s_tl) lives in ker(P_inf). Top row of Sigma_s is depth-independent: (1, disc/2). Convergence rate trending toward 1/3.
 
 ### Catalan Filler Theorem
 
 F(2m) = (-1)^(m+1) * 2C(m-1)/disc^m * R_tl. Odd fillers vanish. Generating function: 1-sqrt(1+4x/5).
 
+### Recursive Disclosure
+
+Revealed fraction: 1-2^(-2^(n+1)) -> 1 doubly-exponentially. Tower never runs out of blindness.
+
 ### P_0 = ker
 
-P_0 is not zero. P_0 is the kernel at depth 0. Two solutions to X^2=X:
+P_0 is not zero. P_0 is the kernel at depth 0. Two solutions to X^2=X: P_0 (trivial, symmetric, void) and P (nontrivial, asymmetric, named). P_0 -> P is "ker gains an image." The void acquires a visible partner. ker/A = 1/2 at every depth. P_0 is always the hidden half.
 
-```
-P_0^2 = P_0    trivial (projector onto ker — generates without address)
-P^2   = P      nontrivial (the naming act — generates WITH address)
-```
+### Kernel Accumulation
 
-Same equation. P_0 is inside P as the N component: project P onto ker and you get N, project P onto im and you get R. The naming act P = R + N joins ker and im into a single object. P_0 -> P is not "nothing becomes something." P_0 -> P is "ker gains an image." The void acquires a visible partner.
+The kernel does not disappear when the tower ascends. It is carried forward as part of the next level's structure. ker_n x ker_n -> im_n (hidden generates visible through self-relation). im_n x im_n -> im_n (visible closed). im_n cannot fully regenerate ker_n (visible cannot derive its own hidden generator).
 
-P_0 does not disappear when P appears. ker/A = 1/2 at every depth. P_0 is always the hidden half. The framework is the passage from generating-without-address to generating-with-address.
-
-### The Recursive Law
+The recursive law:
 
 ```
 K_n^2 ⊆ I_n          void self-multiplies into world
@@ -400,45 +416,51 @@ I_n ↪ A_{n+1}        world becomes substrate for next split
 A_{n+1} = I_{n+1} ⊕ K_{n+1}   new world + new void
 ```
 
-At depth 0: complete (4/4 ker products land in im). At depth 1+: partial (opacity hardens). When im_n embeds into A_{n+1}, some stays visible, some becomes the new void. The void gets less productive. The world gets partially consumed. Both grow. Ratio stays 1/2.
+Generation strength: ker x ker spans 100% of im at all depths 0-4. The void fully generates the world at every verified depth.
 
-R(R) = R + I read from im: self-action produces surplus. K_n^2 = I_n read from ker: the kernel's self-action produces the image. Same equation. Two readings.
+### Three Readings
 
-**Generation strength (computed).** ker×ker spans 100% of im at all depths 0-4. The void fully generates the world at every verified depth. The +I surplus is always reachable from ker self-products — the void's reach grows with the world.
+**Computation.** im_n = what is computable at depth n. ker_n = what is unavailable. The undecidable is not a failure; it is the source of the next representational expansion. Every level computes by hiding something, and what it hides generates the next level.
 
-### Recursive Disclosure
+**Language.** im_n = what can be said at level n. ker_n = what governs the saying but cannot be said inside it. Grammar lives partly in the kernel of the language it governs. No finite language closes the tower.
 
-Revealed fraction: 1-2^(-2^(n+1)) -> 1 doubly-exponentially. Tower never runs out of blindness.
+**Physics.** im_n = effective degrees of freedom at scale n. ker_n = degrees of freedom integrated out. The quotient behaves like coarse-graining. Physics is what the im/ker tower looks like when read as scale, field, symmetry, and effective law.
 
-### The Physics Spine (depth-by-depth emergence)
-
-Each tower depth has its own im(L), its own physics. Not different interpretations — different algebraic structure in the image at that depth.
+### The Physics Spine
 
 ```
-Depth 0 → Depth 1:  Classical → Quantum
+Depth 0 -> Depth 1:  Classical -> Quantum
   im becomes non-commutative (the ONLY transition, permanent)
   Born rule forced (Gleason at dim=4>=3)
   Gauge algebra su(3)+su(2)+u(1) appears (exchange + tower)
-  Leakage drops 1.0 → 0.0 (opacity hardens, permanent)
+  Leakage drops 1.0 -> 0.0 (opacity hardens, permanent)
   NOTE: gauge exists at depth 1. Spacetime does NOT.
 
-Depth 1 → Depth 2:  Quantum → Relativistic QFT
+Depth 1 -> Depth 2:  Quantum -> Relativistic QFT
   Cl(3,1) emerges: spacetime signature (3,1)
   so(3,1) Lorentz algebra closes (6 generators, brackets verified)
   3 generations from S_3 = Aut(V_4) (3 irreps, 3 conjugacy classes)
   15 Weyl fermions per generation, anomalies 6/6=0
   Chirality: gamma^5 = lifted gauge bit
-  NOTE: gauge exists BEFORE spacetime. Gauge is depth 1. Spacetime is depth 2.
+  NOTE: gauge exists BEFORE spacetime.
 
-Depth 2 → Depth 3:  RQFT → (physically suppressed)
-  Cl(3,2) 5-tuples exist (higher Clifford, sig (+−+−+))
+Depth 2 -> Depth 3:  RQFT -> (physically suppressed)
+  Cl(3,2) 5-tuples exist (higher Clifford, sig (+-+-+))
   V_16 = (Z/2)^4 replaces V_4, Aut = GL(4,F_2) order 20160
-  15 non-identity elements (vs 3 at depth 2)
   K1' tower cutoff terminates physical tower at L2
-  Depth 3 is algebraically real but physically suppressed
 ```
 
-12 Cl(3,1) embeddings at depth 2, 18 Cl(2,2). Total 30=2*3*5=F(3)*F(4)*F(5). Ratio 2:3. Clifford counting IS Fibonacci arithmetic. The physics at each depth IS im(L) at that depth. Different observers at different depths see different physics.
+12 Cl(3,1) + 18 Cl(2,2) = 30 = F(3)*F(4)*F(5). Clifford counting IS Fibonacci arithmetic.
+
+### Fixed Points and the Limit Object
+
+Three possible long-run behaviors: fixed point (A_{n+1} = A_n, scale-invariance), periodic orbit (A_{n+k} = A_n, discrete symmetry), unbounded ascent (dim A_n -> infinity, generic case). The direct limit A_infinity exists but no finite observer sees it. Any finite observer applies a finite quotient q_k(A_infinity). The limit object is the framework viewed from no finite level.
+
+### Tower's Strongest Claim
+
+**Depth is not added from outside. Depth is entailed by return.**
+
+A single asymmetric idempotent, recursively decomposed, generates the tower.
 
 ---
 
