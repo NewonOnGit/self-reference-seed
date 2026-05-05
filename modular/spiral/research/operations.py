@@ -251,11 +251,94 @@ def apply_all_binary(X, name='X'):
 
 
 # ================================================================
+# PROBER (merged from prober.py — the algebraic microscope)
+# ================================================================
+
+class ProbeResult:
+    """Complete algebraic profile of a matrix."""
+    def __init__(self, name, matrix, properties=None):
+        self.name = name
+        self.matrix = matrix
+        self.properties = properties or {}
+        self.status = 'COMPUTED_MATCH'
+        self.tier = 'A'
+
+    def __repr__(self):
+        lines = [f"PROBE: {self.name}"]
+        for k, v in self.properties.items():
+            lines.append(f"  {k}: {v}")
+        return '\n'.join(lines)
+
+
+def probe(X, name='X'):
+    """Full algebraic profile of matrix X using all operations."""
+    p = {}
+    d = X.shape[0]
+
+    # Apply all unary operations
+    for r in apply_all_unary(X, name):
+        p[r.name] = r.value
+
+    # Square law classification
+    X2 = X @ X
+    if np.allclose(X2, X):
+        p['square_law'] = 'IDEMPOTENT (X^2=X)'
+    elif np.allclose(X2, -np.eye(d)):
+        p['square_law'] = 'ROTATION (X^2=-I)'
+    elif np.allclose(X2, np.eye(d)):
+        p['square_law'] = 'INVOLUTION (X^2=I)'
+    elif np.allclose(X2, np.zeros((d,d))):
+        p['square_law'] = 'NILPOTENT (X^2=0)'
+    elif np.allclose(X2, X + np.eye(d)):
+        p['square_law'] = 'PERSISTENCE (X^2=X+I)'
+    else:
+        if d == 2:
+            c2 = np.linalg.solve(_BASIS_MAT, X2.flatten())
+            terms = [f'{c2[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(c2[i]) > 1e-10]
+            p['square_law'] = ' + '.join(terms) if terms else '0'
+
+    # Commutators with generators
+    if d == 2:
+        for gn, G in FRAMEWORK_MATRICES.items():
+            if gn == name:
+                continue
+            c = X @ G - G @ X
+            a = X @ G + G @ X
+            c_coeffs = np.linalg.solve(_BASIS_MAT, c.flatten())
+            a_coeffs = np.linalg.solve(_BASIS_MAT, a.flatten())
+            c_terms = [f'{c_coeffs[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(c_coeffs[i]) > 1e-10]
+            a_terms = [f'{a_coeffs[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(a_coeffs[i]) > 1e-10]
+            p[f'[{name},{gn}]'] = ' + '.join(c_terms) if c_terms else '0'
+            p[f'{{{name},{gn}}}'] = ' + '.join(a_terms) if a_terms else '0'
+
+    # Key identities
+    p['is_idempotent'] = bool(np.allclose(X2, X))
+    p['is_symmetric'] = bool(np.allclose(X, X.T))
+
+    return ProbeResult(name, X, p)
+
+
+def probe_expression(expr_str):
+    """Probe a matrix built from an expression string."""
+    safe_vars = {
+        'R': R, 'N': N, 'J': J, 'h': h, 'I': I2, 'I2': I2,
+        'R_tl': R_tl, 'P': R + N, 'Q': J @ R @ J,
+        'np': np, 'eye': np.eye, 'sqrt': np.sqrt,
+        'exp': np.exp, 'pi': np.pi, 'phi': (1+np.sqrt(5))/2,
+    }
+    try:
+        X = eval(expr_str, {"__builtins__": {}}, safe_vars)
+        return probe(X, name=expr_str)
+    except Exception as e:
+        return f"PROBE FAILED: {e}"
+
+
+# ================================================================
 # SELF-TEST
 # ================================================================
 
 if __name__ == "__main__":
-    print("OPERATIONS SELF-TEST")
+    print("OPERATIONS + PROBER SELF-TEST")
     print("=" * 55)
 
     checks = []
