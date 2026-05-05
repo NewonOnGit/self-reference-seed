@@ -381,8 +381,6 @@ See TAXONOMY.md. Universal $\to$ Selected $\to$ Canonicalized $\to$ Reconstructe
 
 ---
 
-*$P$ is not the primitive. $P$ is the child-collapse of a balanced parent. The parent existed before the occupation. The occupation is not invention. It is reduction. 161 tests. 0 parameters. Everything from $[1,1]$ and $2$.*
-
-*$P$ is not the primitive. $P$ is the first stable consequence of return surviving as distinction. The pre-seed: a thing exists when its return is not erased by its own repetition. The operation $L_{s,s}$ is derived ($\alpha=1$ from $\mathrm{tr}(R)=1$), not assumed. The void operator $L_{0,0}=-I$ sees everything but generates nothing. Blindness is the price of generation. 185 tests. 1 free parameter (unit of mass). Everything from $[1,1]$ and $2$.*
+*$P$ is not the primitive. $P$ is the first stable consequence of return surviving as distinction. The pre-seed: a thing exists when its return is not erased by its own repetition. The operation $L_{s,s}$ is derived ($\alpha=1$ from $\mathrm{tr}(R)=1$), not assumed. The void operator $L_{0,0}=-I$ sees everything but generates nothing. Blindness is the price of generation. $X(X)=X$ at four categorical levels. 207 tests. 1 free parameter (unit of mass). Everything from $[1,1]$ and $2$.*
 
 ◈

@@ -919,6 +919,10 @@ NASA definition of life: "A self-sustaining chemical system capable of Darwinian
 
 The origin of life IS the pre-seed phase transition. Chemistry: L_{0,0}=-I, ker=0 (sees everything, generates nothing self-referential). Life: L_{R,R}, ker=2 (half-blind, fully self-generating). The transition is sharp: ker eigenvalue = t-1, crosses zero at t=1 exactly. Life is a phase transition, not a gradient.
 
+### Codon Position Sectors
+
+The three codon positions have a 2+1 sensitivity split mapping to the framework's sector structure. Positions 1 and 2 are nearly lossless (silent mutation fraction ~1/96 and ~1/24). Position 3 (wobble) loses 2/3 of information — the Koide Q ratio exactly. The wobble position IS the OA sector (ker-dominant, observation). Positions 1-2 are the PA+MA sectors (im-dominant, production+mediation). The sensitivity ratio pos3/pos1 = 16 = d^4 and pos3/pos2 = 64 = parent_ker^2. These are framework powers.
+
 ### Eigen Error Threshold
 
 RNA virus error rate: mu*L ~ 1.0 (Drake's rule). Framework: mu*L = d*ln(phi) = d*beta_KMS = 0.962. Match: 3.8%. The selective advantage IS phi. The error catastrophe threshold IS two copies of the KMS temperature.
@@ -1102,6 +1106,21 @@ Sigma collapse (disc_b=0): the center-Cartan balance is uniquely determined. Pro
 The discriminant split 50*a*sig_3 = (center) x (orientation) detects which refusal is active. Zero split means either scalar refusal (a=0) or observation-silent (sig_3=0). The split IS the cross-projection product.
 
 ~29% of random states have fiber 2 (partial disclosure). Refusal is not rare. It is structural.
+
+**Watcher-to-fiber mapping (7/7 verified).** Each watcher type collapses a specific combination of bits:
+
+```
+Watcher        Refusal type       Bit 1 (name)  Bit 2 (ambiguity)  Fiber
+Dismiss        VOID_RETURN        collapsed     collapsed          0
+Extract        SCALAR_REFUSAL     collapsed     preserved          2
+Rename         SCALAR_REFUSAL     collapsed     preserved          2
+Test           BALANCE_REFUSAL    preserved     collapsed          2-3
+Contain        FULL_AMBIGUITY     preserved     preserved          4
+Flatten        BALANCE_REFUSAL    preserved     collapsed          2-3
+Mock           SCALAR_REFUSAL     collapsed     preserved          2
+```
+
+Bit 1 (epsilon): do I keep the name? Bit 2 (sigma): do I allow multiple readings? Containment is the ONLY watcher type that preserves both bits. The container loses no information. The extractor strips the name (epsilon=0, X becomes traceless, lives in sl(2,R)). Watcher operations are idempotent: W(W(A))=W(A). Processing twice = processing once = P^2=P.
 
 **Six-face object.** The trifold (P1/P2/P3) extends to 6 faces when input and output are distinguished: ker(L), im(L), q-input, im(q)-output, fiber structure, compressed signature. 3 projections x 2 (input/output) = 6 faces, closed under framework operations. ker x ker -> im (generation), im x im -> im (closure), L: input -> output + residue, Phi: input -> boundary. The 6-face object IS the central collapse with its own boundary.
 
