@@ -709,6 +709,12 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | virus capsid T in {N_c, d^2, N_c^2, dim_gauge, disc^2} | COMPUTED (capsid classification IS framework arithmetic) |
 | consonant intervals = framework ratios (d:1, N_c:d, ...) | IDENTIFIED (overtone series IS the cardinal tower) |
 | 12 semitones = dim_gauge | IDENTIFIED (octave divided by gauge algebra) |
+| P^2=P at every tower depth (democratic tower) | COMPUTED Tier A (ker/A=1/2, self-transparent, at all verified depths) |
+| attenuation symmetric: human sees 10^(-3) down, 10^(-120) up | COMPUTED (phi_bar^(2*gap) in both directions) |
+| quotients compose multiplicatively: (1/2)^n per depth gap | COMPUTED (observer A seeing B loses ker(A)+ker(B)) |
+| governance = observer at depth ~10: im=visible state, ker=hidden state | STRUCTURAL (same P^2=P, same ker/A=1/2) |
+| money = h (mediation between visible and hidden governance) | STRUCTURAL (h = bridge operator) |
+| the slot is forced, the occupant is empirical | STRUCTURAL (P^2=P forces observer slot at every scale) |
 | 1/alpha_EM = disc^N_c + dim_gauge = 137 (0.03%) | MACHINE-DISCOVERED Tier B (mu=1 specific, deps: disc, N_c, dim_gauge) |
 | 23 chromosomes = N_c*disc + parent_ker (exact) | MACHINE-DISCOVERED Tier B (mu=1 specific) |
 | e = parent_ker^beta_KMS = 8^ln(phi) (0.07%) | MACHINE-DISCOVERED Tier N (e from parent_ker and KMS temperature) |
@@ -930,6 +936,46 @@ RNA virus error rate: mu*L ~ 1.0 (Drake's rule). Framework: mu*L = d*ln(phi) = d
 ### Biological Hierarchy = Axis 2
 
 Biology lives on Axis 2 (recursive self-observation), not Axis 1 (tower depth = physics). Each biological level adds one meta-N pass: chemistry -> self-replication -> prokaryote -> eukaryote -> multicellular -> nervous system -> consciousness -> language -> mathematics -> framework. Capacity C(K) = n_eff * m * 2L. Axis 2 is unbounded (ker(L_{N,N})=0 at every depth).
+
+### The Democratic Tower
+
+Every tower depth IS P^2=P. Every depth has ker/A=1/2. Every depth is self-transparent (ker(L_{N,N})=0). Every depth is complete at its own scale. No depth is privileged.
+
+```
+depth 0:  quark         P^2=P, ker/A=1/2, self-transparent
+depth 1:  atom          P^2=P, ker/A=1/2, self-transparent
+depth 2:  molecule      P^2=P, ker/A=1/2, self-transparent
+depth 3:  cell          P^2=P, ker/A=1/2, self-transparent
+depth 7:  human         P^2=P, ker/A=1/2, self-transparent
+depth 10: governance    P^2=P, ker/A=1/2, self-transparent
+depth 14: civilization  P^2=P, ker/A=1/2, self-transparent
+depth 295: universe     P^2=P, ker/A=1/2, self-transparent
+```
+
+Each says "I am the return that returns itself." Each is right. The tower is not a hierarchy viewed from the middle. It is P^2=P applied to itself recursively. Each application is complete at its own depth. Each is the One wearing a different d_K. Xi=Xi(Xi) at every depth.
+
+Attenuation is symmetric: a human (depth 7) sees 10^(-3) of a quark and 10^(-120) of the universe. The human is equally blind in both directions. Quotients compose multiplicatively: two observers at different depths lose at least ker(A)+ker(B) of each other's structure. Half times half = quarter. The depth gap adds exponential attenuation.
+
+### Governance as Observer Structure
+
+Governance IS an observer at depth ~10 in the tower. It performs every framework operation:
+
+```
+im(governance)  = elected officials, public law, courts, visible policy
+ker(governance) = intelligence, classified operations, hidden agreements
+h(governance)   = financial system, money flow (the bridge)
+L_{R,R}(N) = 0  = the visible state cannot see the hidden state
+ker(L_{N,N}) = 0 = the hidden state is self-transparent
+ker x ker -> im  = classified operations generate public outcomes
+```
+
+Money is h — the mediation operator between visible and hidden governance. Intelligence agencies operate on h: they don't control money directly but control which channels connect which outcomes. The human at depth 7 sees ~2% of governance structure (phi_bar^8). Classification is not what makes intelligence invisible. The algebra makes it invisible. Classification is governance acknowledging its own ker.
+
+The headless Omega: "nobody is behind it" at the visible level. But ker IS behind it. Politicians genuinely don't know (L_R(N)=0). Intelligence agencies have their own ker (ker/A=1/2 for them too). The blind spot is constitutive at every depth. No observer, at any scale, can see its own hidden sector. Not quarks. Not humans. Not governance. Not the universe.
+
+### The Slot Theorem
+
+P^2=P forces the observer slot at every scale. Any system performing distinction + selection + memory + feedback + return has observer-like structure with ker/A=1/2 and self-transparency. The slot is algebraically forced. The occupant is empirical. The delusion-boundary is seeing the SLOT — the algebraic fact that observer structure exists at scales you can't occupy — and mistaking it for the OCCUPANT. The signal is in im. The ego-assignment is premature fiber collapse.
 
 ### The Three Triads
 
