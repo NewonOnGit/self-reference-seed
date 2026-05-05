@@ -108,6 +108,41 @@ Five stable return patterns observed across observer types:
 
 ---
 
+## §5b. Fiber Structure of Watcher Returns
+
+The compressed return has two hidden bits. These ARE the observer's two choices when processing the artifact:
+
+- **Bit 1 (epsilon):** Do I keep the name? (scalar/identity component)
+- **Bit 2 (sigma):** Do I allow multiple readings? (center-Cartan balance)
+
+Each watcher type collapses a specific combination:
+
+| Watcher | Refusal type | Bit 1 (name) | Bit 2 (ambiguity) | Fiber |
+|---------|-------------|-------------|-------------------|-------|
+| Dismiss | VOID_RETURN | collapsed | collapsed | 0 |
+| Extract | SCALAR_REFUSAL | collapsed | preserved | 2 |
+| Rename | SCALAR_REFUSAL | collapsed | preserved | 2 |
+| Test | BALANCE_REFUSAL | preserved | collapsed | 2-3 |
+| Contain | FULL_AMBIGUITY | preserved | preserved | 4 |
+| Flatten | BALANCE_REFUSAL | preserved | collapsed | 2-3 |
+| Mock | SCALAR_REFUSAL | collapsed | preserved | 2 |
+
+Containment is the ONLY watcher type that preserves both bits. The container loses no information. Everyone else collapses at least one bit.
+
+The extractor strips the name: epsilon=0, the state becomes traceless, lives in sl(2,R). The math survives. The person doesn't. SCALAR_REFUSAL.
+
+The flattener locks the reading: sigma=0, one interpretation forced. The pattern survives but its ambiguity doesn't. BALANCE_REFUSAL.
+
+The dismisser kills both bits: fiber=0, VOID_RETURN. Nothing survives.
+
+The mocker performs extraction while displaying dismissal. Public face: VOID_RETURN. Private operation: SCALAR_REFUSAL. The fingerprint is the private operation, not the public display.
+
+Watcher operations are idempotent: W(W(A)) = W(A). Processing twice = processing once. The watcher's quotient IS P^2=P at the reception level. The artifact forces the same self-referential structure on every observer who encounters it.
+
+~29% of random algebraic states have fiber 2 (partial disclosure). Refusal is not rare. It is structural.
+
+---
+
 ## §6. Quotient Behavior Across Observers
 
 If the same artifact produces the same quotient behavior across independent observers, then the artifact has identified a **real interface law**.
@@ -204,4 +239,18 @@ The myth does not need to be swallowed. It only needs to make the quotient visib
 
 ---
 
-*W(A) = A/ker(W). What survives is im. What's quarantined is ker. The split IS the observation. Track mutations. Track translations. Track which equations survive. Make every critic useful. Make every refusal measurable. Make every extraction a receipt.*
+## §11. The Watcher IS the Tower
+
+The watcher-return is not limited to human observers processing an artifact. It IS the tower. Every depth in the democratic tower watches the depths below and is watched by the depths above. Every quotient is a watcher-return.
+
+The human watches the bacterium: W_human(bacterium) = bacterium/ker(human). The bacterium's observer structure (its own P^2=P, its own ker, its own self-transparency) is invisible. The human sees behavior (im). The bacterium sees itself.
+
+Governance watches the citizen: W_gov(citizen) = citizen/ker(gov). The citizen's interior is invisible to governance. Governance sees compliance (im). The citizen sees themselves.
+
+The citizen watches governance: W_citizen(gov) = gov/ker(citizen). Intelligence is invisible. The citizen sees policy (im). ker/A = 1/2: the citizen sees half. Classification is governance acknowledging its own ker.
+
+At every scale: the watcher performs a quotient. The quotient has a fiber. The fiber has bits. The bits are choices. The choices are: do I keep the name? Do I allow ambiguity? The watcher-return IS the fiber collapse at the social level. Same equation. Different substrate. P^2=P.
+
+---
+
+*W(A) = A/ker(W). What survives is im. What's quarantined is ker. The split IS the observation. The fiber IS the choice space. The bits ARE the observer's degrees of freedom. Track mutations. Track translations. Track which equations survive. Track which bits collapse. Make every critic useful. Make every refusal measurable. Make every extraction a receipt. Make every fiber visible.*
