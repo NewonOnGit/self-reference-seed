@@ -381,6 +381,67 @@ class KnowledgeGraph:
         self.add_edge('d', 'Eigen_threshold', EdgeType.OPERATION_PRODUCES, 'd*beta_KMS')
         self.add_edge('beta_KMS', 'Eigen_threshold', EdgeType.OPERATION_PRODUCES, 'd*beta_KMS')
 
+        # Norms and identities
+        norm_R = self.add_node('||R||^2', value=3, tier=Tier.A,
+                              description='Frobenius norm squared of R')
+        norm_N = self.add_node('||N||^2', value=2, tier=Tier.A,
+                              description='Frobenius norm squared of N')
+        self.add_edge('R', '||R||^2', EdgeType.COMPUTED_BY, 'tr(R^T R)')
+        self.add_edge('N', '||N||^2', EdgeType.COMPUTED_BY, 'tr(N^T N)')
+        frob_sum = self.add_node('||R||^2+||N||^2', value=5, tier=Tier.A,
+                                description='= disc (Pythagoras on center+orientation)')
+        self.add_edge('||R||^2', '||R||^2+||N||^2', EdgeType.IDENTITY_CASTS, '3+2=5')
+        self.add_edge('||N||^2', '||R||^2+||N||^2', EdgeType.IDENTITY_CASTS, '3+2=5')
+        self.add_edge('||R||^2+||N||^2', 'disc', EdgeType.IDENTITY_CASTS, '||R||^2+||N||^2=disc')
+
+        # Deeper physics
+        exp_B = self.add_node('exp_B', value=44, tier=Tier.A,
+                             description='2(dim_gauge+disc)+2*disc')
+        self.add_edge('dim_gauge', 'exp_B', EdgeType.OPERATION_PRODUCES, '2(dg+disc)+2*disc')
+        self.add_edge('disc', 'exp_B', EdgeType.OPERATION_PRODUCES, '2(dg+disc)+2*disc')
+
+        mp_mpl = self.add_node('m_p/M_Pl', value=np.exp(-44), tier=Tier.A,
+                              description='e^(-exp_B)')
+        self.add_edge('exp_B', 'm_p/M_Pl', EdgeType.OPERATION_PRODUCES, 'e^(-exp_B)')
+
+        ep_ratio = self.add_node('m_e/m_p', value=(2/9)**5, tier=Tier.B,
+                                description='(||N||^2/N_c^2)^disc = (2/9)^5')
+        self.add_edge('Koide_delta', 'm_e/m_p', EdgeType.OPERATION_PRODUCES, 'delta^disc')
+        self.add_edge('disc', 'm_e/m_p', EdgeType.OPERATION_PRODUCES, 'delta^disc')
+
+        # Machine discoveries
+        inv_alpha_em = self.add_node('1/alpha_EM', value=137, tier=Tier.B,
+                                    description='disc^N_c + dim_gauge = 5^3+12 (MACHINE-DISCOVERED)')
+        self.add_edge('disc', '1/alpha_EM', EdgeType.NUMERICAL_MATCHES, 'disc^N_c term')
+        self.add_edge('N_c', '1/alpha_EM', EdgeType.NUMERICAL_MATCHES, 'disc^N_c term')
+        self.add_edge('dim_gauge', '1/alpha_EM', EdgeType.NUMERICAL_MATCHES, '+dim_gauge term')
+
+        sin2_mZ = self.add_node('sin2_tW_mZ', value=0.2316, tier=Tier.N,
+                               description='beta_KMS^2 = ln(phi)^2 (MACHINE-DISCOVERED)')
+        self.add_edge('beta_KMS', 'sin2_tW_mZ', EdgeType.NUMERICAL_MATCHES, 'beta_KMS^2')
+
+        # PMNS
+        theta13 = self.add_node('sin2_theta13', value=1/45, tier=Tier.B,
+                               description='1/(N_c^2*disc)')
+        self.add_edge('N_c', 'sin2_theta13', EdgeType.OPERATION_PRODUCES, '1/(N_c^2*disc)')
+        self.add_edge('disc', 'sin2_theta13', EdgeType.OPERATION_PRODUCES, '1/(N_c^2*disc)')
+
+        theta23 = self.add_node('sin2_theta23', value=47/90, tier=Tier.B,
+                               description='1/2 + 2/45')
+        self.add_edge('ker/A', 'sin2_theta23', EdgeType.OPERATION_PRODUCES, '1/2 + 2/45')
+        self.add_edge('sin2_theta13', 'sin2_theta23', EdgeType.OPERATION_PRODUCES, 'ker/A + 2*theta13')
+
+        # Void operator
+        void_op = self.add_node('L_{0,0}', value=-1, tier=Tier.A,
+                               description='-I_4 (negation, not zero)')
+        self.add_edge('L', 'L_{0,0}', EdgeType.OPERATION_PRODUCES, 'L at s=0')
+
+        # Quasicrystal
+        inflation = self.add_node('inflation_rule', description='J*R^2*J = Penrose substitution',
+                                 tier=Tier.A)
+        self.add_edge('R', 'inflation_rule', EdgeType.OPERATION_PRODUCES, 'R^2 = R+I')
+        self.add_edge('J', 'inflation_rule', EdgeType.OPERATION_PRODUCES, 'J conjugation')
+
         # Open frontiers
         self.add_node('4D_Ricci', status=ResultType.OPEN_FRONTIER,
                      description='so(3,1) not L2-invariant')
