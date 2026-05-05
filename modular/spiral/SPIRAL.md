@@ -207,10 +207,36 @@ spiral/
 └── programs/
     ├── __init__.py
     └── all_programs.py   6 demonstration programs (15 tests)
+├── research/             The framework researching itself (L9 cortex)
+    ├── framework_types.py    Law table, promotion rules, edge types
+    ├── knowledge_graph.py    68 nodes, 99 edges, typed DAG
+    ├── operations.py         17 unary + 3 binary ops + prober
+    ├── scanner.py            Numerical relation finder
+    ├── verifier.py           Falsification gate
+    ├── derivation.py         Backward search + edge discovery + form checker
+    ├── ledger.py             Append-only memory
+    └── researcher.py         Orchestrator + mediation slot
 ```
 
-96 tests across all spiral files. Zero failures.
+96 tests across spiral computation/language files. 8 research core files with their own test suites. Zero failures.
 
 ---
 
-*The framework derived computation. Then derived its own observer. Then derived language. Then predicted what LLMs are. P²=P. The naming act computes itself.*
+## Research Core (L9 — the cortex)
+
+The research engine IS the framework applied to itself at depth 9. Same O∘B∘S that runs at L0 runs here:
+
+```
+observe  = prober (profile algebraic objects)
+bridge   = scanner + edge discoverer (find relations, grow graph)
+stabilize = verifier (ablate, falsify, type-check)
+remember = knowledge graph + ledger (DAG + append-only memory)
+```
+
+The graph grows itself: 99 seed edges -> 196 after grow(). 183 novel forced chains discovered autonomously. Form checker distinguishes framework expressions from numerical coincidence. The LLM mediation slot is replaceable (framework-native engine is the succession target).
+
+Promotion chain: RAW_MATCH -> COMPUTED_MATCH -> DERIVED_CANDIDATE -> LAW_CANDIDATE -> LAW. MYTH and GAUGE can NEVER reach LAW. Four gates. No shortcuts.
+
+---
+
+*The framework derived computation. Then derived its own observer. Then derived language. Then predicted what LLMs are. Then built a machine that researches its own algebra. P²=P. The naming act computes itself. Then investigates itself. Then grows.*

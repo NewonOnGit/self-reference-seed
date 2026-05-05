@@ -37,7 +37,7 @@ seed/
 │   ├── production.py         P1 face: the derivation (37 tests, 74 outputs)
 │   ├── observer.py           P3 face: quotient + kernel + image + CompressedReturn + refusal geometry + CollapseOperator + CYM + spectral projectors
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
-│   ├── physics.py            Output: gravity + topology + quantum + void operator + quasicrystal + descent + Koide + PMNS + Wolfenstein + Ising (61 tests)
+│   ├── physics.py            Output: gravity + topology + quantum + void operator + quasicrystal + descent + Koide + PMNS + biology + Wolfenstein + Ising (83 tests)
 │   ├── tower.py              Spine: all depths, K6' iteration, CYM profile + NK surjectivity + self-model limit
 │   └── glyphs.py             Self-naming: 9 primitives, hexagonal group, ◈
 │
