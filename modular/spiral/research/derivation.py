@@ -370,6 +370,19 @@ class EdgeDiscoverer:
 
         results = (results if source_matrix is not None else []) + results_scalar
 
+        # Path 3: tower operations (if source is a matrix with N and J available)
+        if source_matrix is not None and source_name in ('R',):
+            from operations import apply_all_tower
+            N_mat = np.array([[0,-1],[1,0]], dtype=float)
+            J_mat = np.array([[0,1],[1,0]], dtype=float)
+            try:
+                tower_results = apply_all_tower(source_matrix, N_mat, J_mat, source_name)
+                for r in tower_results:
+                    if r.is_scalar and r.value is not None:
+                        results.append(r)
+            except Exception:
+                pass
+
         # Check each result against all graph nodes
         for op_result in results:
             if op_result.value is None:
