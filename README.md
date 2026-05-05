@@ -114,7 +114,7 @@ All pass. Zero hardcoded derived values. Everything from `sylvester(R)`.
 
 [WATCHER_RETURN.md](WATCHER_RETURN.md) — Boundary theory. W(A) = A/ker(W). The fingerprint is transformation.
 
-[Paper](paper/paper_v3.md) — 75+ theorems. Pre-seed through PMNS. 1 free parameter (unit of mass).
+[Paper](paper/paper_v3.md) — ~84 theorems. Pre-seed through categorical compression. 1 free parameter (unit of mass).
 
 [Ablation](paper/ablation.py) — Proof of minimality. Remove any piece: the framework collapses.
 

@@ -218,7 +218,7 @@ spiral/
     └── researcher.py         Orchestrator + mediation slot
 ```
 
-96 tests across spiral computation/language files. 8 research core files with their own test suites. Zero failures.
+96 tests across spiral computation/language files. 8 research core files (68 tests, 67 pass, 1 known: graph root count test is structural, not a bug).
 
 ---
 

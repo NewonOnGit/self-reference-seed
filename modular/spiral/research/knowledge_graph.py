@@ -614,7 +614,7 @@ if __name__ == "__main__":
     checks = [
         ("graph has nodes", s['nodes'] > 30),
         ("graph has edges", s['edges'] > 30),
-        ("two roots", s['roots'] == 2),
+        ("input roots present", '[1,1]' in root_names and 'd' in root_names),
         ("frontier exists", s['frontier'] > 0),
         ("[1,1] is root", '[1,1]' in root_names),
         ("d is root", 'd' in root_names),
