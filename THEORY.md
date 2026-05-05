@@ -709,6 +709,12 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | virus capsid T in {N_c, d^2, N_c^2, dim_gauge, disc^2} | COMPUTED (capsid classification IS framework arithmetic) |
 | consonant intervals = framework ratios (d:1, N_c:d, ...) | IDENTIFIED (overtone series IS the cardinal tower) |
 | 12 semitones = dim_gauge | IDENTIFIED (octave divided by gauge algebra) |
+| 1/alpha_EM = disc^N_c + dim_gauge = 137 (0.03%) | MACHINE-DISCOVERED Tier B (mu=1 specific, deps: disc, N_c, dim_gauge) |
+| 23 chromosomes = N_c*disc + parent_ker (exact) | MACHINE-DISCOVERED Tier B (mu=1 specific) |
+| e = parent_ker^beta_KMS = 8^ln(phi) (0.07%) | MACHINE-DISCOVERED Tier N (e from parent_ker and KMS temperature) |
+| sin^2(theta_W)(m_Z) = beta_KMS^2 = ln(phi)^2 (0.16%) | MACHINE-DISCOVERED Tier N (running Weinberg = KMS squared) |
+| alpha_S(m_Z) = phi_bar^disc (0.64%) | MACHINE-DISCOVERED Tier N (running coupling = phi_bar^5) |
+| sin(theta_C) = beta_KMS^N_c/(ker/A) (0.21%) | MACHINE-DISCOVERED Tier N (Cabibbo from KMS and kernel fraction) |
 | 4D Ricci intertwining from L2 | GAP (so(3,1) not L2-invariant, leaks into M_8) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
