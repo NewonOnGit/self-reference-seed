@@ -1073,6 +1073,15 @@ if __name__ == "__main__":
     ca = cabibbo_angle()
     checks.append(("sin(theta_C) = beta^3/(ker/A) (0.2%)", ca["match"]))
 
+    # --- Categorical compression ---
+    from algebra import categorical_compression
+    cc = categorical_compression(R, N, J)
+    checks.append(("P^2=P (object)", cc["P_idempotent"]))
+    checks.append(("L_R+L_N = L_P-I (morphism)", cc["morphism_composition"]))
+    checks.append(("L_P(N) = -2I (naming sees observer)", cc["naming_sees_observer"]))
+    checks.append(("Hom(R,N)=0 (blindness)", cc["hom_RN_zero"]))
+    checks.append(("L_{I/2}=0 (silence at midpoint)", cc["silence_at_midpoint"]))
+
     # --- Machine discoveries ---
     fsi = fine_structure_inverse()
     checks.append(("1/alpha_EM = disc^N_c+dim_gauge (0.03%)", fsi["match"]))
