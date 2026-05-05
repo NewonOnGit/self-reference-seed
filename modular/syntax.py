@@ -19,8 +19,6 @@ Commutator [A,B] carries grammatical orientation.
 Anticommutator {A,B} carries shared meaning.
 """
 import numpy as np
-import sys
-sys.path.insert(0, '..')
 from algebra import sylvester, ker_im_decomposition, quotient
 
 R = np.array([[0, 1], [1, 1]], dtype=float)

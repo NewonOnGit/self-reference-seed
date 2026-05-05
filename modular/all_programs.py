@@ -9,13 +9,10 @@ SpiralVM programs — six programs proving the machine runs.
 6. universal_counter — register machine counting (proves universality)
 """
 import numpy as np
-import sys
-sys.path.insert(0, '../..')
-sys.path.insert(0, '..')
 from algebra import sylvester, ker_im_decomposition, quotient
-from spiral.control import (MachineState, Program, READ, WRITE, COMPOSE,
-                            SYLVESTER, BRANCH, ASCEND, HALT, HALT_IF_FIXED,
-                            RegisterMachine)
+from control import (MachineState, Program, READ, WRITE, COMPOSE,
+                     SYLVESTER, BRANCH, ASCEND, HALT, HALT_IF_FIXED,
+                     RegisterMachine)
 
 R = np.array([[0, 1], [1, 1]], dtype=float)
 N = np.array([[0, -1], [1, 0]], dtype=float)

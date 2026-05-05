@@ -964,6 +964,168 @@ def fibonacci_sigma():
     return Rb, F @ Rb @ F
 
 
+# ============================================================
+# RESEARCH ENGINE: SCANNER (from scanner.py)
+# ============================================================
+
+from algebra import ResultType, Tier
+from itertools import product as iterproduct
+
+
+def _scanner_seed_constants():
+    """All framework constants computed from d=2."""
+    d = 2
+    N_c = d * (d + 1) // 2
+    disc = 1 + 4 * 1
+    parent_ker = d ** N_c
+    dim_gauge = (N_c**2 - 1) + (d**2 - 1) + 1
+    phi = (1 + np.sqrt(5)) / 2
+    phi_bar = phi - 1
+    alpha_S = 0.5 - phi_bar**2
+    beta_KMS = np.log(phi)
+    ker_A = 0.5
+    return {
+        'd': d, 'N_c': N_c, 'disc': disc, 'parent_ker': parent_ker,
+        'dim_gauge': dim_gauge, 'phi': phi, 'phi_bar': phi_bar,
+        'alpha_S': alpha_S, 'beta_KMS': beta_KMS, 'ker/A': ker_A,
+    }
+
+
+SCANNER_MODES = {
+    'STRICT_SEED': ['d', 'N_c', 'disc'],
+    'TOWER': ['d', 'N_c', 'disc', 'phi', 'phi_bar', 'parent_ker', 'dim_gauge'],
+    'PHYSICS': ['d', 'N_c', 'disc', 'phi', 'phi_bar', 'parent_ker', 'dim_gauge',
+                'alpha_S', 'beta_KMS', 'ker/A'],
+    'FULL': None,
+}
+
+
+class ScanResult:
+    """A single scanner match."""
+
+    def __init__(self, target, expression, value, constants_used,
+                 complexity, tolerance):
+        self.target = target
+        self.expression = expression
+        self.value = value
+        self.constants_used = constants_used
+        self.complexity = complexity
+        self.tolerance = tolerance
+        self.status = ResultType.RAW_MATCH
+        self.tier = Tier.N
+
+    def deviation(self):
+        if abs(self.target) < 1e-30:
+            return abs(self.value)
+        return abs(self.value - self.target) / abs(self.target)
+
+    def __repr__(self):
+        dev = self.deviation() * 100
+        return (f"RAW_MATCH: {self.target} ~ {self.expression} = {self.value:.6g} "
+                f"({dev:.2f}%) [complexity={self.complexity}]")
+
+
+class Scanner:
+    """Framework relation finder."""
+
+    def __init__(self, mode='TOWER', tolerance=0.05, max_complexity=3):
+        self.all_constants = _scanner_seed_constants()
+        allowed = SCANNER_MODES.get(mode)
+        if allowed is None:
+            self.constants = dict(self.all_constants)
+        else:
+            self.constants = {k: v for k, v in self.all_constants.items() if k in allowed}
+        self.tolerance = tolerance
+        self.max_complexity = max_complexity
+
+    def scan(self, target):
+        """Find all framework expressions matching target within tolerance."""
+        if abs(target) < 1e-30:
+            return []
+        results = []
+        names = list(self.constants.keys())
+        values = list(self.constants.values())
+        n = len(names)
+
+        for i in range(n):
+            self._check(target, names[i], values[i], [names[i]], 1, results)
+            if values[i] != 0:
+                self._check(target, f"1/{names[i]}", 1.0/values[i], [names[i]], 1, results)
+            for exp in [2, 3, 4, 5, -1, -2]:
+                if values[i] > 0 or exp == int(exp):
+                    try:
+                        v = values[i] ** exp
+                        self._check(target, f"{names[i]}^{exp}", v, [names[i]], 2, results)
+                    except (ValueError, OverflowError):
+                        pass
+            if values[i] > 0:
+                self._check(target, f"sqrt({names[i]})", np.sqrt(values[i]),
+                           [names[i]], 2, results)
+                self._check(target, f"ln({names[i]})", np.log(values[i]),
+                           [names[i]], 2, results)
+
+        if self.max_complexity >= 2:
+            for i in range(n):
+                for j in range(n):
+                    a, b = values[i], values[j]
+                    na, nb = names[i], names[j]
+                    used = sorted(set([na, nb]))
+                    self._check(target, f"{na}+{nb}", a+b, used, 2, results)
+                    self._check(target, f"{na}-{nb}", a-b, used, 2, results)
+                    self._check(target, f"{na}*{nb}", a*b, used, 2, results)
+                    if abs(b) > 1e-30:
+                        self._check(target, f"{na}/{nb}", a/b, used, 2, results)
+                    if a > 0 and abs(b) < 20:
+                        try:
+                            self._check(target, f"{na}^{nb}", a**b, used, 2, results)
+                        except (ValueError, OverflowError):
+                            pass
+
+        if self.max_complexity >= 3:
+            for i in range(n):
+                for j in range(n):
+                    for k in range(j, n):
+                        a, b, c = values[i], values[j], values[k]
+                        na, nb, nc = names[i], names[j], names[k]
+                        used = sorted(set([na, nb, nc]))
+                        self._check(target, f"{na}*{nb}+{nc}", a*b+c, used, 3, results)
+                        self._check(target, f"{na}*{nb}-{nc}", a*b-c, used, 3, results)
+                        self._check(target, f"{na}*{nb}*{nc}", a*b*c, used, 3, results)
+                        if abs(c) > 1e-30:
+                            self._check(target, f"{na}*{nb}/{nc}", a*b/c, used, 3, results)
+                        if a > 0 and abs(b) < 10:
+                            try:
+                                self._check(target, f"{na}^{nb}+{nc}", a**b+c, used, 3, results)
+                                self._check(target, f"{na}^{nb}*{nc}", a**b*c, used, 3, results)
+                                if abs(c) > 1e-30:
+                                    self._check(target, f"{na}^{nb}/{nc}", a**b/c, used, 3, results)
+                            except (ValueError, OverflowError):
+                                pass
+
+        seen = set()
+        unique = []
+        for r in results:
+            key = (r.expression, round(r.value, 10))
+            if key not in seen:
+                seen.add(key)
+                unique.append(r)
+        unique.sort(key=lambda r: (r.deviation() > 1e-10, r.complexity, r.deviation()))
+        return unique
+
+    def _check(self, target, expr, value, constants_used, complexity, results):
+        if not np.isfinite(value) or abs(value) > 1e20:
+            return
+        if abs(target) < 1e-30:
+            return
+        dev = abs(value - target) / abs(target)
+        if dev <= self.tolerance:
+            results.append(ScanResult(
+                target=target, expression=expr, value=value,
+                constants_used=constants_used, complexity=complexity,
+                tolerance=dev
+            ))
+
+
 # ================================================================
 # SELF-TEST
 # ================================================================

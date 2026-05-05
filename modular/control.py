@@ -19,8 +19,6 @@ INC = compose(R), DEC = compose(R-I). The register machine operates on
 a quasicrystal. The inflation rule R^2=R+I IS the persistence law.
 """
 import numpy as np
-import sys
-sys.path.insert(0, '..')
 from algebra import sylvester, ker_im_decomposition, quotient
 
 

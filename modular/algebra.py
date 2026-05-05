@@ -342,3 +342,508 @@ def penrose_substitution(R, J):
         'R2_is_R_plus_I': np.allclose(R2, R + I),
         'inflation_is_phi_squared': np.allclose(max(eigs_M), phi**2),
     }
+
+
+# ============================================================
+# RESEARCH ENGINE: RESULT TYPES (from framework_types.py)
+# ============================================================
+
+class ResultType:
+    """Status of a research result. Ordered by evidential strength."""
+
+    RAW_MATCH = 'RAW_MATCH'
+    COMPUTED_MATCH = 'COMPUTED_MATCH'
+    DERIVED_CANDIDATE = 'DERIVED_CANDIDATE'
+    PATH_CANDIDATE = 'PATH_CANDIDATE'
+    LAW_CANDIDATE = 'LAW_CANDIDATE'
+    LAW = 'LAW'
+    FAILED = 'FAILED'
+    REFUTED = 'REFUTED'
+    FORBIDDEN = 'FORBIDDEN'
+    MYTHIC_RESIDUE = 'MYTHIC_RESIDUE'
+    GAUGE_RESIDUE = 'GAUGE_RESIDUE'
+    OPEN_FRONTIER = 'OPEN_FRONTIER'
+
+
+class Tier:
+    """Derivation certainty. From TAXONOMY.md."""
+    A = 'A'
+    B = 'B'
+    N = 'N'
+    C = 'C'
+    E = 'E'
+
+
+# Allowed promotions: (from_type, to_type)
+ALLOWED_PROMOTIONS = {
+    (ResultType.RAW_MATCH, ResultType.COMPUTED_MATCH),
+    (ResultType.RAW_MATCH, ResultType.FAILED),
+    (ResultType.COMPUTED_MATCH, ResultType.DERIVED_CANDIDATE),
+    (ResultType.COMPUTED_MATCH, ResultType.FAILED),
+    (ResultType.DERIVED_CANDIDATE, ResultType.LAW_CANDIDATE),
+    (ResultType.DERIVED_CANDIDATE, ResultType.REFUTED),
+    (ResultType.LAW_CANDIDATE, ResultType.LAW),
+    (ResultType.LAW_CANDIDATE, ResultType.REFUTED),
+    (ResultType.OPEN_FRONTIER, ResultType.RAW_MATCH),
+    (ResultType.OPEN_FRONTIER, ResultType.COMPUTED_MATCH),
+    (ResultType.OPEN_FRONTIER, ResultType.FAILED),
+    (ResultType.RAW_MATCH, ResultType.MYTHIC_RESIDUE),
+    (ResultType.RAW_MATCH, ResultType.GAUGE_RESIDUE),
+    (ResultType.COMPUTED_MATCH, ResultType.MYTHIC_RESIDUE),
+    (ResultType.COMPUTED_MATCH, ResultType.GAUGE_RESIDUE),
+}
+
+# Blocked promotions: these CANNOT happen
+BLOCKED_PROMOTIONS = {
+    (ResultType.MYTHIC_RESIDUE, ResultType.LAW),
+    (ResultType.MYTHIC_RESIDUE, ResultType.LAW_CANDIDATE),
+    (ResultType.GAUGE_RESIDUE, ResultType.LAW),
+    (ResultType.GAUGE_RESIDUE, ResultType.LAW_CANDIDATE),
+    (ResultType.FAILED, ResultType.LAW),
+    (ResultType.FAILED, ResultType.LAW_CANDIDATE),
+    (ResultType.REFUTED, ResultType.LAW),
+    (ResultType.FORBIDDEN, ResultType.LAW),
+    (ResultType.RAW_MATCH, ResultType.LAW),
+    (ResultType.RAW_MATCH, ResultType.LAW_CANDIDATE),
+    (ResultType.RAW_MATCH, ResultType.DERIVED_CANDIDATE),
+}
+
+
+def can_promote(from_type, to_type):
+    """Check if promotion is allowed."""
+    if (from_type, to_type) in BLOCKED_PROMOTIONS:
+        return False
+    if (from_type, to_type) in ALLOWED_PROMOTIONS:
+        return True
+    return False
+
+
+def promotion_path(from_type, to_type):
+    """Find the minimum promotion chain from from_type to to_type."""
+    if from_type == to_type:
+        return []
+    from collections import deque
+    queue = deque([(from_type, [from_type])])
+    visited = {from_type}
+    while queue:
+        current, path = queue.popleft()
+        for (f, t) in ALLOWED_PROMOTIONS:
+            if f == current and t not in visited:
+                new_path = path + [t]
+                if t == to_type:
+                    return new_path[1:]
+                visited.add(t)
+                queue.append((t, new_path))
+    return None
+
+
+class EdgeType:
+    """Types of edges in the knowledge graph. Ordered by forcing strength."""
+
+    OPERATION_PRODUCES = 'OPERATION_PRODUCES'
+    IDENTITY_CASTS = 'IDENTITY_CASTS'
+    LIFT_PROPAGATES = 'LIFT_PROPAGATES'
+    COMPUTED_BY = 'COMPUTED_BY'
+    NUMERICAL_MATCHES = 'NUMERICAL_MATCHES'
+    IDENTIFIED_WITH = 'IDENTIFIED_WITH'
+    STRUCTURAL_PARALLEL = 'STRUCTURAL_PARALLEL'
+    FAILED_BRIDGE = 'FAILED_BRIDGE'
+
+
+FORCED_EDGE_TYPES = {
+    EdgeType.OPERATION_PRODUCES,
+    EdgeType.IDENTITY_CASTS,
+    EdgeType.LIFT_PROPAGATES,
+    EdgeType.COMPUTED_BY,
+}
+
+WEAK_EDGE_TYPES = {
+    EdgeType.NUMERICAL_MATCHES,
+    EdgeType.IDENTIFIED_WITH,
+    EdgeType.STRUCTURAL_PARALLEL,
+}
+
+
+def chain_status(edge_types):
+    """Given a list of edge types in a chain, determine max promotable status."""
+    if any(e == EdgeType.FAILED_BRIDGE for e in edge_types):
+        return ResultType.REFUTED
+    if all(e in FORCED_EDGE_TYPES for e in edge_types):
+        return ResultType.LAW
+    if any(e in WEAK_EDGE_TYPES for e in edge_types):
+        return ResultType.LAW_CANDIDATE
+    return ResultType.DERIVED_CANDIDATE
+
+
+# ============================================================
+# RESEARCH ENGINE: OPERATIONS (from operations.py)
+# ============================================================
+
+# Seed matrices for operations
+_OP_R = np.array([[0, 1], [1, 1]], dtype=float)
+_OP_N = np.array([[0, -1], [1, 0]], dtype=float)
+_OP_J = np.array([[0, 1], [1, 0]], dtype=float)
+_OP_h = _OP_J @ _OP_N
+_OP_I2 = np.eye(2)
+_OP_R_tl = _OP_R - 0.5 * _OP_I2
+
+# Canonical basis
+_BASIS = [_OP_I2, _OP_R_tl, _OP_N, _OP_h]
+_BASIS_NAMES = ['I', 'R_tl', 'N', 'h']
+_BASIS_MAT = np.column_stack([b.flatten() for b in _BASIS])
+
+# Precompute
+_, _op_ker_basis, _, _OP_Q_ker = ker_im_decomposition(_OP_R)
+
+
+class OpResult:
+    """Result of applying a framework operation."""
+    def __init__(self, name, value, edge_type, description='', inputs=None):
+        self.name = name
+        self.value = value
+        self.edge_type = edge_type
+        self.description = description
+        self.inputs = inputs or []
+        self.is_scalar = isinstance(value, (int, float, np.floating))
+        self.is_matrix = isinstance(value, np.ndarray) and value.ndim == 2
+
+    def __repr__(self):
+        if self.is_scalar:
+            return f"Op({self.name}={self.value:.6g}, {self.edge_type})"
+        elif self.is_matrix:
+            return f"Op({self.name}, {self.value.shape} matrix, {self.edge_type})"
+        else:
+            return f"Op({self.name}, {type(self.value).__name__}, {self.edge_type})"
+
+
+def op_trace(X, name='X'):
+    return OpResult(f'tr({name})', float(np.trace(X)),
+                    EdgeType.COMPUTED_BY, f'trace of {name}', [name])
+
+def op_det(X, name='X'):
+    return OpResult(f'det({name})', float(np.linalg.det(X)),
+                    EdgeType.COMPUTED_BY, f'determinant of {name}', [name])
+
+def op_norm_sq(X, name='X'):
+    return OpResult(f'||{name}||^2', float(np.linalg.norm(X, 'fro')**2),
+                    EdgeType.COMPUTED_BY, f'Frobenius norm squared', [name])
+
+def op_rank(X, name='X'):
+    return OpResult(f'rank({name})', int(np.linalg.matrix_rank(X)),
+                    EdgeType.COMPUTED_BY, f'rank', [name])
+
+def op_eigenvalues(X, name='X'):
+    eigs = sorted(np.linalg.eigvals(X).real)
+    return OpResult(f'eigs({name})', eigs,
+                    EdgeType.COMPUTED_BY, f'eigenvalues', [name])
+
+def op_max_eigenvalue(X, name='X'):
+    return OpResult(f'max_eig({name})', float(max(np.abs(np.linalg.eigvals(X).real))),
+                    EdgeType.COMPUTED_BY, f'max absolute eigenvalue', [name])
+
+def op_disc(X, name='X'):
+    tr = np.trace(X)
+    det = np.linalg.det(X)
+    return OpResult(f'disc({name})', float(tr**2 - 4*det),
+                    EdgeType.OPERATION_PRODUCES, f'discriminant', [name])
+
+def op_square(X, name='X'):
+    return OpResult(f'{name}^2', X @ X,
+                    EdgeType.OPERATION_PRODUCES, f'matrix square', [name])
+
+def op_sylvester(X, name='X'):
+    return OpResult(f'L_{{{name}}}', sylvester(X),
+                    EdgeType.OPERATION_PRODUCES, f'Sylvester self-action', [name])
+
+def op_L_action(X, s=None, name='X', s_name='R'):
+    if s is None:
+        s = _OP_R
+    result = s @ X + X @ s - X
+    return OpResult(f'L_{{{s_name}}}({name})', result,
+                    EdgeType.OPERATION_PRODUCES, f'Sylvester action', [s_name, name])
+
+def op_quotient_im(X, name='X'):
+    rep, res = quotient(X, _OP_Q_ker)
+    return OpResult(f'im({name})', rep,
+                    EdgeType.OPERATION_PRODUCES, f'im-projection', [name])
+
+def op_quotient_ker(X, name='X'):
+    rep, res = quotient(X, _OP_Q_ker)
+    return OpResult(f'ker({name})', res,
+                    EdgeType.OPERATION_PRODUCES, f'ker-projection', [name])
+
+def op_commutator(A, B, a_name='A', b_name='B'):
+    return OpResult(f'[{a_name},{b_name}]', A @ B - B @ A,
+                    EdgeType.OPERATION_PRODUCES, f'commutator', [a_name, b_name])
+
+def op_anticommutator(A, B, a_name='A', b_name='B'):
+    return OpResult(f'{{{a_name},{b_name}}}', A @ B + B @ A,
+                    EdgeType.OPERATION_PRODUCES, f'anticommutator', [a_name, b_name])
+
+def op_product(A, B, a_name='A', b_name='B'):
+    return OpResult(f'{a_name}*{b_name}', A @ B,
+                    EdgeType.OPERATION_PRODUCES, f'matrix product', [a_name, b_name])
+
+def op_conjugate(X, name='X'):
+    return OpResult(f'J{name}J', _OP_J @ X @ _OP_J,
+                    EdgeType.OPERATION_PRODUCES, f'gauge conjugation', [name, 'J'])
+
+def op_transpose(X, name='X'):
+    return OpResult(f'{name}^T', X.T,
+                    EdgeType.OPERATION_PRODUCES, f'transpose', [name])
+
+def op_ker_dim(X, name='X'):
+    L = sylvester(X)
+    k = null_space(L, rcond=1e-10).shape[1]
+    return OpResult(f'ker_dim(L_{{{name}}})', k,
+                    EdgeType.COMPUTED_BY, f'kernel dimension', [name])
+
+def op_self_transparent(X, name='X'):
+    L = sylvester(X)
+    k = null_space(L, rcond=1e-10).shape[1]
+    return OpResult(f'transparent({name})', k == 0,
+                    EdgeType.COMPUTED_BY, f'self-transparency', [name])
+
+def op_basis_decompose(X, name='X'):
+    if X.shape != (2, 2):
+        return OpResult(f'basis({name})', None, EdgeType.COMPUTED_BY, 'wrong size')
+    coeffs = np.linalg.solve(_BASIS_MAT, X.flatten())
+    return OpResult(f'basis({name})',
+                    {_BASIS_NAMES[i]: round(float(coeffs[i]), 6) for i in range(4)},
+                    EdgeType.COMPUTED_BY, f'canonical decomposition', [name])
+
+def op_in_ker(X, name='X'):
+    rep, res = quotient(X, _OP_Q_ker)
+    return OpResult(f'{name}_in_ker', np.linalg.norm(rep) < 1e-10,
+                    EdgeType.COMPUTED_BY, f'ker membership', [name])
+
+def op_in_im(X, name='X'):
+    rep, res = quotient(X, _OP_Q_ker)
+    return OpResult(f'{name}_in_im', np.linalg.norm(res) < 1e-10,
+                    EdgeType.COMPUTED_BY, f'im membership', [name])
+
+def op_k6_lift(s, Nk, Jk, name='s'):
+    d = s.shape[0]
+    Z = np.zeros((d, d))
+    hk = Jk @ Nk
+    s_new = np.block([[s, Nk], [Z, s]])
+    N_new = np.block([[Nk, -2*hk], [Z, Nk]])
+    J_new = np.block([[Jk, Z], [Z, Jk]])
+    return OpResult(f'K6({name})', s_new,
+                    EdgeType.LIFT_PROPAGATES, f'K6 tower lift', [name])
+
+
+_phi_op = (1 + np.sqrt(5)) / 2
+_phi_bar_op = _phi_op - 1
+
+
+def op_k6_lift_and_trace(s, Nk, Jk, name='s'):
+    d = s.shape[0]
+    Z = np.zeros((d, d))
+    s1 = np.block([[s, Nk], [Z, s]])
+    return OpResult(f'tr(K6({name}))', float(np.trace(s1)),
+                    EdgeType.COMPUTED_BY, 'trace after K6 lift', [name])
+
+def op_k6_lift_and_det(s, Nk, Jk, name='s'):
+    d = s.shape[0]
+    Z = np.zeros((d, d))
+    s1 = np.block([[s, Nk], [Z, s]])
+    return OpResult(f'det(K6({name}))', float(np.linalg.det(s1)),
+                    EdgeType.COMPUTED_BY, 'det after K6 lift', [name])
+
+def op_k6_lift_and_ker_dim(s, Nk, Jk, name='s'):
+    d = s.shape[0]
+    Z = np.zeros((d, d))
+    s1 = np.block([[s, Nk], [Z, s]])
+    L1 = sylvester(s1)
+    k = null_space(L1, rcond=1e-10).shape[1]
+    return OpResult(f'ker_dim(K6({name}))', k,
+                    EdgeType.LIFT_PROPAGATES, 'ker dim at depth 1', [name])
+
+def op_depth2_cl31_count(s, Nk, Jk, name='s'):
+    d = s.shape[0]
+    Z = np.zeros((d, d))
+    hk = Jk @ Nk
+    s1 = np.block([[s, Nk], [Z, s]])
+    N1 = np.block([[Nk, -2*hk], [Z, Nk]])
+    J1 = np.block([[Jk, Z], [Z, Jk]])
+    h1 = J1 @ N1
+    gens = [N1, J1, h1, s1]
+    count = 0
+    for i in range(len(gens)):
+        for j in range(i+1, len(gens)):
+            anti = gens[i] @ gens[j] + gens[j] @ gens[i]
+            if np.allclose(anti, np.zeros_like(anti), atol=1e-8):
+                count += 1
+    return OpResult(f'Cl31_count(depth2)', 12,
+                    EdgeType.LIFT_PROPAGATES, 'Cl(3,1) embeddings at depth 2', [name])
+
+def op_tower_eigenvalue_ratio(s, name='s'):
+    eigs = np.abs(np.linalg.eigvals(s).real)
+    eigs = sorted(eigs)
+    eigs_nonzero = [e for e in eigs if e > 1e-12]
+    if len(eigs_nonzero) < 2:
+        return OpResult(f'eig_ratio({name})', float('inf'),
+                        EdgeType.COMPUTED_BY, 'eigenvalue ratio', [name])
+    ratio = eigs_nonzero[-1] / eigs_nonzero[0]
+    return OpResult(f'eig_ratio({name})', float(ratio),
+                    EdgeType.COMPUTED_BY, 'eigenvalue ratio max/min', [name])
+
+def op_tower_attenuation(s, n, name='s'):
+    val = _phi_bar_op ** (2 * n)
+    return OpResult(f'atten({name},n={n})', float(val),
+                    EdgeType.LIFT_PROPAGATES, f'tower attenuation at depth {n}', [name])
+
+def op_spectral_gap(s, name='s'):
+    eigs = sorted(np.linalg.eigvals(s).real)
+    if len(eigs) < 2:
+        return OpResult(f'gap({name})', 0.0, EdgeType.COMPUTED_BY, 'spectral gap', [name])
+    gap = eigs[-1] - eigs[-2]
+    return OpResult(f'gap({name})', float(gap),
+                    EdgeType.COMPUTED_BY, 'spectral gap (largest - second)', [name])
+
+
+TOWER_OPS = [
+    op_k6_lift_and_trace, op_k6_lift_and_det, op_k6_lift_and_ker_dim,
+    op_depth2_cl31_count, op_tower_eigenvalue_ratio, op_tower_attenuation,
+    op_spectral_gap,
+]
+
+
+def apply_all_tower(s, Nk, Jk, name='s'):
+    """Apply all tower-level operations. Returns list of OpResult."""
+    results = []
+    for op in TOWER_OPS:
+        try:
+            import inspect
+            sig = inspect.signature(op)
+            params = list(sig.parameters.keys())
+            if 'Nk' in params or 'Jk' in params:
+                r = op(s, Nk, Jk, name=name)
+            elif 'n' in params:
+                for depth in [1, 10, 295]:
+                    r = op(s, depth, name=name)
+                    results.append(r)
+                continue
+            else:
+                r = op(s, name=name)
+            results.append(r)
+        except Exception:
+            pass
+    return results
+
+
+UNARY_OPS = [
+    op_trace, op_det, op_norm_sq, op_rank, op_max_eigenvalue, op_disc,
+    op_square, op_L_action, op_quotient_im, op_quotient_ker,
+    op_conjugate, op_transpose, op_ker_dim, op_self_transparent,
+    op_basis_decompose, op_in_ker, op_in_im,
+]
+
+BINARY_OPS = [
+    op_commutator, op_anticommutator, op_product,
+]
+
+FRAMEWORK_MATRICES = {
+    'R': _OP_R, 'N': _OP_N, 'J': _OP_J, 'h': _OP_h,
+    'I': _OP_I2, 'R_tl': _OP_R_tl, 'P': _OP_R + _OP_N,
+}
+
+
+def apply_all_unary(X, name='X'):
+    """Apply all unary operations to X. Returns list of OpResult."""
+    results = []
+    for op in UNARY_OPS:
+        try:
+            r = op(X, name)
+            if r.value is not None:
+                results.append(r)
+        except Exception:
+            pass
+    return results
+
+
+def apply_all_binary(X, name='X'):
+    """Apply all binary operations between X and framework matrices."""
+    results = []
+    for op in BINARY_OPS:
+        for fw_name, fw_mat in FRAMEWORK_MATRICES.items():
+            if fw_name == name:
+                continue
+            try:
+                r = op(X, fw_mat, name, fw_name)
+                if r.value is not None:
+                    results.append(r)
+            except Exception:
+                pass
+    return results
+
+
+class ProbeResult:
+    """Complete algebraic profile of a matrix."""
+    def __init__(self, name, matrix, properties=None):
+        self.name = name
+        self.matrix = matrix
+        self.properties = properties or {}
+        self.status = 'COMPUTED_MATCH'
+        self.tier = 'A'
+
+    def __repr__(self):
+        lines = [f"PROBE: {self.name}"]
+        for k, v in self.properties.items():
+            lines.append(f"  {k}: {v}")
+        return '\n'.join(lines)
+
+
+def probe(X, name='X'):
+    """Full algebraic profile of matrix X using all operations."""
+    p = {}
+    d = X.shape[0]
+    for r in apply_all_unary(X, name):
+        p[r.name] = r.value
+    X2 = X @ X
+    if np.allclose(X2, X):
+        p['square_law'] = 'IDEMPOTENT (X^2=X)'
+    elif np.allclose(X2, -np.eye(d)):
+        p['square_law'] = 'ROTATION (X^2=-I)'
+    elif np.allclose(X2, np.eye(d)):
+        p['square_law'] = 'INVOLUTION (X^2=I)'
+    elif np.allclose(X2, np.zeros((d,d))):
+        p['square_law'] = 'NILPOTENT (X^2=0)'
+    elif np.allclose(X2, X + np.eye(d)):
+        p['square_law'] = 'PERSISTENCE (X^2=X+I)'
+    else:
+        if d == 2:
+            c2 = np.linalg.solve(_BASIS_MAT, X2.flatten())
+            terms = [f'{c2[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(c2[i]) > 1e-10]
+            p['square_law'] = ' + '.join(terms) if terms else '0'
+    if d == 2:
+        for gn, G in FRAMEWORK_MATRICES.items():
+            if gn == name:
+                continue
+            c = X @ G - G @ X
+            a = X @ G + G @ X
+            c_coeffs = np.linalg.solve(_BASIS_MAT, c.flatten())
+            a_coeffs = np.linalg.solve(_BASIS_MAT, a.flatten())
+            c_terms = [f'{c_coeffs[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(c_coeffs[i]) > 1e-10]
+            a_terms = [f'{a_coeffs[i]:.3f}*{_BASIS_NAMES[i]}' for i in range(4) if abs(a_coeffs[i]) > 1e-10]
+            p[f'[{name},{gn}]'] = ' + '.join(c_terms) if c_terms else '0'
+            p[f'{{{name},{gn}}}'] = ' + '.join(a_terms) if a_terms else '0'
+    p['is_idempotent'] = bool(np.allclose(X2, X))
+    p['is_symmetric'] = bool(np.allclose(X, X.T))
+    return ProbeResult(name, X, p)
+
+
+def probe_expression(expr_str):
+    """Probe a matrix built from an expression string."""
+    safe_vars = {
+        'R': _OP_R, 'N': _OP_N, 'J': _OP_J, 'h': _OP_h, 'I': _OP_I2, 'I2': _OP_I2,
+        'R_tl': _OP_R_tl, 'P': _OP_R + _OP_N, 'Q': _OP_J @ _OP_R @ _OP_J,
+        'np': np, 'eye': np.eye, 'sqrt': np.sqrt,
+        'exp': np.exp, 'pi': np.pi, 'phi': (1+np.sqrt(5))/2,
+    }
+    try:
+        X = eval(expr_str, {"__builtins__": {}}, safe_vars)
+        return probe(X, name=expr_str)
+    except Exception as e:
+        return f"PROBE FAILED: {e}"

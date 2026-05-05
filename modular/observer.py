@@ -1000,3 +1000,384 @@ class CYM:
             'compositum_degree': da['compositum_degree'],
             'combined_symmetry': lso['lcm_rotations'],
         }
+
+
+# ============================================================
+# RESEARCH ENGINE: VERIFIER (from verifier.py)
+# ============================================================
+
+from algebra import ResultType, Tier
+
+# Seed for verifier
+_VER_R = np.array([[0, 1], [1, 1]], dtype=float)
+_VER_N = np.array([[0, -1], [1, 0]], dtype=float)
+_VER_J = np.array([[0, 1], [1, 0]], dtype=float)
+_VER_h = _VER_J @ _VER_N
+_VER_I2 = np.eye(2)
+
+
+class VerificationResult:
+    """Outcome of verification."""
+
+    def __init__(self, expression, status, tier, checks_passed, checks_failed,
+                 details=None):
+        self.expression = expression
+        self.status = status
+        self.tier = tier
+        self.checks_passed = checks_passed
+        self.checks_failed = checks_failed
+        self.details = details or {}
+
+    def __repr__(self):
+        p = len(self.checks_passed)
+        f = len(self.checks_failed)
+        return (f"{self.status}: {self.expression} "
+                f"({p} passed, {f} failed, tier={self.tier})")
+
+
+class Verifier:
+    """The falsification gate."""
+
+    def verify_numerical(self, target, expression_fn, expression_str,
+                         constants=None):
+        """Verify a numerical relation."""
+        if constants is None:
+            constants = self._seed_constants()
+
+        passed = []
+        failed = []
+        details = {}
+
+        value = expression_fn(constants)
+        if abs(target) > 1e-30:
+            base_dev = abs(value - target) / abs(target)
+        else:
+            base_dev = abs(value)
+        details['base_deviation'] = base_dev
+
+        if base_dev < 0.05:
+            passed.append('base_match')
+        else:
+            failed.append('base_match')
+
+        gauge_constants = dict(constants)
+        gauge_value = expression_fn(gauge_constants)
+        gauge_invariant = abs(gauge_value - value) < 1e-10
+        if gauge_invariant:
+            passed.append('gauge_invariant')
+        else:
+            failed.append('gauge_invariant')
+        details['gauge_invariant'] = gauge_invariant
+
+        dependencies = []
+        eps = 1e-6
+        for name, val in constants.items():
+            if abs(val) < 1e-30:
+                continue
+            perturbed = dict(constants)
+            perturbed[name] = val * (1 + eps)
+            try:
+                perturbed_value = expression_fn(perturbed)
+                sensitivity = abs(perturbed_value - value) / (abs(value) * eps + 1e-30)
+                if sensitivity > 0.01:
+                    dependencies.append((name, sensitivity))
+            except (ValueError, ZeroDivisionError, OverflowError):
+                pass
+        details['dependencies'] = dependencies
+        if len(dependencies) > 0:
+            passed.append('has_dependencies')
+        else:
+            failed.append('has_dependencies')
+
+        if base_dev < 1e-10:
+            passed.append('exact')
+            details['exact'] = True
+        else:
+            details['exact'] = False
+            details['approximate_deviation'] = base_dev
+
+        family_holds = 0
+        family_fails = 0
+        for mu in [0.25, 2.25, 4.0]:
+            try:
+                fam_constants = self._family_constants(mu)
+                fam_value = expression_fn(fam_constants)
+                fam_dev = abs(fam_value - target) / abs(target) if abs(target) > 1e-30 else abs(fam_value)
+                if fam_dev < 0.05:
+                    family_holds += 1
+                else:
+                    family_fails += 1
+            except (ValueError, ZeroDivisionError, OverflowError):
+                family_fails += 1
+        details['family_holds'] = family_holds
+        details['family_fails'] = family_fails
+        if family_holds == 3:
+            passed.append('universal (all mu)')
+        elif family_holds > 0:
+            passed.append('partially_universal')
+        else:
+            passed.append('mu1_specific')
+
+        n_critical_fails = sum(1 for f in failed if f in ('base_match',))
+        if n_critical_fails > 0:
+            status = ResultType.REFUTED
+            tier = Tier.C
+        elif len(failed) == 0:
+            status = ResultType.LAW_CANDIDATE
+            tier = Tier.A if details.get('exact') else Tier.N
+        elif len(failed) <= 1:
+            status = ResultType.DERIVED_CANDIDATE
+            tier = Tier.B
+        else:
+            status = ResultType.REFUTED
+            tier = Tier.C
+
+        return VerificationResult(
+            expression=expression_str, status=status, tier=tier,
+            checks_passed=passed, checks_failed=failed, details=details
+        )
+
+    def verify_algebraic(self, X, property_name, expected):
+        """Verify an algebraic property of matrix X."""
+        passed = []
+        failed = []
+        details = {}
+
+        if property_name == 'equals':
+            match = np.allclose(X, expected)
+            details['match'] = match
+            if match:
+                passed.append('algebraic_match')
+            else:
+                failed.append('algebraic_match')
+                details['difference_norm'] = float(np.linalg.norm(X - expected))
+
+        elif property_name == 'ker_dim':
+            L = _sylvester_ab(X)
+            actual = null_space(L, rcond=1e-10).shape[1]
+            details['actual_ker'] = actual
+            if actual == expected:
+                passed.append('ker_dim_match')
+            else:
+                failed.append('ker_dim_match')
+
+        elif property_name == 'in_ker':
+            _, _, _, Q_ker = ker_im_decomposition(_VER_R)
+            from algebra import quotient as alg_q
+            rep, res = alg_q(X, Q_ker)
+            in_ker = np.linalg.norm(rep) < 1e-10
+            details['in_ker'] = in_ker
+            if in_ker == expected:
+                passed.append('placement_match')
+            else:
+                failed.append('placement_match')
+
+        X_gauged = _VER_J @ X @ _VER_J
+        details['gauge_conjugate'] = X_gauged.tolist()
+        Z = np.zeros((2, 2))
+        X_lifted = np.block([[X, Z], [Z, X]])
+        details['tower_lifted'] = True
+
+        status = ResultType.LAW_CANDIDATE if not failed else ResultType.REFUTED
+        tier = Tier.A if not failed else Tier.C
+
+        return VerificationResult(
+            expression=property_name, status=status, tier=tier,
+            checks_passed=passed, checks_failed=failed, details=details
+        )
+
+    def _seed_constants(self):
+        d = 2
+        N_c = d * (d + 1) // 2
+        phi = (1 + np.sqrt(5)) / 2
+        phi_bar = phi - 1
+        disc = int(round(1 + 4 * 1))
+        return {
+            'd': d, 'N_c': N_c, 'disc': disc,
+            'parent_ker': d**N_c,
+            'dim_gauge': (N_c**2-1) + (d**2-1) + 1,
+            'phi': phi, 'phi_bar': phi_bar,
+            'alpha_S': 0.5 - phi_bar**2,
+            'beta_KMS': np.log(phi),
+            'ker/A': 0.5,
+        }
+
+    def _family_constants(self, mu):
+        d = 2
+        disc = 1 + 4 * mu
+        sqrt_disc = np.sqrt(disc)
+        phi_mu = (1 + sqrt_disc) / 2
+        phi_bar_mu = (sqrt_disc - 1) / 2
+        N_c = d * (d + 1) // 2
+        return {
+            'd': d, 'N_c': N_c, 'disc': disc,
+            'parent_ker': d**N_c,
+            'dim_gauge': (N_c**2-1) + (d**2-1) + 1,
+            'phi': phi_mu, 'phi_bar': phi_bar_mu,
+            'alpha_S': 0.5 - phi_bar_mu**2,
+            'beta_KMS': np.log(phi_mu) if phi_mu > 0 else 0,
+            'ker/A': 0.5,
+        }
+
+
+# ============================================================
+# RESEARCH ENGINE: LEDGER (from ledger.py)
+# ============================================================
+
+import json
+import time
+import os
+
+
+class LedgerEntry:
+    """One research action recorded."""
+
+    def __init__(self, operation, input_data, output_data, status,
+                 tier=None, dependencies=None, failure_mode=None,
+                 next_branch=None, notes=None):
+        self.timestamp = time.time()
+        self.operation = operation
+        self.input_data = input_data
+        self.output_data = output_data
+        self.status = status
+        self.tier = tier
+        self.dependencies = dependencies or []
+        self.failure_mode = failure_mode
+        self.next_branch = next_branch
+        self.notes = notes
+
+    def to_dict(self):
+        return {
+            'timestamp': self.timestamp,
+            'time_str': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.timestamp)),
+            'operation': self.operation,
+            'input': str(self.input_data),
+            'output': str(self.output_data),
+            'status': self.status,
+            'tier': self.tier,
+            'dependencies': self.dependencies,
+            'failure_mode': self.failure_mode,
+            'next_branch': self.next_branch,
+            'notes': self.notes,
+        }
+
+    def __repr__(self):
+        t = time.strftime('%H:%M:%S', time.localtime(self.timestamp))
+        return f"[{t}] {self.operation}: {self.status} | {self.output_data}"
+
+
+class Ledger:
+    """Append-only research memory."""
+
+    def __init__(self, filepath=None):
+        self.entries = []
+        self.filepath = filepath
+        if filepath and os.path.exists(filepath):
+            self._load()
+
+    def record(self, operation, input_data, output_data, status,
+               tier=None, dependencies=None, failure_mode=None,
+               next_branch=None, notes=None):
+        entry = LedgerEntry(
+            operation=operation, input_data=input_data,
+            output_data=output_data, status=status, tier=tier,
+            dependencies=dependencies, failure_mode=failure_mode,
+            next_branch=next_branch, notes=notes
+        )
+        self.entries.append(entry)
+        if self.filepath:
+            self._append(entry)
+        return entry
+
+    def record_scan(self, target, results):
+        n = len(results)
+        best = results[0] if results else None
+        return self.record(
+            operation='scan',
+            input_data=f'target={target}',
+            output_data=f'{n} matches, best: {best}' if best else 'no matches',
+            status=ResultType.RAW_MATCH if n > 0 else ResultType.FAILED,
+            notes=f'{n} total matches'
+        )
+
+    def record_probe(self, name, result):
+        props = result.properties if hasattr(result, 'properties') else {}
+        return self.record(
+            operation='probe',
+            input_data=name,
+            output_data=props.get('square_law', 'unknown'),
+            status=ResultType.COMPUTED_MATCH,
+            tier=Tier.A,
+            dependencies=[name]
+        )
+
+    def record_verification(self, vresult):
+        return self.record(
+            operation='verify',
+            input_data=vresult.expression,
+            output_data=f'{len(vresult.checks_passed)} passed, {len(vresult.checks_failed)} failed',
+            status=vresult.status,
+            tier=vresult.tier,
+            failure_mode=vresult.checks_failed[0] if vresult.checks_failed else None,
+            dependencies=[d[0] for d in vresult.details.get('dependencies', [])]
+        )
+
+    def record_integration(self, name, status, tier):
+        return self.record(
+            operation='integrate',
+            input_data=name,
+            output_data=f'integrated as {status}',
+            status=status,
+            tier=tier
+        )
+
+    def by_operation(self, operation):
+        return [e for e in self.entries if e.operation == operation]
+
+    def by_status(self, status):
+        return [e for e in self.entries if e.status == status]
+
+    def failures(self):
+        return [e for e in self.entries
+                if e.status in (ResultType.FAILED, ResultType.REFUTED, ResultType.FORBIDDEN)]
+
+    def survivors(self):
+        return [e for e in self.entries
+                if e.status in (ResultType.LAW_CANDIDATE, ResultType.LAW,
+                               ResultType.DERIVED_CANDIDATE)]
+
+    def stats(self):
+        by_op = {}
+        by_status = {}
+        for e in self.entries:
+            by_op[e.operation] = by_op.get(e.operation, 0) + 1
+            by_status[e.status] = by_status.get(e.status, 0) + 1
+        return {
+            'total': len(self.entries),
+            'by_operation': by_op,
+            'by_status': by_status,
+            'failures': len(self.failures()),
+            'survivors': len(self.survivors()),
+        }
+
+    def _append(self, entry):
+        with open(self.filepath, 'a') as f:
+            f.write(json.dumps(entry.to_dict()) + '\n')
+
+    def _load(self):
+        with open(self.filepath) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    d = json.loads(line)
+                    self.entries.append(LedgerEntry(
+                        operation=d['operation'], input_data=d['input'],
+                        output_data=d['output'], status=d['status'],
+                        tier=d.get('tier'), dependencies=d.get('dependencies'),
+                        failure_mode=d.get('failure_mode'),
+                        next_branch=d.get('next_branch'), notes=d.get('notes')
+                    ))
+
+    def __repr__(self):
+        s = self.stats()
+        return f"Ledger({s['total']} entries, {s['survivors']} survivors, {s['failures']} failures)"
