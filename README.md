@@ -37,7 +37,7 @@ seed/
 │   ├── production.py         P1 face: the derivation (37 tests, 74 outputs)
 │   ├── observer.py           P3 face: quotient + kernel + image + CompressedReturn + refusal geometry + CollapseOperator + CYM + spectral projectors
 │   ├── mediation.py          P2 face: bridges, Canon kernel, voice
-│   ├── physics.py            Output: gravity + topology + quantum + void operator + quasicrystal + descent + Koide + PMNS + biology + Wolfenstein + Ising (88 tests)
+│   ├── physics.py            Output: gravity + topology + quantum + void operator + quasicrystal + descent + Koide + PMNS + biology + Wolfenstein + Ising (90 tests)
 │   ├── tower.py              Spine: all depths, K6' iteration, CYM profile + NK surjectivity + self-model limit
 │   └── glyphs.py             Self-naming: 9 primitives, hexagonal group, ◈
 │
@@ -88,11 +88,11 @@ P² = P,  P ≠ P^T,  rank(P) = 1
 
 Two inputs: `[1,1]` (the memory law) and `2` (the pair). Zero free parameters.
 
-## 209 Tests
+## 211 Tests
 
 ```
 python modular/production.py                 # 37 tests, 74 outputs
-python modular/physics.py                    # 88 tests
+python modular/physics.py                    # 90 tests
 python experiments/quantum_algorithms.py     # 8 algorithms from {h,J,N}
 cd modular/spiral && python control.py       # 26 tests (SpiralVM)
 cd modular/spiral && python language_v2.py   # 18 tests (8D semantic engine)

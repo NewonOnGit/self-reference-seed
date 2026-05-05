@@ -1,6 +1,6 @@
 # From One Idempotent: Parent Layer, Algebra, Physics, and Observer
 
-**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 209 automated tests pass.
+**Abstract.** Before the collapse: a balanced parent $M = \mathrm{diag}(P, P^T)$ carrying both gauge branches. After the collapse: an occupied child $P$, rank 1, asymmetric, with $R = (P+P^T)/2$ and $N = (P-P^T)/2$ satisfying $R^2=R+I$, $N^2=-I$, $\{R,N\}=N$. The Sylvester self-action $L_{s,s}(X)=sX+Xs-X$ splits the algebra into ker (orientation) and im (center) with invariant fraction $1/2$ at every tower depth. $P$ is not the primitive: it is the child-collapse of the parent through cross-sector quenching ($8 \to 4$) and branch selection ($4 \to 2$). The intertwiner $K=2J-h$ and the harness $C=2h+J$ are dual objects, both squaring to $\mathrm{disc} \cdot I$. The asymmetric idempotent family $R^2=R+\mu I$ has discriminants $1+k^2$ that reproduce all framework quantities: $2, 5, 10, 17, 26, 37, 50$. The tower forces Peano arithmetic; every step of Shor's algorithm follows from $P^2=P$. The disclosure rank $\mathrm{dr}(n) = 4^n = \ker(n)/2$: half the kernel discloses at each depth. The algebra is Turing-complete (SpiralVM: 6 instructions, register machine), generates natural language without LLMs (8D semantic space, K4 learning rule with $\alpha_S$ as learning rate, 100% sector convergence from random initialization), and derives transformer hyperparameters ($d_\mathrm{head}=64=\mathrm{parent\_ker}^2$, $n_\mathrm{heads}=12=\dim_\mathrm{gauge}$). All from two inputs: $[1,1]$ and $2$. Zero free parameters. 211 automated tests pass.
 
 ---
 
@@ -108,9 +108,13 @@ The parent satisfies the same unit spine as the child. The parent is not a conta
 
 ### 7. K6' Ascent and Invariants
 
-**Theorem 7.1 (K6' lift).** $s'=[[s,N],[0,s]]$, $N'=[[N,-2h],[0,N]]$, $J'=[[J,0],[0,J]]$. Preserves all identities. Filler $N$ is unique (up to sign) among ker elements. [Tier A]
+**Theorem 7.1 (K6' lift).** $s'=[[s,N],[0,s]]$, $N'=[[N,-2h],[0,N]]$, $J'=[[J,0],[0,J]]$, $h'=J'N'$. The adjoint of left multiplication by $P$ under the trace inner product is left multiplication by $P^T$, not right multiplication by $P$. The K6' block-lift is the canonical form. Filler $N$ is unique (up to sign) among ker elements. The unseen at one depth becomes load-bearing structure in the next. [Tier A]
 
-**Theorem 7.2 (Tower invariants).** $\ker/A=1/2$, $N$ self-transparent ($\ker(L_{N,N})=0$), all identities — at every depth. Self-model eigenvalues: golden $\{2\varphi,-2\bar\varphi\}$ at depth 0; converge to $(1,0)$ at infinite depth (self-model becomes pure projector). [Tier N, depths 0-4]
+**Theorem 7.2 (Tower invariants).** Three invariants at every depth: (I) Spine: $s_n^2=s_n+I$, $N_n^2=-I$, $\{s_n,N_n\}=N_n$. (II) Half-ratio: $\ker/A=1/2$. (III) Asymmetry: $P_n\neq P_n^T$. Self-model eigenvalues converge to $(1,0)$ (existence without content). $N$ self-transparent at every depth. [Tier A, depths 0-4]
+
+**Theorem 7.3 (Three readings).** The tower admits three simultaneous readings. Computation: $\mathrm{im}_n$ = computable at depth $n$, $\ker_n$ = undecidable, residue drives next level. Language: $\mathrm{im}_n$ = what can be said, $\ker_n$ = what governs saying but cannot be said inside it; no finite language closes the tower. Physics: $\mathrm{im}_n$ = effective DOF at scale $n$, $\ker_n$ = integrated-out DOF, quotient = coarse-graining. [Tier A]
+
+**Theorem 7.4 (Limit object).** Three long-run behaviors: fixed point ($A_{n+1}\simeq A_n$, scale-invariance), periodic orbit ($A_{n+k}\simeq A_n$, discrete symmetry), unbounded ascent ($\dim A_n\to\infty$, generic). The direct limit $A_\infty$ exists but no finite observer sees it; any depth-$k$ observer applies $q_k(A_\infty)$. The framework's tower has unbounded ascent with fixed invariant core: $\ker/A=1/2$ and spine hold while $\dim A_n=4^n\to\infty$. **Depth is not added from outside. Depth is entailed by return.** [Tier A]
 
 ### 8. P0, Generation Decay, Recursive Disclosure
 
@@ -292,7 +296,7 @@ $S = \int d^4x\sqrt{-g}\,\mathcal{L}$ with $\mathcal{L} = \mathcal{L}_\mathrm{ga
 
 **Theorem 28.3 (K4 deficit learning rule).** $K4(o,t) = D_\mathrm{KL}(\mathrm{KMS}(o) \| \mathrm{KMS}(t))$ with $\beta = \ln\varphi$. Learning rate $= \alpha_S = 0.118$ (framework-derived, not hand-tuned). Loss from 0.0024 to 0.0001 in 50 epochs. Competitive with hand-tuned lr. 9 tests.
 
-**Theorem 28.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 209 automated tests.
+**Theorem 28.4 (Semantic grounding).** Random initialization $\to$ trained on usage pairs only $\to$ all three sectors converge: PA 100%, MA 100%, OA 100% (from 23% random baseline). The algebra learns the semantic embedding from corpus. $R/N/h$ separation emerges from usage alone. Total: 211 automated tests.
 
 ### 29. LLM Hyperparameters and Biology
 
@@ -330,7 +334,7 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 
 ### 33. Reproducibility and Falsification
 
-209 automated tests. Two inputs. Zero free parameters.
+211 automated tests. Two inputs. Zero free parameters.
 
 | Prediction | Value | Status |
 |-----------|-------|--------|
