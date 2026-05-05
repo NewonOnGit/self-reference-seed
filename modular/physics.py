@@ -1,6 +1,10 @@
 """
 physics.py — What the framework computes about the physical world.
 
+ARCHITECTURE: L5 (skin). What im(L) says about the world.
+DEPTH: 5
+ORGAN: skin — the interface between the algebra and physical observables
+
 Gravity (three layers), topology (Jones, Fibonacci, braiding),
 gauge theory (connection, curvature), quantum gates (CNOT, Bell, TQC),
 coupling constants (neutrino spacing), disclosure rank formula.

@@ -2,6 +2,10 @@
 researcher.py -- The orchestrator. Ties scanner, prober, verifier,
 ledger, and knowledge graph into one research loop.
 
+ARCHITECTURE: L9 (reflective cortex). The framework investigating itself.
+DEPTH: 9
+ORGAN: cortex — O∘B∘S at depth 9, same operations as L0-L8 turned inward
+
 The loop: WATCH -> SELECT -> FORGE -> PROBE -> ABLATE -> TYPE -> LEDGER -> INTEGRATE -> RECUR
 
 The LLM sits in a cage: it may propose, narrate, compare. It may NOT

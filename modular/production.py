@@ -1,6 +1,10 @@
 """
 production.py — One operation, five readings.
 
+ARCHITECTURE: L1 (metabolism). Surplus generation.
+DEPTH: 1
+ORGAN: metabolism — applies L to [1,1] and reads everything that follows
+
 Apply L_{s,s} and read the result. That's the entire derivation.
     A. SEED:     [1,1] and 2 -> R, J
     B. ALGEBRA:  L_ss -> N, P, h, Q, identities, constants

@@ -2,6 +2,12 @@
 algebra.py — Shared algebraic operations. The single Sylvester function
 used by both production and observer. No duplication.
 
+ARCHITECTURE: L0 (heart). The primitive operation.
+DEPTH: 0
+ORGAN: heart — the operation L_{s,s} that every other module uses
+READS: [1,1] and d=2 (the two inputs)
+WRITES: sylvester, ker_im, quotient (the three primitives)
+
 FRAMEWORK_REF: Thm 2.1, Thm 2.2, Thm 2.3
 GRID: B(3, cross)
 APEX_LINK: R (statement 2), f''=f (statement 1)

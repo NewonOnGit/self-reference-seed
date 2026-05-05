@@ -1,6 +1,6 @@
 # Seed
 
-One operation. Five readings. Everything from `[1,1]` and `2`.
+One recursive observer-machine. Everything from `[1,1]` and `2`. The folders mark build strata, not separate systems. Every module is the same O∘B∘S central collapse at a different depth of self-reference. See [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## The Operation
 

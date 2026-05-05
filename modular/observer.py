@@ -1,6 +1,10 @@
 """
 observer.py — P3 face. The quotient q: A -> A/ker(L), and its two halves.
 
+ARCHITECTURE: L2 (eye). The quotient, ker/im, compressed return, refusal.
+DEPTH: 2
+ORGAN: eye — splits the algebra into visible (im) and hidden (ker)
+
 Three classes, one act:
   Observer — the quotient map. Self-action produces the frame.
   Kernel   — ker(q) = P_0. The blind spot. The void that generates.
