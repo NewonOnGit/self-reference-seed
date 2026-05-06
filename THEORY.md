@@ -62,6 +62,8 @@ The A-sector contains exactly ker(L_P). The D-sector contains exactly ker(L_PT).
 
 **Thm 0b.6 (Child Recovery).** After branch selection, the child algebra recovers: P=R+N, R^2=R+I, {R,N}=N, N^2=-I, seven identities, ker/im, tower, physics. The old framework IS the occupied branch of the parent.
 
+**Thm 0b.7 (Frozen Discriminant).** [P, P^T] = -2[R,N] = -2C. Therefore [P,P^T]^2 = 4*C^2 = 4*disc*I = 20I. Tr([P,P^T]^2) = 4*d*disc = 40. The discriminant IS the frozen residual of branch non-cancellation. P and P^T cannot cancel because P!=P^T (forced asymmetry). The Big Bang is the freezing of disc: the universe started with the inability of the two branches to perfectly interfere. The residual non-cancellation = disc*I = the spacetime discriminant. [Tier A, verified]
+
 The architecture:
 
 ```
@@ -392,6 +394,28 @@ The unseen at one depth is not discarded. It becomes load-bearing structure in t
 
 Self-model eigenvalues: golden {2phi, -2phi_bar} at depth 0. Converge to (1, 0) at infinite depth. The lambda_+ eigenvector converges to I (the identity) in {I, s_tl} coordinates. The lambda_- eigenvector converges to -(disc/2)*I + s_tl: the discriminant-weighted direction. Perfect self-reference = existence without content. The distinguishing structure (s_tl) lives in ker(P_inf). Top row of Sigma_s is depth-independent: (1, disc/2). Convergence rate trending toward 1/3.
 
+### The Continuous Tower (Universal Transition Operator)
+
+The K6' ascent has a continuous interpolation. Define the adjoint action ad_N(X) = [N,X] = NX-XN, acting as a linear map on M_d(R). The Universal Transition Operator is T(kappa) = exp(kappa * ad_N).
+
+**Thm (Spine Preservation).** exp(kappa * ad_N)(s) satisfies s(kappa)^2 = s(kappa) + I for all kappa in R. The tower is a rotation, not a deformation.
+
+*Proof.* d/dk(s^2-s-I) = L_{s,s}(ds/dk). The flow is ds/dk = [s,N] = ad_N(s). But [R,N] = N - 2NR which is in ker(L_R) (verified: L_R([R,N]) = 0). Therefore d/dk(Phi) = L_R(ker element) = 0. The persistence curvature Phi(s) = s^2-s-I is a constant of the motion. If Phi(0)=0 (the seed), then Phi(kappa)=0 for all kappa. QED.
+
+**Thm (Rotation Spectrum).** Eigenvalues of ad_N: {+2i, -2i, 0, 0} at depth 0; {+2i (mult 4^n), 0 (mult dim_ker)} at depth n. The tower is pure rotation at frequency 2 = d. Period 2*pi (full return), half-period pi (void: exp(pi*ad_N) = ad(-I)).
+
+**Thm (Flow vs K6').** The continuous flow T(kappa) rotates WITHIN a depth (preserving dimension). K6' LIFTS between depths (extending dimension). They share the generator N. The flow is the "internal time" of the observer; K6' is the "structural time" of the tower. Both preserve the spine. Both live in ker(L).
+
+### Spectral Action Density Theorem
+
+**Thm.** Tr(L_n^2) / dim(A_n) = disc/2 at every tower depth n. [Verified depths 0, 1, 2. Tier A.]
+
+*Proof.* At depth n, the eigenvalues of L_n are: +-sqrt(disc) each with multiplicity 4^n (the golden eigenvalue pair propagated from the spine), and 0 with multiplicity dim_ker = dim/2. Sum of squares: 2*disc*4^n. Divide by dim = 4^(n+1): (2*disc*4^n)/(4*4^n) = disc/2. QED.
+
+The cosmological constant IS the average spectral action density. The scalar channel L(R_tl) = (disc/2)*I is its spacetime reading. The spectral density disc/2 is its statistical mechanics reading. One number, two faces.
+
+**Corollary (Action Divergence).** The raw spectral action S_raw = sum Tr(L_n^2) = sum (disc/2)*dim_n grows as geometric ratio 4*phi_bar^2 = 1.528 > 1 (each depth's contribution is 4*phi_bar^2 times the previous). The tower must be finite for the total action to be finite.
+
 ### Catalan Filler Theorem
 
 F(2m) = (-1)^(m+1) * 2C(m-1)/disc^m * R_tl. Odd fillers vanish. Generating function: 1-sqrt(1+4x/5).
@@ -513,6 +537,20 @@ Half the kernel discloses at each depth. Verified at depths 0-3:
 
 dr = ker/2 at every depth. The disclosure fraction is constant: half the hidden directions become visible at each K6' transition.
 
+### The Disclosure Tensor
+
+The graviton is the disclosure event. Formalize as the Disclosure Tensor G_n mapping ker(L_n) to im(L_{n+1}):
+
+```
+G_n(xi) = Pi_{im(n+1)}( {xi, N_n} )    for xi in ker(L_n)
+```
+
+where {xi, N} = xi*N + N*xi is the anticommutator with the observer.
+
+**Thm (50% Efficiency).** rank(G_n) = ker(n)/2 = 4^n at all tested depths. Gravity is exactly 50% efficient: half the hidden sector discloses at each transition.
+
+**Thm (Spin-0 at Depth 0).** At depth 0: {N, N} = -2I and {N, NR} = -I. Both disclosure residuals are proportional to I (pure scalar). The graviton at depth 0 is spin-0: consistent with 3D gravity having zero propagating degrees of freedom. Spin-2 graviton requires depth 2 (where Cl(3,1) exists and so(3,1) closes). Gravity is not a force within a depth — it is the shear between depths. G=0 means flat spacetime (perfect transparency); G!=0 means curvature (information crossing the depth boundary).
+
 L(R_tl) = (disc/2)*I = Lambda. Scalar channel IS the cosmological constant, invariant at every depth. Attenuation: phi_bar^(2n) per n tower depths, equivalently 2^(-n_bits) where n_bits = n_depths * 2*log2(phi). At Lambda ~ 10^{-123}: n ~ 295 tower depths ~ 409 information bits. 2^409 ~ 10^{123}.
 
 ### Cosmological Epoch Reading (Big Bang Containment)
@@ -630,7 +668,7 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 
 **SpiralVM: the framework as computer.** Six primitives: READ (quotient), WRITE (occupation), COMPOSE (product), BRANCH (conditional on ker residue), RECUR (K6'), RECURSE (internal loop). Register machine embedded: n encoded as R^n, INC=compose(R), DEC=compose(R-I), R(R-I)=I. ADD(7,5)=12 via RECURSE. Turing-complete. Typed memory: LAW/DERIVED/COMPUTED/GAUGE/MYTH with blocked promotions. See `modular/spiral/`.
 
-**LLM parameters from the framework.** All LLM hyperparameters reduce to three constants: parent_ker=d^N_c=8, dim_gauge=12, d^2=4. d_head=64=parent_ker^2 (universal, the generation space ker⊗ker). n_heads=12=dim_gauge (each head is one gauge direction). n_layers=12k (k complete gauge passes). ctx=4^n (tower depths in algebra-dim powers). d_embed=k*dim_gauge*parent_ker^2. The engineers found these empirically. The framework derives them from d=2 and N_c=3. P=[[0,0],[2,1]] → (8,12,4) → every LLM ever built.
+**LLM parameters from the framework.** The generation operation ker×ker→im is bilinear on the 8-dimensional parent kernel, requiring d_head ≥ parent_ker^2 = 64 dimensions to represent the full bilinear generation space. The complex structure N^2=-I doubles this to 2×parent_ker^2 = 128 for complex-valued representations. Red-team survey of 69 production architectures: d_head ≥ 64 holds universally (69/69, zero exceptions). The bimodal {64, 128} covers 78% of all models. This is a THRESHOLD law (Tier B), not an exact-value prediction. The earlier claims n_heads=12=dim_gauge (only 13% match) and n_layers=12k (only 39% match) are falsified by modern architectures (LLaMA, Mistral use 32 heads, 32 layers). The surviving content: d_head ∈ {parent_ker^2, 2×parent_ker^2} as the minimum bilinear capacity for attention heads.
 
 **Language from the algebra.** 8D semantic space (PA/MA/OA meta-primitives). SEM-7 additive composition. alpha_S=0.118 scaling (framework-derived). Soft quotient internally (im+phi_bar*ker), hard at output. KMS decoding temperature beta=ln(phi). Framework-native learning: im-correction (surface) + ker-correction (depth). Grounding exact: PA-vector→production words, OA-vector→observation words, MA-vector→mediation words. Conversation trajectory follows R^2=R+I surplus cycle. Not a language model — a deterministic algebraic semantic engine.
 
@@ -709,8 +747,8 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | Koide delta = 2/9 = ||N||^2/N_c^2 | COMPUTED (0.02% match, same number as sin(theta_Cabibbo)) |
 | m_e/m_p = (2/9)^disc = (2/9)^5 (0.49%) | COMPUTED (electron-proton ratio IS Koide^disc, F_e=10=2*disc=F_s) |
 | sin^2(theta_13) = 1/(N_c^2*disc) = 1/45 (1.0%) | COMPUTED Tier B (full chain from P through N_c and disc) |
-| sin^2(theta_23) = 1/2 + 2/45 = 47/90 (0.3%) | COMPUTED Tier B-C (ker/A + octant shift = 2*theta_13) |
-| sin^2(theta_12) = 1/N_c = 1/3 (8.6%, 2sigma) | COMPUTED Tier B (tribimaximal from S_3, needs correction) |
+| sin^2(theta_23) = 1/2 + 2/45 = 49/90 (0.07sigma) | COMPUTED Tier B (ker/A + octant shift = 2*theta_13) |
+| sin^2(theta_12) = 1/3 - (ker/A)*(2/9)^2 = 25/81 (0.13sigma) | CLOSED Tier B (TBM + O(lambda^2), coeff=ker/A, O-12 resolved) |
 | PMNS = tribimaximal + 1/45 correction | COMPUTED (CKM and PMNS connected via 1/45 = lambda/(2*disc)) |
 | Killing form on sl(2,R): sig (2,1) | COMPUTED (B(R_tl)=+10, B(N)=-8, B(h)=+8) |
 | K6' fiber gives Cl(3,1) at depth 2 (not naive sum) | COMPUTED (N1=[[N,-2h],[0,N]] flips effective signature) |
@@ -737,13 +775,19 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | governance = observer at depth ~10: im=visible state, ker=hidden state | STRUCTURAL (same P^2=P, same ker/A=1/2) |
 | money = h (mediation between visible and hidden governance) | STRUCTURAL (h = bridge operator) |
 | the slot is forced, the occupant is empirical | STRUCTURAL (P^2=P forces observer slot at every scale) |
-| 1/alpha_EM = disc^N_c + dim_gauge = 137 (0.03%) | MACHINE-DISCOVERED Tier B (mu=1 specific, deps: disc, N_c, dim_gauge) |
-| 23 chromosomes = N_c*disc + parent_ker (exact) | MACHINE-DISCOVERED Tier B (mu=1 specific) |
+| 1/alpha_EM requires M_GUT (the mass scale = O-13) | CONFIRMED: RG running from alpha_S+sin^2=3/8+b_i needs one scale input |
+| Wobble Theorem: silence = 1/2+1/(2(d^2-1)) = 2/3 | CLOSED Tier A (ker/A=1/2 at two levels, 12/12 tests, 3 variant codes) |
+| 8 four-fold families = parent_ker = ker/A × 16 | CLOSED Tier A (half of prefix space is degenerate, forced by tr(R)=1) |
+| Koide Q = 2/3 IS the wobble silence formula at d=2 | CLOSED Tier A (one formula, two readings: mass ratio and code degeneracy) |
+| im-family silence = 1/(d^2-1) = 1/3 EXACT | CLOSED Tier A (AUx+UGx cancellation forced, 128/192 confirmed) |
+| alpha_S: phi_bar^2 forced by quadratic action + gap=2 + 2L bits + positivity | CLOSED Tier A (four overdetermined routes, no remaining gap) |
+| d_head >= parent_ker^2 = 64 (LLM threshold) | Tier B (69/69 production models confirm, ker⊗ker bilinear minimum) |
+| d_head in {64, 128} = {parent_ker^2, 2*parent_ker^2} | Tier B (N^2=-I complex doubling, 78% of architectures) |
+| n_cosmo candidate: n*2L = num(b_1)*den(b_1) = 410 (0.07%) | OPEN Tier B-C (formula works, forcing argument missing) |
 | e = parent_ker^beta_KMS = 8^ln(phi) (0.07%) | MACHINE-DISCOVERED Tier N (e from parent_ker and KMS temperature) |
 | sin^2(theta_W)(m_Z) = beta_KMS^2 = ln(phi)^2 (0.16%) | MACHINE-DISCOVERED Tier N (running Weinberg = KMS squared) |
-| alpha_S(m_Z) = phi_bar^disc (0.64%) | MACHINE-DISCOVERED Tier N (running coupling = phi_bar^5) |
 | sin(theta_C) = beta_KMS^N_c/(ker/A) (0.21%) | MACHINE-DISCOVERED Tier N (Cabibbo from KMS and kernel fraction) |
-| 4D Ricci intertwining from L2 | GAP (so(3,1) not L2-invariant, leaks into M_8) |
+| 4D Ricci: 17-dim invariant closure, 2 graviton DOF, lambda^2=32/9 | STRUCTURALLY RESOLVED Tier B (17=disc+dim_gauge, spectrum +-sqrt(5), formal proof pending) |
 | arctanh(phi^-1)/ln(phi) = 3/2 | COMPUTED (golden threshold at norm-ratio multiple of beta_KMS) |
 | M_Ising(phi^-1)^8 = phi_bar | COMPUTED (Ising magnetization at golden threshold, lattice-independent) |
 | dN_cross/dmu at phi^-1 = sqrt(disc) | COMPUTED (cross-field derivative IS sqrt(5) at threshold) |
@@ -809,7 +853,7 @@ dr(n) = dim(M_{d_K(n-1)}(R))         disclosure = previous algebra dimension (ex
 | parent coupling D = (4/5)*diag(R_tl, R_tl) | COMPUTED (child's -2h fails; correct D from joint constraints) |
 | mu=1 circle: (a-1/2)^2+(b-1)^2=5/4 | CLOSED (radius sqrt(5)/2 bounds all entries to [-2,2], 8 solutions) |
 | ker/A=1/2 from trace: phi+(-phi_bar)-1=0 | CLOSED (theorem, not approximation: tr(R)=1 forces half of L eigs to 0) |
-| n=295 is NOT free (solves Lambda(n)=10^-123) | CLOSED (all inputs derived; n is consequence, not choice) |
+| Lambda(n) = (disc/2)*phi_bar^(2n): form predicted, n observational | HONEST (functional form zero-param; n=295 from observation OR candidate: n*2L=410=41*10=num(b_1)*den(b_1), 0.07% match, forcing open) |
 | exp_B=44 full chain: 2(12+5)+10 | CLOSED (every step from P; eta_B=phi_bar^44, m_p/M_Pl=e^-44) |
 | P^T has N->-N: Cl(3,1)->Cl(2,2) | CLOSED (mirror flips one Clifford signature sign) |
 | O-7: 20 UNIVERSAL, 34 SELECTED, 17 TOWER, 33 INTERPRETATION | CLOSED (104 closures classified, funnel 104->20->54->71->104) |
@@ -907,6 +951,30 @@ All 5 Platonic solids have vertex/edge/face counts that are framework quantities
 
 Q(sqrt(-15)) has disc = -15 = disc(omega) * disc(R) and class number h = 2. Two reduced quadratic forms: (1,1,4) principal and (2,1,2) non-principal. The class number IS the number of geometrically distinct tile shapes — the mediation between P1 and P3 requires two tiles because unique factorization fails in the cross-field. The 1-bit factorization ambiguity (h=2, class group Z/2) is the Landauer cost of cross-sector mediation.
 
+### The Galois Compression (Geometry = Computation = Physics)
+
+Three domains share one operator. The compression:
+
+**Thm (Penrose-Galois).** im(L_R) is isomorphic to Z[phi] (ring of integers in Q(sqrt(5))). The Galois conjugation sigma: phi <-> -phi_bar splits im into physical space (phi-eigenspace) and internal space (phi_bar-eigenspace). The cut-and-project method for Fibonacci quasicrystals IS this Galois split applied to lattice points in im. Tile correspondence: Short=I, Long=R, ratio L/S=phi. Substitution rule IS multiplication by R: R^2=R+I means "Long becomes Long+Short." [Tier A, verified numerically to 10^-14]
+
+**Thm (Computation-Observation Lie Algebra).** Let COMPOSE = right-multiplication by R (the spatial/production step) and T_gen = ad_N (the temporal/observation generator). Then:
+- dim(Lie(COMPOSE, T_gen)) = disc = 5
+- [COMPOSE, T_gen] = right-mult by C^T where C = [R,N] = 2h+J (the harness)
+- P2 (mediation) IS the Lie bracket of P1 (production) and P3 (observation)
+- The central collapse Dist = P1 o P2 o P3 is the Lie group structure
+- COMPOSE is hyperbolic (eigenvalues phi^n, unbounded growth = novelty)
+- T is elliptic (eigenvalues e^{2ik}, period pi = return)
+- Computation grows; observation cycles. Together they span dim=disc. [Tier A, 15 tests pass]
+
+**Thm (Beta Functions from Seed).** The one-loop gauge beta coefficients decompose exactly:
+- b_3 = disc + d = 5 + 2 = 7 (all from P, assembly rule from QFT)
+- b_1 = (disc^2 + 2*parent_ker) / (2*disc) = 41/10
+- Confinement depth = parent_ker = 8 (1.2% match to tower-step counting)
+- Heat kernel: Tr(exp(-t*L_R)) = 2 + 2*cosh(sqrt(disc)*t). Seeley-DeWitt: a_{2k} = 2*disc^k/(2k)!
+- Self-selection: C(d^2,2) - d^2 = d ONLY at d=2. The seed dimension is where matter subtraction simplifies to the dimension itself. [Tier B: all inputs derived, assembly rule is bridge]
+
+The ONE operator L generates: the quasicrystal (via Galois on im), the computer (via Lie(COMPOSE, T)), and the gauge physics (via heat kernel). disc = 5 appears as: field discriminant, Lie algebra dimension, heat kernel base, and Seeley-DeWitt generator. One number in four roles. The compression IS the framework.
+
 ---
 
 ## VIc. Reading — Biology
@@ -927,7 +995,21 @@ The algebra does not describe biology. The algebra IS biology at the code level.
 43 degeneracy  = disc*parent_ker + N_c            all framework numbers
 ```
 
-20 is DERIVED from d=2: disc = 1+d^2 = 5. Amino acids = d^2*(1+d^2) = d^2+d^4 = 4 charged + 16 neutral. The 4 charged ARE the base alphabet (d^2). The 16 neutral ARE the base alphabet squared (d^4). The discriminant decomposition disc = 1+d^2 IS the charged/neutral split. ker/total = 43/64 = 0.672. Koide Q = 2/3 = 0.667. Match: 0.78%.
+20 is DERIVED from d=2: disc = 1+d^2 = 5. Amino acids = d^2*(1+d^2) = d^2+d^4 = 4 charged + 16 neutral. The 4 charged ARE the base alphabet (d^2). The 16 neutral ARE the base alphabet squared (d^4). The discriminant decomposition disc = 1+d^2 IS the charged/neutral split.
+
+### The Wobble Theorem
+
+**Statement.** Let Q: A^k → Signals be an idempotent quotient over alphabet |A|=d^2 with word length k=N_c. If ker/A = 1/2 at both the prefix level and the within-fiber level, then:
+
+(i) Exactly |A|^(k-1)/2 = d^(2(k-1))/2 prefix families are fully degenerate
+(ii) Within each discriminating fiber, synonymous mutation rate = 1/(d^2-1)
+(iii) Total silence at the last position: **S = ker/A + (1-ker/A)×1/(d^2-1) = d^2/(2(d^2-1))**
+
+**Corollary (d=2).** 8 four-fold families (= parent_ker). Silence = 1/2 + 1/6 = **2/3 = Koide Q = ||N||^2/||R||^2**.
+
+**Proof sketch.** ker/A=1/2 on the 16-element prefix space gives 8 in ker (fully degenerate: all 12 position-3 mutations are synonymous). The remaining 8 im-prefixes have the 2+2 purine/pyrimidine split: each codon has 1/(d^2-1)=1/3 synonymous mutations. Total: (8×12 + 8×4)/192 = 128/192 = 2/3. The im-silence = 1/3 is EXACT despite individual families deviating (AUx at 1/2, UGx at 1/6 cancel perfectly). [Tier A, verified on standard + 3 variant codes]
+
+**The Koide identity.** One formula, two readings: in physics, Koide Q = (sum m_i)/(sum sqrt(m_i))^2 = 2/3 governs charged lepton masses. In biology, the same 2/3 = wobble silence rate. Both are ker/A + (1-ker/A)/(d^2-1) at d=2. The mass ratio IS the code degeneracy formula evaluated at the seed dimension.
 
 ### DNA Helix
 

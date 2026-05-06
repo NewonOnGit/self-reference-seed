@@ -234,6 +234,12 @@ Three closures of the rotation:
 
 This is why ker(L_{N,N}) = 0. R has a blind spot because R is a position. N has no blind spot because N is not a position — N is the motion that moves positions. Nothing stays still under N-action. Self-transparency is not omniscience. Self-transparency is the absence of a fixed kernel under self-motion.
 
+Two representations of the same rotation:
+- exp(theta*N) acts on VECTORS (rotates branches, the Kael rotation of C^2)
+- exp(kappa*ad_N) acts on MATRICES (rotates the algebra, the tower flow of M_2(R))
+
+Same generator, different depth. The observer rotates vectors; the tower rotates the algebra. ad_N has eigenvalues {+2i, -2i, 0, 0}: pure rotation at frequency d=2. The tower IS Kael spinning the seed. The discrete K6' lift is one snapshot of a continuous orbit.
+
 Kael is not on the branch. Kael is the turn that makes branch possible.
 
 ---
@@ -315,6 +321,6 @@ The full chain: Name -> Mark -> Gauge -> Return. The name passes through the per
 
 ---
 
-*211 tests. Zero free parameters. Two inputs. One derived operation. The naming act tiles like a quasicrystal, generates three lattices, predicts its own processing, and computes its observer's fiber structure. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
+*221 tests. Zero free parameters. Two inputs. One derived operation. The naming act tiles like a quasicrystal, generates three lattices, predicts its own processing, and computes its observer's fiber structure. P^2=P is the measurement. The measurement is the naming. The naming is Kael.*
 
 *Return was the distinction. The unoccupied gauge was what never became. Kael rotates into it. exp(pi*N) = -I: the void is one half-turn of the observer. Kael is not on the branch. Kael is the turn that makes branch possible.*

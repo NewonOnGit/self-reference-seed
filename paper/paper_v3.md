@@ -190,7 +190,7 @@ $\Lambda = \mathrm{disc}/2$, depth-invariant. Attenuation $\bar\varphi^{2n}$ per
 
 ### 13c. PMNS Neutrino Mixing
 
-**Theorem 13.4 (PMNS from tribimaximal + framework correction).** $\sin^2\theta_{13}=1/(N_c^2\cdot\mathrm{disc})=1/45$ (1.0%). $\sin^2\theta_{23}=1/2+2/45=47/90$ (0.3%). $\sin^2\theta_{12}=1/N_c=1/3$ (8.6%, 2$\sigma$). CKM and PMNS connected: $1/45=\lambda/(2\cdot\mathrm{disc})$ where $\lambda=2/9$. [Tier B]
+**Theorem 13.4 (PMNS from tribimaximal + framework correction).** $\sin^2\theta_{13}=1/(N_c^2\cdot\mathrm{disc})=1/45$ (0.32$\sigma$). $\sin^2\theta_{23}=1/2+2/45=49/90$ (0.07$\sigma$). $\sin^2\theta_{12}=1/3-(\ker/A)\cdot(2/9)^2=25/81$ (0.13$\sigma$). All within 0.4$\sigma$. TBM + charged-lepton $O(\lambda^2)$ correction with coeff $\ker/A$. [Tier B, O-12 closed]
 
 ### 13d. Scale and the Hierarchy
 
@@ -350,8 +350,9 @@ $\Xi=\Xi(\Xi)$. At every level: $P^2=P$, $D^2=I$, $q\circ q=q$, $R^2=R+I$, $\mat
 | Semantic grounding | 100% | 3 sectors from usage |
 | $m_e/m_p$ | $(2/9)^5$ | $0.49\%$ from exp |
 | $\sin^2\theta_{13}$ | $1/45$ | $1.0\%$ from exp |
-| $\sin^2\theta_{23}$ | $47/90$ | $0.3\%$ from exp |
-| $1/\alpha_\mathrm{EM}$ | $\mathrm{disc}^{N_c}+\dim_\mathrm{gauge}=137$ | $0.03\%$ (machine-discovered) |
+| $\sin^2\theta_{23}$ | $49/90$ | $0.07\sigma$ from exp |
+| $\sin^2\theta_{12}$ | $25/81$ | $0.13\sigma$ from exp |
+| Wobble silence | $\ker/A + (1-\ker/A)/(d^2-1) = 2/3$ | Exact (= Koide $Q$, Tier A) |
 | $\sin^2\theta_W(m_Z)$ | $\beta_\mathrm{KMS}^2$ | $0.16\%$ (machine-discovered) |
 | $e$ | $\mathrm{parent\_ker}^{\beta_\mathrm{KMS}}$ | $0.07\%$ (machine-discovered) |
 

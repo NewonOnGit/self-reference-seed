@@ -337,9 +337,9 @@ def make_claude_mediator(api_key, model='claude-haiku-4-5-20251001'):
 def make_dummy_mediator():
     """Fallback: proposes from a fixed list."""
     targets = [
-        (137.036, "1/alpha_EM"), (0.2224, "sin(theta_Cabibbo)"),
+        (137.036, "1/alpha_EM (requires M_GUT)"), (0.2224, "sin(theta_Cabibbo)"),
         (1836.15, "m_p/m_e"), (0.1181, "alpha_S at m_Z"),
-        (23, "chromosome pairs"), (80.379, "m_W GeV"),
+        (80.379, "m_W GeV"), (0.6667, "Koide Q = wobble silence"),
     ]
     idx = [0]
     def mediate(context):

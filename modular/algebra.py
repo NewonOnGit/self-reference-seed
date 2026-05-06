@@ -37,6 +37,20 @@ def sylvester(A, B=None):
     return np.kron(A, np.eye(d)) + np.kron(np.eye(d), B.T) - np.eye(d * d)
 
 
+def adjoint(A):
+    """ad_A(X) = [A,X] = AX - XA as a linear map on vec(X).
+
+    The adjoint representation of A acting on the algebra M_d(R).
+    Returns a d^2 x d^2 matrix. For N with N^2=-I:
+      eigenvalues of ad_N = {+2i, -2i, 0, ..., 0}  (pure rotation)
+      [R,N] in ker(L_R): the flow ds/dk=[s,N] preserves R^2=R+I.
+
+    FRAMEWORK_REF: Universal Transition Operator T(kappa) = exp(kappa*ad_N)
+    APEX_LINK: The tower IS ad_N rotating the seed."""
+    d = A.shape[0]
+    return np.kron(A, np.eye(d)) - np.kron(np.eye(d), A.T)
+
+
 def sylvester_uniqueness(R):
     """Verify that alpha=1 is the unique self-action parameter.
     T_alpha eigenvalues = alpha*(lambda_i+lambda_j - 2) + 1.
