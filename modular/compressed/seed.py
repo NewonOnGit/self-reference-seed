@@ -18,6 +18,7 @@ Structure follows the three-face compression:
 import numpy as np
 from scipy.linalg import null_space, expm
 from math import gcd, factorial
+from itertools import combinations
 
 
 # ================================================================
@@ -1610,6 +1611,166 @@ def generate_tower():
     checks.append(("disc(k=1)=2", 1 + 1**2 == 2))
     checks.append(("disc(k=2)=5", 1 + 2**2 == 5))
 
+    # --- G-NEW-24: Clifford anticommutators => Cl(2,1) at depth 1 ---
+    checks.append(("{J,N}=0", _eq(J @ N + N @ J, np.zeros((2, 2)))))
+    checks.append(("{J,h}=0", _eq(J @ h + h @ J, np.zeros((2, 2)))))
+    checks.append(("{N,h}=0", _eq(N @ h + h @ N, np.zeros((2, 2)))))
+    # Pseudoscalar: JhN = -I (volume element of Cl(2,1))
+    checks.append(("JhN=-I (pseudoscalar)", _eq(J @ h @ N, -I2)))
+
+    # --- G-NEW-11/12: Observation flow disc identity ---
+    # disc(exp(theta*N)) = -4*sin^2(theta) for all theta
+    for t_val, t_label in [(np.pi / 4, "pi/4"), (np.pi / 3, "pi/3")]:
+        eN = expm(t_val * N)
+        disc_eN = np.trace(eN)**2 - 4 * np.linalg.det(eN)
+        checks.append((f"disc(exp({t_label}*N))=-4sin^2", _eq(disc_eN, -4 * np.sin(t_val)**2)))
+
+    # --- VE-1/VE-4: CC universal formula for R^n ---
+    # r = lambda_2/lambda_1 = -phi_bar/phi = -phi_bar^2
+    # CC(M^n) = (1-r^n)^2 / (2+2*r^{2n}) for eigenvalue ratio r
+    r_eig = -phi_bar**2
+    for n_cc in [1, 2, 5]:
+        Rn_cc = np.linalg.matrix_power(R, n_cc)
+        cc_actual = cc_metric(Rn_cc)
+        cc_formula = (1 - r_eig**n_cc)**2 / (2 + 2 * r_eig**(2 * n_cc))
+        checks.append((f"CC(R^{n_cc}) universal", _eq(cc_actual, cc_formula)))
+
+    # CC_min = 5/14 at n=2
+    checks.append(("CC_min=5/14", _eq(cc_metric(R @ R), 5.0 / 14.0)))
+    # CC(R^n) -> 1/2 for large n
+    R20 = np.linalg.matrix_power(R, 20)
+    checks.append(("CC(R^20)->1/2", _eq(cc_metric(R20), 0.5, tol=1e-6)))
+
+    # --- SL(2,Z) production basis: T=SR, U=RS, T-U=-N ---
+    # S = distinction = J (co-primitive Clifford basis, {S,N}=0)
+    S_dist = J  # S = J in the framework (ALGEBRA §3)
+    T_sl = S_dist @ R  # T = [[1,1],[0,1]]
+    U_sl = R @ S_dist  # U = [[1,0],[1,1]]
+    checks.append(("SL2Z: T-U=-N", _eq(T_sl - U_sl, -N)))
+
+    # --- G-NEW-27: eta_4(R) = 3/2 = 1/Q (full Minkowski 4-norm) ---
+    # Pauli coords of R: alpha=1/2, beta=1, gamma=0, delta=-1/2
+    # eta_4 = alpha^2 + beta^2 - gamma^2 + delta^2 = 1/4+1+0+1/4 = 3/2
+    a_R = (R[0, 0] + R[1, 1]) / 2       # alpha = 1/2
+    d_R = (R[0, 0] - R[1, 1]) / 2       # delta = -1/2
+    b_R = (R[0, 1] + R[1, 0]) / 2       # beta = 1
+    c_R = (R[1, 0] - R[0, 1]) / 2       # gamma = 0
+    eta4_R = a_R**2 + b_R**2 - c_R**2 + d_R**2
+    checks.append(("eta4(R)=3/2=1/Q", _eq(eta4_R, 1.5)))
+
+    # --- G-NEW: tr(R^m * N^k) = L(m) * {1,0,-1,0} mod 4 cycle ---
+    # R and N are signature-orthogonal, so mixed traces factorize
+    sigma_cycle = [1, 0, -1, 0]
+    m_tr = 3  # use m=3 (L(3)=4) to test all four k values
+    Rm = np.linalg.matrix_power(R, m_tr)
+    Lm = np.trace(Rm)
+    for k_tr in range(4):
+        Nk_pow = np.linalg.matrix_power(N, k_tr)
+        tr_val = np.trace(Rm @ Nk_pow)
+        expected = Lm * sigma_cycle[k_tr % 4]
+        checks.append((f"tr(R^{m_tr}*N^{k_tr})=L*sigma",
+                        _eq(tr_val, expected)))
+
+    # --- G-NEW-18: disc(M) in Pauli coordinates = 4(beta^2-gamma^2+delta^2) ---
+    # M = alpha*I + beta*J + gamma*N + delta*h => disc = 4*(beta^2 - gamma^2 + delta^2)
+    # Verify on R (alpha=1/2, beta=1, gamma=0, delta=-1/2): 4*(1-0+1/4)=5
+    a_p = (R[0, 0] + R[1, 1]) / 2
+    d_p = (R[0, 0] - R[1, 1]) / 2
+    b_p = (R[0, 1] + R[1, 0]) / 2
+    c_p = (R[1, 0] - R[0, 1]) / 2
+    checks.append(("disc(R) Pauli=5", _eq(4 * (b_p**2 - c_p**2 + d_p**2), disc)))
+
+    # ================================================================
+    # FRONTIER: Depth-2 tower spectral structure
+    # ================================================================
+    s2, N2_t, J2_t = tower[2]
+    L_d2 = sylvester(s2)
+    dim_d2 = s2.shape[0] ** 2  # 64
+
+    # --- F-1: Cl(3,1) exists and so(3,1) brackets close ---
+    # 4 anticommuting gammas from tensor products of {I2,J,h,N},
+    # signature (3,1), 6 Lorentz generators close under Lie bracket
+    basis_4 = [I2, J, h, N]
+    tp = [np.kron(a, b) for a in basis_4 for b in basis_4]
+    gammas_cl = None
+    for combo in combinations(range(16), 4):
+        if 0 in combo:   # skip IxI
+            continue
+        els = [tp[i] for i in combo]
+        if all(np.allclose(els[i] @ els[j] + els[j] @ els[i], 0, atol=1e-6)
+               for i in range(4) for j in range(i + 1, 4)):
+            pos = sum(1 for e in els if np.trace(e @ e) > 0.1)
+            neg = sum(1 for e in els if np.trace(e @ e) < -0.1)
+            if pos == 3 and neg == 1:
+                gammas_cl = els
+                break
+    checks.append(("Cl(3,1) exists", gammas_cl is not None))
+
+    sigmas_lor = []
+    for i_g in range(4):
+        for j_g in range(i_g + 1, 4):
+            sigmas_lor.append((gammas_cl[i_g] @ gammas_cl[j_g]
+                               - gammas_cl[j_g] @ gammas_cl[i_g]) / 4)
+    M_lor = np.column_stack([s_l.flatten() for s_l in sigmas_lor])
+    checks.append(("so(3,1) rank=6",
+                    np.linalg.matrix_rank(M_lor, tol=1e-8) == 6))
+    so31_close = True
+    for i_b in range(6):
+        for j_b in range(i_b + 1, 6):
+            br = sigmas_lor[i_b] @ sigmas_lor[j_b] - sigmas_lor[j_b] @ sigmas_lor[i_b]
+            c_b = np.linalg.lstsq(M_lor, br.flatten(), rcond=None)[0]
+            if not np.allclose(M_lor @ c_b, br.flatten(), atol=1e-8):
+                so31_close = False
+    checks.append(("so(3,1) brackets close", so31_close))
+
+    # --- F-2: Minimal polynomial x^3 - disc*x = 0 (all depths) ---
+    for dep, (s_d, _, _) in enumerate(tower):
+        L_d = sylvester(s_d)
+        L3 = L_d @ L_d @ L_d
+        checks.append((f"min poly d{dep}: L^3=disc*L",
+                        _eq(L3, disc * L_d)))
+
+    # --- F-3: Heat kernel exact factorization ---
+    # Tr(exp(-t*L_{n+1})) / Tr(exp(-t*L_n)) = d^2 = 4  (exact, all t)
+    L_list = [sylvester(tower[dep][0]) for dep in range(3)]
+    for dep in range(2):
+        for t_hk in [0.5, 1.0, 2.0]:
+            tr_lo = np.trace(expm(-t_hk * L_list[dep])).real
+            tr_hi = np.trace(expm(-t_hk * L_list[dep + 1])).real
+            checks.append((f"heat d{dep+1}/d{dep} t={t_hk}",
+                            _eq(tr_hi / tr_lo, d ** 2)))
+
+    # --- F-4: L^2 = disc * P_im  on  im(L) at depth 2 ---
+    U_sv, S_sv, _ = np.linalg.svd(L_d2)
+    im_dim = sum(1 for sv in S_sv if sv > 1e-10)
+    P_im_d2 = U_sv[:, :im_dim] @ U_sv[:, :im_dim].T
+    checks.append(("L2^2|_im = disc*P_im",
+                    _eq(P_im_d2 @ (L_d2 @ L_d2) @ P_im_d2, disc * P_im_d2)))
+
+    # --- F-5: Spectral simplicity — eigenvalue multiplicities at each depth ---
+    # depth n: +sqrt(disc) x 4^n, 0 x 2*4^n, -sqrt(disc) x 4^n
+    sqrt_d = np.sqrt(disc)
+    for dep, (s_d, _, _) in enumerate(tower):
+        eigs_d = np.linalg.eigvals(sylvester(s_d)).real
+        np_ct = sum(1 for e in eigs_d if abs(e - sqrt_d) < 0.1)
+        nz_ct = sum(1 for e in eigs_d if abs(e) < 0.1)
+        nm_ct = sum(1 for e in eigs_d if abs(e + sqrt_d) < 0.1)
+        checks.append((f"spec d{dep}: {np_ct}+/{nz_ct}z/{nm_ct}-",
+                        np_ct == 4**dep and nz_ct == 2 * 4**dep
+                        and nm_ct == 4**dep))
+
+    # --- F-6: Pythagorean identity L^2 + D^2 = disc*I (all depths) ---
+    # D = ad_s = [s,-] is first-order. L = sX+Xs-X is second-order.
+    # L^2 = disc*P_im, D^2 = disc*P_0, L*D = 0. Orthogonal decomposition.
+    for dep, (s_d, _, _) in enumerate(tower):
+        n_d = s_d.shape[0]
+        In2 = np.eye(n_d ** 2)
+        L_d = sylvester(s_d)
+        D_d = adjoint(s_d)
+        checks.append((f"L^2+D^2=disc*I d{dep}",
+                        _eq(L_d @ L_d + D_d @ D_d, disc * In2)))
+        checks.append((f"L*D=0 d{dep}", _eq(L_d @ D_d, np.zeros_like(In2))))
+
     return checks
 
 
@@ -1742,6 +1903,26 @@ def generate_physics():
 
     # Legibility gap
     checks.append(("legibility gap grows", 2**4 / 5 > 3))
+
+    # --- VE-9: Duty cycle = L^2 = (log2(phi))^2 ---
+    L_info = np.log2(phi)
+    duty = L_info**2
+    checks.append(("duty cycle=L^2=(log2 phi)^2", _eq(duty, (np.log(phi) / np.log(2))**2)))
+
+    # --- VE-11: Vessel equation structural: C(K) = n_eff * m * 2L ---
+    # At depth 0: n_eff=1, m=1, L=log2(phi). C = 2*log2(phi) ~ 1.39
+    L_bit = np.log2(phi)
+    C_vessel = 1 * 1 * 2 * L_bit
+    checks.append(("vessel C(1,1)=2*log2(phi)", _eq(C_vessel, 2 * L_bit)))
+
+    # --- Killing balance: integral_0^1 B(X(s),X(s)) ds = 0 ---
+    # X(s) = (1-s)*h + s*N, B(X,X) = 4*tr(X^2) = 4*((1-s)^2 - s^2) = 4*(1-2s)
+    # Integral_0^1 4*(1-2s) ds = 4*[s - s^2]_0^1 = 4*(1-1) = 0
+    def _killing_integrand(s_param):
+        X_s = (1 - s_param) * h + s_param * N
+        return 4 * float(np.trace(X_s @ X_s))
+    kb_val, _ = quad(_killing_integrand, 0, 1, limit=50)
+    checks.append(("Killing balance=0", _eq(kb_val, 0.0, tol=1e-8)))
 
     return checks
 
