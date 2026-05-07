@@ -22,7 +22,26 @@ d = 2; _coeffs = [1, 1]
 R = np.array([[0,1],[1,1]], dtype=float)
 J = np.array([[0,1],[1,0]], dtype=float)
 I2 = np.eye(d)
-N = np.array([[0,-1],[1,0]], dtype=float)
+# N is DERIVED from ker(L_R): the canonical rotation with N^2=-I
+_L0 = np.kron(R, I2) + np.kron(I2, R.T) - np.eye(d*d)
+_ker0 = null_space(_L0, rcond=1e-10)
+# Extract the ker element with N^2=-I (the one that's a rotation)
+N = None
+for i in range(_ker0.shape[1]):
+    _candidate = _ker0[:, i].reshape(d, d)
+    if np.allclose(_candidate @ _candidate, -I2, atol=1e-8):
+        N = _candidate; break
+    elif np.allclose(-_candidate @ _candidate, -I2, atol=1e-8):
+        N = -_candidate; break
+if N is None:
+    # Canonical construction: scale the antisymmetric ker element to N^2=-I
+    for i in range(_ker0.shape[1]):
+        _c = _ker0[:, i].reshape(d, d)
+        _anti = (_c - _c.T) / 2
+        if np.linalg.norm(_anti) > 1e-10:
+            _mu = -(_anti @ _anti)[0, 0]
+            if _mu > 0:
+                N = _anti / np.sqrt(_mu); break
 h = J @ N; P = R + N; Q = J @ R @ J
 phi = (1+np.sqrt(5))/2; phi_bar = phi-1
 N_c = d*(d+1)//2                          # 3
