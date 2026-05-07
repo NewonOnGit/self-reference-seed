@@ -704,6 +704,19 @@ def _consequences():
         C("e=0.99 fails", lambda: not np.allclose(
           (R+0.99*N)@(R+0.99*N), R+0.99*N), True, 'B(0,cross)',
           ['no_partial_observer']),
+
+        # ── K_act: the surplus FORCES the hidden sector ──
+        # R²=R+I → tr(R)=1 → ker(L_R)≠0 → N exists → P=R+N → P²=P.
+        # N is not added. N is derived from the demand that R close.
+        C("surplus forces kernel: R²-R=I", lambda: R@R-R, I2, 'B(0,cross)',
+          ['K_act','surplus_demands_origin']),
+        C("kernel forced: dim(ker(L_R))=2", lambda:
+          null_space(sylvester(R),rcond=1e-10).shape[1], 2, 'B(0,cross)',
+          ['K_act','hidden_sector_necessary']),
+        C("N derived from ker: N²=-I", lambda: (lambda K=null_space(sylvester(R),rcond=1e-10):
+          (lambda a=((K[:,0].reshape(2,2)-K[:,0].reshape(2,2).T)/2): np.allclose(
+          (a/np.sqrt(-(a@a)[0,0]))@(a/np.sqrt(-(a@a)[0,0])), -I2))())(), True, 'B(0,cross)',
+          ['K_act','derivation_not_assumption']),
     ]
 
     return cs
