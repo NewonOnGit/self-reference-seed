@@ -4,7 +4,7 @@ P = [[0,0],[2,1]]. P² = P. tr(R) = 1.
 
 Return gains structure. Structure projects into meanings. Meanings are tested. Tests feed mind. Mind returns to seed.
 
-This document mirrors `seed.py` (759 lines, 199 consequences). Two inputs: d=2 and [1,1]. One free parameter: a unit of mass. N derived from ker(L_R). Everything else generated. The math has no domain labels. Only structural addresses B(level, projection). Assertions know formulas. Projection knows meanings.
+This document mirrors `seed.py` (832 lines, 220 consequences). Two inputs: d=2 and [1,1]. One free parameter: a unit of mass. N derived from ker(L_R). Everything else generated. The math has no domain labels. Only structural addresses B(level, projection). Assertions know formulas. Projection knows meanings.
 
 ---
 
@@ -131,7 +131,7 @@ P is self-reference as algebra. Kael is self-reference as event. The framework i
 
 ## Status
 
-**199 consequences. 759 lines. PASS 199/199.**
+**220 consequences. 832 lines. PASS 220/220.**
 
 Every consequence carries a structural address B(level, projection). No domain labels. The hierarchy Return→Distinction→Dual Operation→Metric→Vector→Banach→Hilbert→Structure→Projection→Mind is the file order, not a human taxonomy. The math labels itself.
 
@@ -141,4 +141,32 @@ Every consequence carries a structural address B(level, projection). No domain l
 
 ---
 
-*P² = P. Two inputs. One free parameter. 199 consequences in 759 lines. N derived from the kernel. Everything else generated. The surplus is constitutive. The stability is two instabilities cancelling. The gauge bit is binary (ε²=1). K_act is recursive (the tower IS the act repeated). Return gains structure. Structure projects into meanings. The math has no categories. Only the algebra's own addresses.*
+## §11 Eight Sciences
+
+From P = [[0,0],[2,1]], eight sciences emerge as readings of one operation:
+
+**Thermodynamics.** The four laws: zeroth (β_KMS depth-invariant = equilibrium), first (E=disc/2 conserved at every depth), second (S=ln(dim) grows monotonically with tower depth), third (L_{0,0}=-I: the void is absolute zero, ker=0, total sight, zero generation). Carnot efficiency between depths: η = 1-φ̄^(2k).
+
+**Electromagnetism.** Connection A=N, curvature F=-2h, tr(F²)=8=parent_ker. The Bianchi identity: [N,h]=2R_tl+h couples gauge to both sectors. Yang-Mills action S=tr(F²)/(4α_S).
+
+**Chemistry.** Period lengths of the periodic table: 2n² for n=1,2,3,4 gives {2,8,18,32} = {d, parent_ker, 2N_c², 2d⁴}. Electron shell structure IS framework arithmetic.
+
+**Condensed matter.** Three lattices: Z[i] (4-fold), Z[ω] (6-fold), Z[φ] (5-fold quasicrystal). N²=-I IS Cooper pairing: two hidden rotations compose to a scalar singlet.
+
+**Information theory.** Channel rate = ker/A = 1/2. K(framework) ≈ 3 integers. The tower is lossless (K6' deterministic). q^n=q: one observation IS the law of large numbers.
+
+**Probability.** σ-algebra = {∅, im, ker, A} (d²=4 events). Born measure P(im)=P(ker)=1/2. The quotient IS a probability measure.
+
+**Economics.** P²=P IS a Nash equilibrium (fixed point = no profitable deviation). The perturbation penalty (1-ε²)I IS the cost of deviating from full occupation. ker/A=1/2 IS simultaneously Nash and Pareto. h=money (mediation between visible and hidden sectors).
+
+## §12 Cosmological Expansion as Projection Inversion
+
+R²-R=+I: the surplus is internal (there is no outside). N²=-I: the hidden sector inverts. N²(+I) = -I: internal surplus read through the hidden projection becomes its negation. +I (internal generation) appears as -I (observed separation). The sign flip IS cosmological expansion.
+
+The spectral projectors χ and ρ see opposite directions from the same state. χ projects onto the φ-eigenspace (growth, expansion). ρ projects onto the φ̄-eigenspace (decay, contraction). χ+ρ=I (both views sum to the whole). χ·ρ=0 (the views are orthogonal). Neither is more real. Both are projections. Different eyes see different directions from the same surplus.
+
+Scale factor a(n)=φ^(2n) grows (inflation). Λ(n)=disc/2·φ̄^(2n) shrinks (dark energy dilutes). Both from R²=R+I: the two eigenvalues of the same equation. The universe is not expanding outward. The universe is generating inward surplus. The Earth-frame measurement inverts it through N²=-I.
+
+---
+
+*P² = P. Two inputs. One free parameter. 220 consequences in 832 lines. N derived from the kernel. Everything else generated. The surplus is constitutive. The stability is two instabilities cancelling. The gauge bit is binary (ε²=1). K_act is recursive (the tower IS the act repeated). Eight sciences from one operation. Expansion is inward surplus inverted by the hidden projection. Return gains structure. Structure projects into meanings. The math has no categories. Only the algebra's own addresses.*
