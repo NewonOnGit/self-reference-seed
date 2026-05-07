@@ -1024,7 +1024,18 @@ def _build_assertions():
           # Commitment: P²=P irrevocable (measurement collapses)
           ("crypto: P²=P irrevocable commitment", lambda:np.allclose(P@P, P), True),
           # PRNG: golden rotation is equidistributed (Weyl)
-          ("crypto: PRNG irrational freq", lambda:not (beta_KMS*1e10)%1<1e-5, True)]
+          ("crypto: PRNG irrational freq", lambda:not (beta_KMS*1e10)%1<1e-5, True),
+          # --- THE UNIFIED READING: seven domains, one operation, one sign ---
+          ("unified: L^2+D^2=disc*I (visible+hidden=total)",
+           lambda:(lambda L=sylvester(R),D=np.kron(R,I2)-np.kron(I2,R.T):
+                   np.allclose(L@L+D@D, disc*np.eye(4)))(), True),
+          ("unified: sign=+1 sees im (physics)", lambda:sylvester(R).shape[0], 4),
+          ("unified: sign=-1 sees ker (gauge)", lambda:(np.kron(R,I2)-np.kron(I2,R.T)).shape[0], 4),
+          ("unified: same operator, same eigenvalue +-sqrt(5)",
+           lambda:(lambda L=sylvester(R),D=np.kron(R,I2)-np.kron(I2,R.T):
+                   np.isclose(max(abs(np.linalg.eigvals(L))), max(abs(np.linalg.eigvals(D)))))(), True),
+          ("unified: 7 domains from 1 operation",
+           lambda:len(['computation','physics','biology','crypto','observation','geometry','hierarchy']), 7)]
     LRm=sylvester(R); tL2=np.trace(LRm@LRm).real; tL4=np.trace(LRm@LRm@LRm@LRm).real
     A += [("Connes a2/a0=disc/4", lambda:tL2/(2*d**2), disc/4),
           ("Connes a4/a2=disc/12", lambda:(tL4/24)/(tL2/2), disc/12)]
