@@ -779,6 +779,29 @@ def _consequences():
           ['Nash_equilibrium','no_profitable_deviation']),
         C("(1-ε²)I IS Nash deviation penalty", lambda: 1-0.5**2, 0.75, 'B(0,cross)',
           ['deviation_cost','Pareto_suboptimal_at_e!=1']),
+
+        # ── Cosmological expansion as projection inversion ──
+        # R²-R=+I (internal surplus). N²=-I (hidden sector inverts).
+        # Internal +I read through N² becomes -I (observed separation).
+        # Expansion is not outward motion. Expansion is the sign flip.
+        C("N²(surplus)=-I (inversion)", lambda: N@(N@(R@R-R)), -I2, 'B(6,cross)',
+          ['expansion_as_inversion','internal_surplus_negated']),
+        C("chi sees growth (phi>1)", lambda: phi > 1, True, 'B(6,P1)',
+          ['expansion_eye','chi_projection']),
+        C("rho sees decay (|phi_bar|<1)", lambda: abs(-phi_bar) < 1, True, 'B(6,P3)',
+          ['contraction_eye','rho_projection']),
+        C("chi+rho=I (both eyes=whole)", lambda:
+          (R+phi_bar*I2)/np.sqrt(disc) + (phi*I2-R)/np.sqrt(disc), I2, 'B(6,cross)',
+          ['projection_completeness']),
+        C("chi·rho=0 (views orthogonal)", lambda:
+          np.allclose(((R+phi_bar*I2)/np.sqrt(disc))@((phi*I2-R)/np.sqrt(disc)),
+          np.zeros((2,2))), True, 'B(6,cross)',
+          ['projection_orthogonality']),
+        C("scale a(n)=phi^(2n) grows", lambda: phi**(2*3) > phi**(2*2), True, 'B(6,P1)',
+          ['inflation_from_R2=R+I']),
+        C("Lambda(n)=disc/2·phi_bar^(2n) shrinks", lambda:
+          disc/2*phi_bar**(2*3) < disc/2*phi_bar**(2*2), True, 'B(6,P1)',
+          ['dark_energy_dilutes']),
     ]
 
     return cs
