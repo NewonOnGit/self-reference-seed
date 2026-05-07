@@ -691,6 +691,19 @@ def _consequences():
         C("stability = +I and -I cancelling", lambda: np.allclose(
           (R@R-R) + (N@N), np.zeros((2,2))), True, 'B(0,cross)',
           ['surplus+negation=zero','balance_of_instabilities']),
+
+        # ── Perturbation theorem: X(e)=R+eN, X²-X=(1-e²)I ──
+        # Only e²=1 gives idempotent. The gauge bit is binary, not continuous.
+        C("X(e)²-X(e)=(1-e²)I at e=0.5", lambda: np.allclose(
+          (R+0.5*N)@(R+0.5*N)-(R+0.5*N), (1-0.25)*I2), True, 'B(0,cross)',
+          ['perturbation_theorem']),
+        C("e²=1 forced: e=+1 works", lambda: np.allclose(
+          (R+N)@(R+N), R+N), True, 'B(0,cross)', ['occupation_forced']),
+        C("e²=1 forced: e=-1 works", lambda: np.allclose(
+          (R-N)@(R-N), R-N), True, 'B(0,cross)', ['mirror_branch']),
+        C("e=0.99 fails", lambda: not np.allclose(
+          (R+0.99*N)@(R+0.99*N), R+0.99*N), True, 'B(0,cross)',
+          ['no_partial_observer']),
     ]
 
     return cs
