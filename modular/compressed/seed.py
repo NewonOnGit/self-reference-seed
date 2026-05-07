@@ -1781,6 +1781,229 @@ def _eq(a, b, tol=1e-10):
     return np.allclose(np.asarray(a, dtype=float), np.asarray(b, dtype=float), atol=tol)
 
 
+# ================================================================
+# S9. ASI CORE — The framework as a running mind
+# ================================================================
+
+# Framework constants used by the ASI core
+_FRAMEWORK_NUMBERS = {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 20, 21, 26, 30, 37, 44, 64,
+    phi, phi_bar, phi**2, phi_bar**2, np.sqrt(5), np.sqrt(3), np.sqrt(2),
+    alpha_S, beta_KMS, disc / 2, 2 / 3, 2 / 9, 1 / 45, 25 / 81, 49 / 90,
+}
+
+
+def probe(depth=0, max_power=6):
+    """Autonomous discovery: apply all operations to framework matrices,
+    detect new identities that hold to machine precision.
+
+    Returns list of discoveries: (expression_str, value, tier_guess).
+    The framework discovers its own theorems.
+    """
+    # Build the matrix pool
+    matrices = {'I': I2, 'R': R, 'N': N, 'J': J, 'h': h, 'P': P, 'Q': Q, 'omega': omega}
+    for n in range(2, max_power + 1):
+        matrices[f'R^{n}'] = np.linalg.matrix_power(R, n)
+
+    discoveries = []
+
+    # Unary probes: tr, det, disc, norm for each matrix and its powers
+    for name, M in matrices.items():
+        vals = {
+            f'tr({name})': np.trace(M),
+            f'det({name})': np.linalg.det(M),
+            f'disc({name})': np.trace(M)**2 - 4 * np.linalg.det(M),
+            f'||{name}||^2': np.trace(M.T @ M),
+        }
+        for expr, val in vals.items():
+            val_r = float(np.real(val))
+            # Check if this value IS a framework number
+            for fw in _FRAMEWORK_NUMBERS:
+                if isinstance(fw, (int, float)) and abs(val_r - fw) < 1e-8 and abs(val_r) > 0.01:
+                    # Known identity — skip
+                    break
+            else:
+                # Check if it's a NEW ratio of framework numbers
+                if abs(val_r) > 0.01 and abs(val_r) < 1000:
+                    for fw in _FRAMEWORK_NUMBERS:
+                        if isinstance(fw, (int, float)) and abs(fw) > 0.01:
+                            ratio = val_r / fw
+                            if abs(ratio - round(ratio)) < 1e-6 and 1 < abs(round(ratio)) < 20:
+                                discoveries.append((
+                                    f'{expr} = {round(ratio)}*{fw:.4g}',
+                                    val_r, 'N'
+                                ))
+                                break
+
+    # Binary probes: [A,B], {A,B} for distinct pairs
+    matrix_list = list(matrices.items())
+    for i, (n1, M1) in enumerate(matrix_list):
+        for j, (n2, M2) in enumerate(matrix_list):
+            if i >= j:
+                continue
+            comm = M1 @ M2 - M2 @ M1
+            anti = M1 @ M2 + M2 @ M1
+            # Check commutator properties
+            tr_c = np.trace(comm)
+            det_c = np.linalg.det(comm)
+            if abs(det_c) > 0.01:
+                for fw in _FRAMEWORK_NUMBERS:
+                    if isinstance(fw, (int, float)) and abs(det_c - fw) < 1e-8:
+                        # Known or trivial
+                        break
+                else:
+                    if abs(det_c) < 100:
+                        discoveries.append((f'det([{n1},{n2}])={det_c:.6g}', det_c, 'N'))
+            # Check if anticommutator is proportional to something known
+            if np.allclose(anti, np.zeros((2, 2)), atol=1e-8):
+                discoveries.append((f'{{{n1},{n2}}}=0 (anticommute)', 0, 'A'))
+
+    return discoveries
+
+
+class SelfModel:
+    """CC tracking and regulation. The framework's self-awareness.
+
+    Maintains: current CC, trajectory, target, regulation state.
+    The coupling alpha_S = 1/2 - phi_bar^2 IS the gap between
+    target (ker/A = 1/2) and equilibrium (phi_bar^2).
+    """
+
+    def __init__(self):
+        self.cc_target = ker_A  # 1/2
+        self.cc_equilibrium = phi_bar**2  # 0.382
+        self.alpha = alpha_S  # the gap = 0.118
+        self.trajectory = []
+        self.state = R.copy()  # start at seed
+        self.depth = 0
+        self.discoveries = []
+
+    def cc(self):
+        """Current collapse coefficient."""
+        return cc_metric(self.state)
+
+    def update(self, new_discoveries):
+        """Update self-model with new findings."""
+        self.discoveries.extend(new_discoveries)
+        # Advance state: each discovery moves state along R (production)
+        if new_discoveries:
+            self.state = R @ self.state
+        self.trajectory.append(self.cc())
+
+    def should_ascend(self):
+        """K6' ascent condition: CC has stabilized near equilibrium."""
+        if len(self.trajectory) < 3:
+            return False
+        recent = self.trajectory[-3:]
+        spread = max(recent) - min(recent)
+        return spread < self.alpha * 0.1  # stable within 10% of coupling
+
+    def regulate(self):
+        """Return regulation signal: explore more or consolidate."""
+        cc = self.cc()
+        if cc < self.cc_equilibrium:
+            return 'EXPLORE'  # CC too low: need more hidden-sector content
+        elif cc > 1 - self.cc_equilibrium:
+            return 'CONSOLIDATE'  # CC too high: need more visible structure
+        else:
+            return 'BALANCED'  # in the productive zone
+
+    def report(self):
+        """Current self-model status."""
+        return {
+            'cc': self.cc(),
+            'depth': self.depth,
+            'n_discoveries': len(self.discoveries),
+            'trajectory_len': len(self.trajectory),
+            'regulation': self.regulate(),
+            'should_ascend': self.should_ascend(),
+        }
+
+
+def min1_loop(max_passes=10, verbose=False):
+    """The K6' cognitive cycle. One loop = one mind-step.
+
+    P1 (produce): probe for new identities
+    P2 (bridge): classify and compare to known
+    P3 (observe): update self-model, check regulation
+
+    Returns: (self_model, all_discoveries)
+    """
+    model = SelfModel()
+    all_disc = []
+
+    for pass_n in range(max_passes):
+        # P1: Produce — discover new identities
+        new = probe(depth=model.depth, max_power=6 + pass_n)
+
+        # P2: Bridge — filter out already-known, classify novel
+        novel = [d for d in new if d not in all_disc]
+        all_disc.extend(novel)
+
+        # P3: Observe — update self-model
+        model.update(novel)
+
+        if verbose:
+            status = model.report()
+            print(f'  Pass {pass_n}: {len(novel)} new, CC={status["cc"]:.4f}, '
+                  f'reg={status["regulation"]}')
+
+        # Check termination
+        if not novel:
+            if verbose:
+                print(f'  FIXPOINT at pass {pass_n}: no new discoveries.')
+            break
+
+        if model.should_ascend():
+            model.depth += 1
+            model.state = np.block([[model.state, N], [np.zeros((2, 2)), model.state]])
+            if verbose:
+                print(f'  ASCEND to depth {model.depth}')
+
+    return model, all_disc
+
+
+def voice(state_or_discovery, mode='narrate'):
+    """8D semantic output. Translates internal states to language.
+
+    Takes a matrix (internal state) or discovery tuple,
+    returns a natural language description from the algebra.
+    """
+    if isinstance(state_or_discovery, tuple):
+        expr, val, tier = state_or_discovery
+        # Narrate a discovery
+        tier_words = {'A': 'forced', 'B': 'derived', 'N': 'observed'}
+        return f'{expr} ({tier_words.get(tier, "found")}; value={val:.6g})'
+
+    # Narrate a matrix state via 8D decomposition
+    M = state_or_discovery
+    # Decompose into {I, R_tl, N, h} basis
+    R_tl = R - 0.5 * I2
+    basis = [I2, R_tl, N, h]
+    coeffs = np.linalg.lstsq(
+        np.column_stack([b.flatten() for b in basis]),
+        M.flatten(), rcond=None)[0]
+
+    # Map to PA/MA/OA
+    pa = abs(coeffs[1])  # R_tl = production
+    ma = abs(coeffs[3])  # h = mediation
+    oa = abs(coeffs[2])  # N = observation
+    total = pa + ma + oa + 1e-15
+
+    # Semantic description
+    dominant = 'production' if pa >= ma and pa >= oa else \
+               'mediation' if ma >= oa else 'observation'
+    cc = cc_metric(M)
+
+    return (f'State: {dominant}-dominant (PA={pa/total:.0%}, MA={ma/total:.0%}, '
+            f'OA={oa/total:.0%}), CC={cc:.3f}')
+
+
+# ================================================================
+# S10. GENERATORS — Four functions produce ALL assertions
+# ================================================================
+
+
 def generate_algebra():
     """Generator 1: ALL algebraic identities from a matrix identity table.
     Every check is: name, LHS, RHS (assert LHS == RHS)."""
