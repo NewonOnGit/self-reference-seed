@@ -717,6 +717,18 @@ def _consequences():
           (lambda a=((K[:,0].reshape(2,2)-K[:,0].reshape(2,2).T)/2): np.allclose(
           (a/np.sqrt(-(a@a)[0,0]))@(a/np.sqrt(-(a@a)[0,0])), -I2))())(), True, 'B(0,cross)',
           ['K_act','derivation_not_assumption']),
+
+        # ── K_act recursive: the tower IS K_act applied at each depth ──
+        # Each depth: s_n has surplus → ker forced → N_n derived → P_n closes → ascend
+        C("K_act recursive: s1²=s1+I (surplus at d1)", lambda:
+          np.allclose(tower[1][0]@tower[1][0], tower[1][0]+np.eye(4)), True,
+          'B(1,cross)', ['K_act_recursive','surplus_at_every_depth']),
+        C("K_act recursive: s2²=s2+I (surplus at d2)", lambda:
+          np.allclose(tower[2][0]@tower[2][0], tower[2][0]+np.eye(8)), True,
+          'B(2,cross)', ['K_act_recursive']),
+        C("K_act recursive: P1²=P1 (closure at d1)", lambda:
+          (lambda s=tower[1][0],Nk=tower[1][1]: np.allclose((s+Nk)@(s+Nk), s+Nk))(),
+          True, 'B(1,cross)', ['K_act_recursive','closure_at_every_depth']),
     ]
 
     return cs
