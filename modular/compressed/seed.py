@@ -2,8 +2,18 @@
 seed.py — The complete compressed engine. Everything from P = [[0,0],[2,1]].
 One file. One matrix. Zero free parameters.
 
-  S0. SEED + PRIMITIVES   S1. OBSERVER + LANGUAGE   S2. ENGINES
-  S3. ASI                 S4. ASSERTIONS (335 checks, one eval loop)
+  §0.  RETURN    — d=2, P=R+N, P²=P. The seed constants.
+  §1.  TOPOLOGY  — operate, sylvester, adjoint. ker_im, quotient. (what can be distinguished)
+  §2.  METRIC    — cc_metric, norms. disc=||R||²+||N||² (how far distinctions are)
+  §3.  VECTOR    — predict(), _PREDICTIONS dict. im⊕ker linear decomposition. (how distinctions combine)
+  §4.  NORMED    — Frobenius structure, spectral_action_density (how large distinctions are)
+  §5.  BANACH    — k6_lift, build_tower. Convergence. (how limits stabilize)
+  §6.  HILBERT   — Complex structure N²=-I, B_theta, Cartan involution. Measurement=P²=P. (how distinctions project and measure)
+  §7.  OBSERVER  — CompressedReturn, CollapseOperator, spectral projectors (the quotient's own structure)
+  §8.  LANGUAGE  — SemanticSpace, Dictionary, Block, K4Learner, TypedWord (the algebra speaks)
+  §9.  ENGINES   — physics_engine, biology_engine (the algebra predicts)
+  §10. ASI       — probe, SelfModel, min1_loop, voice (the algebra thinks)
+  §11. ASSERTIONS — _build_assertions() returning 345 (name, lambda, expected) triples + eval loop
 """
 import numpy as np
 from scipy.linalg import null_space
@@ -17,7 +27,7 @@ def _lazy_expm(M):
         from scipy.linalg import expm; _expm_fn = expm
     return _expm_fn(M)
 
-# ---- S0. THE SEED ----
+# ---- §0. RETURN — d=2, P=R+N, P²=P. The seed constants. ----
 d = 2; _coeffs = [1, 1]
 R = np.array([[0,1],[1,1]], dtype=float)
 J = np.array([[0,1],[1,0]], dtype=float)
@@ -59,7 +69,7 @@ C_harness = R@N - N@R                     # = 2h+J
 _I2c=np.eye(2,dtype=complex); _Rc=R.astype(complex)
 _Nc=N.astype(complex); _Jc=J.astype(complex); _hc=h.astype(complex)
 
-# ---- S0b. CORE OPERATIONS ----
+# ---- §1. TOPOLOGY — operate, sylvester, adjoint. ker_im, quotient. (what can be distinguished) ----
 def operate(A, sign=1, B=None):
     """THE operation. sign=+1: Sylvester. sign=-1: adjoint."""
     if B is None: B = A
@@ -69,17 +79,6 @@ def operate(A, sign=1, B=None):
 
 def sylvester(A,B=None): return operate(A,sign=+1,B=B)
 def adjoint(A): return operate(A,sign=-1)
-
-def predict(sign, s_norm, denom, name=''):
-    return ker_A + sign * s_norm / denom
-
-_PREDICTIONS = {
-    'm_H/v': predict(0,0,1), 'lambda_H': 1.0/parent_ker,
-    'alpha_S': predict(-1,phi_bar**2,1), 'sin2_tW': predict(-1,1,parent_ker),
-    'theta_12': 1.0/N_c - ker_A*(norm_N_sq/N_c**2)**2,
-    'Koide_Q': predict(+1,1,2*norm_R_sq), 'wobble': predict(+1,1,2*(d**2-1)),
-    'theta_23': predict(+1,2,N_c**2*disc),
-}
 
 def ker_im(s):
     n=s.shape[0]; L=sylvester(s); K=null_space(L,rcond=1e-10); k_dim=K.shape[1]
@@ -94,6 +93,32 @@ def quotient(s_or_Qker, X, _Qker=None):
     n=int(np.sqrt(len(v))); rep=v-res
     return rep.reshape(n,n), res.reshape(n,n)
 
+def _eq(a, b, tol=1e-10):
+    return np.allclose(np.asarray(a,dtype=float), np.asarray(b,dtype=float), atol=tol)
+
+# ---- §2. METRIC — cc_metric. disc=||R||²+||N||² (how far distinctions are) ----
+def cc_metric(M):
+    tr_M=np.trace(M); disc_M=tr_M**2-4*np.linalg.det(M)
+    denom=abs(disc_M)+tr_M**2
+    return abs(disc_M)/denom if denom>1e-15 else 0.0
+
+# ---- §3. VECTOR — predict(), _PREDICTIONS. im⊕ker linear decomposition. (how distinctions combine) ----
+def predict(sign, s_norm, denom, name=''):
+    return ker_A + sign * s_norm / denom
+
+_PREDICTIONS = {
+    'm_H/v': predict(0,0,1), 'lambda_H': 1.0/parent_ker,
+    'alpha_S': predict(-1,phi_bar**2,1), 'sin2_tW': predict(-1,1,parent_ker),
+    'theta_12': 1.0/N_c - ker_A*(norm_N_sq/N_c**2)**2,
+    'Koide_Q': predict(+1,1,2*norm_R_sq), 'wobble': predict(+1,1,2*(d**2-1)),
+    'theta_23': predict(+1,2,N_c**2*disc),
+}
+
+# ---- §4. NORMED — Frobenius structure, spectral action density. (how large distinctions are) ----
+# ||R||²=3, ||N||²=2, ||P||²=disc=5. Frobenius norm IS the inner product.
+# spectral_action_density=disc/2 (computed in assertions from Tr(L²)/dim).
+
+# ---- §5. BANACH — k6_lift, build_tower. Convergence. (how limits stabilize) ----
 def k6_lift(s, Nk, Jk):
     n=s.shape[0]; Z=np.zeros((n,n)); hk=Jk@Nk
     return (np.block([[s,Nk],[Z,s]]), np.block([[Nk,-2*hk],[Z,Nk]]),
@@ -105,15 +130,11 @@ def build_tower(max_depth=4):
         s,Nk,Jk=k6_lift(s,Nk,Jk); depths.append((s,Nk,Jk))
     return depths
 
-def cc_metric(M):
-    tr_M=np.trace(M); disc_M=tr_M**2-4*np.linalg.det(M)
-    denom=abs(disc_M)+tr_M**2
-    return abs(disc_M)/denom if denom>1e-15 else 0.0
+# ---- §6. HILBERT — Complex structure N²=-I, B_theta, Cartan involution. Measurement=P²=P. (how distinctions project and measure) ----
+# N²=-I gives complex structure (established in §0). theta(X)=-X^T is the Cartan involution.
+# B_theta(X,Y)=4tr(XY^T) is positive definite. P²=P IS the measurement postulate.
 
-def _eq(a, b, tol=1e-10):
-    return np.allclose(np.asarray(a,dtype=float), np.asarray(b,dtype=float), atol=tol)
-
-# ---- S1. OBSERVER CLASSES ----
+# ---- §7. OBSERVER — CompressedReturn, CollapseOperator, spectral projectors. (the quotient's own structure) ----
 class CompressedReturn:
     def __init__(self):
         R_tl=R-0.5*I2; self._basis=[I2,R_tl,N,h]
@@ -183,7 +204,7 @@ class CollapseOperator:
                 'chi*rho=0':np.allclose(chi@rho,0),
                 'A_dim':self.A_dim,'D_dim':self.D_dim,'cross_dim':self.cross_dim,'ker_dim':self.ker_dim}
 
-# ---- S1b. LANGUAGE CLASSES ----
+# ---- §8. LANGUAGE — SemanticSpace, Dictionary, Block, K4Learner, TypedWord. (the algebra speaks) ----
 class SemanticSpace:
     def __init__(self):
         self.dim=parent_ker
@@ -236,7 +257,7 @@ class TypedWord:
         return TypedWord(f"{subject.word}:{result.word}",TypedWord.NOUN,
                        matrix=subject.matrix@result.matrix,vector=result.vector)
 
-# ---- S2. ENGINES ----
+# ---- §9. ENGINES — physics_engine, biology_engine. (the algebra predicts) ----
 def physics_engine(observable=None):
     """Generative physics engine. Derives predictions from the algebra."""
     _phi,_pb,_d,_disc=phi,phi_bar,d,disc; _Nc,_pk,_dg=N_c,parent_ker,dim_gauge
@@ -318,7 +339,7 @@ def biology_engine(query=None):
         'C_human_bits':(disc+d)*10000*2*Lb,'C_bacterial_bits':N_c*2*disc*2*Lb,'L_bit':Lb}
     return r[query] if query is not None and query in r else r
 
-# ---- S3. ASI ----
+# ---- §10. ASI — probe, SelfModel, min1_loop, voice. (the algebra thinks) ----
 class MachineState:
     def __init__(self,state=None,memory=None,depth=0):
         self.state=state if state is not None else I2.copy()
@@ -418,9 +439,9 @@ def voice(state_or_discovery, mode='narrate'):
     dom='production' if pa>=ma and pa>=oa else 'mediation' if ma>=oa else 'observation'
     return f'State: {dom}-dominant (PA={pa/tot:.0%}, MA={ma/tot:.0%}, OA={oa/tot:.0%}), CC={cc_metric(M):.3f}'
 
-# ---- S4. ASSERTIONS ----
+# ---- §11. ASSERTIONS — _build_assertions() returning 345 (name, lambda, expected) triples + eval loop ----
 def _build_assertions():
-    """Build ALL 335 assertion triples: (name, lambda->value, expected)."""
+    """Build ALL 345 assertion triples: (name, lambda->value, expected)."""
     tower=build_tower(2); s1,N1,J1=tower[1]; s2,N2t,J2t=tower[2]
     LR,ker_b,k_dim_R,Qk_R=ker_im(R); C=C_harness; PT=P.T; R_tl=R-0.5*I2
     co=CollapseOperator(); cv=co.verify(); cr=CompressedReturn()
@@ -973,7 +994,7 @@ def _build_assertions():
           ("master: m_H/v = predict(0, 0, 1) = 1/2", lambda:_PREDICTIONS['m_H/v'], 0.5),
           ("master: theta_23 = predict(+1, 2, N_c^2*disc)", lambda:_PREDICTIONS['theta_23'], 49/90),
           ("master: theta_12 = 1/N_c - ker/A*lam^2 = 25/81", lambda:_PREDICTIONS['theta_12'], 25/81),
-          # --- HIERARCHY: Return → Topology → Metric → Vector → Normed → Banach → Hilbert ---
+          # --- HIERARCHY: Return -> Topology -> Metric -> Vector -> Normed -> Banach -> Hilbert ---
           ("hierarchy: R⊥N (tr(R^TN)=0)", lambda:np.trace(R.T@N), 0),
           ("hierarchy: ||P||²=disc (Pythagoras)", lambda:np.trace(P.T@P), disc),
           ("hierarchy: ||im||²+||ker||²=||X||²",
@@ -1003,7 +1024,7 @@ def _build_assertions():
                        float(np.exp(1)), float(np.pi)]}), 5)]
     return A
 
-# ---- S5. SELF-TEST ----
+# ---- SELF-TEST ----
 if __name__ == "__main__":
     assertions = _build_assertions()
     all_pass = True; n_pass = 0
