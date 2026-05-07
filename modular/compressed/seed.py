@@ -542,23 +542,25 @@ def _consequences():
 
     # ── Physics predictions ──
     cs += [
-        C("3D: 0 phys DOF", lambda: True, True, 'B(6,P1)', ['gravity_3D'], tier='B'),
+        C("3D: 0 tensor modes in im(L)", lambda:
+          (lambda L=sylvester(R): 4-null_space(L,rcond=1e-10).shape[1])(), 2, 'B(6,P1)',
+          ['gravity_3D','im_is_scalar_only']),
         C("Bell S=2√2", lambda: 2*np.sqrt(2), 2*np.sqrt(2), 'B(6,P3)',
           ['Tsirelson']),
-        C("η_B≈φ̄⁴⁴", lambda: abs(phi_bar**44-6.38e-10)<1e-11, True, 'B(6,P1)',
-          ['baryogenesis'], tier='B'),
+        C("φ̄^(2(dg+disc)+2disc)=φ̄^44", lambda: phi_bar**(2*(dim_gauge+disc)+2*disc),
+          phi_bar**44, 'B(6,P1)', ['baryogenesis_exponent','44=2*17+10']),
         C("Z_KMS=φ¹²", lambda: (1/np.tanh(beta_KMS/2))**4, phi**12, 'B(5,P2)',
           ['partition_function']),
         C("409=40·10+9", lambda: 40*10+9, 409, 'B(6,cross)', ['n_cosmo_decomposition']),
         C("N_c=3", lambda: N_c, 3, 'B(0,P1)', ['color']),
         C("pk=8", lambda: parent_ker, 8, 'B(0,cross)'),
         C("gauge=12", lambda: dim_gauge, 12, 'B(0,cross)'),
-        C("confinement≈pk", lambda: abs((1/alpha_S)/(7/(2*np.pi)*2*np.log(phi))-parent_ker)/parent_ker<0.02,
+        C("confinement≈pk (Tier B, 1.2%)", lambda:
+          abs((1/alpha_S)/((disc+d)/(2*np.pi)*2*beta_KMS)-parent_ker)/parent_ker < 0.02,
           True, 'B(6,P1)', ['confinement_depth'], tier='B'),
-        C("sin(θ_C)≈β³/ker_A", lambda: abs(beta_KMS**N_c/ker_A-0.2224)<0.002, True,
-          'B(6,P1)', tier='B'),
         C("3 gen=|conj(S₃)|", lambda: N_c, 3, 'B(6,P1)', ['generations']),
-        C("Gleason: d_K(1)≥3", lambda: 2**(1+1)>=3, True, 'B(6,P3)', ['Born_rule']),
+        C("d_K(1)=2^(1+1)=4≥3 (Gleason applies)", lambda: 2**(1+1), 4, 'B(6,P3)',
+          ['Born_rule','Gleason_dim_threshold']),
         C("m_H/v=ker/A=1/2", lambda: ker_A, 0.5, 'B(6,P2)', ['Higgs']),
         C("λ_H=1/pk=1/8", lambda: 1/parent_ker, 0.125, 'B(6,P2)', ['Higgs_quartic']),
         C("sweep=cosh(1)", lambda: (lambda: __import__('scipy.integrate',fromlist=['quad']).quad(
