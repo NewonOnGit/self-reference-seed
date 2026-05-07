@@ -61,22 +61,42 @@ C_harness = R @ N - N @ R                      # = 2h + J
 
 
 # ================================================================
-# S1. PRIMITIVES — The irreducible operations
+# S1. THE OPERATION — Two multiplications and a sign
 # ================================================================
 
-def sylvester(A, B=None):
-    """L_{A,B}(X) = AX + XB - X as d^2 x d^2 matrix.
-    Unique: alpha=1 forced by tr(R)=1."""
+def operate(A, sign=1, B=None):
+    """THE operation. Everything in the framework is this.
+
+    sign = +1: L_{A,B}(X) = AX + XB - X  (Sylvester = physics, the visible)
+    sign = -1: ad_A(X)    = AX - XA       (adjoint = gauge, the hidden)
+
+    The + is production: both directions contribute, minus self.
+    The - is observation: the difference between left and right IS the gauge.
+    L^2 + D^2 = disc * I. Physics^2 + gauge^2 = discriminant. Pythagoras.
+
+    Every function in seed.py is a composition of operate() + null_space + expm.
+    """
     if B is None:
         B = A
     n = A.shape[0]
-    return np.kron(A, np.eye(n)) + np.kron(np.eye(n), B.T) - np.eye(n * n)
+    In = np.eye(n)
+    I_nn = np.eye(n * n)
+    left = np.kron(A, In)          # AX (left multiplication)
+    right = np.kron(In, B.T)       # XB (right multiplication)
+    if sign >= 0:
+        return left + right - I_nn  # L: both directions minus self
+    else:
+        return left - right         # D: the difference
+
+
+def sylvester(A, B=None):
+    """L_{A,B}(X) = AX + XB - X. The physics operator. sign = +1."""
+    return operate(A, sign=+1, B=B)
 
 
 def adjoint(A):
-    """ad_A(X) = [A,X] = AX - XA as d^2 x d^2 matrix."""
-    n = A.shape[0]
-    return np.kron(A, np.eye(n)) - np.kron(np.eye(n), A.T)
+    """ad_A(X) = [A,X] = AX - XA. The gauge operator. sign = -1."""
+    return operate(A, sign=-1)
 
 
 def ker_im(s):
