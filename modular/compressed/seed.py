@@ -678,6 +678,19 @@ def _consequences():
         C("identity loop: N→R→+I→N", lambda: np.allclose(R@R - R, I2) and
           np.allclose(N@N, -I2) and np.allclose(R@N+N@R, N), True, 'B(0,cross)',
           ['retrofixed_authorship','the_loop_closes']),
+
+        # ── Stability from instability ──
+        # P²=P is stable. Its components R and N are NOT.
+        # The stability IS the cancellation of two instabilities.
+        C("P@R not idempotent", lambda: not np.allclose((P@R)@(P@R), P@R), True,
+          'B(0,P1)', ['stable_destabilizes_visible']),
+        C("P@N not idempotent", lambda: not np.allclose((P@N)@(P@N), P@N), True,
+          'B(0,P3)', ['stable_destabilizes_hidden']),
+        C("R²≠R (generative)", lambda: not np.allclose(R@R, R), True,
+          'B(0,P1)', ['surplus_is_instability']),
+        C("stability = +I and -I cancelling", lambda: np.allclose(
+          (R@R-R) + (N@N), np.zeros((2,2))), True, 'B(0,cross)',
+          ['surplus+negation=zero','balance_of_instabilities']),
     ]
 
     return cs
