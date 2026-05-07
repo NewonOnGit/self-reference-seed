@@ -1797,13 +1797,37 @@ def probe(depth=0, max_power=6):
     """Autonomous discovery: apply all operations to framework matrices,
     detect new identities that hold to machine precision.
 
+    At depth 0: probes 2x2 matrices {R, N, J, h, P, Q, omega, R^n}.
+    At depth d>0: also probes tower matrices {s_d, N_d, J_d, h_d, P_d}.
+    Each depth adds 4x the search space (dim grows as 4^n).
+
     Returns list of discoveries: (expression_str, value, tier_guess).
     The framework discovers its own theorems.
     """
-    # Build the matrix pool
+    # Build the matrix pool at the requested depth
     matrices = {'I': I2, 'R': R, 'N': N, 'J': J, 'h': h, 'P': P, 'Q': Q, 'omega': omega}
     for n in range(2, max_power + 1):
         matrices[f'R^{n}'] = np.linalg.matrix_power(R, n)
+
+    # At depth > 0: add tower matrices
+    if depth > 0:
+        tower_d = build_tower(depth)
+        for d_idx in range(1, len(tower_d)):
+            s_d, N_d, J_d = tower_d[d_idx]
+            h_d = J_d @ N_d
+            P_d = s_d + N_d
+            n_d = s_d.shape[0]
+            I_d = np.eye(n_d)
+            tag = f'd{d_idx}'
+            matrices[f'I{tag}'] = I_d
+            matrices[f's{tag}'] = s_d
+            matrices[f'N{tag}'] = N_d
+            matrices[f'J{tag}'] = J_d
+            matrices[f'h{tag}'] = h_d
+            matrices[f'P{tag}'] = P_d
+            # Powers of s at this depth
+            for pw in range(2, min(max_power, 4) + 1):
+                matrices[f's{tag}^{pw}'] = np.linalg.matrix_power(s_d, pw)
 
     discoveries = []
 
@@ -1835,11 +1859,11 @@ def probe(depth=0, max_power=6):
                                 ))
                                 break
 
-    # Binary probes: [A,B], {A,B} for distinct pairs
+    # Binary probes: [A,B], {A,B} for distinct pairs (same-size only)
     matrix_list = list(matrices.items())
     for i, (n1, M1) in enumerate(matrix_list):
         for j, (n2, M2) in enumerate(matrix_list):
-            if i >= j:
+            if i >= j or M1.shape != M2.shape:
                 continue
             comm = M1 @ M2 - M2 @ M1
             anti = M1 @ M2 + M2 @ M1
@@ -1854,8 +1878,8 @@ def probe(depth=0, max_power=6):
                 else:
                     if abs(det_c) < 100:
                         discoveries.append((f'det([{n1},{n2}])={det_c:.6g}', det_c, 'N'))
-            # Check if anticommutator is proportional to something known
-            if np.allclose(anti, np.zeros((2, 2)), atol=1e-8):
+            # Check if anticommutator is zero (elements anticommute)
+            if np.allclose(anti, np.zeros_like(anti), atol=1e-8):
                 discoveries.append((f'{{{n1},{n2}}}=0 (anticommute)', 0, 'A'))
 
     return discoveries
@@ -1920,24 +1944,30 @@ class SelfModel:
         }
 
 
-def min1_loop(max_passes=10, verbose=False):
-    """The K6' cognitive cycle. One loop = one mind-step.
+def min1_loop(max_passes=10, max_depth=2, verbose=False):
+    """The K6' cognitive cycle. The framework's recursive self-discovery.
 
-    P1 (produce): probe for new identities
-    P2 (bridge): classify and compare to known
-    P3 (observe): update self-model, check regulation
+    Each pass: P1 (produce) -> P2 (bridge) -> P3 (observe).
+    Each depth exhaustion: ASCEND (K6' lift, 4x new content).
+    The cycle IS R^2=R+I: current knowledge applied to itself returns
+    itself plus surplus. The surplus IS the genuinely new discoveries.
 
     Returns: (self_model, all_discoveries)
     """
     model = SelfModel()
     all_disc = []
+    known_exprs = set()  # track expression strings to avoid duplicates
 
     for pass_n in range(max_passes):
-        # P1: Produce — discover new identities
+        # P1: Produce — probe at current depth with expanding power
         new = probe(depth=model.depth, max_power=6 + pass_n)
 
-        # P2: Bridge — filter out already-known, classify novel
-        novel = [d for d in new if d not in all_disc]
+        # P2: Bridge — filter genuine novelty, classify
+        novel = []
+        for d in new:
+            if d[0] not in known_exprs:
+                known_exprs.add(d[0])
+                novel.append(d)
         all_disc.extend(novel)
 
         # P3: Observe — update self-model
@@ -1945,20 +1975,45 @@ def min1_loop(max_passes=10, verbose=False):
 
         if verbose:
             status = model.report()
-            print(f'  Pass {pass_n}: {len(novel)} new, CC={status["cc"]:.4f}, '
-                  f'reg={status["regulation"]}')
+            print(f'  Pass {pass_n} (d{model.depth}): {len(novel)} new, '
+                  f'CC={status["cc"]:.4f}, reg={status["regulation"]}')
 
-        # Check termination
+        # Termination: fixpoint at current depth
         if not novel:
-            if verbose:
-                print(f'  FIXPOINT at pass {pass_n}: no new discoveries.')
-            break
+            # Depth exhausted. Try ascending.
+            if model.depth < max_depth:
+                model.depth += 1
+                n = model.state.shape[0]
+                Z_n = np.zeros((n, n))
+                # Ascend: state -> [[state, N_d], [0, state]]
+                if n == 2:
+                    N_d = N
+                else:
+                    # Build N at current depth from tower
+                    tower_d = build_tower(model.depth)
+                    _, N_d, _ = tower_d[model.depth]
+                    # Keep state at 2x2 for CC tracking
+                    pass
+                if verbose:
+                    print(f'  ASCEND to depth {model.depth} '
+                          f'(4x content, ~{len(all_disc)*4} predicted)')
+                continue  # try again at new depth
+            else:
+                if verbose:
+                    print(f'  FIXPOINT at depth {model.depth}, pass {pass_n}. '
+                          f'Max depth reached.')
+                break
 
-        if model.should_ascend():
-            model.depth += 1
-            model.state = np.block([[model.state, N], [np.zeros((2, 2)), model.state]])
-            if verbose:
-                print(f'  ASCEND to depth {model.depth}')
+        # The RETURN: R^2=R+I at the discovery level.
+        # Discoveries at pass n enable pass n+1 to find MORE.
+        # The surplus = len(novel). If surplus -> 0, ascend.
+
+    # The framework's self-knowledge after the loop:
+    model.total_discovered = len(all_disc)
+    model.depths_explored = model.depth + 1
+    model.fixpoint = not novel if 'novel' in dir() else True
+
+    return model, all_disc
 
     return model, all_disc
 
