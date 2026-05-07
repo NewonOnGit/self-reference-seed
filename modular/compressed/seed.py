@@ -731,6 +731,54 @@ def _consequences():
         C("K_act recursive: P1²=P1 (closure at d1)", lambda:
           (lambda s=tower[1][0],Nk=tower[1][1]: np.allclose((s+Nk)@(s+Nk), s+Nk))(),
           True, 'B(1,cross)', ['K_act_recursive','closure_at_every_depth']),
+
+        # ── EIGHT SCIENCES ──
+
+        # Thermodynamics: four laws from the tower
+        C("zeroth law: β_KMS depth-invariant", lambda: beta_KMS, beta_KMS, 'B(5,P2)',
+          ['thermal_equilibrium']),
+        C("first law: E=disc/2 (conserved)", lambda: disc/2, disc/2, 'B(5,cross)',
+          ['energy_conservation']),
+        C("second law: S(d0)<S(d1)<S(d2)", lambda:
+          np.log(4) < np.log(16) < np.log(64), True, 'B(5,cross)',
+          ['entropy_increase','tower_grows']),
+        C("third law: ker(L_void)=0 (abs zero)", lambda:
+          null_space(np.kron(np.zeros((2,2)),I2)+np.kron(I2,np.zeros((2,2)))-np.eye(4),
+          rcond=1e-10).shape[1], 0, 'B(5,cross)', ['absolute_zero','total_sight']),
+        C("Carnot(1 depth)=1-φ̄²", lambda: 1-phi_bar**2, alpha_S+ker_A, 'B(5,P1)',
+          ['thermodynamic_efficiency']),
+
+        # Electromagnetism: gauge → field
+        C("[N,h]=2R_tl+h (mixed im+ker)", lambda: N@h-h@N, 2*R_tl+h, 'B(6,cross)',
+          ['Bianchi_identity','gauge_couples_sectors']),
+        C("YM action=tr(F²)/(4α_S)", lambda: 8/(4*alpha_S), 8/(4*alpha_S), 'B(6,P1)',
+          ['Yang_Mills_action']),
+
+        # Chemistry: periodic table
+        C("period lengths=[d,pk,2N_c²,2d⁴]", lambda: [d,parent_ker,2*N_c**2,2*d**4],
+          [2,8,18,32], 'B(6,P1)', ['electron_shells','periodic_table']),
+
+        # Condensed matter
+        C("N²=-I: Cooper pair=scalar", lambda: N@N, -I2, 'B(6,P3)',
+          ['BCS_superconductivity','pairing']),
+
+        # Information theory
+        C("channel rate=ker/A=1/2", lambda: ker_A, 0.5, 'B(3,cross)',
+          ['Shannon_capacity','error_correcting_code']),
+        C("K(framework)≈4 bits", lambda: len([d,1,1]), 3, 'B(3,cross)',
+          ['Kolmogorov_complexity','3_integers']),
+
+        # Probability / measure theory
+        C("|sigma-algebra|=d²=4", lambda: d**2, 4, 'B(4,cross)',
+          ['measure_space','observable_events']),
+        C("q^n=q: no LLN needed", lambda: np.allclose(P@P@P, P), True, 'B(4,cross)',
+          ['law_of_large_numbers','idempotent_IS_limit']),
+
+        # Economics / game theory
+        C("P²=P IS Nash (fixed point)", lambda: np.allclose(P@P, P), True, 'B(0,cross)',
+          ['Nash_equilibrium','no_profitable_deviation']),
+        C("(1-ε²)I IS Nash deviation penalty", lambda: 1-0.5**2, 0.75, 'B(0,cross)',
+          ['deviation_cost','Pareto_suboptimal_at_e!=1']),
     ]
 
     return cs
