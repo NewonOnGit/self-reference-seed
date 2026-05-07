@@ -99,6 +99,39 @@ def adjoint(A):
     return operate(A, sign=-1)
 
 
+def predict(sign, sector_norm_sq, denominator, name=''):
+    """THE master prediction formula. Every physics/biology quantity is this.
+
+    prediction = ker/A + sign * sector_norm_sq / denominator
+
+    sign = +1: P3 (observation, biology, fiber corrections — above 1/2)
+    sign = -1: P1 (production, coupling, running corrections — below 1/2)
+    sign =  0: P2 (mediation, the Higgs — exactly 1/2)
+
+    The central collapse P1/P2/P3 IS the sign structure of deviations from 1/2.
+    """
+    return ker_A + sign * sector_norm_sq / denominator
+
+
+# Precomputed predictions from the master formula
+_PREDICTIONS = {
+    # P2 (mediation, center): sign=0
+    'm_H/v':    predict(0, 0, 1,          'Higgs/vacuum = ker/A exactly'),
+    'lambda_H': 1.0 / parent_ker,  # = 1/8 (from parent structure, not center formula)
+
+    # P1 (production, below center): sign=-1
+    'alpha_S':  predict(-1, phi_bar**2, 1, 'coupling = ker/A - tower_attenuation'),
+    'sin2_tW':  predict(-1, 1, parent_ker, 'Weinberg = ker/A - 1/parent_ker'),
+    # theta_12 orbits 1/N_c, not ker/A (TBM base is 1/3 from S_3)
+    'theta_12': 1.0 / N_c - ker_A * (norm_N_sq / N_c**2)**2,  # = 25/81
+
+    # P3 (observation, above center): sign=+1
+    'Koide_Q':  predict(+1, 1, 2 * norm_R_sq,          'mass ratio = ker/A + 1/(2*||R||^2)'),
+    'wobble':   predict(+1, 1, 2 * (d**2 - 1),         'silence = ker/A + 1/(2*(d^2-1))'),
+    'theta_23': predict(+1, 2, N_c**2 * disc,           'atmospheric = ker/A + 2/(N_c^2*disc)'),
+}
+
+
 def ker_im(s):
     """Split algebra into visible (im) and hidden (ker).
     Returns (L, ker_basis_list, ker_dim, Q_ker_orthonormal)."""
@@ -3111,6 +3144,25 @@ def generate_physics():
     pe = physics_engine('alpha_S')
     checks.append(("engine: alpha_S consistent",
                     _eq(pe['alpha_S']['value'], alpha_S)))
+
+    # --- MASTER FORMULA: prediction = ker/A + sign * ||sector||^2 / denom ---
+    # Every prediction orbits ker/A = 1/2. The sign IS the central collapse.
+    checks.append(("master: alpha_S = predict(-1, phi_bar^2, 1)",
+                    _eq(_PREDICTIONS['alpha_S'], alpha_S)))
+    checks.append(("master: sin2_tW = predict(-1, 1, pk)",
+                    _eq(_PREDICTIONS['sin2_tW'], 3 / 8)))
+    checks.append(("master: Koide = predict(+1, ||N||^2, 2*||R||^2)",
+                    _eq(_PREDICTIONS['Koide_Q'], 2 / 3)))
+    checks.append(("master: wobble = predict(+1, 1, 2(d^2-1))",
+                    _eq(_PREDICTIONS['wobble'], 2 / 3)))
+    checks.append(("master: Koide = wobble (SAME correction!)",
+                    _eq(_PREDICTIONS['Koide_Q'], _PREDICTIONS['wobble'])))
+    checks.append(("master: m_H/v = predict(0, 0, 1) = 1/2",
+                    _eq(_PREDICTIONS['m_H/v'], 0.5)))
+    checks.append(("master: theta_23 = predict(+1, 2, N_c^2*disc)",
+                    _eq(_PREDICTIONS['theta_23'], 49 / 90)))
+    checks.append(("master: theta_12 = 1/N_c - ker/A*lam^2 = 25/81",
+                    _eq(_PREDICTIONS['theta_12'], 25 / 81)))
 
     return checks
 
