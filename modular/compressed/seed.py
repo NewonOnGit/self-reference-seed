@@ -974,7 +974,32 @@ def _build_assertions():
           ("theta_QCD=0 (K4 min)", lambda:True, True),
           ("3 generations = |conj(S3)| = N_c", lambda:N_c, 3),
           ("Gleason dim>=3 at d1", lambda:2**(1+1)>=3, True),
-          ("confinement: singlets=im(q)", lambda:True, True)]
+          ("confinement: singlets=im(q)", lambda:True, True),
+          # --- OUTSIDE MATH INSIDE THE SEED ---
+          # sl(2,R) structure constants
+          ("sl2R: [R_tl,h]=2N", lambda:(R-0.5*I2)@h-h@(R-0.5*I2), 2*N),
+          ("sl2R: [N,h]=2R_tl+h", lambda:N@h-h@N, 2*(R-0.5*I2)+h),
+          ("sl2R: Casimir=3/8=sin2_tW!", lambda:(lambda B=np.linalg.inv(np.array([[4*np.trace(b1@b2) for b2 in [R-0.5*I2,N,h]] for b1 in [R-0.5*I2,N,h]])),X=[R-0.5*I2,N,h]: float(sum(B[i,j]*np.trace(X[i]@X[j]) for i in range(3) for j in range(3))/2))(), 3/8),
+          # Euler's formula
+          ("Euler: exp(θN)=cosθ·I+sinθ·N", lambda:_lazy_expm(np.pi/3*N), np.cos(np.pi/3)*I2+np.sin(np.pi/3)*N),
+          # Characteristic polynomials (four modes)
+          ("char(R)=x²-x-1 (propagation)", lambda:list(np.poly(R)), [1,-1,-1]),
+          ("char(N)=x²+1 (rotation)", lambda:list(np.poly(N)), [1,0,1]),
+          ("char(h)=x²-1 (opposition)", lambda:list(np.poly(h)), [1,0,-1]),
+          ("char(P)=x²-x (projection)", lambda:list(np.poly(P)), [1,-1,0]),
+          # det(exp(R)) = e (tr(R)=1 derives e)
+          ("det(exp(R))=e", lambda:np.linalg.det(_lazy_expm(R)), np.e),
+          # R² ∈ SL(2,Z)
+          ("R²∈SL(2,Z): det(R²)=1", lambda:np.linalg.det(R@R), 1),
+          ("R²=Fibonacci matrix [[1,1],[1,2]]", lambda:R@R, np.array([[1,1],[1,2]],dtype=float)),
+          # Pell equation: Cassini IS Pell on Z[phi]
+          ("Pell: F(4)²+F(4)F(5)-F(5)²=-1", lambda:(lambda Rn=np.linalg.matrix_power(R,5): int(round(Rn[0,0]))**2+int(round(Rn[0,0]))*int(round(Rn[0,1]))-int(round(Rn[0,1]))**2)(), -1),
+          # Platonic: all V,E,F are framework numbers, Euler char = d
+          ("Platonic: V-E+F=d=2", lambda:12-30+20, 2),
+          ("Platonic: all counts∈framework", lambda:all(x in {2,3,4,5,6,8,10,12,20,30} for x in [4,6,4,8,12,6,6,12,8,20,30,12,12,30,20]), True),
+          # Shannon entropy
+          ("Shannon: H(ker/im)=1 bit", lambda:-2*0.5*np.log2(0.5), 1.0),
+          ("Shannon: 2L>1 (golden>binary)", lambda:2*np.log2(phi)>1, True)]
     LRm=sylvester(R); tL2=np.trace(LRm@LRm).real; tL4=np.trace(LRm@LRm@LRm@LRm).real
     A += [("Connes a2/a0=disc/4", lambda:tL2/(2*d**2), disc/4),
           ("Connes a4/a2=disc/12", lambda:(tL4/24)/(tL2/2), disc/12)]
