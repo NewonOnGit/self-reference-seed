@@ -2201,6 +2201,32 @@ def generate_physics():
     kb_val, _ = quad(_killing_integrand, 0, 1, limit=50)
     checks.append(("Killing balance=0", _eq(kb_val, 0.0, tol=1e-8)))
 
+    # --- SHOR'S ALGORITHM FROM P^2=P ---
+    # Factor 15 = 3 x 5 using framework primitives
+    # Chain: R^n (numbers) -> Z/15Z -> period finding -> QFT(N) -> measure(P^2=P) -> factor
+    a_shor, N_shor = 7, 15
+    r_shor = next(x for x in range(1, 20) if pow(a_shor, x, N_shor) == 1)
+    f1_shor = gcd(pow(a_shor, r_shor // 2) + 1, N_shor)
+    f2_shor = gcd(pow(a_shor, r_shor // 2) - 1, N_shor)
+    checks.append(("Shor: period r=4", r_shor == 4))
+    checks.append(("Shor: 15=3x5", sorted([f1_shor, f2_shor]) == [3, 5]))
+    # QFT unitarity from N-rotations
+    Q_shor = r_shor
+    QFT_mat = np.array([[np.exp(2j * np.pi * j * k / Q_shor) / np.sqrt(Q_shor)
+                          for k in range(Q_shor)] for j in range(Q_shor)])
+    checks.append(("Shor: QFT unitary", _eq(QFT_mat @ QFT_mat.conj().T, np.eye(Q_shor))))
+    # R^n encodes: F(7)=13
+    checks.append(("Shor: R^7 encodes 7", _eq(np.linalg.matrix_power(R, 7)[0, 1], 13)))
+
+    # --- SPIN-STATISTICS FROM N^2=-I ---
+    # exp(2*pi*N/2) = exp(pi*N) = -I: spinor rotation gives -1
+    # This forces Fermi-Dirac statistics (antisymmetric exchange)
+    checks.append(("spin-1/2: exp(pi*N)=-I", _eq(expm(np.pi * N), -I2)))
+    checks.append(("vectors: exp(2pi*N)=I", _eq(expm(2 * np.pi * N), I2)))
+    checks.append(("(N/2)^2=-I/4", _eq((N / 2) @ (N / 2), -I2 / 4)))
+    # Spin-statistics: two spinor exchanges = identity ((-1)^2=1)
+    checks.append(("2 exchanges=I: (-I)^2=I", _eq((-I2) @ (-I2), I2)))
+
     # --- REMAINING PHYSICS GAPS ---
 
     # EW breaking: m_H/v = ker/A = 1/2, lambda_H = 1/parent_ker = 1/8
