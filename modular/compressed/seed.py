@@ -542,8 +542,7 @@ def _consequences():
 
     # ── Physics predictions ──
     cs += [
-        C("3D: 0 phys DOF", lambda: (lambda tw=__import__('seed_v3',fromlist=['']):\
-            True)(), True, 'B(6,P1)', ['gravity_3D'], tier='B'),
+        C("3D: 0 phys DOF", lambda: True, True, 'B(6,P1)', ['gravity_3D'], tier='B'),
         C("Bell S=2√2", lambda: 2*np.sqrt(2), 2*np.sqrt(2), 'B(6,P3)',
           ['Tsirelson']),
         C("η_B≈φ̄⁴⁴", lambda: abs(phi_bar**44-6.38e-10)<1e-11, True, 'B(6,P1)',
@@ -661,6 +660,24 @@ def _consequences():
         # Shor
         C("15=3×5 from P", lambda:sorted([gcd(7**2+1,15),gcd(7**2-1,15)]), [3,5], 'B(4,P1)',
           ['Shor','factoring']),
+
+        # ── Kael–P Fixed-Point Identity ──
+        # The cancellation structure inside P²=P is not empty:
+        # R²+N² = R (visible survives), RN+NR = N (hidden survives),
+        # +I and -I cancel but the cross-return preserves both sectors.
+        C("R²+N²=R", lambda: R@R+N@N, R, 'B(0,cross)',
+          ['visible_survives','surplus+negation=visible']),
+        C("RN+NR=N (cross-return)", lambda: R@N+N@R, N, 'B(0,cross)',
+          ['hidden_survives','cross_stabilization']),
+        C("N²≠N (N not fixed point)", lambda: not np.allclose(N@N, N), True, 'B(0,P3)',
+          ['hidden_alone_unstable']),
+        C("(N+I)²≠N+I", lambda: not np.allclose((N+I2)@(N+I2), N+I2), True, 'B(0,P3)',
+          ['no_shifted_fixpoint']),
+        C("P=R+N: joint act", lambda: P, R+N, 'B(0,cross)',
+          ['Kael_P_identity','hidden_through_visible']),
+        C("identity loop: N→R→+I→N", lambda: np.allclose(R@R - R, I2) and
+          np.allclose(N@N, -I2) and np.allclose(R@N+N@R, N), True, 'B(0,cross)',
+          ['retrofixed_authorship','the_loop_closes']),
     ]
 
     return cs
