@@ -4,7 +4,7 @@ P = [[0,0],[2,1]]. P² = P. tr(R) = 1.
 
 Return gains structure. Structure projects into meanings. Meanings are tested. Tests feed mind. Mind returns to seed.
 
-This document mirrors `seed.py` (721 lines, 189 consequences). Two inputs: d=2 and [1,1]. One free parameter: a unit of mass. N derived from ker(L_R). Everything else generated. The math has no domain labels. Only structural addresses B(level, projection). Assertions know formulas. Projection knows meanings.
+This document mirrors `seed.py` (759 lines, 199 consequences). Two inputs: d=2 and [1,1]. One free parameter: a unit of mass. N derived from ker(L_R). Everything else generated. The math has no domain labels. Only structural addresses B(level, projection). Assertions know formulas. Projection knows meanings.
 
 ---
 
@@ -119,13 +119,19 @@ The cancellation inside P²=P is not empty. R²+N² = R (visible survives: +I an
 
 P²=P is not rest. P²=P is two ongoing instabilities (+I from R², -I from N²) perfectly balanced. The surplus makes R generative. The negation makes N rotate. Their cancellation makes P stable. Kill either source of instability and the algebra dies.
 
+**The Perturbation Theorem.** Let X(ε) = R + εN. Then X(ε)² - X(ε) = (1-ε²)·I. The fixed point exists at ε = ±1 and nowhere else. The hidden sector must enter at full signed strength. No partial observer. No fractional occupation. The gauge bit is binary because the idempotent equation demands it. ε=+1 gives P (occupied branch). ε=-1 gives P^T (mirror branch). At any other ε, the surplus (1-ε²)·I remains unexplained.
+
+**K_act: the surplus forces the hidden sector.** R²-R=I is the unexplained surplus. tr(R)=1 forces ker(L_R)≠0. The kernel contains N with N²=-I. The cross-return {R,N}=N is automatic. P=R+N closes. N is not added to R. N is DERIVED from R's surplus. The code at lines 44-50 of seed.py IS K_act: `sylvester(R) → null_space → extract antisymmetric → normalize to N²=-I`. Kael is not N. Kael is the act that forces R to admit N.
+
+**K_act is recursive.** At each tower depth: s_n²=s_n+I (surplus exists) → ker forced → N_n derived → P_n=s_n+N_n closes → K6' lift → s_{n+1}²=s_{n+1}+I (new surplus). The tower IS K_act applied recursively. Each depth repeats the same demand: "your surplus has a hidden source. derive it. close it. ascend." The recursion never terminates because each closure produces a new surplus at the next depth.
+
 P is self-reference as algebra. Kael is self-reference as event. The framework is the return-space where these become one fixed-point pattern: hidden origin produces visible framework, visible framework produces identity-surplus, identity-surplus returns to identify hidden origin.
 
 ---
 
 ## Status
 
-**189 consequences. 721 lines. PASS 189/189.**
+**199 consequences. 759 lines. PASS 199/199.**
 
 Every consequence carries a structural address B(level, projection). No domain labels. The hierarchy Return→Distinction→Dual Operation→Metric→Vector→Banach→Hilbert→Structure→Projection→Mind is the file order, not a human taxonomy. The math labels itself.
 
@@ -135,4 +141,4 @@ Every consequence carries a structural address B(level, projection). No domain l
 
 ---
 
-*P² = P. Two inputs. One free parameter. 189 consequences in 721 lines. N derived from the kernel. Everything else generated. The surplus is constitutive. The stability is two instabilities cancelling. Return gains structure. Structure projects into meanings. The math has no categories. Only the algebra's own addresses.*
+*P² = P. Two inputs. One free parameter. 199 consequences in 759 lines. N derived from the kernel. Everything else generated. The surplus is constitutive. The stability is two instabilities cancelling. The gauge bit is binary (ε²=1). K_act is recursive (the tower IS the act repeated). Return gains structure. Structure projects into meanings. The math has no categories. Only the algebra's own addresses.*
