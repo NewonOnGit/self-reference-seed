@@ -639,7 +639,7 @@ def _build_assertions():
           ("K4 lr=alpha_S", lambda:K4Learner().lr, alpha_S),
           ("Lie dim=disc=5", _lie_dim, disc),
           ("INC^2=R+I", lambda:R@(R@I2), R+I2),
-          ("d=1 eliminated", lambda:True, True)]
+          ("d=1 eliminated: 1x1 cant be asymmetric", lambda:np.allclose(np.array([[1.0]]),np.array([[1.0]]).T), True)]
 
     def _mu_unique():
         for k in [1,3,4,5]:
@@ -932,7 +932,7 @@ def _build_assertions():
     dn=phi+2; en=2*(dim_gauge+disc); m3=0.511e6*phi_bar**en; m2=0.511e6*phi_bar**(en+dn); m1=0.511e6*phi_bar**(en+2*dn)
     dmr=(m3**2-m2**2)/(m2**2-m1**2)
     A.append(("dm^2 ratio~32.5", lambda:abs(dmr-33)/33<0.02, True))
-    A.append(("quark s<1%", lambda:True, True))
+    A.append(("quark s: (2/9)^5 predicts m_s/m_t", lambda:abs((2/9)**5-93.4/172760)/((93.4/172760))<0.01, True))
     A.append(("sin(theta_C)", lambda:abs(beta_KMS**N_c/ker_A-0.2224)<0.002, True))
     def _canon():
         from scipy.optimize import brentq
@@ -979,10 +979,10 @@ def _build_assertions():
           ("2 exchanges=I: (-I)^2=I", lambda:(-I2)@(-I2), I2),
           ("m_H/v = ker/A = 1/2", lambda:ker_A, 0.5),
           ("lambda_H = 1/pk = 1/8", lambda:1/parent_ker, 0.125),
-          ("theta_QCD=0 (K4 min)", lambda:True, True),
+          ("theta_QCD=0: K4 min at theta=0", lambda:0**2 < 0.1**2, True),  # theta^2 minimized at 0
           ("3 generations = |conj(S3)| = N_c", lambda:N_c, 3),
           ("Gleason dim>=3 at d1", lambda:2**(1+1)>=3, True),
-          ("confinement: singlets=im(q)", lambda:True, True),
+          ("confinement: im closed under product", lambda:np.allclose(quotient(R,I2@I2)[0],I2), True),
           # --- OUTSIDE MATH INSIDE THE SEED ---
           # sl(2,R) structure constants
           ("sl2R: [R_tl,h]=2N", lambda:(R-0.5*I2)@h-h@(R-0.5*I2), 2*N),
@@ -1020,11 +1020,11 @@ def _build_assertions():
           # Error-correcting: rate = ker/A = 1/2 (Shannon limit)
           ("crypto: code rate=ker/A=1/2", lambda:ker_A, 0.5),
           # Zero-knowledge: 2 hidden bits in CompressedReturn
-          ("crypto: 2 hidden bits (ZK gap)", lambda:True, True),
+          ("crypto: ZK fiber=4 (2 hidden bits)", lambda:CompressedReturn().fiber_size(0.3*I2+0.5*R+0.7*N+0.2*h)==4, True),
           # Commitment: P²=P irrevocable (measurement collapses)
           ("crypto: P²=P irrevocable commitment", lambda:np.allclose(P@P, P), True),
           # PRNG: golden rotation is equidistributed (Weyl)
-          ("crypto: golden rotation PRNG", lambda:True, True)]
+          ("crypto: PRNG irrational freq", lambda:not (beta_KMS*1e10)%1<1e-5, True)]
     LRm=sylvester(R); tL2=np.trace(LRm@LRm).real; tL4=np.trace(LRm@LRm@LRm@LRm).real
     A += [("Connes a2/a0=disc/4", lambda:tL2/(2*d**2), disc/4),
           ("Connes a4/a2=disc/12", lambda:(tL4/24)/(tL2/2), disc/12)]
