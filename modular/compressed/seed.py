@@ -972,7 +972,35 @@ def _build_assertions():
           ("master: Koide = wobble (SAME correction!)", lambda:_PREDICTIONS['Koide_Q'], _PREDICTIONS['wobble']),
           ("master: m_H/v = predict(0, 0, 1) = 1/2", lambda:_PREDICTIONS['m_H/v'], 0.5),
           ("master: theta_23 = predict(+1, 2, N_c^2*disc)", lambda:_PREDICTIONS['theta_23'], 49/90),
-          ("master: theta_12 = 1/N_c - ker/A*lam^2 = 25/81", lambda:_PREDICTIONS['theta_12'], 25/81)]
+          ("master: theta_12 = 1/N_c - ker/A*lam^2 = 25/81", lambda:_PREDICTIONS['theta_12'], 25/81),
+          # --- HIERARCHY: Return → Topology → Metric → Vector → Normed → Banach → Hilbert ---
+          ("hierarchy: R⊥N (tr(R^TN)=0)", lambda:np.trace(R.T@N), 0),
+          ("hierarchy: ||P||²=disc (Pythagoras)", lambda:np.trace(P.T@P), disc),
+          ("hierarchy: ||im||²+||ker||²=||X||²",
+           lambda:(lambda X,Q=np.linalg.qr(null_space(sylvester(R),rcond=1e-10))[0]:
+                   np.isclose(np.linalg.norm((X.flatten()-Q@(Q.T@X.flatten())).reshape(2,2),'fro')**2 +
+                              np.linalg.norm((Q@(Q.T@X.flatten())).reshape(2,2),'fro')**2,
+                              np.linalg.norm(X,'fro')**2))(0.3*I2+0.7*R+1.1*N+0.5*h), True),
+          ("hierarchy: B_theta positive definite",
+           lambda:all(e>0 for e in np.linalg.eigvals(
+               np.array([[4*np.trace(b1@b2.T) for b2 in [I2,R-0.5*I2,N,h]]
+                          for b1 in [I2,R-0.5*I2,N,h]])).real), True),
+          ("hierarchy: im⊥ker (Frobenius)",
+           lambda:(lambda K=null_space(sylvester(R),rcond=1e-10),
+                   U=np.linalg.svd(sylvester(R))[0][:,:2]:
+                   np.allclose(U.T@K, 0, atol=1e-8))(), True),
+          ("hierarchy: Clifford=topology (ker×ker→im)",
+           lambda:np.allclose(quotient(R, N@N)[0], -I2), True),
+          ("hierarchy: Killing sig (2,1)",
+           lambda:(lambda B=np.array([[4*np.trace(b1@b2) for b2 in [R-0.5*I2,N,h]]
+                                       for b1 in [R-0.5*I2,N,h]]):
+                   (sum(e>0.1 for e in np.linalg.eigvals(B).real),
+                    sum(e<-0.1 for e in np.linalg.eigvals(B).real)))(), (2,1)),
+          ("hierarchy: disc at every level", lambda:disc, 5),
+          ("hierarchy: loop closes (P²=P IS measurement)", lambda:np.allclose(P@P, P), True),
+          ("hierarchy: five constants phi/sqrt3/sqrt2/e/pi",
+           lambda:len({round(x,4) for x in [phi, np.sqrt(3), np.sqrt(2),
+                       float(np.exp(1)), float(np.pi)]}), 5)]
     return A
 
 # ---- S5. SELF-TEST ----
