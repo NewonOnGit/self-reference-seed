@@ -1620,7 +1620,7 @@ def generate_tower():
 
     # --- G-NEW-11/12: Observation flow disc identity ---
     # disc(exp(theta*N)) = -4*sin^2(theta) for all theta
-    for t_val, t_label in [(np.pi / 4, "pi/4"), (np.pi / 3, "pi/3")]:
+    for t_val, t_label in [(np.pi / 6, "pi/6"), (np.pi / 4, "pi/4"), (np.pi / 3, "pi/3")]:
         eN = expm(t_val * N)
         disc_eN = np.trace(eN)**2 - 4 * np.linalg.det(eN)
         checks.append((f"disc(exp({t_label}*N))=-4sin^2", _eq(disc_eN, -4 * np.sin(t_val)**2)))
@@ -1661,15 +1661,15 @@ def generate_tower():
     # --- G-NEW: tr(R^m * N^k) = L(m) * {1,0,-1,0} mod 4 cycle ---
     # R and N are signature-orthogonal, so mixed traces factorize
     sigma_cycle = [1, 0, -1, 0]
-    m_tr = 3  # use m=3 (L(3)=4) to test all four k values
-    Rm = np.linalg.matrix_power(R, m_tr)
-    Lm = np.trace(Rm)
-    for k_tr in range(4):
-        Nk_pow = np.linalg.matrix_power(N, k_tr)
-        tr_val = np.trace(Rm @ Nk_pow)
-        expected = Lm * sigma_cycle[k_tr % 4]
-        checks.append((f"tr(R^{m_tr}*N^{k_tr})=L*sigma",
-                        _eq(tr_val, expected)))
+    for m_tr in [3, 4, 5]:  # extended to m=4,5 (L(4)=7, L(5)=11)
+        Rm = np.linalg.matrix_power(R, m_tr)
+        Lm = np.trace(Rm)
+        for k_tr in range(4):
+            Nk_pow = np.linalg.matrix_power(N, k_tr)
+            tr_val = np.trace(Rm @ Nk_pow)
+            expected = Lm * sigma_cycle[k_tr % 4]
+            checks.append((f"tr(R^{m_tr}*N^{k_tr})=L*sigma",
+                            _eq(tr_val, expected)))
 
     # --- G-NEW-18: disc(M) in Pauli coordinates = 4(beta^2-gamma^2+delta^2) ---
     # M = alpha*I + beta*J + gamma*N + delta*h => disc = 4*(beta^2 - gamma^2 + delta^2)
@@ -1679,6 +1679,40 @@ def generate_tower():
     b_p = (R[0, 1] + R[1, 0]) / 2
     c_p = (R[1, 0] - R[0, 1]) / 2
     checks.append(("disc(R) Pauli=5", _eq(4 * (b_p**2 - c_p**2 + d_p**2), disc)))
+
+    # --- G-NEW-9: disc(aR+bI) = disc*a^2 (additive rigidity under I-shift) ---
+    # tr(aR+bI) = a+2b, det(aR+bI) = a^2*det(R)+ab*tr(R)+b^2 = -a^2+ab+b^2
+    # disc = (a+2b)^2 - 4*(-a^2+ab+b^2) = 5*a^2 for ALL b
+    for a_r, b_r in [(2, -1), (2, 1), (3, -2), (1, -2)]:
+        M_r = a_r * R + b_r * I2
+        disc_Mr = np.trace(M_r)**2 - 4 * np.linalg.det(M_r)
+        checks.append((f"disc({a_r}R+{b_r}I)={disc}*{a_r}^2",
+                        _eq(disc_Mr, disc * a_r**2)))
+
+    # --- G-NEW: disc(R+alpha*N) = disc - 4*alpha^2 (N-perturbation breaks rigidity) ---
+    # N lives in the spacelike direction; adding it changes the signature norm
+    for alpha_n in [1, -1, 2]:
+        M_n = R + alpha_n * N
+        disc_Mn = np.trace(M_n)**2 - 4 * np.linalg.det(M_n)
+        checks.append((f"disc(R+{alpha_n}N)=disc-4a^2",
+                        _eq(disc_Mn, disc - 4 * alpha_n**2)))
+
+    # --- G-NEW: R^n*N*R^m two-index transport ---
+    # R^n*N = (L(n)*N + F(n)*C)/2 and N*R^m = (L(m)*N - F(m)*C)/2
+    # Combined: R^n*N*R^m uses Fibonacci/Lucas transport through the N-bridge
+    C_tw = C_harness
+    for n_tw in range(4):
+        Rn_tw = np.linalg.matrix_power(R, n_tw)
+        Fn_tw = Rn_tw[0, 1]
+        Ln_tw = np.trace(Rn_tw)
+        checks.append((f"R^{n_tw}*N=(L*N+F*C)/2",
+                        _eq(Rn_tw @ N, (Ln_tw * N + Fn_tw * C_tw) / 2)))
+    for m_tw in range(4):
+        Rm_tw = np.linalg.matrix_power(R, m_tw)
+        Fm_tw = Rm_tw[0, 1]
+        Lm_tw = np.trace(Rm_tw)
+        checks.append((f"N*R^{m_tw}=(L*N-F*C)/2",
+                        _eq(N @ Rm_tw, (Lm_tw * N - Fm_tw * C_tw) / 2)))
 
     # ================================================================
     # FRONTIER: Depth-2 tower spectral structure
@@ -1822,6 +1856,124 @@ def generate_tower():
     checks.append(("I in ker(D)", _eq(D0 @ I2.flatten(), np.zeros(4))))
     checks.append(("R_tl in ker(D)", _eq(D0 @ R_tl.flatten(), np.zeros(4))))
 
+    # ================================================================
+    # G-GAUGE: Gauge location at depth 2 (gauge_location_depth2.py)
+    # ================================================================
+
+    # --- G-GAUGE-1: im(L2) is a Lie algebra under [,] ---
+    U_im2, S_im2, _ = np.linalg.svd(L_d2)
+    im2_dim = sum(1 for sv in S_im2 if sv > 1e-10)
+    Q_im2 = U_im2[:, :im2_dim]
+    rng_g = np.random.default_rng(42)
+    im_closes = True
+    for _ in range(50):
+        i_g, j_g = rng_g.integers(0, im2_dim, size=2)
+        if i_g == j_g:
+            continue
+        Mi_g = Q_im2[:, i_g].reshape(8, 8)
+        Mj_g = Q_im2[:, j_g].reshape(8, 8)
+        br_g = (Mi_g @ Mj_g - Mj_g @ Mi_g).flatten()
+        if np.linalg.norm(br_g) < 1e-10:
+            continue
+        in_im_g = Q_im2 @ (Q_im2.T @ br_g)
+        if np.linalg.norm(br_g - in_im_g) / np.linalg.norm(br_g) > 0.01:
+            im_closes = False
+            break
+    checks.append(("im(L2) is Lie algebra", im_closes))
+
+    # --- G-GAUGE-2: so(3,1) L2-closure dim = 17 = disc + dim_gauge ---
+    # Chirality selection: find the Cl(3,1) with rank({N1,sigma})=6
+    N1_g = np.block([[N, -2*h], [np.zeros((2, 2)), N]])
+    Z4_g = np.zeros((4, 4))
+    gammas_sel = None
+    for combo in combinations(range(16), 4):
+        if 0 in combo:
+            continue
+        els = [tp[i] for i in combo]
+        if all(np.allclose(els[ic] @ els[jc] + els[jc] @ els[ic], 0, atol=1e-6)
+               for ic in range(4) for jc in range(ic + 1, 4)):
+            sqs = [np.trace(e @ e) / 4 for e in els]
+            if (sum(1 for sv in sqs if sv > 0.5) == 3 and
+                    sum(1 for sv in sqs if sv < -0.5) == 1):
+                sigs_t = [(els[mu] @ els[nu] - els[nu] @ els[mu]) / 4
+                          for mu in range(4) for nu in range(mu + 1, 4)]
+                ac_v = [(N1_g @ st + st @ N1_g).flatten() for st in sigs_t]
+                if np.linalg.matrix_rank(np.column_stack(ac_v), tol=1e-8) == 6:
+                    gammas_sel = els
+                    break
+    sigmas_g = [(gammas_sel[mu] @ gammas_sel[nu] - gammas_sel[nu] @ gammas_sel[mu]) / 4
+                for mu in range(4) for nu in range(mu + 1, 4)]
+    sigmas_8g = [np.block([[sg, Z4_g], [Z4_g, sg]]) for sg in sigmas_g]
+    span_g = np.column_stack([sg.flatten() for sg in sigmas_8g])
+    for _step in range(10):
+        old_rk = np.linalg.matrix_rank(span_g, tol=1e-8)
+        Q_g = np.linalg.qr(span_g)[0][:, :old_rk]
+        new_vecs_g = []
+        for jj in range(old_rk):
+            Mg = Q_g[:, jj].reshape(8, 8)
+            vg = (s2 @ Mg + Mg @ s2 - Mg).flatten()
+            proj_g = Q_g @ (Q_g.T @ vg)
+            orth_g = vg - proj_g
+            if np.linalg.norm(orth_g) > 1e-8:
+                new_vecs_g.append(orth_g / np.linalg.norm(orth_g))
+        if not new_vecs_g:
+            break
+        for nv_g in new_vecs_g:
+            Q_cur = np.linalg.qr(span_g)[0][:, :np.linalg.matrix_rank(span_g, tol=1e-8)]
+            proj_c = Q_cur @ (Q_cur.T @ nv_g)
+            orth_c = nv_g - proj_c
+            if np.linalg.norm(orth_c) > 1e-8:
+                span_g = np.column_stack([span_g, orth_c / np.linalg.norm(orth_c)])
+        new_rk = np.linalg.matrix_rank(span_g, tol=1e-8)
+        span_g = np.linalg.qr(span_g)[0][:, :new_rk]
+        if new_rk == old_rk:
+            break
+    final_dim_g = np.linalg.matrix_rank(span_g, tol=1e-8)
+    checks.append(("so(3,1) L2-closure=17", final_dim_g == 17))
+
+    # --- G-GAUGE-3: Spectrum of L2|_17: +/-sqrt(5)x6, 0x5 ---
+    Q_17g = np.linalg.qr(span_g)[0][:, :final_dim_g]
+    L2_17g = Q_17g.T @ L_d2 @ Q_17g
+    eigs_17g = np.linalg.eigvals(L2_17g).real
+    sqrt_d_g = np.sqrt(disc)
+    n_pos_g = sum(1 for e in eigs_17g if abs(e - sqrt_d_g) < 0.1)
+    n_neg_g = sum(1 for e in eigs_17g if abs(e + sqrt_d_g) < 0.1)
+    n_zero_g = sum(1 for e in eigs_17g if abs(e) < 0.1)
+    checks.append(("L2|_17: 6+/6-/5z",
+                    n_pos_g == 6 and n_neg_g == 6 and n_zero_g == 5))
+    checks.append(("12 nonzero=dim_gauge", n_pos_g + n_neg_g == dim_gauge))
+    checks.append(("5 null=disc", n_zero_g == disc))
+
+    # --- G-GAUGE-4: 17 - 6 = 11 (b_3 pure gauge coefficient) ---
+    checks.append(("17-so(3,1)=11", final_dim_g - 6 == 11))
+
+    # --- G-GAUGE-5: N1 invertible, rank({N1,sigma})=6 ---
+    N1_g = np.block([[N, -2*h], [np.zeros((2, 2)), N]])
+    checks.append(("det(N1)=1", _eq(np.linalg.det(N1_g), 1.0)))
+    n_anticomm = sum(1 for sg in sigmas_g
+                     if np.linalg.norm(N1_g @ sg + sg @ N1_g) < 1e-8)
+    checks.append(("rank({N1,sig})=6", n_anticomm == 0))
+
+    # --- G-GAUGE-6: 4/12 Cl(3,1) choices give rank 6 ---
+    basis_4g = [I2, J, h, N]
+    tb4g = [np.kron(a, b) for a in basis_4g for b in basis_4g]
+    n_rank6 = 0
+    for combo in combinations(range(16), 4):
+        if 0 in combo:
+            continue
+        els = [tb4g[i] for i in combo]
+        if all(np.allclose(els[ic] @ els[jc] + els[jc] @ els[ic], 0, atol=1e-6)
+               for ic in range(4) for jc in range(ic + 1, 4)):
+            sqs = [np.trace(e @ e) / 4 for e in els]
+            if (sum(1 for sv in sqs if sv > 0.5) == 3 and
+                    sum(1 for sv in sqs if sv < -0.5) == 1):
+                sigs_t = [(els[mu] @ els[nu] - els[nu] @ els[mu]) / 4
+                          for mu in range(4) for nu in range(mu + 1, 4)]
+                ac_v = [(N1_g @ st + st @ N1_g).flatten() for st in sigs_t]
+                if np.linalg.matrix_rank(np.column_stack(ac_v), tol=1e-8) == 6:
+                    n_rank6 += 1
+    checks.append(("4/12 Cl31 rank6", n_rank6 == 4))
+
     return checks
 
 
@@ -1948,6 +2100,24 @@ def generate_physics():
                      for k in range(N_c + 1))
     checks.append(("CYB-9 phi_bar^2 in spec", eig_check))
 
+    # --- CYB-9 detailed: Lie coproduct spectrum at d_K=2^3=8=parent_ker ---
+    # Eigenvalues: k*phi - (3-k)*phi_bar, k=0..3, multiplicity C(3,k)
+    # Total multiplicity = sum C(3,k) = 2^3 = 8 = parent_ker
+    from math import comb
+    n_cyb = N_c  # = 3
+    cyb_eigs = [k * phi - (n_cyb - k) * phi_bar for k in range(n_cyb + 1)]
+    cyb_mults = [comb(n_cyb, k) for k in range(n_cyb + 1)]
+    checks.append(("CYB-9 total mult=pk", sum(cyb_mults) == parent_ker))
+    checks.append(("CYB-9 phi_bar^2 at k=1", _eq(cyb_eigs[1], phi_bar**2)))
+    checks.append(("CYB-9 mult(phi_bar^2)=3", cyb_mults[1] == N_c))
+    # Weighted eigenvalue sum = dim_gauge (12)
+    cyb_weighted = sum(cyb_mults[k] * cyb_eigs[k] for k in range(n_cyb + 1))
+    checks.append(("CYB-9 weighted sum=gauge", _eq(cyb_weighted, dim_gauge)))
+
+    # --- Natural Temperature Hyperbolic: cosh^2(beta_KMS) = disc/4 ---
+    checks.append(("cosh^2(ln phi)=disc/4",
+                    _eq(np.cosh(beta_KMS)**2, disc / 4.0)))
+
     # Biphasic
     checks.append(("biphasic UP/DOWN=cosh(ln phi)",
                     _eq(np.sqrt(5) / 2, np.cosh(beta_KMS))))
@@ -1965,6 +2135,22 @@ def generate_physics():
     L_bit = np.log2(phi)
     C_vessel = 1 * 1 * 2 * L_bit
     checks.append(("vessel C(1,1)=2*log2(phi)", _eq(C_vessel, 2 * L_bit)))
+
+    # --- CC_min trajectory: CC(R^2) = 5*F(2)^2 / (5*F(2)^2 + L(2)^2) = 5/14 ---
+    R2_cc = np.linalg.matrix_power(R, 2)
+    F2_cc = R2_cc[0, 1]  # F(2) = 1
+    L2_cc = np.trace(R2_cc)  # L(2) = 3
+    cc_formula_n2 = disc * F2_cc**2 / (disc * F2_cc**2 + L2_cc**2)
+    checks.append(("CC_min formula=5/14", _eq(cc_formula_n2, 5.0 / 14.0)))
+    checks.append(("CC_min from matrices", _eq(cc_metric(R2_cc), cc_formula_n2)))
+
+    # --- CC convergence RATE: |CC(R^n)-1/2| ratio -> -phi_bar^2 ---
+    # The eigenvalue ratio r = lam2/lam1 = -phi_bar/phi = -phi_bar^2
+    # Successive deviation ratios converge to r
+    r_conv = -phi_bar**2
+    devs_cc = [cc_metric(np.linalg.matrix_power(R, n)) - 0.5 for n in range(6, 9)]
+    ratio_cc = devs_cc[1] / devs_cc[0]
+    checks.append(("CC rate->-phi_bar^2", _eq(ratio_cc, r_conv, tol=1e-4)))
 
     # --- Killing balance: integral_0^1 B(X(s),X(s)) ds = 0 ---
     # X(s) = (1-s)*h + s*N, B(X,X) = 4*tr(X^2) = 4*((1-s)^2 - s^2) = 4*(1-2s)
